@@ -9,4 +9,12 @@ public static class StaticName
     public const string UI_CONTEXT_SCENE = "UI";
 
     #endregion
+
+    #region content_paths
+
+    public const string PLAYER_PATH = "Configs/Player";
+    public const string ENEMIES_PATH = "Configs/Enemies";
+    public const string TOWERS_PATH = "Configs/Towers";
+
+    #endregion
 }
