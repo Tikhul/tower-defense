@@ -4,8 +4,9 @@ using UnityEngine;
 /// <summary>
 /// Абстрактная реализация загрузчика ресурсов
 /// </summary>
+/// <typeparam name="TL">Загружаемая библиотека</typeparam>
 /// <typeparam name="TC">Тип загружаемых ресурсов</typeparam>
-public abstract class LoadConfigsCommand<TC> : Command where TC : ScriptableObject
+public abstract class LoadConfigsCommand<TL, TC> : Command where TL : LibraryModel<TC> where TC : ScriptableObject
 {
 	public override void Execute()
 	{

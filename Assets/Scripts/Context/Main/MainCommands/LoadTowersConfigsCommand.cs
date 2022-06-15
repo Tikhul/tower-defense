@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadEnemiesConfigsCommand : LoadConfigsCommand<EnemiesLibraryModel, EnemySO>
+public class LoadTowersConfigsCommand : LoadConfigsCommand<TowersLibraryModel, TowerSO>
 {
     protected override string GetPath()
     {
-        return StaticName.ENEMIES_PATH;
+        return StaticName.TOWERS_PATH;
     }
 }
+

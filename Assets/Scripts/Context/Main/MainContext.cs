@@ -13,7 +13,12 @@ public class MainContext : MainSignalContext
     protected override void mapBindings()
     {
         base.mapBindings();
-        commandBinder.Bind<LoadUIContextSignal>().To<LoadUIContextCommand>().Once();
+        commandBinder.Bind<StartSignal>()
+            .To<LoadUIContextCommand>()
+            .To<LoadEnemiesConfigsCommand>()
+            .To<LoadTowersConfigsCommand>()
+            .To<LoadLevelPipelineConfigsCommand>()
+            .Once();
         injectionBinder.Bind<UIContextLoadedSignal>().ToSingleton();
     }
 }

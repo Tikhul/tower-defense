@@ -26,6 +26,6 @@ public class MainSignalContext : MVCSContext
     {
         base.Launch();
 
-        injectionBinder.GetInstance<LoadUIContextSignal>().Dispatch();
+        injectionBinder.GetInstance<StartSignal>().Dispatch();
     }
 }
