@@ -7,6 +7,8 @@ public static class StaticName
 
     public const string MAIN_CONTEXT_SCENE = "Main";
     public const string UI_CONTEXT_SCENE = "UI";
+    public const string GAME_CONTEXT_SCENE = "Game";
+    public const string LEVEL_CONTEXT_SCENE = "Level";
 
     #endregion
 

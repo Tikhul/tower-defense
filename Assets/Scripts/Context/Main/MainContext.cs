@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainContext : SignalContext
+public class MainContext : MainSignalContext
 {
     public MainContext(MonoBehaviour view) 
         : base(view)
@@ -13,7 +13,7 @@ public class MainContext : SignalContext
     protected override void mapBindings()
     {
         base.mapBindings();
-        commandBinder.Bind<StartSignal>().To<LoadUIContextCommand>().Once();
+        commandBinder.Bind<LoadUIContextSignal>().To<LoadUIContextCommand>().Once();
         injectionBinder.Bind<UIContextLoadedSignal>().ToSingleton();
     }
 }

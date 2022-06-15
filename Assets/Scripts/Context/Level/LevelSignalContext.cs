@@ -6,10 +6,10 @@ using UnityEngine;
 using strange.extensions.command.api;
 using strange.extensions.command.impl;
 
-public class SignalContext : MVCSContext
+public class LevelSignalContext : MVCSContext
 {
-    public SignalContext(MonoBehaviour contextView) 
-        : base (contextView, ContextStartupFlags.MANUAL_MAPPING)
+    public LevelSignalContext(MonoBehaviour contextView)
+        : base(contextView, ContextStartupFlags.MANUAL_MAPPING)
     {
 
     }
@@ -26,6 +26,5 @@ public class SignalContext : MVCSContext
     {
         base.Launch();
 
-        injectionBinder.GetInstance<StartSignal>().Dispatch();
     }
 }
