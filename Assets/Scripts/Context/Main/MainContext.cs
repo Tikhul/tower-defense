@@ -18,6 +18,7 @@ public class MainContext : MainSignalContext
             .To<LoadEnemiesConfigsCommand>()
             .To<LoadTowersConfigsCommand>()
             .To<LoadLevelPipelineConfigsCommand>()
+            .To<LoadPlayerConfigCommand>()
             .Once();
         injectionBinder.Bind<UIContextLoadedSignal>().ToSingleton();
     }

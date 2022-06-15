@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "LevelScriptableObject", menuName = "ScriptableObjects/LevelSO", order = 6)]
-public class LevelSO : ScriptableObject
+public class LevelSO : Config
 {
     [SerializeField] private EnemyWaySO _enemyWay;
     [SerializeField] private List<WaveSO> _waves;

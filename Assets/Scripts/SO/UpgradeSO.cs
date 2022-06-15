@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "UpgradeScriptableObject", menuName = "ScriptableObjects/UpgradeSO", order = 4)]
-public class UpgradeSO : ScriptableObject
+public class UpgradeSO : Config
 {
     [SerializeField] private int _upgradeDamage;
     [SerializeField] private float _upgradeRadius;

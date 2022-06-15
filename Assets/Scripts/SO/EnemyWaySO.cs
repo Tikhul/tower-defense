@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyWayScriptableObject", menuName = "ScriptableObjects/EnemyWaySO", order = 6)]
-public class EnemyWaySO : ScriptableObject
+public class EnemyWaySO : Config
 {
     [SerializeField] private List<string> _indexes;
 

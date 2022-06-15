@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 /// <typeparam name="TL">Загружаемая библиотека</typeparam>
 /// <typeparam name="TC">Тип загружаемых ресурсов</typeparam>
-public abstract class LoadConfigsCommand<TL, TC> : Command where TL : LibraryModel<TC> where TC : ScriptableObject
+public abstract class LoadConfigsCommand<TL, TC> : Command where TL : LibraryModel<TC> where TC : Config
 {
 	public override void Execute()
 	{

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "TowerScriptableObject", menuName = "ScriptableObjects/TowerSO", order = 3)]
-public class TowerSO : ScriptableObject
+public class TowerSO : Config
 {
     [SerializeField] private int _damage;
     [SerializeField] private float _shootRadius;

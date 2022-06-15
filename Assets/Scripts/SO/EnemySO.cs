@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "EnemyScriptableObject", menuName = "ScriptableObjects/EnemySO", order = 2)]
-public class EnemySO : ScriptableObject
+public class EnemySO : Config
 {
     [SerializeField] private int _initialHealth;
     [SerializeField] private int _damage;
