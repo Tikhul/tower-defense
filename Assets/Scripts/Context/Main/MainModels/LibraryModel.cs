@@ -11,15 +11,10 @@ public abstract class LibraryModel<TC> where TC : Config
 		_libraryData = libraryData.ToList();
 	}
 
-	public IEnumerable<TC> GetAllLibraryData()
-	{
-		return _libraryData;
-	}
 
 	public TC GetLibraryDataById(string id)
 	{
 		var config = _libraryData.FirstOrDefault(e => e.Id.Equals(id));
-		if (config == null) Debug.LogError("Can't found pipeline with id: " + id);
 
 		return config;
 	}

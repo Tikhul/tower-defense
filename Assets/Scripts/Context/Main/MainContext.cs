@@ -20,6 +20,10 @@ public class MainContext : MainSignalContext
             .To<LoadLevelPipelineConfigsCommand>()
             .To<LoadPlayerConfigCommand>()
             .Once();
-        injectionBinder.Bind<UIContextLoadedSignal>().ToSingleton();
+        injectionBinder.Bind<UIContextLoadedSignal>().ToSingleton().CrossContext();
+        injectionBinder.Bind<EnemiesLibraryModel>().ToSingleton().CrossContext();
+        injectionBinder.Bind<TowersLibraryModel>().ToSingleton().CrossContext();
+        injectionBinder.Bind<LevelsLibraryModel>().ToSingleton().CrossContext();
+        injectionBinder.Bind<PlayerLibraryModel>().ToSingleton().CrossContext();
     }
 }
