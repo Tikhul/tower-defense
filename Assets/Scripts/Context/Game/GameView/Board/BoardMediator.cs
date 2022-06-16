@@ -6,7 +6,6 @@ using UnityEngine;
 public class BoardMediator : Mediator
 {
     [Inject] public BoardView View { get; set; }
-    [Inject] public BoardCreatedSignal BoardCreatedSignal { get; set; }
     [Inject] public BoardLibraryModel BoardLibraryModel { get; set; }
 
     public override void OnRegister()

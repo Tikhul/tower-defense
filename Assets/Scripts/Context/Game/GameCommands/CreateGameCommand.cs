@@ -5,34 +5,16 @@ using UnityEngine;
 
 public class CreateGameCommand : Command
 {
-    private PlayerModel _player;
-    private BoardModel _board;
-    [Inject] public PlayerCreatedSignal PlayerCreatedSignal { get; set; }
-    [Inject] public BoardCreatedSignal BoardCreatedSignal { get; set; }
+    [Inject] public GameModel GameModel { get; set; }
+    [Inject] public PlayerLibraryModel PlayerLibraryModel { get; set; }
+    [Inject] public BoardLibraryModel BoardLibraryModel { get; set; }
 
     public override void Execute()
     {
-        Retain();
-        PlayerCreatedSignal.AddListener(GetPlayer);
-        BoardCreatedSignal.AddListener(GetBoard);
-        Release();
-        CreateGame(_player, _board);
-    }
-
-    private void GetPlayer(PlayerModel player)
-    {
-        _player = player;
-        PlayerCreatedSignal.RemoveListener(GetPlayer);
-    }
-
-    private void GetBoard(BoardModel board)
-    {
-        _board = board;
-        BoardCreatedSignal.RemoveListener(GetBoard);
-    }
-    private void CreateGame(PlayerModel player, BoardModel board)
-    {
-        var game = new GameModel(player, board);
-        Debug.Log("CreateGame");
+        var player = new PlayerModel(PlayerLibraryModel.GetLibraryDataById("player"));
+        var board = new BoardModel(BoardLibraryModel.GetLibraryDataById("board"));
+        GameModel.Player = player;
+        GameModel.Board = board;
+        Debug.Log(GameModel.Board.Settings.Id);
     }
 }

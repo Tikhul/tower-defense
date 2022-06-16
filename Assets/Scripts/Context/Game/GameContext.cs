@@ -14,11 +14,12 @@ public class GameContext : GameSignalContext
     {
         base.mapBindings();
 
-        commandBinder.Bind<LoadLevelContextSignal>().To<LoadLevelContextCommand>();
-        commandBinder.Bind<PlayerLibraryCreatedSignal>().To<CreatePlayerCommand>();
-        commandBinder.Bind<BoardLibraryCreatedSignal>().To<CreateBoardCommand>();
-        injectionBinder.Bind<PlayerCreatedSignal>().ToSingleton();
-        injectionBinder.Bind<BoardCreatedSignal>().ToSingleton();
+        commandBinder.Bind<LoadLevelContextSignal>()
+            .To<LoadLevelContextCommand>()
+            .To<CreateGameCommand>();
         injectionBinder.Bind<LevelContextLoadedSignal>().ToSingleton();
+        injectionBinder.Bind<PlayerModel>().ToSingleton();
+        injectionBinder.Bind<BoardModel>().ToSingleton();
+        injectionBinder.Bind<GameModel>().ToSingleton().CrossContext();
     }
 }
