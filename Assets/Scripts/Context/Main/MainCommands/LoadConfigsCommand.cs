@@ -15,7 +15,13 @@ public abstract class LoadConfigsCommand<TL, TC> : Command where TL : LibraryMod
 		Debug.Log("Loaded " + typeof(TC) + ". Count: " + configs.Length);
 
 		injectionBinder.GetInstance<TL>().Initialize(configs);
+
+		PassData();
 	}
 
 	protected abstract string GetPath();
+	public virtual void PassData()
+    {
+
+    }
 }

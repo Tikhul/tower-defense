@@ -15,6 +15,7 @@ public static class StaticName
     #region content_paths
 
     public const string PLAYER_PATH = "Configs/Player";
+    public const string BOARD_PATH = "Configs/Board";
     public const string ENEMIES_PATH = "Configs/Enemies";
     public const string TOWERS_PATH = "Configs/Towers";
     public const string PIPELINES_PATH = "Configs/Pipelines";

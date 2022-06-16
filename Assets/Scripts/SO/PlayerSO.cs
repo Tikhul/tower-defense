@@ -4,15 +4,9 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "PlayerScriptableObject", menuName = "ScriptableObjects/PlayerSO", order = 1)]
 public class PlayerSO : Config
 {
-    [SerializeField] private string _id;
     [SerializeField] private int _initialHealth;
     [SerializeField] private int _initialCoins;
 
-    public string Id
-    {
-        get => _id;
-        set => _id = value;
-    }
     /// <summary>
     /// Начальное здоровье игрока
     /// </summary>

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a79566f1e3c3b94aa7565990c07ad71, type: 3}
   m_Name: PlayerScriptableObject
   m_EditorClassIdentifier: 
-  _id: 
+  _id: player
   _initialHealth: 0
   _initialCoins: 0

@@ -16,6 +16,7 @@ public class StartPanelMediator : Mediator
     private void OnStartButtonClickHandler()
     {
         View.Hide();
+        var library = new BoardLibraryModel();
         LoadGameContextSignal.Dispatch();
     }
 }
