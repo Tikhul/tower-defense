@@ -6,15 +6,11 @@ using UnityEngine;
 public class BoardMediator : Mediator
 {
     [Inject] public BoardView View { get; set; }
-    [Inject] public BoardLibraryModel BoardLibraryModel { get; set; }
+    [Inject] public DrawBoardSignal DrawBoardSignal { get; set; }
 
     public override void OnRegister()
     {
-        View.OnBoardViewActivated += CreateBoardHandler;
-    }
-
-    private void CreateBoardHandler()
-    {
-        
+        DrawBoardSignal.Dispatch();
+        Debug.Log("OnRegister");
     }
 }

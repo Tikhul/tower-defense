@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelContext : GameSignalContext
+public class LevelContext : LevelSignalContext
 {
     public LevelContext(MonoBehaviour view)
         : base(view)
@@ -14,6 +14,8 @@ public class LevelContext : GameSignalContext
     {
         base.mapBindings();
 
+        mediationBinder.BindView<BoardView>().ToMediator<BoardMediator>();
         injectionBinder.Bind<LoadLevelContextSignal>().ToSingleton();
+        commandBinder.Bind<DrawBoardSignal>().To<DrawBoardCommand>().Once();
     }
 }

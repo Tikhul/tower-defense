@@ -21,4 +21,10 @@ public static class StaticName
     public const string PIPELINES_PATH = "Configs/Pipelines";
 
     #endregion
+
+    #region strings
+
+    public const string Alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+    #endregion
 }

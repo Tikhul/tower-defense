@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Заполнение модели игры GameModel
+/// </summary>
 public class CreateGameCommand : Command
 {
     [Inject] public GameModel GameModel { get; set; }
@@ -15,6 +18,5 @@ public class CreateGameCommand : Command
         var board = new BoardModel(BoardLibraryModel.GetLibraryDataById("board"));
         GameModel.Player = player;
         GameModel.Board = board;
-        Debug.Log(GameModel.Board.Settings.Id);
     }
 }
