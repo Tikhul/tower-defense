@@ -17,6 +17,5 @@ public class FillCellListCommand : Command
         buttonSettings.CellInt = Int;
         GameModel.Board.CurrentCellList.Add(buttonSettings);
         GameModel.Board.AllCellList.Add(buttonSettings);
-        Debug.Log(Char.ToString() + Int.ToString());
     }
 }
