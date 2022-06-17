@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerModel
 {
-    public PlayerSO Settings { get; set; }
+    public int InitialCoins { get; }
+    public int InitialHealth { get; }
     public PlayerModel(PlayerSO settings)
     {
-        Settings = settings;
+        InitialCoins = settings.InitialCoins;
+        InitialHealth = settings.InitialHealth;
     }
 }
