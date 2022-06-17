@@ -14,12 +14,13 @@ public class MainContext : MainSignalContext
     {
         base.mapBindings();
         commandBinder.Bind<StartSignal>()
-            .To<LoadUIContextCommand>()
             .To<LoadEnemiesConfigsCommand>()
             .To<LoadTowersConfigsCommand>()
             .To<LoadLevelPipelineConfigsCommand>()
             .To<LoadPlayerConfigCommand>()
             .To<LoadBoardConfigCommand>()
+            .To<LoadUIContextCommand>().
+            InSequence()
             .Once();
         injectionBinder.Bind<UIContextLoadedSignal>().ToSingleton();
         injectionBinder.Bind<EnemiesLibraryModel>().ToSingleton().CrossContext();
