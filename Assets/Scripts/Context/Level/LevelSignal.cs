@@ -3,4 +3,4 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DrawBoardSignal : Signal { }
+public class DrawBoardSignal : Signal<GameObject> { }

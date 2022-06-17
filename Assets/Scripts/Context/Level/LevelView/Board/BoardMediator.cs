@@ -10,7 +10,6 @@ public class BoardMediator : Mediator
 
     public override void OnRegister()
     {
-        DrawBoardSignal.Dispatch();
-        Debug.Log("OnRegister");
+        DrawBoardSignal.Dispatch(View.BoardParent);
     }
 }

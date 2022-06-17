@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BoardModel
 {
-    public int RowNumber { get; } 
+    public BoardSO Settings { get; } 
     public BoardModel (BoardSO settings)
     {
-        RowNumber = settings.RowNumber;
+        Settings = settings;
     }
 }

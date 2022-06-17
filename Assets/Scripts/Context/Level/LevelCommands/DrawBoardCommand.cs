@@ -5,8 +5,41 @@ using UnityEngine;
 
 public class DrawBoardCommand : Command
 {
+    [Inject] public GameModel GameModel { get; set; }
+    [Inject] public DrawBoardSignal DrawBoardSignal { get; set; }
+    [Inject] public GameObject boardParent { get; set; }
     public override void Execute()
     {
-        Debug.Log("DrawBoardCommand");    
+        Debug.Log("DrawBoardCommand");
+        Debug.Log(GameModel.Board.Settings.ParentPanel.name);
+        DrawBoard();
+    }
+
+    private void DrawBoard()
+    {
+        BoardPartsPrototype prototype = new StandardPartPrototype();
+        float _parentPanelSide = GameModel.Board.Settings.ParentPanel.GetComponent<RectTransform>().sizeDelta.x;
+
+        GameObject boardPanel = prototype.Clone(GameModel.Board.Settings.ParentPanel, boardParent,
+            _parentPanelSide, _parentPanelSide);
+
+        GameObject row = prototype.Clone(GameModel.Board.Settings.Rows, boardPanel,
+            _parentPanelSide, _parentPanelSide);
+
+        for (int r = 0; r < GameModel.Board.Settings.RowNumber; r++)
+        {
+            GameObject column = prototype.Clone(GameModel.Board.Settings.Columns, row,
+                _parentPanelSide / GameModel.Board.Settings.RowNumber,
+                _parentPanelSide);
+
+            for (int b = 0; b < GameModel.Board.Settings.RowNumber; b++)
+            {
+                GameObject button = prototype.Clone(GameModel.Board.Settings.ButtonExample, column,
+                    _parentPanelSide / GameModel.Board.Settings.RowNumber,
+                    _parentPanelSide / GameModel.Board.Settings.RowNumber);
+
+            }
+        }
+        Debug.Log("DrawBoard");
     }
 }
