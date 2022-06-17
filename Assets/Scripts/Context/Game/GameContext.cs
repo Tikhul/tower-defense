@@ -15,8 +15,9 @@ public class GameContext : GameSignalContext
         base.mapBindings();
 
         commandBinder.Bind<LoadLevelContextSignal>()
+            .To<CreateGameCommand>()
             .To<LoadLevelContextCommand>()
-            .To<CreateGameCommand>();
+            .InSequence();
         injectionBinder.Bind<LevelContextLoadedSignal>().ToSingleton();
         injectionBinder.Bind<PlayerModel>().ToSingleton();
         injectionBinder.Bind<BoardModel>().ToSingleton();
