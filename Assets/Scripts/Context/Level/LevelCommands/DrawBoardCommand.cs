@@ -10,8 +10,6 @@ public class DrawBoardCommand : Command
     [Inject] public GameObject boardParent { get; set; }
     public override void Execute()
     {
-        Debug.Log("DrawBoardCommand");
-        Debug.Log(GameModel.Board.Settings.ParentPanel.name);
         DrawBoard();
     }
 
@@ -38,8 +36,8 @@ public class DrawBoardCommand : Command
                     _parentPanelSide / GameModel.Board.Settings.RowNumber,
                     _parentPanelSide / GameModel.Board.Settings.RowNumber);
 
+                injectionBinder.GetInstance<FillCellListSignal>().Dispatch(button, StaticName.Alphabet[b], r);
             }
         }
-        Debug.Log("DrawBoard");
     }
 }
