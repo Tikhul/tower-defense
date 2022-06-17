@@ -12,4 +12,9 @@ public class BoardView : View
         get => _boardParent;
         set => _boardParent = value;
     }
+
+    private void OnEnable()
+    {
+        BoardParent.GetComponent<Canvas>().worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    }
 }
