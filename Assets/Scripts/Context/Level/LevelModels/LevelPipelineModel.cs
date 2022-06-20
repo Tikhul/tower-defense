@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class LevelsPipelineModel : PipelineModel<LevelsPipelineSO>
+public class LevelsPipelineModel
 {
-    public LevelsPipelineSO Pipeline { get; set; }
-    private List<ILevelModel> _levelModels;
+    public LevelsPipelineSO Config { get; set; }
+    private List<ILevelModel> _levelModels => Config.GetLevelModels();
     public ILevelModel CurrentStage => _levelModels.LastOrDefault(e => e.State.Equals(LevelState.Active) || e.State.Equals(LevelState.Completed));
 
     public event Action OnPipelineBegin;
@@ -15,11 +15,6 @@ public class LevelsPipelineModel : PipelineModel<LevelsPipelineSO>
 
     public event Action<ILevelModel> OnLevelBegin;
     public event Action<ILevelModel> OnLevelComplete;
-
-    public LevelsPipelineModel(LevelsPipelineSO config) : base(config)
-    {
-        _levelModels = config.GetLevelModels();
-    }
 
     private ILevelModel GetNextLevel()
     {
