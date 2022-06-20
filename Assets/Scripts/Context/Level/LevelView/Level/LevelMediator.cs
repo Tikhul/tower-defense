@@ -7,27 +7,35 @@ public class LevelMediator : Mediator
 {
     [Inject] public LevelView View { get; set; }
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
-   // [Inject] public PipelineStartSignal PipelineStartSignal { get; set; }
-   // [Inject] public PipelineEndedSignal PipelineEndedSignal { get; set; }
+    [Inject] public BeginNextLevelSignal BeginNextLevelSignal { get; set; }
 
     public override void OnRegister()
     {
-  //      PipelineStartSignal.AddListener(PipelineStartedHandler);
+        View.OnSpaceClick += NexStageHandler;
+        LevelsPipelineModel.OnPipelineBegin += OnPipelineBeginHandler;
+        LevelsPipelineModel.OnPipelineComplete += OnPipelineCompleteHandler;
     }
 
     public override void OnRemove()
     {
-  //      PipelineStartSignal.RemoveListener(PipelineStartedHandler);
+        View.OnSpaceClick -= NexStageHandler;
+        LevelsPipelineModel.OnPipelineBegin -= OnPipelineBeginHandler;
         LevelsPipelineModel.OnPipelineComplete -= OnPipelineCompleteHandler;
     }
 
-    private void PipelineStartedHandler()
+    private void NexStageHandler()
     {
-        LevelsPipelineModel.OnPipelineComplete += OnPipelineCompleteHandler;
+        //  LevelsPipelineModel.CompleteCurrentLevel();
+        // LevelsPipelineModel.BeginNextLevel();
+        BeginNextLevelSignal.Dispatch();
     }
 
+    private void OnPipelineBeginHandler()
+    {
+
+    }
     private void OnPipelineCompleteHandler()
     {
-      //  PipelineEndedSignal.Dispatch();
+  
     }
 }

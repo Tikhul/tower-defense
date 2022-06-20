@@ -8,7 +8,7 @@ public class LevelsPipelineModel
 {
     public LevelsPipelineSO Config { get; set; }
     private List<ILevelModel> _levelModels => Config.GetLevelModels();
-    public ILevelModel CurrentStage => _levelModels.LastOrDefault(e => e.State.Equals(LevelState.Active) || e.State.Equals(LevelState.Completed));
+    public ILevelModel CurrentLevel => _levelModels.FirstOrDefault(e => e.State.Equals(LevelState.Active));
 
     public event Action OnPipelineBegin;
     public event Action OnPipelineComplete;
@@ -18,10 +18,22 @@ public class LevelsPipelineModel
 
     private ILevelModel GetNextLevel()
     {
-        if (CurrentStage == null) return _levelModels.FirstOrDefault();
-        var index = _levelModels.IndexOf(CurrentStage);
+        if (CurrentLevel == null)
+        {
+            return _levelModels.FirstOrDefault();
+        }
+
+        Debug.Log("index");
+        Debug.Log(CurrentLevel);
+
+        var index = _levelModels.IndexOf(CurrentLevel);
         index++;
-        if (_levelModels.Count <= index) return null;
+
+        if (_levelModels.Count <= index)
+        {
+            return null;
+        }
+        
         return _levelModels[index];
     }
 
@@ -39,16 +51,24 @@ public class LevelsPipelineModel
             stage.CompleteLevel();
         }
         OnPipelineComplete?.Invoke();
+        Debug.Log("End");
     }
 
-    public void BeginNextStage()
+    public void BeginNextLevel()
     {
-        var nextStage = GetNextLevel();
-        if (nextStage == null)
+        var nextLevel = GetNextLevel();
+        if (nextLevel == null)
         {
             End();
             return;
         }
-        nextStage.BeginLevel();
+        nextLevel.BeginLevel();
+        Debug.Log("BeginNextLevel");
+    }
+
+    public void CompleteCurrentLevel()
+    {
+        CurrentLevel.CompleteLevel();
+        Debug.Log("CompleteCurrentLevel");
     }
 }
