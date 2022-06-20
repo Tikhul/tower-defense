@@ -17,7 +17,7 @@ public class DrawBoardCommand : Command
     {
         BoardPartsPrototype prototype = new StandardPartPrototype();
         float _parentPanelSide = GameModel.Board.Settings.ParentPanel.GetComponent<RectTransform>().sizeDelta.x;
-
+        
         GameObject boardPanel = prototype.Clone(GameModel.Board.Settings.ParentPanel, boardParent,
             _parentPanelSide, _parentPanelSide);
 
@@ -35,7 +35,7 @@ public class DrawBoardCommand : Command
                 GameObject button = prototype.Clone(GameModel.Board.Settings.ButtonExample, column,
                     _parentPanelSide / GameModel.Board.Settings.RowNumber,
                     _parentPanelSide / GameModel.Board.Settings.RowNumber);
-
+                
                 injectionBinder.GetInstance<FillCellListSignal>().Dispatch(button, StaticName.Alphabet[b], r);
             }
         }

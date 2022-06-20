@@ -30,5 +30,6 @@ public class MainContext : MainSignalContext
         injectionBinder.Bind<BoardLibraryModel>().ToSingleton().CrossContext();
         injectionBinder.Bind<PlayerSO>().ToSingleton().CrossContext();
         injectionBinder.Bind<BoardSO>().ToSingleton().CrossContext();
+        injectionBinder.Bind<LevelsPipelineSO>().ToSingleton().CrossContext();
     }
 }

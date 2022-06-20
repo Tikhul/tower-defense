@@ -8,4 +8,16 @@ public class LevelsPipelineSO : Config
 {
     [SerializeField] private List<LevelSO> _levels;
     public List<LevelSO> Levels => _levels;
+
+    public List<ILevelModel> GetLevelModels()
+    {
+        var list = new List<ILevelModel>();
+
+        foreach(var level in _levels)
+        {
+            list.Add(new LevelModel(level));
+        }
+
+        return list;
+    }
 }

@@ -53,3 +53,9 @@ public class CellButton : MonoBehaviour, ICellButton
 
     }
 }
+
+public interface ICellButton
+{
+    void CellClicked();
+    void CellTaken(ICellButton chosenButton);
+}

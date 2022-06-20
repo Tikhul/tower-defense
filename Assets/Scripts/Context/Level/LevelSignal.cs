@@ -5,3 +5,5 @@ using UnityEngine;
 
 public class DrawBoardSignal : Signal<GameObject> { }
 public class FillCellListSignal : Signal<GameObject, char, int> { }
+//public class PipelineStartSignal : Signal { }
+public class PipelineEndedSignal : Signal { }

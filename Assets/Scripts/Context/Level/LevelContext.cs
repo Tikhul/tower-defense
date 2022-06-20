@@ -15,7 +15,11 @@ public class LevelContext : LevelSignalContext
         base.mapBindings();
 
         mediationBinder.BindView<BoardView>().ToMediator<BoardMediator>();
+        mediationBinder.BindView<LevelView>().ToMediator<LevelMediator>();
         commandBinder.Bind<DrawBoardSignal>().To<DrawBoardCommand>().Once();
-        commandBinder.Bind<FillCellListSignal>().To<FillCellListCommand>();
+        commandBinder.Bind<FillCellListSignal>().To<FillCellListCommand>().Once();
+       // commandBinder.Bind<PipelineStartSignal>().To<StartPipelineCommand>();
+        injectionBinder.Bind<PipelineEndedSignal>();
+        injectionBinder.Bind<LevelsPipelineModel>().ToSingleton();
     }
 }
