@@ -16,10 +16,14 @@ public class LevelsPipelineModel
 
     private ILevelModel GetNextLevel()
     {
-        var index = _levelModels.IndexOf(CurrentLevel);
-        index++;
+        if (CurrentLevel == null) return _levelModels.FirstOrDefault();
 
-        if (_levelModels.Count <= index)
+        var index = _levelModels.IndexOf(CurrentLevel);
+        Debug.Log(index);
+        index++;
+        Debug.Log(index);
+
+        if (index == _levelModels.Count)
         {
             return null;
         }
@@ -37,9 +41,9 @@ public class LevelsPipelineModel
 
     public void End()
     {
-        foreach (var stage in _levelModels.Where(x => x.State == LevelState.Active))
+        foreach (var level in _levelModels.Where(x => x.State == LevelState.Active))
         {
-            stage.CompleteLevel();
+            level.CompleteLevel();
         }
         OnPipelineComplete?.Invoke();
         Debug.Log("End");
