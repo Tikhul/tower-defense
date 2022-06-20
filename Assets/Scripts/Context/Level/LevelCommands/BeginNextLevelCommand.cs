@@ -7,6 +7,6 @@ public class BeginNextLevelCommand : Command
 {
     public override void Execute()
     {
-        injectionBinder.GetInstance<LevelModel>().BeginLevel();
+        injectionBinder.GetInstance<LevelsPipelineModel>().BeginNextLevel();
     }
 }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c18dc586293d34419bd88f6255549a4, type: 3}
   m_Name: LevelScriptableObject 2
   m_EditorClassIdentifier: 
-  _id: 
+  _id: 2
   _enemyWay: {fileID: 0}
   _waves: []

@@ -20,12 +20,14 @@ public class LevelModel : ILevelModel
     {
         State = LevelState.Active;
         OnLevelBegin?.Invoke();
+        Debug.Log("BeginLevel");
     }
 
     public void CompleteLevel()
     {
         State = LevelState.Completed;
         OnLevelComplete?.Invoke();
+        Debug.Log("CompleteLevel");
     }
 }
 

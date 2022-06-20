@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,25 +6,16 @@ using UnityEngine;
 public class LevelsPipelineModel
 {
     public LevelsPipelineSO Config { get; set; }
-    private List<ILevelModel> _levelModels => Config.GetLevelModels();
-    public ILevelModel CurrentLevel => _levelModels.FirstOrDefault(e => e.State.Equals(LevelState.Active));
-
+    private List<ILevelModel> _levelModels { get; set; }
+    public ILevelModel CurrentLevel => _levelModels.LastOrDefault(e => e.State.Equals(LevelState.Active) || e.State.Equals(LevelState.Completed));
     public event Action OnPipelineBegin;
     public event Action OnPipelineComplete;
 
-    public event Action<ILevelModel> OnLevelBegin;
-    public event Action<ILevelModel> OnLevelComplete;
+    //public event Action<ILevelModel> OnLevelBegin;
+    //public event Action<ILevelModel> OnLevelComplete;
 
     private ILevelModel GetNextLevel()
     {
-        if (CurrentLevel == null)
-        {
-            return _levelModels.FirstOrDefault();
-        }
-
-        Debug.Log("index");
-        Debug.Log(CurrentLevel);
-
         var index = _levelModels.IndexOf(CurrentLevel);
         index++;
 
@@ -36,12 +26,13 @@ public class LevelsPipelineModel
         
         return _levelModels[index];
     }
-
     public void Begin()
     {
+        _levelModels = Config.GetLevelModels();
         var first = GetNextLevel();
         first.BeginLevel();
         OnPipelineBegin?.Invoke();
+        Debug.Log("Begin");
     }
 
     public void End()
@@ -67,7 +58,7 @@ public class LevelsPipelineModel
     }
 
     public void CompleteCurrentLevel()
-    {
+    {  
         CurrentLevel.CompleteLevel();
         Debug.Log("CompleteCurrentLevel");
     }
