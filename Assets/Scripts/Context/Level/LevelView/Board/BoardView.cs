@@ -17,4 +17,9 @@ public class BoardView : View
     {
         BoardParent.GetComponent<Canvas>().worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
 }

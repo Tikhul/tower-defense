@@ -5,3 +5,4 @@ using UnityEngine;
 
 public class LoadGameContextSignal : Signal { }
 public class GameContextLoadedSignal : Signal { }
+public class ShowEndPanelSignal : Signal { }

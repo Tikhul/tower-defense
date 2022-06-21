@@ -1,3 +1,4 @@
+using strange.extensions.injector.impl;
 using strange.extensions.mediation.impl;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +9,8 @@ public class LevelMediator : Mediator
     [Inject] public LevelView View { get; set; }
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public BeginNextLevelSignal BeginNextLevelSignal { get; set; }
+    [Inject] public PipelineEndedSignal PipelineEndedSignal { get; set; }
+    [Inject] public ShowEndPanelSignal ShowEndPanelSignal { get; set; }
 
     public override void OnRegister()
     {
@@ -36,6 +39,7 @@ public class LevelMediator : Mediator
     }
     private void OnPipelineCompleteHandler()
     {
-  
+        PipelineEndedSignal.Dispatch();
+        ShowEndPanelSignal.Dispatch();
     }
 }

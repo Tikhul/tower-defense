@@ -15,7 +15,9 @@ public class UIContext : UISignalContext
         base.mapBindings();
 
         mediationBinder.BindView<StartPanelView>().ToMediator<StartPanelMediator>();
+        mediationBinder.BindView<EndPanelView>().ToMediator<EndPanelMediator>();
         commandBinder.Bind<LoadGameContextSignal>().To<LoadGameContextCommand>().Once();
+        injectionBinder.Bind<ShowEndPanelSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<GameContextLoadedSignal>().ToSingleton();
     }
 }
