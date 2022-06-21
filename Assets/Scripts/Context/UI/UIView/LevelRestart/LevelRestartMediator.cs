@@ -39,6 +39,5 @@ public class LevelRestartMediator : Mediator
     {
         NextLevelChosenSignal.Dispatch();
         View.Hide();
-        Debug.Log("StartNextLevelHandler");
     }
 }
