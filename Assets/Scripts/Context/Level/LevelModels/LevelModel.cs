@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelModel : ILevelModel
 {
     public LevelSO Config { get; private set; }
-
+    public EnemyWaySO EnemyWay { get; private set; }
     public LevelState State { get; private set; } = LevelState.NonActive;
 
     public event Action OnLevelBegin;
@@ -15,6 +15,7 @@ public class LevelModel : ILevelModel
     public LevelModel(LevelSO config)
     {
         Config = config;
+        EnemyWay = config.EnemyWay;
     }
     public void BeginLevel()
     {
@@ -34,6 +35,7 @@ public class LevelModel : ILevelModel
 public interface ILevelModel
 {
     LevelSO Config { get; }
+    EnemyWaySO EnemyWay { get; }
     LevelState State { get; }
 
     event Action OnLevelBegin;

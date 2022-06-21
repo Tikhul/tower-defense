@@ -17,13 +17,17 @@ public class LevelContext : LevelSignalContext
         mediationBinder.BindView<BoardView>().ToMediator<BoardMediator>();
         mediationBinder.BindView<LevelView>().ToMediator<LevelMediator>();
         commandBinder.Bind<DrawBoardSignal>().To<DrawBoardCommand>().Once();
-        commandBinder.Bind<FillCellListSignal>().To<FillCellListCommand>();
+        commandBinder.Bind<FillCellListSignal>().
+            To<FillCellListCommand>()
+            .To<DrawEnemyWayCommand>()
+            .InSequence();
         commandBinder.Bind<PipelineStartSignal>().To<StartPipelineCommand>().Once();
         commandBinder.Bind<NextLevelChosenSignal>()
             .To<EndCurrentLevelCommand>()
             .To<BeginNextLevelCommand>()
             .InSequence();
         commandBinder.Bind<RestartLevelChosenSignal>().To<RestartLevelCommand>();
+        injectionBinder.Bind<DrawEnemyWaySignal>().ToSingleton();
         injectionBinder.Bind<PipelineEndedSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<LevelsPipelineModel>().ToSingleton();
         injectionBinder.Bind<LevelModel>();

@@ -19,6 +19,7 @@ public static class StaticName
     public const string ENEMIES_PATH = "Configs/Enemies";
     public const string TOWERS_PATH = "Configs/Towers";
     public const string PIPELINES_PATH = "Configs/Pipelines";
+    public const string ENEMIES_WAYS_PATH = "Configs/EnemiesWays";
 
     #endregion
 
