@@ -8,7 +8,7 @@ public class LevelMediator : Mediator
 {
     [Inject] public LevelView View { get; set; }
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
-    [Inject] public BeginNextLevelSignal BeginNextLevelSignal { get; set; }
+    [Inject] public ShowRestartPanelSignal ShowRestartPanelSignal { get; set; }
     [Inject] public PipelineEndedSignal PipelineEndedSignal { get; set; }
     [Inject] public ShowEndPanelSignal ShowEndPanelSignal { get; set; }
 
@@ -30,7 +30,7 @@ public class LevelMediator : Mediator
     {
         //  LevelsPipelineModel.CompleteCurrentLevel();
         // LevelsPipelineModel.BeginNextLevel();
-        BeginNextLevelSignal.Dispatch();
+        ShowRestartPanelSignal.Dispatch();
     }
 
     private void OnPipelineBeginHandler()

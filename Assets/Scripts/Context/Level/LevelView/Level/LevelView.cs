@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelView : View
+public class LevelView : BaseView
 {
     public event Action OnSpaceClick = delegate { };
     private void Update()

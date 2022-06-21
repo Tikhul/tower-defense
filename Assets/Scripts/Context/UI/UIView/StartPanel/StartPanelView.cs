@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StartPanelView : View
+public class StartPanelView : BaseView
 {
     [SerializeField] private Button _startButton;
 
@@ -17,10 +17,5 @@ public class StartPanelView : View
         {
             OnStartButtonClick?.Invoke();
         });
-    }
-
-    public void Hide()
-    {
-        gameObject.SetActive(false);
     }
 }

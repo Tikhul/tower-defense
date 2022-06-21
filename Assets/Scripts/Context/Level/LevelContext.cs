@@ -19,7 +19,7 @@ public class LevelContext : LevelSignalContext
         commandBinder.Bind<DrawBoardSignal>().To<DrawBoardCommand>().Once();
         commandBinder.Bind<FillCellListSignal>().To<FillCellListCommand>();
         commandBinder.Bind<PipelineStartSignal>().To<StartPipelineCommand>().Once();
-        commandBinder.Bind<BeginNextLevelSignal>()
+        commandBinder.Bind<NextLevelChosenSignal>()
             .To<EndCurrentLevelCommand>()
             .To<BeginNextLevelCommand>()
             .InSequence();

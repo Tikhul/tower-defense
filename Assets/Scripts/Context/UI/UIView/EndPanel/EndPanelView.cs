@@ -3,10 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndPanelView : View
+public class EndPanelView : BaseView
 {
-    public void Show()
-    {
-        gameObject.SetActive(true);
-    }
+
 }
