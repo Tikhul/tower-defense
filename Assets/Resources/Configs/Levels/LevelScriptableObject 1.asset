@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: LevelScriptableObject 1
   m_EditorClassIdentifier: 
   _id: 1
+  _name: Level 1
   _enemyWay: {fileID: 0}
   _waves: []
