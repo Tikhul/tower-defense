@@ -21,9 +21,7 @@ public class LevelMediator : Mediator
 
     public override void OnRemove()
     {
-        View.OnSpaceClick -= NexStageHandler;
-        LevelsPipelineModel.OnPipelineBegin -= OnPipelineBeginHandler;
-        LevelsPipelineModel.OnPipelineComplete -= OnPipelineCompleteHandler;
+        
     }
 
     private void NexStageHandler()
@@ -41,5 +39,8 @@ public class LevelMediator : Mediator
     {
         PipelineEndedSignal.Dispatch();
         ShowEndPanelSignal.Dispatch();
+        View.OnSpaceClick -= NexStageHandler;
+        LevelsPipelineModel.OnPipelineBegin -= OnPipelineBeginHandler;
+        LevelsPipelineModel.OnPipelineComplete -= OnPipelineCompleteHandler;
     }
 }
