@@ -75,4 +75,9 @@ public class LevelsPipelineModel
             Debug.Log("CompleteCurrentLevel");
         }
     }
+
+    public void RestartLevel()
+    {
+        CurrentLevel.BeginLevel();
+    }
 }

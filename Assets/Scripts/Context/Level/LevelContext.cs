@@ -23,6 +23,7 @@ public class LevelContext : LevelSignalContext
             .To<EndCurrentLevelCommand>()
             .To<BeginNextLevelCommand>()
             .InSequence();
+        commandBinder.Bind<RestartLevelChosenSignal>().To<RestartLevelCommand>();
         injectionBinder.Bind<PipelineEndedSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<LevelsPipelineModel>().ToSingleton();
         injectionBinder.Bind<LevelModel>();

@@ -8,6 +8,7 @@ public class LevelRestartMediator : Mediator
 {
     [Inject] public LevelRestartView View { get; set; }
     [Inject] public ShowRestartPanelSignal ShowRestartPanelSignal { get; set; }
+    [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
     public override void OnRegister()
     {
@@ -30,7 +31,8 @@ public class LevelRestartMediator : Mediator
 
     private void RestartLevelHandler()
     {
-        
+        RestartLevelChosenSignal.Dispatch();
+        View.Hide();
     }
 
     private void StartNextLevelHandler()
