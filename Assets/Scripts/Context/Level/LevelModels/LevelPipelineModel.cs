@@ -6,7 +6,6 @@ using UnityEngine;
 public class LevelsPipelineModel
 {
     private List<ILevelModel> _levelModels { get; set; }
-    private bool _isComplete;
     public LevelsPipelineSO Config { get; set; }
     public ILevelModel CurrentLevel => _levelModels.LastOrDefault(e => e.State.Equals(LevelState.Active) || e.State.Equals(LevelState.Completed));
     public event Action OnPipelineBegin;
@@ -24,16 +23,16 @@ public class LevelsPipelineModel
         index++;
         Debug.Log(index);
 
-        if (index == _levelModels.Count)
+        if (_levelModels.Count <= index)
         {
             return null;
         }
-        
+        Debug.Log(CurrentLevel.Config.Name);
+        Debug.Log(_levelModels[index].Config.Name);
         return _levelModels[index];
     }
     public void Begin()
     {
-        _isComplete = false;
         _levelModels = Config.GetLevelModels();
         var first = GetNextLevel();
         first.BeginLevel();
@@ -43,7 +42,6 @@ public class LevelsPipelineModel
 
     public void End()
     {
-        _isComplete = true;
         foreach (var level in _levelModels.Where(x => x.State == LevelState.Active))
         {
             level.CompleteLevel();
@@ -54,30 +52,25 @@ public class LevelsPipelineModel
 
     public void BeginNextLevel()
     {
-        if (!_isComplete)
+        var nextLevel = GetNextLevel();
+        if (nextLevel == null)
         {
-            var nextLevel = GetNextLevel();
-            if (nextLevel == null)
-            {
-                End();
-                return;
-            }
-            nextLevel.BeginLevel();
-            Debug.Log("BeginNextLevel");
+           End();
+           return;
         }
+        nextLevel.BeginLevel();
+        Debug.Log("BeginNextLevel " + nextLevel.Config.Name);
     }
 
     public void CompleteCurrentLevel()
     {
-        if (!_isComplete)
-        {
-            CurrentLevel.CompleteLevel();
-            Debug.Log("CompleteCurrentLevel");
-        }
+       CurrentLevel.CompleteLevel();
+       Debug.Log("CompleteCurrentLevel " + CurrentLevel.Config.Name);
     }
 
     public void RestartLevel()
     {
         CurrentLevel.BeginLevel();
+        Debug.Log("RestartLevel " + CurrentLevel.Config.Name);
     }
 }
