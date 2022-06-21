@@ -9,21 +9,32 @@ public class BoardMediator : Mediator
     [Inject] public DrawBoardSignal DrawBoardSignal { get; set; }
     [Inject] public ShowRestartPanelSignal ShowRestartPanelSignal { get; set; }
     [Inject] public PipelineEndedSignal PipelineEndedSignal { get; set; }
+    [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
+    [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
 
     public override void OnRegister()
     {
         DrawBoardSignal.Dispatch(View.BoardParent);
-        ShowRestartPanelSignal.AddListener(HideStartPanel);
-        PipelineEndedSignal.AddListener(HideStartPanel);
+        RestartLevelChosenSignal.AddListener(ShowPanelHandler);
+        NextLevelChosenSignal.AddListener(ShowPanelHandler);
+        ShowRestartPanelSignal.AddListener(HidePanelHandler);
+        PipelineEndedSignal.AddListener(HidePanelHandler);
     }
 
     public override void OnRemove()
     {
-        ShowRestartPanelSignal.RemoveListener(HideStartPanel);
-        PipelineEndedSignal.RemoveListener(HideStartPanel);
+        RestartLevelChosenSignal.RemoveListener(ShowPanelHandler);
+        NextLevelChosenSignal.RemoveListener(ShowPanelHandler);
+        ShowRestartPanelSignal.RemoveListener(HidePanelHandler);
+        PipelineEndedSignal.RemoveListener(HidePanelHandler);
     }
-    private void HideStartPanel()
+    private void HidePanelHandler()
     {
         View.Hide();
+    }
+
+    private void ShowPanelHandler()
+    {
+        View.Show();
     }
 }
