@@ -42,5 +42,6 @@ public class LevelMediator : Mediator
         View.OnSpaceClick -= NexStageHandler;
         LevelsPipelineModel.OnPipelineBegin -= OnPipelineBeginHandler;
         LevelsPipelineModel.OnPipelineComplete -= OnPipelineCompleteHandler;
+        Debug.Log("OnPipelineCompleteHandler");
     }
 }

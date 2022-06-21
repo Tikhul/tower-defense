@@ -20,8 +20,8 @@ public class LevelRestartMediator : Mediator
     public override void OnRemove()
     {
         ShowRestartPanelSignal.RemoveListener(ShowRestartPanel);
-        View.OnRestartClick += RestartLevelHandler;
-        View.OnNextClick += StartNextLevelHandler;
+        View.OnRestartClick -= RestartLevelHandler;
+        View.OnNextClick -= StartNextLevelHandler;
     }
 
     private void ShowRestartPanel()
@@ -39,5 +39,6 @@ public class LevelRestartMediator : Mediator
     {
         NextLevelChosenSignal.Dispatch();
         View.Hide();
+        Debug.Log("StartNextLevelHandler");
     }
 }

@@ -23,4 +23,10 @@ public class LevelRestartView : BaseView
             OnNextClick?.Invoke();
         });
     }
+
+    private void OnDisable()
+    {
+        _nextLevelButton.onClick.RemoveAllListeners();
+        _restartButton.onClick.RemoveAllListeners();
+    }
 }

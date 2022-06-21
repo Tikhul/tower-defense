@@ -19,9 +19,7 @@ public class LevelsPipelineModel
         if (CurrentLevel == null) return _levelModels.FirstOrDefault();
 
         var index = _levelModels.IndexOf(CurrentLevel);
-        Debug.Log(index);
         index++;
-        Debug.Log(index);
 
         if (_levelModels.Count <= index)
         {
