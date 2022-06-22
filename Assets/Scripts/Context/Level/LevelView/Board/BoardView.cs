@@ -25,9 +25,15 @@ public class BoardView : BaseView
         {
             if (button.State.Equals(CellState.HasTower))
             {
-                button.GetComponent<Button>().interactable = false;
+                button.ButtonElement.interactable = false;
                 button.GetComponent<Image>().color = Color.blue;
                 button.State = CellState.HasTower;
+            }
+            else
+            {
+                button.ButtonElement.interactable = true;
+                button.GetComponent<Image>().color = Color.white;
+                button.State = CellState.Empty;
             }
         }
         Debug.Log("DrawEnemiesWays");
