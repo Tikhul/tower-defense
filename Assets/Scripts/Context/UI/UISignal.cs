@@ -9,3 +9,4 @@ public class ShowRestartPanelSignal : Signal { }
 public class NextLevelChosenSignal : Signal { }
 public class RestartLevelChosenSignal : Signal { }
 public class ShowEndPanelSignal : Signal { }
+public class PassLevelDataSignal : Signal<ILevelModel> { }

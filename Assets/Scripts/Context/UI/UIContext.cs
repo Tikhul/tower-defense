@@ -24,5 +24,6 @@ public class UIContext : UISignalContext
         injectionBinder.Bind<ShowEndPanelSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<ShowRestartPanelSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<GameContextLoadedSignal>().ToSingleton();
+        injectionBinder.Bind<PassLevelDataSignal>().ToSingleton().CrossContext();
     }
 }

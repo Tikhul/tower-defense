@@ -11,12 +11,14 @@ public class LevelNameMediator : Mediator
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     [Inject] public ShowRestartPanelSignal ShowRestartPanelSignal { get; set; }
     [Inject] public ShowEndPanelSignal ShowEndPanelSignal { get; set; }
+    [Inject] public PassLevelDataSignal PassLevelDataSignal { get; set; }
 
     public override void OnRegister()
     {
         NextLevelChosenSignal.AddListener(ShowPanelHandler);
         RestartLevelChosenSignal.AddListener(ShowPanelHandler);
         LoadGameContextSignal.AddListener(ShowPanelHandler);
+        PassLevelDataSignal.AddListener(ShowLevelNameHandler);
         ShowRestartPanelSignal.AddListener(HidePanelHandler);
         ShowEndPanelSignal.AddListener(HidePanelHandler);
     }
@@ -37,5 +39,10 @@ public class LevelNameMediator : Mediator
     private void ShowPanelHandler()
     {
         View.Show();
+    }
+
+    private void ShowLevelNameHandler(ILevelModel model)
+    {
+        View.ShowLevelName(model.Config.Name);
     }
 }

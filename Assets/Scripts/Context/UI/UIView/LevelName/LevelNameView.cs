@@ -12,4 +12,9 @@ public class LevelNameView : BaseView
         get => _levelName;
         set => _levelName = value;
     }
+
+    public void ShowLevelName(string name)
+    {
+        LevelName.text = name;
+    }
 }

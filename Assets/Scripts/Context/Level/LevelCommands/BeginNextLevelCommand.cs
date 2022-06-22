@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class BeginNextLevelCommand : Command
 {
+    [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     public override void Execute()
     {
-        injectionBinder.GetInstance<LevelsPipelineModel>().BeginNextLevel();
+        LevelsPipelineModel.BeginNextLevel();
         injectionBinder.GetInstance<DrawEnemyWaySignal>().Dispatch();
+        injectionBinder.GetInstance<PassLevelDataSignal>().Dispatch(LevelsPipelineModel.CurrentLevel);
     }
 }
