@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using strange.extensions.mediation.impl;
+using System;
 
-public class CellButton : MonoBehaviour
-// Кнопка для поля
+/// <summary>
+/// Кнопка для поля
+/// </summary>
+public class CellButtonView : View
 {
     private int _cellInt;
     private char _cellChar;
@@ -11,6 +15,8 @@ public class CellButton : MonoBehaviour
     [SerializeField] private TMP_Text _buttonText;
     [SerializeField] private Button _buttonElement;
     [SerializeField] private AllTowersView _towers;
+
+    public event Action<CellState> OnCellButtonClick = delegate { };
     public int CellInt
     {
         get => _cellInt;
@@ -30,6 +36,14 @@ public class CellButton : MonoBehaviour
     {
         get => _buttonElement;
         set => _buttonElement = value;
+    }
+
+    private void OnEnable()
+    {
+        _buttonElement.onClick.AddListener(delegate
+        {
+            OnCellButtonClick?.Invoke(State);
+        });
     }
 }
 

@@ -11,7 +11,7 @@ public class FillCellListCommand : Command
     [Inject] public int Int { get; set; }
     public override void Execute()
     {
-        CellButton buttonSettings = Button.GetComponent<CellButton>();
+        CellButtonView buttonSettings = Button.GetComponent<CellButtonView>();
         buttonSettings.CellChar = Char;
         buttonSettings.CellInt = Int;
         GameModel.Board.CurrentCellList.Add(buttonSettings);

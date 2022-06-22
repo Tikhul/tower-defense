@@ -7,7 +7,7 @@ public class SetEnemyWayCommand : Command
 {
     public override void Execute()
     {
-        foreach(CellButton cell in injectionBinder.GetInstance<GameModel>().Board.CurrentCellList)
+        foreach(CellButtonView cell in injectionBinder.GetInstance<GameModel>().Board.CurrentCellList)
         {
             foreach (string index in injectionBinder.GetInstance<LevelsPipelineModel>().CurrentLevel.EnemyWay.Indexes)
             {

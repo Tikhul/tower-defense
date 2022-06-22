@@ -10,3 +10,4 @@ public class NextLevelChosenSignal : Signal { }
 public class RestartLevelChosenSignal : Signal { }
 public class ShowEndPanelSignal : Signal { }
 public class PassLevelDataSignal : Signal<ILevelModel> { }
+public class ShowMenuSignal : Signal<CellState> { }

@@ -18,7 +18,10 @@ public class UIContext : UISignalContext
         mediationBinder.BindView<EndPanelView>().ToMediator<EndPanelMediator>();
         mediationBinder.BindView<LevelRestartView>().ToMediator<LevelRestartMediator>();
         mediationBinder.BindView<LevelNameView>().ToMediator<LevelNameMediator>();
+
         commandBinder.Bind<LoadGameContextSignal>().To<LoadGameContextCommand>().Once();
+        commandBinder.Bind<ShowMenuSignal>().To<ShowMenuCommand>();
+
         injectionBinder.Bind<NextLevelChosenSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<RestartLevelChosenSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<ShowEndPanelSignal>().ToSingleton().CrossContext();
