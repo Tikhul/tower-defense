@@ -18,8 +18,8 @@ public class BoardView : BaseView
         BoardParent.GetComponent<Canvas>().worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
-    public void DrawEnemyWay(List<CellButton> allCells, List<string> enemyIndexes)
+    public void DrawEnemiesWays()
     {
-        Debug.Log("DrawEnemyWay");
+        Debug.Log("DrawEnemiesWays");
     }
 }

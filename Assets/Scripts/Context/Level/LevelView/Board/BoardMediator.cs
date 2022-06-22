@@ -6,13 +6,12 @@ using UnityEngine;
 public class BoardMediator : Mediator
 {
     [Inject] public BoardView View { get; set; }
-    [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public DrawBoardSignal DrawBoardSignal { get; set; }
+    [Inject] public DrawEnemyWaySignal DrawEnemyWaySignal { get; set; }
     [Inject] public ShowRestartPanelSignal ShowRestartPanelSignal { get; set; }
     [Inject] public PipelineEndedSignal PipelineEndedSignal { get; set; }
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
-    [Inject] public DrawEnemyWaySignal DrawEnemyWaySignal { get; set; }
 
     public override void OnRegister()
     {
@@ -22,11 +21,12 @@ public class BoardMediator : Mediator
         NextLevelChosenSignal.AddListener(ShowPanelHandler);
         ShowRestartPanelSignal.AddListener(HidePanelHandler);
         PipelineEndedSignal.AddListener(HidePanelHandler);
+        PipelineEndedSignal.AddListener(Unsubscribe);
     }
 
     public override void OnRemove()
     {
-        DrawEnemyWaySignal.RemoveListener(DrawEnemiesHandler);
+        
         RestartLevelChosenSignal.RemoveListener(ShowPanelHandler);
         NextLevelChosenSignal.RemoveListener(ShowPanelHandler);
         ShowRestartPanelSignal.RemoveListener(HidePanelHandler);
@@ -42,8 +42,14 @@ public class BoardMediator : Mediator
         View.Show();
     }
 
-    private void DrawEnemiesHandler(BoardModel board)
+    private void DrawEnemiesHandler()
     {
-        View.DrawEnemyWay(board.AllCellList, LevelsPipelineModel.CurrentLevel.EnemyWay.Indexes);
+        View.DrawEnemiesWays();
+        Debug.Log("DrawEnemiesHandler");
+    }
+
+    private void Unsubscribe()
+    {
+        DrawEnemyWaySignal.RemoveListener(DrawEnemiesHandler);
     }
 }
