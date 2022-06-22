@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class CellButton : MonoBehaviour, ICellButton
+public class CellButton : MonoBehaviour
 // Кнопка для поля
 {
     private int _cellInt;
@@ -10,6 +10,7 @@ public class CellButton : MonoBehaviour, ICellButton
     public CellState State { get; set; } = CellState.Empty;
     [SerializeField] private TMP_Text _buttonText;
     [SerializeField] private Button _buttonElement;
+    [SerializeField] private AllTowersView _towers;
     public int CellInt
     {
         get => _cellInt;
@@ -30,29 +31,6 @@ public class CellButton : MonoBehaviour, ICellButton
         get => _buttonElement;
         set => _buttonElement = value;
     }
-
-    public event System.Action<CellButton> OnPlayerClick = delegate { };
-
-    public void CellClicked()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void CellTaken(ICellButton chosenButton)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    private void OnEnable()
-    {
-
-    }
-}
-
-public interface ICellButton
-{
-    void CellClicked();
-    void CellTaken(ICellButton chosenButton);
 }
 
 public enum CellState

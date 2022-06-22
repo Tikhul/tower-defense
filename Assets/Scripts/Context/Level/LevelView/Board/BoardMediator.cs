@@ -47,7 +47,6 @@ public class BoardMediator : Mediator
     private void DrawEnemiesHandler()
     {
         View.DrawEnemiesWays(GameModel.Board.CurrentCellList);
-        foreach (var cell in GameModel.Board.CurrentCellList) Debug.Log(cell.State);
         Debug.Log("DrawEnemiesHandler");
     }
 
