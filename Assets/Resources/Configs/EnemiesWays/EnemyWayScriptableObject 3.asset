@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c18dc586293d34419bd88f6255549a4, type: 3}
-  m_Name: LevelScriptableObject
+  m_Script: {fileID: 11500000, guid: 7ad1896dac02fb8458db3208b7769091, type: 3}
+  m_Name: EnemyWayScriptableObject 3
   m_EditorClassIdentifier: 
-  _id: 0
-  _name: Level 0
-  _enemyWay: {fileID: 11400000, guid: 2ca4885b7237ef040aaf2a1e7297f6b9, type: 2}
-  _waves: []
+  _id: 2
+  _indexes:
+  - 4a
+  - 4b

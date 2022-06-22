@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 1
   _name: Level 1
-  _enemyWay: {fileID: 0}
+  _enemyWay: {fileID: 11400000, guid: ed5d73b9eca1eb648b8647da9f610dad, type: 2}
   _waves: []

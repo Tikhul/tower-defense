@@ -7,6 +7,7 @@ public class BoardMediator : Mediator
 {
     [Inject] public BoardView View { get; set; }
     [Inject] public GameModel GameModel { get; set; }
+    [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public DrawBoardSignal DrawBoardSignal { get; set; }
     [Inject] public DrawEnemyWaySignal DrawEnemyWaySignal { get; set; }
     [Inject] public ShowRestartPanelSignal ShowRestartPanelSignal { get; set; }
@@ -45,7 +46,8 @@ public class BoardMediator : Mediator
 
     private void DrawEnemiesHandler()
     {
-        View.DrawEnemiesWays();
+        View.DrawEnemiesWays(GameModel.Board.CurrentCellList);
+        foreach (var cell in GameModel.Board.CurrentCellList) Debug.Log(cell.State);
         Debug.Log("DrawEnemiesHandler");
     }
 

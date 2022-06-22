@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoardView : BaseView
 {
@@ -18,8 +19,17 @@ public class BoardView : BaseView
         BoardParent.GetComponent<Canvas>().worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
-    public void DrawEnemiesWays()
+    public void DrawEnemiesWays(List<CellButton> allButtons)
     {
+        foreach(var button in allButtons)
+        {
+            if (button.State.Equals(CellState.HasTower))
+            {
+                button.GetComponent<Button>().interactable = false;
+                button.GetComponent<Image>().color = Color.blue;
+                button.State = CellState.HasTower;
+            }
+        }
         Debug.Log("DrawEnemiesWays");
     }
 }

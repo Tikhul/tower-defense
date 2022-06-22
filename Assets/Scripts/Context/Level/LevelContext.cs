@@ -24,6 +24,7 @@ public class LevelContext : LevelSignalContext
             .To<BeginNextLevelCommand>()
             .InSequence();
         commandBinder.Bind<RestartLevelChosenSignal>().To<RestartLevelCommand>();
+        commandBinder.Bind<PassLevelDataSignal>().To<SetEnemyWayCommand>();
         injectionBinder.Bind<DrawEnemyWaySignal>().ToSingleton();
         injectionBinder.Bind<PipelineEndedSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<LevelsPipelineModel>().ToSingleton();
