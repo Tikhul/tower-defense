@@ -7,7 +7,7 @@ public class CellButton : MonoBehaviour, ICellButton
 {
     private int _cellInt;
     private char _cellChar;
-    private bool _taken;
+    public CellState State { get; set; } = CellState.Empty;
     [SerializeField] private TMP_Text _buttonText;
     [SerializeField] private Button _buttonElement;
     public int CellInt
@@ -19,11 +19,6 @@ public class CellButton : MonoBehaviour, ICellButton
     {
         get => _cellChar;
         set => _cellChar = value;
-    }
-    public bool Taken
-    {
-        get => _taken;
-        set => _taken = value;
     }
     public TMP_Text ButtonText
     {
@@ -58,4 +53,11 @@ public interface ICellButton
 {
     void CellClicked();
     void CellTaken(ICellButton chosenButton);
+}
+
+public enum CellState
+{
+    Empty,
+    HasTower,
+    EnemyWay
 }

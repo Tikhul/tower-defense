@@ -25,8 +25,6 @@ public class LevelsPipelineModel
         {
             return null;
         }
-        Debug.Log(CurrentLevel.Config.Name);
-        Debug.Log(_levelModels[index].Config.Name);
         return _levelModels[index];
     }
     public void Begin()

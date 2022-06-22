@@ -6,6 +6,7 @@ using UnityEngine;
 public class BoardMediator : Mediator
 {
     [Inject] public BoardView View { get; set; }
+    [Inject] public GameModel GameModel { get; set; }
     [Inject] public DrawBoardSignal DrawBoardSignal { get; set; }
     [Inject] public DrawEnemyWaySignal DrawEnemyWaySignal { get; set; }
     [Inject] public ShowRestartPanelSignal ShowRestartPanelSignal { get; set; }
@@ -26,11 +27,11 @@ public class BoardMediator : Mediator
 
     public override void OnRemove()
     {
-        
         RestartLevelChosenSignal.RemoveListener(ShowPanelHandler);
         NextLevelChosenSignal.RemoveListener(ShowPanelHandler);
         ShowRestartPanelSignal.RemoveListener(HidePanelHandler);
         PipelineEndedSignal.RemoveListener(HidePanelHandler);
+        PipelineEndedSignal.RemoveListener(Unsubscribe);
     }
     private void HidePanelHandler()
     {
