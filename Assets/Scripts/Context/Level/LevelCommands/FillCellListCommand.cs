@@ -16,6 +16,7 @@ public class FillCellListCommand : Command
         buttonSettings.CellInt = Int;
         GameModel.Board.CurrentCellList.Add(buttonSettings);
         GameModel.Board.AllCellList.Add(buttonSettings);
+        injectionBinder.GetInstance<CellButtonCreatedSignal>().Dispatch(buttonSettings);
 
         if (GameModel.Board.AllCellList.Count == GameModel.Board.Settings.RowNumber * GameModel.Board.Settings.RowNumber)
         {
