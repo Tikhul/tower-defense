@@ -13,7 +13,7 @@ public class SetEnemyWayCommand : Command
             {
                 if(index.Contains(cell.CellChar.ToString()) && index.Contains(cell.CellInt.ToString()))
                 {
-                    cell.State = CellState.HasTower;
+                    cell.State = CellState.EnemyWay;
                 }
             }
         }

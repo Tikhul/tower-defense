@@ -29,5 +29,7 @@ public class UIContext : UISignalContext
         injectionBinder.Bind<GameContextLoadedSignal>().ToSingleton();
         injectionBinder.Bind<PassLevelDataSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<CellButtonCreatedSignal>().ToSingleton().CrossContext();
+        injectionBinder.Bind<BlockBoardSignal>().ToSingleton().CrossContext();
+        injectionBinder.Bind<UnblockBoardSignal>().ToSingleton().CrossContext();
     }
 }

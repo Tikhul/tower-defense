@@ -14,6 +14,8 @@ public class BoardMediator : Mediator
     [Inject] public PipelineEndedSignal PipelineEndedSignal { get; set; }
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
+    [Inject] public BlockBoardSignal BlockBoardSignal { get; set; }
+    [Inject] public UnblockBoardSignal UnblockBoardSignal { get; set; }
 
     public override void OnRegister()
     {
@@ -24,6 +26,8 @@ public class BoardMediator : Mediator
         ShowRestartPanelSignal.AddListener(HidePanelHandler);
         PipelineEndedSignal.AddListener(HidePanelHandler);
         PipelineEndedSignal.AddListener(Unsubscribe);
+        BlockBoardSignal.AddListener(BlockBoardHandler);
+        UnblockBoardSignal.AddListener(UnBlockBoardHandler);
     }
 
     public override void OnRemove()
@@ -33,6 +37,8 @@ public class BoardMediator : Mediator
         ShowRestartPanelSignal.RemoveListener(HidePanelHandler);
         PipelineEndedSignal.RemoveListener(HidePanelHandler);
         PipelineEndedSignal.RemoveListener(Unsubscribe);
+        BlockBoardSignal.RemoveListener(BlockBoardHandler);
+        UnblockBoardSignal.RemoveListener(UnBlockBoardHandler);
     }
     private void HidePanelHandler()
     {
@@ -53,5 +59,14 @@ public class BoardMediator : Mediator
     private void Unsubscribe()
     {
         DrawEnemyWaySignal.RemoveListener(DrawEnemiesHandler);
+    }
+
+    private void BlockBoardHandler()
+    {
+        View.BlockBoard();
+    }
+    private void UnBlockBoardHandler()
+    {
+        View.UnblockBoard();
     }
 }
