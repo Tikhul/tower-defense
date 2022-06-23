@@ -19,7 +19,7 @@ public class BoardView : BaseView
         BoardParent.GetComponent<Canvas>().worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
-    public void DrawEnemiesWays(List<CellButtonView> allButtons)
+    public void DrawEnemiesWays(List<CellButton> allButtons)
     {
         foreach(var button in allButtons)
         {

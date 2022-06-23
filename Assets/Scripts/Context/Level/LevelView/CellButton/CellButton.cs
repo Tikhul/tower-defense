@@ -7,7 +7,7 @@ using System;
 /// <summary>
 /// Кнопка для поля
 /// </summary>
-public class CellButtonView : View
+public class CellButton : MonoBehaviour
 {
     private int _cellInt;
     private char _cellChar;

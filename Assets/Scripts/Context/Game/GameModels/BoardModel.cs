@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class BoardModel
 {
-    private List<CellButtonView> _currentCellList = new List<CellButtonView>();
-    private List<CellButtonView> _allCellList = new List<CellButtonView>();
+    private List<CellButton> _currentCellList = new List<CellButton>();
+    private List<CellButton> _allCellList = new List<CellButton>();
     public BoardSO Settings { get; }
 
     public BoardModel (BoardSO settings)
@@ -17,7 +17,7 @@ public class BoardModel
     /// <summary>
     /// Все кнопки
     /// </summary>
-    public List<CellButtonView> AllCellList
+    public List<CellButton> AllCellList
     {
         get => _allCellList;
         set => _allCellList = value;
@@ -26,7 +26,7 @@ public class BoardModel
     /// <summary>
     /// Актуальный список кнопок
     /// </summary>
-    public List<CellButtonView> CurrentCellList
+    public List<CellButton> CurrentCellList
     {
         get => _currentCellList;
         set => _currentCellList = value;
