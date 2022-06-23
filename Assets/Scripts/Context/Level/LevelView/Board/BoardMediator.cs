@@ -19,8 +19,10 @@ public class BoardMediator : Mediator
 
     public override void OnRegister()
     {
+
         DrawBoardSignal.Dispatch(View.BoardParent);
         DrawEnemyWaySignal.AddListener(DrawEnemiesHandler);
+        DrawEnemyWaySignal.Dispatch();
         RestartLevelChosenSignal.AddListener(ShowPanelHandler);
         NextLevelChosenSignal.AddListener(ShowPanelHandler);
         ShowRestartPanelSignal.AddListener(HidePanelHandler);

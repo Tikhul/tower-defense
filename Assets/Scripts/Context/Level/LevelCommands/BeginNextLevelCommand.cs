@@ -9,7 +9,7 @@ public class BeginNextLevelCommand : Command
     public override void Execute()
     {
         LevelsPipelineModel.BeginNextLevel();
-        injectionBinder.GetInstance<DrawEnemyWaySignal>().Dispatch();
         injectionBinder.GetInstance<PassLevelDataSignal>().Dispatch(LevelsPipelineModel.CurrentLevel);
+        injectionBinder.GetInstance<DrawEnemyWaySignal>().Dispatch();
     }
 }
