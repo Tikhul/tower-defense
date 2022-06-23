@@ -6,6 +6,7 @@ using UnityEngine;
 public class MenuMediator : Mediator
 {
     private List<CellButton> _cells = new List<CellButton>();
+    private bool _subscribed = false;
     [Inject] public MenuView View { get; set; }
     [Inject] public CellButtonCreatedSignal CellButtonCreatedSignal { get; set; }
     [Inject] public BlockBoardSignal BlockBoardSignal { get; set; }
@@ -15,7 +16,6 @@ public class MenuMediator : Mediator
     public override void OnRegister()
     {
         CellButtonCreatedSignal.AddListener(SubscribeToCells);
-        NextLevelChosenSignal.AddListener(Unsubscribe);
     }
 
     public override void OnRemove()
@@ -27,6 +27,7 @@ public class MenuMediator : Mediator
     {
         _cells.Add(cell);
         cell.OnCellButtonClick += ShowMenu;
+        _subscribed = true;
     }
 
     private void ShowMenu(CellState state)
@@ -34,7 +35,11 @@ public class MenuMediator : Mediator
         BlockBoardSignal.Dispatch();
         View.Show();
         View.OnCloseMenu += HideMenu;
-        foreach (var cell in _cells) cell.OnCellButtonClick += ShowMenu;
+        foreach (var cell in _cells)
+        {
+            cell.OnCellButtonClick -= ShowMenu;
+            _subscribed = false;
+        }
         Debug.Log("ShowMenu");
     }
 
@@ -43,12 +48,14 @@ public class MenuMediator : Mediator
         UnblockBoardSignal.Dispatch();
         View.Hide();
         View.OnCloseMenu -= HideMenu;
-        foreach (var cell in _cells) cell.OnCellButtonClick -= ShowMenu;
+        if (!_subscribed)
+        {
+            foreach (var cell in _cells)
+            {
+                cell.OnCellButtonClick += ShowMenu;
+                _subscribed = true;
+            }
+        }
         Debug.Log("HideMenu");
-    }
-
-    private void Unsubscribe()
-    {
-        foreach (var cell in _cells) cell.OnCellButtonClick -= ShowMenu;
     }
 }
