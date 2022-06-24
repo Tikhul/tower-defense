@@ -6,7 +6,9 @@ using UnityEngine;
 public class MenuMediator : Mediator
 {
     private List<CellButton> _cells = new List<CellButton>();
-    private bool _subscribed = false;
+    private List<TowerButton> _towers = new List<TowerButton>();
+    private bool _subscribedToCells = false;
+    private bool _subscribedToTowers = false;
     [Inject] public MenuView View { get; set; }
     [Inject] public CellButtonCreatedSignal CellButtonCreatedSignal { get; set; }
     [Inject] public BlockBoardSignal BlockBoardSignal { get; set; }
@@ -33,12 +35,14 @@ public class MenuMediator : Mediator
     {
         _cells.Add(cell);
         cell.OnCellButtonClick += ShowMenu;
-        _subscribed = true;
+        _subscribedToCells = true;
     }
 
     private void SubscribeToTowerButtons(TowerButton towerButton)
     {
-        towerButton.OnTowerButtonClick += HideMenu;
+        _towers.Add(towerButton);
+         towerButton.OnTowerButtonClick += HideMenu;
+        _subscribedToTowers = true;
     }
 
     private void ShowMenu(CellButton receivedCell)
@@ -60,10 +64,18 @@ public class MenuMediator : Mediator
         foreach (var cell in _cells)
         {
             cell.OnCellButtonClick -= ShowMenu;
-            _subscribed = false;
+            _subscribedToCells = false;
         }
 
-        Debug.Log("ShowMenu");
+        if (!_subscribedToTowers)
+        {
+            foreach (var tower in _towers)
+            {
+                tower.OnTowerButtonClick += HideMenu;
+
+            }
+        }
+            Debug.Log("ShowMenu");
     }
 
     private void HideMenu()
@@ -71,13 +83,19 @@ public class MenuMediator : Mediator
         UnblockBoardSignal.Dispatch();
         View.Hide();
         View.OnCloseMenu -= HideMenu;
-        if (!_subscribed)
+        if (!_subscribedToCells)
         {
             foreach (var cell in _cells)
             {
                 cell.OnCellButtonClick += ShowMenu;
-                _subscribed = true;
+                _subscribedToCells = true;
             }
+        }
+
+        foreach (var tower in _towers)
+        {
+            tower.OnTowerButtonClick -= HideMenu;
+            _subscribedToTowers = false;
         }
         HideMenuSignal.Dispatch();
         Debug.Log("HideMenu");
