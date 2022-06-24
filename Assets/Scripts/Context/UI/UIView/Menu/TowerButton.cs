@@ -10,7 +10,7 @@ public class TowerButton : MonoBehaviour
     [SerializeField] private Image _towerButtonImage;
     [SerializeField] private Button _button;
     public TowerView TowerView { get; set; }
-
+    public event Action OnTowerButtonClick = delegate { };
     public TMPro.TMP_Text TowerButtonText
     {
         get => _towerButtonText;
@@ -25,6 +25,10 @@ public class TowerButton : MonoBehaviour
     private void OnEnable()
     {
         _button.onClick.AddListener(ActivateTower);
+        _button.onClick.AddListener(delegate
+        {
+            OnTowerButtonClick?.Invoke();
+        });
     }
 
     private void ActivateTower()

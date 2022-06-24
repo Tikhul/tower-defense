@@ -38,5 +38,6 @@ public class UIContext : UISignalContext
         injectionBinder.Bind<ChangePlayerDataSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<TowerMenuCreatedSignal>().ToSingleton();
         injectionBinder.Bind<HideMenuSignal>().ToSingleton();
+        injectionBinder.Bind<TowerChosenSignal>().ToSingleton();
     }
 }

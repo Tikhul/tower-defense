@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3369162024238302194
 Transform:
   m_ObjectHideFlags: 0
@@ -335,6 +335,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Green_tower
       objectReference: {fileID: 0}
+    - target: {fileID: 4157778923534979018, guid: 355bc07f3a2b91345a840f61d5dbbb8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4602893246752587957, guid: 355bc07f3a2b91345a840f61d5dbbb8b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -422,7 +426,7 @@ PrefabInstance:
     - target: {fileID: 8672650979701896303, guid: 355bc07f3a2b91345a840f61d5dbbb8b, type: 3}
       propertyPath: _towerText
       value: 
-      objectReference: {fileID: 1027707769663876576}
+      objectReference: {fileID: 0}
     - target: {fileID: 8672650979701896303, guid: 355bc07f3a2b91345a840f61d5dbbb8b, type: 3}
       propertyPath: _towerImage
       value: 
@@ -466,7 +470,7 @@ PrefabInstance:
     - target: {fileID: 1220316799819699735, guid: 5d5ebae4582fed34e875a8893a926a4b, type: 3}
       propertyPath: _towerText
       value: 
-      objectReference: {fileID: 1027707769663876576}
+      objectReference: {fileID: 0}
     - target: {fileID: 1220316799819699735, guid: 5d5ebae4582fed34e875a8893a926a4b, type: 3}
       propertyPath: _towerImage
       value: 
@@ -474,6 +478,10 @@ PrefabInstance:
     - target: {fileID: 5838767739036659122, guid: 5d5ebae4582fed34e875a8893a926a4b, type: 3}
       propertyPath: m_Name
       value: Yellow_tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 5838767739036659122, guid: 5d5ebae4582fed34e875a8893a926a4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6292899433065046733, guid: 5d5ebae4582fed34e875a8893a926a4b, type: 3}
       propertyPath: m_Pivot.x
@@ -598,7 +606,7 @@ PrefabInstance:
     - target: {fileID: 3940320148237444277, guid: b34295b543d583644bb22908f7953bb0, type: 3}
       propertyPath: _towerText
       value: 
-      objectReference: {fileID: 1027707769663876576}
+      objectReference: {fileID: 0}
     - target: {fileID: 3940320148237444277, guid: b34295b543d583644bb22908f7953bb0, type: 3}
       propertyPath: _towerImage
       value: 
@@ -691,6 +699,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red_tower
       objectReference: {fileID: 0}
+    - target: {fileID: 8594772131592167184, guid: b34295b543d583644bb22908f7953bb0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b34295b543d583644bb22908f7953bb0, type: 3}
 --- !u!224 &3866736914444297454 stripped
@@ -730,6 +742,10 @@ PrefabInstance:
     - target: {fileID: 2474906411102418504, guid: 33d5a460873a280428185f6f99315b96, type: 3}
       propertyPath: m_Name
       value: Blue_tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 2474906411102418504, guid: 33d5a460873a280428185f6f99315b96, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2597174725655116087, guid: 33d5a460873a280428185f6f99315b96, type: 3}
       propertyPath: m_Pivot.x
@@ -818,7 +834,7 @@ PrefabInstance:
     - target: {fileID: 7183441239946235373, guid: 33d5a460873a280428185f6f99315b96, type: 3}
       propertyPath: _towerText
       value: 
-      objectReference: {fileID: 1027707769663876576}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33d5a460873a280428185f6f99315b96, type: 3}
 --- !u!224 &4782279996657316795 stripped

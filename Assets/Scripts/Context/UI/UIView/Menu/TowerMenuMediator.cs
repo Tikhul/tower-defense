@@ -8,16 +8,19 @@ public class TowerMenuMediator : Mediator
     [Inject] public TowerMenuView View { get; set; }
     [Inject] public TowerMenuCreatedSignal TowerMenuCreatedSignal { get; set; }
     [Inject] public HideMenuSignal HideMenuSignal { get; set; }
+    [Inject] public TowerChosenSignal TowerChosenSignal { get; set; }
     public override void OnRegister()
     {
         TowerMenuCreatedSignal.AddListener(SetUpTowerButtonsHandler);
         HideMenuSignal.AddListener(ClearMenuHandler);
+        View.OnTowerButtonCreated += TowerButtonChosenHandler;
     }
 
     public override void OnRemove()
     {
         TowerMenuCreatedSignal.RemoveListener(SetUpTowerButtonsHandler);
         HideMenuSignal.RemoveListener(ClearMenuHandler);
+        View.OnTowerButtonCreated -= TowerButtonChosenHandler;
     }
     private void SetUpTowerButtonsHandler(List<TowerView> list)
     {
@@ -30,8 +33,8 @@ public class TowerMenuMediator : Mediator
         View.ClearMenu();
     }
 
-    private void ActivateTowerHandler(TowerView towerView)
+    private void TowerButtonChosenHandler(TowerButton button)
     {
-
+        TowerChosenSignal.Dispatch(button);
     }
 }

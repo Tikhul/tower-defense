@@ -1,4 +1,5 @@
 using strange.extensions.mediation.impl;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class TowerMenuView : BaseView
 {
     [SerializeField] private GameObject _parentPanel;
 
+    public event Action<TowerButton> OnTowerButtonCreated = delegate { };
     public void SetUpTowerButtons(List<TowerView> _list)
     {
         foreach (var tower in _list)
@@ -21,6 +23,7 @@ public class TowerMenuView : BaseView
             b.TowerButtonText.text = tower.TowerText;
             b.TowerButtonImage.sprite = tower.GetComponentInChildren<Image>().sprite;
             b.TowerView = tower;
+            OnTowerButtonCreated?.Invoke(b);
         }
     }
 

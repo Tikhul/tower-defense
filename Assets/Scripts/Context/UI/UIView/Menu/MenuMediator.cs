@@ -15,22 +15,30 @@ public class MenuMediator : Mediator
     [Inject] public CreateTowerMenuSignal CreateTowerMenuSignal { get; set; }
     [Inject] public CreateUpgradeMenuSignal CreateUpgradeMenuSignal { get; set; }
     [Inject] public HideMenuSignal HideMenuSignal { get; set; }
+    [Inject] public TowerChosenSignal TowerChosenSignal { get; set; }
 
     public override void OnRegister()
     {
         CellButtonCreatedSignal.AddListener(SubscribeToCells);
+        TowerChosenSignal.AddListener(SubscribeToTowerButtons);
     }
 
     public override void OnRemove()
     {
         CellButtonCreatedSignal.RemoveListener(SubscribeToCells);
-        
+        TowerChosenSignal.RemoveListener(SubscribeToTowerButtons);
+
     }
     private void SubscribeToCells(CellButton cell)
     {
         _cells.Add(cell);
         cell.OnCellButtonClick += ShowMenu;
         _subscribed = true;
+    }
+
+    private void SubscribeToTowerButtons(TowerButton towerButton)
+    {
+        towerButton.OnTowerButtonClick += HideMenu;
     }
 
     private void ShowMenu(CellButton receivedCell)
