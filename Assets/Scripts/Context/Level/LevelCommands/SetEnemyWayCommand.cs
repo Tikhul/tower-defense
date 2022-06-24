@@ -17,6 +17,6 @@ public class SetEnemyWayCommand : Command
                 }
             }
         }
-        
+        injectionBinder.GetInstance<OnEnemyDrawnSignal>().Dispatch();
     }
 }

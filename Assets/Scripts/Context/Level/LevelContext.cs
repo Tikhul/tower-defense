@@ -30,6 +30,7 @@ public class LevelContext : LevelSignalContext
             .To<SetEnemyWayCommand>()
             .InSequence();
 
+        injectionBinder.Bind<OnEnemyDrawnSignal>().ToSingleton();
         injectionBinder.Bind<PassLevelDataSignal>();
         injectionBinder.Bind<PipelineEndedSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<LevelsPipelineModel>().ToSingleton();

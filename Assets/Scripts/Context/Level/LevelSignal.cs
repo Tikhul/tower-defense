@@ -8,3 +8,4 @@ public class FillCellListSignal : Signal<GameObject, char, int> { }
 public class PipelineStartSignal : Signal { }
 public class PipelineEndedSignal : Signal { }
 public class DrawEnemyWaySignal : Signal { }
+public class OnEnemyDrawnSignal : Signal { }
