@@ -14,3 +14,5 @@ public class CellButtonCreatedSignal : Signal<CellButton> { }
 public class BlockBoardSignal : Signal { }
 public class UnblockBoardSignal : Signal { }
 public class ChangePlayerDataSignal : Signal<PlayerModel> { }
+public class CreateTowerMenuSignal : Signal<CellButton> { }
+public class CreateUpgradeMenuSignal : Signal<CellButton> { }

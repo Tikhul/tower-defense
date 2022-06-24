@@ -16,7 +16,7 @@ public class CellButton : MonoBehaviour
     [SerializeField] private Button _buttonElement;
     [SerializeField] private AllTowersView _towers;
 
-    public event Action<CellState> OnCellButtonClick = delegate { };
+    public event Action<CellButton> OnCellButtonClick = delegate { };
     public int CellInt
     {
         get => _cellInt;
@@ -42,7 +42,7 @@ public class CellButton : MonoBehaviour
     {
         _buttonElement.onClick.AddListener(delegate
         {
-            OnCellButtonClick?.Invoke(State);
+            OnCellButtonClick?.Invoke(this);
         });
     }
 }

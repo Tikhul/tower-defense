@@ -12,6 +12,8 @@ public class MenuMediator : Mediator
     [Inject] public BlockBoardSignal BlockBoardSignal { get; set; }
     [Inject] public UnblockBoardSignal UnblockBoardSignal { get; set; }
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
+    [Inject] public CreateTowerMenuSignal CreateTowerMenuSignal { get; set; }
+    [Inject] public CreateUpgradeMenuSignal CreateUpgradeMenuSignal { get; set; }
 
     public override void OnRegister()
     {
@@ -30,16 +32,28 @@ public class MenuMediator : Mediator
         _subscribed = true;
     }
 
-    private void ShowMenu(CellState state)
+    private void ShowMenu(CellButton receivedCell)
     {
         BlockBoardSignal.Dispatch();
+
+        if (receivedCell.State.Equals(CellState.Empty))
+        {
+            CreateTowerMenuSignal.Dispatch(receivedCell);
+        }
+        else if (receivedCell.State.Equals(CellState.HasTower))
+        {
+            CreateUpgradeMenuSignal.Dispatch(receivedCell);
+        }
+
         View.Show();
         View.OnCloseMenu += HideMenu;
+
         foreach (var cell in _cells)
         {
             cell.OnCellButtonClick -= ShowMenu;
             _subscribed = false;
         }
+
         Debug.Log("ShowMenu");
     }
 

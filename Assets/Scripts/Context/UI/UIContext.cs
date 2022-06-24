@@ -22,6 +22,8 @@ public class UIContext : UISignalContext
         mediationBinder.BindView<UserDataView>().ToMediator<UserDataMediator>();
 
         commandBinder.Bind<LoadGameContextSignal>().To<LoadGameContextCommand>().Once();
+        commandBinder.Bind<CreateTowerMenuSignal>().To<CreateTowerMenuCommand>();
+        commandBinder.Bind<CreateUpgradeMenuSignal>().To<CreateUpgradeMenuCommand>();
 
         injectionBinder.Bind<NextLevelChosenSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<RestartLevelChosenSignal>().ToSingleton().CrossContext();
