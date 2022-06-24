@@ -29,4 +29,9 @@ public class TowerMenuMediator : Mediator
     {
         View.ClearMenu();
     }
+
+    private void ActivateTowerHandler(TowerView towerView)
+    {
+
+    }
 }

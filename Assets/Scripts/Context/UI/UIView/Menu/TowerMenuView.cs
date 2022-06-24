@@ -13,17 +13,14 @@ public class TowerMenuView : BaseView
         foreach (var tower in _list)
         {
             GameObject newButton = (GameObject)Instantiate(Resources.Load(StaticName.TOWER_BUTTON_PATH));
-            newButton.GetComponent<RectTransform>().sizeDelta = new Vector2(
-                _parentPanel.GetComponent<RectTransform>().sizeDelta.x / _list.Count,
-                _parentPanel.GetComponent<RectTransform>().sizeDelta.y
-                );
+            
             newButton.transform.SetParent(_parentPanel.transform);
             newButton.transform.localScale = new Vector3(1, 1, 1);
             newButton.transform.localPosition = new Vector3(0, 0, 0);
-            newButton.GetComponent<Image>().sprite = tower.TowerImage.sprite;
             TowerButton b = newButton.GetComponent<TowerButton>();
             b.TowerButtonText.text = tower.TowerText;
             b.TowerButtonImage.sprite = tower.GetComponentInChildren<Image>().sprite;
+            b.TowerView = tower;
         }
     }
 

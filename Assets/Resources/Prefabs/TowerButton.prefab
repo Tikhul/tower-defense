@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _towerButtonText: {fileID: 7662286058312674059}
   _towerButtonImage: {fileID: 7662286058500620372}
+  _button: {fileID: 7662286058167279360}
 --- !u!1 &7662286058312674057
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class TowerButton : MonoBehaviour
 {
     [SerializeField] private TMPro.TMP_Text _towerButtonText;
     [SerializeField] private Image _towerButtonImage;
+    [SerializeField] private Button _button;
+    public TowerView TowerView { get; set; }
 
     public TMPro.TMP_Text TowerButtonText
     {
@@ -18,5 +21,14 @@ public class TowerButton : MonoBehaviour
     {
         get => _towerButtonImage;
         set => _towerButtonImage = value;
+    }
+    private void OnEnable()
+    {
+        _button.onClick.AddListener(ActivateTower);
+    }
+
+    private void ActivateTower()
+    {
+        TowerView.gameObject.SetActive(true);
     }
 }
