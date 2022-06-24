@@ -18,5 +18,7 @@ public class CreateGameCommand : Command
         var board = new BoardModel(BoardLibraryModel.GetLibraryDataById("board"));
         GameModel.Player = player;
         GameModel.Board = board;
+
+        injectionBinder.GetInstance<ChangePlayerDataSignal>().Dispatch(player);
     }
 }

@@ -19,6 +19,7 @@ public class UIContext : UISignalContext
         mediationBinder.BindView<LevelRestartView>().ToMediator<LevelRestartMediator>();
         mediationBinder.BindView<LevelNameView>().ToMediator<LevelNameMediator>();
         mediationBinder.BindView<MenuView>().ToMediator<MenuMediator>();
+        mediationBinder.BindView<UserDataView>().ToMediator<UserDataMediator>();
 
         commandBinder.Bind<LoadGameContextSignal>().To<LoadGameContextCommand>().Once();
 
@@ -31,5 +32,6 @@ public class UIContext : UISignalContext
         injectionBinder.Bind<CellButtonCreatedSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<BlockBoardSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<UnblockBoardSignal>().ToSingleton().CrossContext();
+        injectionBinder.Bind<ChangePlayerDataSignal>().ToSingleton().CrossContext();
     }
 }
