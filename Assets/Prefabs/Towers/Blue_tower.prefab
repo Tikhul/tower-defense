@@ -89,3 +89,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerSO: {fileID: 11400000, guid: a5da5f0eff7f70a41a8d305bf10413d6, type: 2}
+  _towerImage: {fileID: 8962007087779721117}
+  _towerText: {fileID: 0}

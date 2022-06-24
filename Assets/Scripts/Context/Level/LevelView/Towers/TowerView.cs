@@ -7,7 +7,7 @@ public class TowerView : MonoBehaviour
 {
     [SerializeField] private TowerSO _towerSO;
     [SerializeField] private Image _towerImage;
-    [SerializeField] private TMPro.TMP_Text _towerText;
+    [SerializeField] private string _towerText;
 
     public TowerSO TowerSO
     {
@@ -20,9 +20,8 @@ public class TowerView : MonoBehaviour
         set => _towerImage = value;
     }
 
-    public TMPro.TMP_Text TowerText
+    public string TowerText
     {
-        get => _towerText;
-        set => _towerText = value;
+        get => _towerSO.Cost.ToString();
     }
 }

@@ -2,6 +2,7 @@ using strange.extensions.mediation.impl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerMenuView : BaseView
 {
@@ -19,6 +20,10 @@ public class TowerMenuView : BaseView
             newButton.transform.SetParent(_parentPanel.transform);
             newButton.transform.localScale = new Vector3(1, 1, 1);
             newButton.transform.localPosition = new Vector3(0, 0, 0);
+            newButton.GetComponent<Image>().sprite = tower.TowerImage.sprite;
+            TowerButton b = newButton.GetComponent<TowerButton>();
+            b.TowerButtonText.text = tower.TowerText;
+            b.TowerButtonImage.sprite = tower.GetComponentInChildren<Image>().sprite;
         }
     }
 

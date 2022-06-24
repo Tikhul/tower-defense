@@ -135,6 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1b18214a59fb3842b6725ed4b7f56ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _towerButtonText: {fileID: 7662286058312674059}
+  _towerButtonImage: {fileID: 7662286058500620372}
 --- !u!1 &7662286058312674057
 GameObject:
   m_ObjectHideFlags: 0
