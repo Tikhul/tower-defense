@@ -14,6 +14,7 @@ public class MenuMediator : Mediator
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
     [Inject] public CreateTowerMenuSignal CreateTowerMenuSignal { get; set; }
     [Inject] public CreateUpgradeMenuSignal CreateUpgradeMenuSignal { get; set; }
+    [Inject] public HideMenuSignal HideMenuSignal { get; set; }
 
     public override void OnRegister()
     {
@@ -70,6 +71,7 @@ public class MenuMediator : Mediator
                 _subscribed = true;
             }
         }
+        HideMenuSignal.Dispatch();
         Debug.Log("HideMenu");
     }
 }

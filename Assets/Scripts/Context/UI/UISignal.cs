@@ -15,4 +15,6 @@ public class BlockBoardSignal : Signal { }
 public class UnblockBoardSignal : Signal { }
 public class ChangePlayerDataSignal : Signal<PlayerModel> { }
 public class CreateTowerMenuSignal : Signal<CellButton> { }
+public class TowerMenuCreatedSignal : Signal<List<TowerView>> { }
 public class CreateUpgradeMenuSignal : Signal<CellButton> { }
+public class HideMenuSignal : Signal { }

@@ -2131,3 +2131,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee8efa15332edf42a5fe4ce2a747543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _parentPanel: {fileID: 2087143418}

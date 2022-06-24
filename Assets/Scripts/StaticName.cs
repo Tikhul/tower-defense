@@ -28,4 +28,10 @@ public static class StaticName
     public const string Alphabet = "abcdefghijklmnopqrstuvwxyz";
 
     #endregion
+
+    #region prefabs
+
+    public const string TOWER_BUTTON_PATH = "Prefabs/TowerButton";
+
+    #endregion
 }

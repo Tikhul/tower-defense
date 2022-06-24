@@ -37,7 +37,11 @@ public class CellButton : MonoBehaviour
         get => _buttonElement;
         set => _buttonElement = value;
     }
-
+    public AllTowersView Towers
+    {
+        get => _towers;
+        set => _towers = value;
+    }
     private void OnEnable()
     {
         _buttonElement.onClick.AddListener(delegate
