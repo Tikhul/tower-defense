@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Запись выбранных башен в модель уровня
+/// Запись выбранных башен в модель уровня (словарь Кнопка-модель)
 /// </summary>
 public class CreateTowerModelCommand : Command
 {
@@ -12,7 +12,8 @@ public class CreateTowerModelCommand : Command
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     public override void Execute()
     {
+        Debug.Log("CreateTowerModelCommand");
         TowerModel newTower = new TowerModel(TowerButton.TowerView.TowerSO);
-        LevelsPipelineModel.CurrentLevel.TowerModels.Add(newTower);
+        LevelsPipelineModel.CurrentLevel.TowerModels.Add(TowerButton, newTower);
     }
 }

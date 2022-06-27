@@ -24,7 +24,6 @@ public class TowerMenuView : BaseMenuView
             OnTowerButtonCreated?.Invoke(b);
         }
     }
-
     public override void ClearMenu()
     {
         Debug.Log("ClearMenu");

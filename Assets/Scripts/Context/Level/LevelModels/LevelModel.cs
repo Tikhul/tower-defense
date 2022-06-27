@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class LevelModel : ILevelModel
 {
-    public List<TowerModel> TowerModels { get; set; }
     public LevelSO Config { get; private set; }
     public EnemyWaySO EnemyWay { get; private set; }
     public LevelState State { get; private set; } = LevelState.NonActive;
+
+    public Dictionary<TowerButton, TowerModel> TowerModels { get; set; } = new Dictionary<TowerButton, TowerModel>();
 
     public event Action OnLevelBegin;
     public event Action OnLevelComplete;
@@ -21,7 +22,7 @@ public class LevelModel : ILevelModel
     public void BeginLevel()
     {
         State = LevelState.Active;
-        TowerModels = new List<TowerModel>();
+        TowerModels.Clear();
         OnLevelBegin?.Invoke();
         Debug.Log("BeginLevel");
     }
@@ -36,7 +37,7 @@ public class LevelModel : ILevelModel
 
 public interface ILevelModel
 {
-    List<TowerModel> TowerModels { get; }
+    Dictionary<TowerButton, TowerModel> TowerModels { get; }
     LevelSO Config { get; }
     EnemyWaySO EnemyWay { get; }
     LevelState State { get; }
