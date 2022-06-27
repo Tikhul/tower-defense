@@ -38,6 +38,6 @@ public class UpgradeMenuMediator : Mediator
     }
     private void UpgradeTowerHandler(UpgradeButton button, TowerView activeView)
     {
-
+        
     }
 }

@@ -2,7 +2,7 @@ using strange.extensions.mediation.impl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class BoardMediator : Mediator
 {
     [Inject] public BoardView View { get; set; }
@@ -24,6 +24,8 @@ public class BoardMediator : Mediator
         DrawBoardSignal.Dispatch(View.BoardParent);
         OnEnemyDrawnSignal.AddListener(DrawEnemiesHandler);
         DrawEnemyWaySignal.Dispatch();
+        RestartLevelChosenSignal.AddListener(ClearTowersHandler);
+        NextLevelChosenSignal.AddListener(ClearTowersHandler);
         RestartLevelChosenSignal.AddListener(ShowPanelHandler);
         NextLevelChosenSignal.AddListener(ShowPanelHandler);
         ShowRestartPanelSignal.AddListener(HidePanelHandler);
@@ -35,6 +37,8 @@ public class BoardMediator : Mediator
 
     public override void OnRemove()
     {
+        RestartLevelChosenSignal.RemoveListener(ClearTowersHandler);
+        NextLevelChosenSignal.RemoveListener(ClearTowersHandler);
         RestartLevelChosenSignal.RemoveListener(ShowPanelHandler);
         NextLevelChosenSignal.RemoveListener(ShowPanelHandler);
         ShowRestartPanelSignal.RemoveListener(HidePanelHandler);
@@ -71,5 +75,10 @@ public class BoardMediator : Mediator
     private void UnBlockBoardHandler()
     {
         View.UnblockBoard();
+    }
+    private void ClearTowersHandler()
+    {
+        List<CellButton> buttonsWithTowers = GameModel.Board.CurrentCellList.FindAll(x => x.State == CellState.HasTower);
+        View.ClearTowers(buttonsWithTowers);
     }
 }

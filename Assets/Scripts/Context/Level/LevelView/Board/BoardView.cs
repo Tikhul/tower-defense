@@ -57,4 +57,15 @@ public class BoardView : BaseView
         }
             
     }
+
+    public void ClearTowers(List<CellButton> buttonsWithTower)
+    {
+        foreach (var button in buttonsWithTower)
+        {
+            foreach(var tower in button.Towers.TowerViews)
+            {
+                tower.gameObject.SetActive(false);
+            }
+        }
+    }
 }

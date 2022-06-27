@@ -40,7 +40,7 @@ public class UIContext : UISignalContext
         injectionBinder.Bind<TowerMenuCreatedSignal>().ToSingleton();
         injectionBinder.Bind<UpgradeMenuCreatedSignal>().ToSingleton();
         injectionBinder.Bind<HideMenuSignal>().ToSingleton();
-        injectionBinder.Bind<TowerChosenSignal>().ToSingleton();
+        injectionBinder.Bind<TowerChosenSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<UpgradeChosenSignal>().ToSingleton();
     }
 }
