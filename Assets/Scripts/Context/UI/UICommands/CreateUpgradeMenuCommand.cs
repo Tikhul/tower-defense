@@ -11,6 +11,7 @@ public class CreateUpgradeMenuCommand : Command
 {
     [Inject] public CellButton CellButton { get; set; }
 
+
     public override void Execute()
     {
         TowerView activeView = CellButton.Towers.TowerViews.FirstOrDefault(c => c.gameObject.activeInHierarchy);
@@ -22,7 +23,7 @@ public class CreateUpgradeMenuCommand : Command
             UpgradeModel u = new UpgradeModel(upgrade);
             _list.Add(u);
         }
-
+        
         injectionBinder.GetInstance<UpgradeMenuCreatedSignal>().Dispatch(_list);
         Debug.Log("CreateUpgradeMenuCommand");
     }

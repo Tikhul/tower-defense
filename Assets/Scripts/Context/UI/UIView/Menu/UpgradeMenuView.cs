@@ -9,10 +9,10 @@ public class UpgradeMenuView : BaseMenuView
 
     public void SetUpUpgradeButtons(List<UpgradeModel> _list)
     {
+        Debug.Log(_list.Count);
         foreach (var upgrade in _list)
         {
             GameObject newButton = (GameObject)Instantiate(Resources.Load(StaticName.UPGRADE_BUTTON_PATH));
-
             newButton.transform.SetParent(ParentPanel.transform);
             newButton.transform.localScale = new Vector3(1, 1, 1);
             newButton.transform.localPosition = new Vector3(0, 0, 0);

@@ -17,14 +17,16 @@ public class MainContext : MainSignalContext
             .To<LoadEnemiesConfigsCommand>()
             .To<LoadTowersConfigsCommand>()
             .To<LoadLevelPipelineConfigsCommand>()
+            .To<LoadUpgradesConfigsCommand>()
             .To<LoadPlayerConfigCommand>()
             .To<LoadBoardConfigCommand>()
-            .To<LoadUIContextCommand>().
-            InSequence()
+            .To<LoadUIContextCommand>()
+            .InSequence()
             .Once();
         injectionBinder.Bind<UIContextLoadedSignal>().ToSingleton();
         injectionBinder.Bind<EnemiesLibraryModel>().ToSingleton().CrossContext();
         injectionBinder.Bind<TowersLibraryModel>().ToSingleton().CrossContext();
+        injectionBinder.Bind<UpgradesLibraryModel>().ToSingleton().CrossContext();
         injectionBinder.Bind<LevelsLibraryModel>().ToSingleton().CrossContext();
         injectionBinder.Bind<PlayerLibraryModel>().ToSingleton().CrossContext();
         injectionBinder.Bind<BoardLibraryModel>().ToSingleton().CrossContext();

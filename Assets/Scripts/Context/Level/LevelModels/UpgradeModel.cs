@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpgradeModel : IUpgradeModel
+public class UpgradeModel
 {
     public UpgradeSO Config { get; private set; }
 
@@ -12,7 +12,3 @@ public class UpgradeModel : IUpgradeModel
     }
 }
 
-public interface IUpgradeModel
-{
-    UpgradeSO Config { get; }
-}

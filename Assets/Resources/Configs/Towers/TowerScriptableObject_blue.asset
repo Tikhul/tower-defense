@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: TowerScriptableObject_blue
   m_EditorClassIdentifier: 
   _id: 
-  _damage: 0
-  _shootRadius: 0
-  _shootFrequency: 0
+  _damage: 10
+  _shootRadius: 20
+  _shootFrequency: 30
   _bulletsNumber: 0
   _cost: 10
-  _upgrades: []
+  _upgrades:
+  - {fileID: 11400000, guid: afd380ebe7d7dbe44b5fc4fa9e68287f, type: 2}
+  - {fileID: 11400000, guid: d15d871af42fd704aa1165ab8aef195e, type: 2}
+  - {fileID: 11400000, guid: ecbb466db16c36d49867563a6ea88c06, type: 2}
+  - {fileID: 11400000, guid: f46110c7c4ff1de459e685feab73ddeb, type: 2}
+  - {fileID: 11400000, guid: 7d2feead83c91d7409245c034925eb9c, type: 2}
