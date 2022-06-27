@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWayModel : IEnemyWayModel
+public class EnemyWayModel
 {
     public EnemyWaySO Config { get; private set; }
 
@@ -10,9 +10,4 @@ public class EnemyWayModel : IEnemyWayModel
     {
         Config = config;
     }
-}
-
-public interface IEnemyWayModel
-{
-    EnemyWaySO Config { get; }
 }

@@ -13,15 +13,17 @@ public class UpgradeMenuMediator : Mediator
     {
         UpgradeMenuCreatedSignal.AddListener(SetUpUpgradeButtonsHandler);
         HideMenuSignal.AddListener(ClearMenuHandler);
+        View.OnUpgradeButtonCreated += SubscribeToUpgradeHandler;
     }
     public override void OnRemove()
     {
         UpgradeMenuCreatedSignal.RemoveListener(SetUpUpgradeButtonsHandler);
         HideMenuSignal.RemoveListener(ClearMenuHandler);
+        View.OnUpgradeButtonCreated -= SubscribeToUpgradeHandler;
     }
-    private void SetUpUpgradeButtonsHandler(List<UpgradeModel> _list)
+    private void SetUpUpgradeButtonsHandler(List<UpgradeModel> _list, TowerView activeView)
     {
-        View.SetUpUpgradeButtons(_list);
+        View.SetUpUpgradeButtons(_list, activeView);
         View.Show();
     }
 
@@ -29,5 +31,13 @@ public class UpgradeMenuMediator : Mediator
     {
         View.Hide();
         View.ClearMenu();
+    }
+    private void SubscribeToUpgradeHandler(UpgradeButton button) 
+    {
+        button.OnUpgradeButtonClick += UpgradeTowerHandler;
+    }
+    private void UpgradeTowerHandler(UpgradeButton button, TowerView activeView)
+    {
+
     }
 }

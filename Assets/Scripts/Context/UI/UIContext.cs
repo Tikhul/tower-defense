@@ -41,5 +41,6 @@ public class UIContext : UISignalContext
         injectionBinder.Bind<UpgradeMenuCreatedSignal>().ToSingleton();
         injectionBinder.Bind<HideMenuSignal>().ToSingleton();
         injectionBinder.Bind<TowerChosenSignal>().ToSingleton();
+        injectionBinder.Bind<UpgradeChosenSignal>().ToSingleton();
     }
 }

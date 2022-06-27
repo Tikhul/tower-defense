@@ -1,13 +1,13 @@
 using strange.extensions.mediation.impl;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UpgradeMenuView : BaseMenuView
 {
-    [Inject] public UpgradeMenuCreatedSignal UpgradeMenuCreatedSignal { get; set; }
-
-    public void SetUpUpgradeButtons(List<UpgradeModel> _list)
+    public event Action<UpgradeButton> OnUpgradeButtonCreated = delegate { };
+    public void SetUpUpgradeButtons(List<UpgradeModel> _list, TowerView activeView)
     {
         Debug.Log(_list.Count);
         foreach (var upgrade in _list)
@@ -21,6 +21,9 @@ public class UpgradeMenuView : BaseMenuView
             b.DamageUpgradeText.text = "Урон + " + upgrade.Config.Damage;
             b.RadiusUpgradeText.text = "Радиус + " + upgrade.Config.ShootRadius;
             b.SpeedUpgradeText.text = "Скорость + " + upgrade.Config.ShootFrequency;
+            b.UpgradeData = upgrade;
+            b.ActiveView = activeView;
+            OnUpgradeButtonCreated?.Invoke(b);
         }
     }
 
