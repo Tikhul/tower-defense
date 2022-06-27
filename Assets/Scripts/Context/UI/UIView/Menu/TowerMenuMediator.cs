@@ -30,6 +30,7 @@ public class TowerMenuMediator : Mediator
 
     private void ClearMenuHandler()
     {
+        View.Hide();
         View.ClearMenu();
     }
 
