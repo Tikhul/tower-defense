@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Присвоение индексов клеткам поля
+/// </summary>
 public class FillCellListCommand : Command
 {
     [Inject] public GameModel GameModel { get; set; }
