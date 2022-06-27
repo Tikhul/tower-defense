@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8764791321240621915}
   m_Layer: 5
   m_Name: TowerButton
-  m_TagString: blue
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

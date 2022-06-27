@@ -33,6 +33,7 @@ public class TowerButton : MonoBehaviour
 
     private void ActivateTower()
     {
+        TowerView.GetComponentInParent<CellButton>().State = CellState.HasTower;
         TowerView.gameObject.SetActive(true);
     }
 }

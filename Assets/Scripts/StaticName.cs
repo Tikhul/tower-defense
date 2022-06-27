@@ -32,6 +32,7 @@ public static class StaticName
     #region prefabs
 
     public const string TOWER_BUTTON_PATH = "Prefabs/TowerButton";
+    public const string UPGRADE_BUTTON_PATH = "Prefabs/UpgradeButton";
 
     #endregion
 }

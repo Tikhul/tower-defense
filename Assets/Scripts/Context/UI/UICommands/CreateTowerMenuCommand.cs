@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Создание меню из башен (для пустых клеток)
+/// </summary>
 public class CreateTowerMenuCommand : Command
 {
     [Inject] public CellButton CellButton { get; set; }

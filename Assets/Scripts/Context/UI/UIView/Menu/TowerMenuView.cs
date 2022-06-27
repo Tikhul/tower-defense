@@ -5,10 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TowerMenuView : BaseView
+public class TowerMenuView : BaseMenuView
 {
-    [SerializeField] private GameObject _parentPanel;
-
     public event Action<TowerButton> OnTowerButtonCreated = delegate { };
     public void SetUpTowerButtons(List<TowerView> _list)
     {
@@ -16,7 +14,7 @@ public class TowerMenuView : BaseView
         {
             GameObject newButton = (GameObject)Instantiate(Resources.Load(StaticName.TOWER_BUTTON_PATH));
             
-            newButton.transform.SetParent(_parentPanel.transform);
+            newButton.transform.SetParent(ParentPanel.transform);
             newButton.transform.localScale = new Vector3(1, 1, 1);
             newButton.transform.localPosition = new Vector3(0, 0, 0);
             TowerButton b = newButton.GetComponent<TowerButton>();
@@ -27,7 +25,7 @@ public class TowerMenuView : BaseView
         }
     }
 
-    public void ClearMenu()
+    public override void ClearMenu()
     {
         Debug.Log("ClearMenu");
         foreach(var button in GetComponentsInChildren<TowerButton>())

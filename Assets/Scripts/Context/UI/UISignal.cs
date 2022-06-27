@@ -17,5 +17,6 @@ public class ChangePlayerDataSignal : Signal<PlayerModel> { }
 public class CreateTowerMenuSignal : Signal<CellButton> { }
 public class TowerMenuCreatedSignal : Signal<List<TowerView>> { }
 public class CreateUpgradeMenuSignal : Signal<CellButton> { }
+public class UpgradeMenuCreatedSignal : Signal<List<UpgradeModel>> { }
 public class HideMenuSignal : Signal { }
 public class TowerChosenSignal : Signal<TowerButton> { }
