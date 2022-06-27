@@ -23,4 +23,12 @@ public class UpgradeMenuView : BaseMenuView
             b.SpeedUpgradeText.text = "Скорость + " + upgrade.Config.ShootFrequency;
         }
     }
+
+    public override void ClearMenu()
+    {
+        foreach(var button in GetComponentsInChildren<UpgradeButton>())
+        {
+            Destroy(button.gameObject);
+        }
+    }
 }
