@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-/// <summary>
-/// Создание меню улучшений для башни
-/// </summary>
-public class CreateUpgradeMenuCommand : Command
+public class CreateUpgradeModelCommand : Command
 {
     [Inject] public CellButton CellButton { get; set; }
+    [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
 
     public override void Execute()
     {
@@ -22,8 +20,8 @@ public class CreateUpgradeMenuCommand : Command
             UpgradeModel u = new UpgradeModel(upgrade);
             _list.Add(u);
         }
-        
-        injectionBinder.GetInstance<UpgradeMenuCreatedSignal>().Dispatch(_list, activeView);
-        Debug.Log("CreateUpgradeMenuCommand");
+
+        //injectionBinder.GetInstance<UpgradeMenuCreatedSignal>().Dispatch(_list, activeView);
+        Debug.Log("CreateUpgradeModelCommand");
     }
 }
