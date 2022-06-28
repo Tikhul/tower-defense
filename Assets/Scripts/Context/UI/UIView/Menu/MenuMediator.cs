@@ -6,9 +6,9 @@ using UnityEngine;
 public class MenuMediator : Mediator
 {
     private List<CellButton> _cells = new List<CellButton>();
-    private List<TowerButton> _towers = new List<TowerButton>();
+    
     private bool _subscribedToCells = false;
-    private bool _subscribedToTowers = false;
+    
     [Inject] public MenuView View { get; set; }
     [Inject] public CellButtonCreatedSignal CellButtonCreatedSignal { get; set; }
     [Inject] public BlockBoardSignal BlockBoardSignal { get; set; }
@@ -22,13 +22,13 @@ public class MenuMediator : Mediator
     public override void OnRegister()
     {
         CellButtonCreatedSignal.AddListener(SubscribeToCells);
-        TowerChosenSignal.AddListener(SubscribeToTowerButtons);
+        TowerChosenSignal.AddListener(HideMenu);
     }
 
     public override void OnRemove()
     {
         CellButtonCreatedSignal.RemoveListener(SubscribeToCells);
-        TowerChosenSignal.RemoveListener(SubscribeToTowerButtons);
+        TowerChosenSignal.RemoveListener(HideMenu);
 
     }
     private void SubscribeToCells(CellButton cell)
@@ -36,14 +36,6 @@ public class MenuMediator : Mediator
         _cells.Add(cell);
         cell.OnCellButtonClick += ShowMenu;
         _subscribedToCells = true;
-    }
-
-    private void SubscribeToTowerButtons(TowerButton towerButton)
-    {
-        Debug.Log("SubscribeToTowerButtons");
-        _towers.Add(towerButton);
-         towerButton.OnTowerButtonClick += HideMenu;
-        _subscribedToTowers = true;
     }
 
     private void ShowMenu(CellButton receivedCell)
@@ -60,29 +52,21 @@ public class MenuMediator : Mediator
         }
 
         View.Show();
-        View.OnCloseMenu += HideMenu;
+       // View.OnCloseMenu += HideMenu;
 
         foreach (var cell in _cells)
         {
             cell.OnCellButtonClick -= ShowMenu;
             _subscribedToCells = false;
         }
-
-        if (!_subscribedToTowers)
-        {
-            foreach (var tower in _towers)
-            {
-                tower.OnTowerButtonClick += HideMenu;
-            }
-        }
             Debug.Log("ShowMenu");
     }
 
-    private void HideMenu()
+    private void HideMenu(TowerButton button)
     {
         UnblockBoardSignal.Dispatch();
         View.Hide();
-        View.OnCloseMenu -= HideMenu;
+       // View.OnCloseMenu -= HideMenu;
         if (!_subscribedToCells)
         {
             foreach (var cell in _cells)
@@ -90,12 +74,6 @@ public class MenuMediator : Mediator
                 cell.OnCellButtonClick += ShowMenu;
                 _subscribedToCells = true;
             }
-        }
-
-        foreach (var tower in _towers)
-        {
-            tower.OnTowerButtonClick -= HideMenu;
-            _subscribedToTowers = false;
         }
         HideMenuSignal.Dispatch();
         Debug.Log("HideMenu");
