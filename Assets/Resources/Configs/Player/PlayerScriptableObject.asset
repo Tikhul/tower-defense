@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerScriptableObject
   m_EditorClassIdentifier: 
   _id: player
-  _initialHealth: 0
-  _initialCoins: 0
+  _initialHealth: 100
+  _initialCoins: 100

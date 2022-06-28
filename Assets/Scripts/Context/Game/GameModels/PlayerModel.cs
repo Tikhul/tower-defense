@@ -10,6 +10,8 @@ public class PlayerModel
     {
         InitialCoins = settings.InitialCoins;
         InitialHealth = settings.InitialHealth;
+        ActualCoins = settings.InitialCoins;
+        ActualHealth = settings.InitialHealth;
     }
     public int ActualCoins { get; set; }
     public int ActualHealth { get; set; }
