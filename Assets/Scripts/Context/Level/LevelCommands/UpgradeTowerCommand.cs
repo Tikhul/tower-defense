@@ -7,6 +7,7 @@ public class UpgradeTowerCommand : Command
 {
     public override void Execute()
     {
-        base.Execute();
+        injectionBinder.GetInstance<TowerUpgradedSignal>().Dispatch();
+        Debug.Log("UpgradeTowerCommand");
     }
 }

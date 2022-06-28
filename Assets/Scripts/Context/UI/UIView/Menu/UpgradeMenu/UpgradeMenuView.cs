@@ -10,10 +10,11 @@ public class UpgradeMenuView : BaseMenuView
     [SerializeField] private TMPro.TMP_Text _radiusText;
     [SerializeField] private TMPro.TMP_Text _speedText;
 
-    public event Action<UpgradeButton> OnUpgradeButtonCreated = delegate { };
+    public event Action<List<UpgradeButton>> OnUpgradeButtonCreated = delegate { };
     public void SetUpUpgradeButtons(List<UpgradeSO> _list, TowerView activeView)
     {
-        Debug.Log(_list.Count);
+        List<UpgradeButton> _tempList = new List<UpgradeButton>();
+
         foreach (var upgrade in _list)
         {
             GameObject newButton = (GameObject)Instantiate(Resources.Load(StaticName.UPGRADE_BUTTON_PATH));
@@ -27,8 +28,10 @@ public class UpgradeMenuView : BaseMenuView
             b.RadiusUpgradeText.text = "Радиус + " + upgrade.ShootRadius;
             b.SpeedUpgradeText.text = "Скорость + " + upgrade.ShootFrequency;
             b.ActiveView = activeView;
-            OnUpgradeButtonCreated?.Invoke(b);
+            _tempList.Add(b);
         }
+
+        OnUpgradeButtonCreated?.Invoke(_tempList);
     }
 
     public void ShowTowerData(TowerModel tower)

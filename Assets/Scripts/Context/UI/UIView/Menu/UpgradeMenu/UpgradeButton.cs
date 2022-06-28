@@ -40,6 +40,7 @@ public class UpgradeButton : MonoBehaviour
     {
         _button.onClick.AddListener(delegate
         {
+            Debug.Log("onClick");
             OnUpgradeButtonClick?.Invoke(this);
         });
     }

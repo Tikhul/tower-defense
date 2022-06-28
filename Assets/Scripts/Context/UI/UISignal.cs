@@ -22,3 +22,4 @@ public class HideMenuSignal : Signal { }
 public class TowerChosenSignal : Signal<TowerButton> { }
 public class UpgradeChosenSignal : Signal<UpgradeButton> { }
 public class ShowTowerDataSignal : Signal<TowerModel> { }
+public class TowerUpgradedSignal : Signal { }
