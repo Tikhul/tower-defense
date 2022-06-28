@@ -21,7 +21,7 @@ public class UpgradeMenuMediator : Mediator
         HideMenuSignal.RemoveListener(ClearMenuHandler);
         View.OnUpgradeButtonCreated -= SubscribeToUpgradeHandler;
     }
-    private void SetUpUpgradeButtonsHandler(List<UpgradeModel> _list, TowerView activeView)
+    private void SetUpUpgradeButtonsHandler(List<UpgradeSO> _list, TowerView activeView)
     {
         View.SetUpUpgradeButtons(_list, activeView);
         View.Show();

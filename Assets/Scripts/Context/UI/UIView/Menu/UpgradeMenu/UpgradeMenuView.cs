@@ -7,7 +7,7 @@ using UnityEngine;
 public class UpgradeMenuView : BaseMenuView
 {
     public event Action<UpgradeButton> OnUpgradeButtonCreated = delegate { };
-    public void SetUpUpgradeButtons(List<UpgradeModel> _list, TowerView activeView)
+    public void SetUpUpgradeButtons(List<UpgradeSO> _list, TowerView activeView)
     {
         Debug.Log(_list.Count);
         foreach (var upgrade in _list)
@@ -17,11 +17,11 @@ public class UpgradeMenuView : BaseMenuView
             newButton.transform.localScale = new Vector3(1, 1, 1);
             newButton.transform.localPosition = new Vector3(0, 0, 0);
             UpgradeButton b = newButton.GetComponent<UpgradeButton>();
-            b.CostText.text = "Цена: " + upgrade.Config.Cost;
-            b.DamageUpgradeText.text = "Урон + " + upgrade.Config.Damage;
-            b.RadiusUpgradeText.text = "Радиус + " + upgrade.Config.ShootRadius;
-            b.SpeedUpgradeText.text = "Скорость + " + upgrade.Config.ShootFrequency;
-            b.UpgradeData = upgrade;
+            b.UpgradeConfig = upgrade;
+            b.CostText.text = "Цена: " + upgrade.Cost;
+            b.DamageUpgradeText.text = "Урон + " + upgrade.Damage;
+            b.RadiusUpgradeText.text = "Радиус + " + upgrade.ShootRadius;
+            b.SpeedUpgradeText.text = "Скорость + " + upgrade.ShootFrequency;
             b.ActiveView = activeView;
             OnUpgradeButtonCreated?.Invoke(b);
         }

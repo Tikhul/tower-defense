@@ -13,7 +13,6 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField] private Button _button;
   
     public TowerView ActiveView { get; set; }
-    public UpgradeModel UpgradeData { get; set; }
     public event Action<UpgradeButton, TowerView> OnUpgradeButtonClick = delegate { };
     public TMPro.TMP_Text CostText
     {
@@ -35,6 +34,8 @@ public class UpgradeButton : MonoBehaviour
         get => _speedUpgradeText;
         set => _speedUpgradeText = value;
     }
+    public UpgradeSO UpgradeConfig { get; set; }
+    
     private void OnEnable()
     {
         _button.onClick.AddListener(delegate

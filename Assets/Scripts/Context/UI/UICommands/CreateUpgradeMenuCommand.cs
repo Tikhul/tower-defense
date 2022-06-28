@@ -15,12 +15,11 @@ public class CreateUpgradeMenuCommand : Command
     {
         TowerView activeView = CellButton.Towers.TowerViews.FirstOrDefault(c => c.gameObject.activeInHierarchy);
 
-        List<UpgradeModel> _list = new List<UpgradeModel>();
+        List<UpgradeSO> _list = new List<UpgradeSO>();
 
         foreach (var upgrade in activeView.TowerSO.Upgrades)
         {
-            UpgradeModel u = new UpgradeModel(upgrade);
-            _list.Add(u);
+            _list.Add(upgrade);
         }
         
         injectionBinder.GetInstance<UpgradeMenuCreatedSignal>().Dispatch(_list, activeView);
