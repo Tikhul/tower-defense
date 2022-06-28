@@ -36,6 +36,8 @@ public class TowerMenuMediator : Mediator
 
     private void TowerButtonChosenHandler(TowerButton button)
     {
+        Debug.Log("TowerButtonChosenHandler");
         TowerChosenSignal.Dispatch(button);
+        View.OnTowerButtonCreated -= TowerButtonChosenHandler;
     }
 }

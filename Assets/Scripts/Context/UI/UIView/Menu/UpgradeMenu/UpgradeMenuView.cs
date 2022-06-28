@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class UpgradeMenuView : BaseMenuView
 {
+    [SerializeField] private TMPro.TMP_Text _damageText;
+    [SerializeField] private TMPro.TMP_Text _radiusText;
+    [SerializeField] private TMPro.TMP_Text _speedText;
+
     public event Action<UpgradeButton> OnUpgradeButtonCreated = delegate { };
     public void SetUpUpgradeButtons(List<UpgradeSO> _list, TowerView activeView)
     {
@@ -27,6 +31,12 @@ public class UpgradeMenuView : BaseMenuView
         }
     }
 
+    public void ShowTowerData(TowerModel tower)
+    {
+        _damageText.text = "Урон: " + tower.Damage;
+        _radiusText.text = "Радиус: " + tower.ShootRadius;
+        _speedText.text = "Скорость: " + tower.ShootFrequency;
+    }
     public override void ClearMenu()
     {
         foreach(var button in GetComponentsInChildren<UpgradeButton>())

@@ -8,15 +8,19 @@ public class UpgradeMenuMediator : Mediator
     [Inject] public UpgradeMenuView View { get; set; }
     [Inject] public UpgradeMenuCreatedSignal UpgradeMenuCreatedSignal { get; set; }
     [Inject] public HideMenuSignal HideMenuSignal { get; set; }
+    [Inject] public UpgradeChosenSignal UpgradeChosenSignal { get; set; }
+    [Inject] public ShowTowerDataSignal ShowTowerDataSignal { get; set; }
 
     public override void OnRegister()
     {
+        ShowTowerDataSignal.AddListener(ShowTowerDataHandler);
         UpgradeMenuCreatedSignal.AddListener(SetUpUpgradeButtonsHandler);
         HideMenuSignal.AddListener(ClearMenuHandler);
         View.OnUpgradeButtonCreated += SubscribeToUpgradeHandler;
     }
     public override void OnRemove()
     {
+        ShowTowerDataSignal.RemoveListener(ShowTowerDataHandler);
         UpgradeMenuCreatedSignal.RemoveListener(SetUpUpgradeButtonsHandler);
         HideMenuSignal.RemoveListener(ClearMenuHandler);
         View.OnUpgradeButtonCreated -= SubscribeToUpgradeHandler;
@@ -36,8 +40,12 @@ public class UpgradeMenuMediator : Mediator
     {
         button.OnUpgradeButtonClick += UpgradeTowerHandler;
     }
-    private void UpgradeTowerHandler(UpgradeButton button, TowerView activeView)
+    private void UpgradeTowerHandler(UpgradeButton button)
     {
-        
+        UpgradeChosenSignal.Dispatch(button);
+    }
+    private void ShowTowerDataHandler(TowerModel tower)
+    {
+        View.ShowTowerData(tower);
     }
 }

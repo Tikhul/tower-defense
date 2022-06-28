@@ -40,6 +40,7 @@ public class MenuMediator : Mediator
 
     private void SubscribeToTowerButtons(TowerButton towerButton)
     {
+        Debug.Log("SubscribeToTowerButtons");
         _towers.Add(towerButton);
          towerButton.OnTowerButtonClick += HideMenu;
         _subscribedToTowers = true;
@@ -72,7 +73,6 @@ public class MenuMediator : Mediator
             foreach (var tower in _towers)
             {
                 tower.OnTowerButtonClick += HideMenu;
-
             }
         }
             Debug.Log("ShowMenu");
