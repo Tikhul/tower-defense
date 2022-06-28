@@ -22,13 +22,13 @@ public class MenuMediator : Mediator
     public override void OnRegister()
     {
         CellButtonCreatedSignal.AddListener(SubscribeToCells);
-        TowerChosenSignal.AddListener(HideMenu);
+        TowerChosenSignal.AddListener(TowerButtonClickedHandler);
     }
 
     public override void OnRemove()
     {
         CellButtonCreatedSignal.RemoveListener(SubscribeToCells);
-        TowerChosenSignal.RemoveListener(HideMenu);
+        TowerChosenSignal.RemoveListener(TowerButtonClickedHandler);
 
     }
     private void SubscribeToCells(CellButton cell)
@@ -52,7 +52,7 @@ public class MenuMediator : Mediator
         }
 
         View.Show();
-       // View.OnCloseMenu += HideMenu;
+        View.OnCloseMenu += HideMenu;
 
         foreach (var cell in _cells)
         {
@@ -61,12 +61,15 @@ public class MenuMediator : Mediator
         }
             Debug.Log("ShowMenu");
     }
-
-    private void HideMenu(TowerButton button)
+    private void TowerButtonClickedHandler(TowerButton button)
+    {
+        HideMenu();
+    }
+    private void HideMenu()
     {
         UnblockBoardSignal.Dispatch();
         View.Hide();
-       // View.OnCloseMenu -= HideMenu;
+        View.OnCloseMenu -= HideMenu;
         if (!_subscribedToCells)
         {
             foreach (var cell in _cells)
