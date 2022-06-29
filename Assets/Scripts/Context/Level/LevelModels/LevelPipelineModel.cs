@@ -11,9 +11,6 @@ public class LevelsPipelineModel
     public event Action OnPipelineBegin;
     public event Action OnPipelineComplete;
 
-    //public event Action<ILevelModel> OnLevelBegin;
-    //public event Action<ILevelModel> OnLevelComplete;
-
     private ILevelModel GetNextLevel()
     {
         if (CurrentLevel == null) return _levelModels.FirstOrDefault();

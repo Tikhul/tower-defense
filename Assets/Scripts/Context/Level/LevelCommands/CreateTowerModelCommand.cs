@@ -15,7 +15,6 @@ public class CreateTowerModelCommand : Command
         Debug.Log("CreateTowerModelCommand");
         TowerModel newTower = new TowerModel(TowerButton.TowerView.TowerSO);
         Debug.Log(TowerButton.TowerView.TowerSO.name);
-        LevelsPipelineModel.CurrentLevel.TowerModels.Add(TowerButton, newTower);
         injectionBinder.GetInstance<ShowTowerDataSignal>().Dispatch(newTower);
     }
 }
