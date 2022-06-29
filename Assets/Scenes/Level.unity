@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _boardParent: {fileID: 367454012}
+  _canvas: {fileID: 367454016}
 --- !u!1 &1617665552
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class BoardView : BaseView
 {
     [SerializeField] private GameObject _boardParent;
+    [SerializeField] private Canvas _canvas;
     public GameObject BoardParent
     {
         get => _boardParent;
@@ -17,7 +18,7 @@ public class BoardView : BaseView
 
     private void OnEnable()
     {
-        BoardParent.GetComponent<Canvas>().worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        _canvas.worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     public void DrawEnemiesWays(List<CellButton> allButtons)
