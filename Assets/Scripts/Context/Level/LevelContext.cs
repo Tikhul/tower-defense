@@ -40,5 +40,6 @@ public class LevelContext : LevelSignalContext
         injectionBinder.Bind<PipelineEndedSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<LevelsPipelineModel>().ToSingleton();
         injectionBinder.Bind<LevelModel>();
+        injectionBinder.Bind<WaveModel>();
     }
 }
