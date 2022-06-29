@@ -22,6 +22,7 @@ public class UIContext : UISignalContext
         mediationBinder.BindView<TowerMenuView>().ToMediator<TowerMenuMediator>();
         mediationBinder.BindView<UserDataView>().ToMediator<UserDataMediator>();
         mediationBinder.BindView<UpgradeMenuView>().ToMediator<UpgradeMenuMediator>();
+        mediationBinder.BindView<WarningsView>().ToMediator<WarningsMediator>();
 
         commandBinder.Bind<LoadGameContextSignal>().To<LoadGameContextCommand>().Once();
         commandBinder.Bind<CreateTowerMenuSignal>().To<CreateTowerMenuCommand>();
@@ -44,5 +45,6 @@ public class UIContext : UISignalContext
         injectionBinder.Bind<UpgradeChosenSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<ShowTowerDataSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<TowerUpgradedSignal>().ToSingleton().CrossContext();
+        injectionBinder.Bind<NoMoneySignal>().ToSingleton().CrossContext();
     }
 }

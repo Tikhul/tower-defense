@@ -29,7 +29,10 @@ public class LevelContext : LevelSignalContext
             .To<ClearEnemyWayCommand>()
             .To<SetEnemyWayCommand>()
             .InSequence();
-        commandBinder.Bind<TowerChosenSignal>().To<CreateTowerModelCommand>();
+        commandBinder.Bind<TowerChosenSignal>()
+            .To<CheckMoneyForTowerCommand>()
+            .To<CreateTowerModelCommand>()
+            .InSequence();
         commandBinder.Bind<UpgradeChosenSignal>().To<UpgradeTowerCommand>();
 
         injectionBinder.Bind<OnEnemyDrawnSignal>().ToSingleton();

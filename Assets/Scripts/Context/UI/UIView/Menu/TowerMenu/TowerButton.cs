@@ -24,18 +24,16 @@ public class TowerButton : MonoBehaviour
     }
     private void OnEnable()
     {
-        OnTowerButtonClick += ActivateTower;
         _button.onClick.AddListener(delegate
         {
             OnTowerButtonClick?.Invoke(this);
         });
     }
 
-    public void ActivateTower(TowerButton b)
+    public void ActivateTower()
     {
         Debug.Log("Activate Tower");
         TowerView.GetComponentInParent<CellButton>().State = CellState.HasTower;
         TowerView.gameObject.SetActive(true);
-        OnTowerButtonClick -= ActivateTower;
     }
 }

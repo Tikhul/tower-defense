@@ -51,6 +51,7 @@ public class TowerMenuMediator : Mediator
     private void TowerButtonChosenHandler(TowerButton button)
     {
         Debug.Log("TowerButtonChosenHandler");
+        button.ActivateTower();
         TowerChosenSignal.Dispatch(button);
         foreach (var tower in _towers)
         {

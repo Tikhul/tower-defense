@@ -23,3 +23,4 @@ public class TowerChosenSignal : Signal<TowerButton> { }
 public class UpgradeChosenSignal : Signal<UpgradeButton> { }
 public class ShowTowerDataSignal : Signal<TowerModel> { }
 public class TowerUpgradedSignal : Signal { }
+public class NoMoneySignal : Signal { }
