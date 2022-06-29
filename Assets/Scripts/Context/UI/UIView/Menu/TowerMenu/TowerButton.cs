@@ -6,17 +6,40 @@ using UnityEngine.UI;
 
 public class TowerButton : MonoBehaviour
 {
-    [SerializeField] private TMPro.TMP_Text _towerButtonText;
+    [SerializeField] private TMPro.TMP_Text _towerCostText;
+    [SerializeField] private TMPro.TMP_Text _towerDamageText;
+    [SerializeField] private TMPro.TMP_Text _towerRadiusText;
+    [SerializeField] private TMPro.TMP_Text _towerFrequencyText;
+    [SerializeField] private TMPro.TMP_Text _towerBulletsText;
     [SerializeField] private Image _towerButtonImage;
     [SerializeField] private Button _button;
     public TowerView TowerView { get; set; }
     public event Action<TowerButton> OnTowerButtonClick = delegate { };
-    public TMPro.TMP_Text TowerButtonText
+    public TMPro.TMP_Text TowerCostText
     {
-        get => _towerButtonText;
-        set => _towerButtonText = value;
+        get => _towerCostText;
+        set => _towerCostText = value;
     }
-
+    public TMPro.TMP_Text TowerDamageText
+    {
+        get => _towerDamageText;
+        set => _towerDamageText = value;
+    }
+    public TMPro.TMP_Text TowerRadiusText
+    {
+        get => _towerRadiusText;
+        set => _towerRadiusText = value;
+    }
+    public TMPro.TMP_Text TowerFrequencyText
+    {
+        get => _towerFrequencyText;
+        set => _towerFrequencyText = value;
+    }
+    public TMPro.TMP_Text TowerBulletsText
+    {
+        get => _towerBulletsText;
+        set => _towerBulletsText = value;
+    }
     public Image TowerButtonImage
     {
         get => _towerButtonImage;
