@@ -33,7 +33,10 @@ public class LevelContext : LevelSignalContext
             .To<CheckMoneyForTowerCommand>()
             .To<CreateTowerModelCommand>()
             .InSequence();
-        commandBinder.Bind<UpgradeChosenSignal>().To<UpgradeTowerCommand>();
+        commandBinder.Bind<UpgradeChosenSignal>()
+            .To<CheckMoneyForUpgradeCommand>()
+            .To<UpgradeTowerCommand>()
+            .InSequence();
 
         injectionBinder.Bind<OnEnemyDrawnSignal>().ToSingleton();
         injectionBinder.Bind<PassLevelDataSignal>();
