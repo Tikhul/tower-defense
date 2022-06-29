@@ -46,5 +46,6 @@ public class UIContext : UISignalContext
         injectionBinder.Bind<ShowTowerDataSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<TowerUpgradedSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<NoMoneySignal>().ToSingleton().CrossContext();
+        injectionBinder.Bind<TowerBoughtSignal>().ToSingleton().CrossContext();
     }
 }

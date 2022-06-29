@@ -11,10 +11,12 @@ public class TowerMenuMediator : Mediator
     [Inject] public TowerMenuCreatedSignal TowerMenuCreatedSignal { get; set; }
     [Inject] public HideMenuSignal HideMenuSignal { get; set; }
     [Inject] public TowerChosenSignal TowerChosenSignal { get; set; }
+    [Inject] public TowerBoughtSignal TowerBoughtSignal { get; set; }
     public override void OnRegister()
     {
         TowerMenuCreatedSignal.AddListener(SetUpTowerButtonsHandler);
         HideMenuSignal.AddListener(ClearMenuHandler);
+        TowerBoughtSignal.AddListener(ActivateTowerHandler);
         View.OnTowerButtonCreated += SubscribeToTowers;
     }
     public override void OnRemove()
@@ -22,6 +24,7 @@ public class TowerMenuMediator : Mediator
         TowerMenuCreatedSignal.RemoveListener(SetUpTowerButtonsHandler);
         HideMenuSignal.RemoveListener(ClearMenuHandler);
         View.OnTowerButtonCreated -= SubscribeToTowers;
+        TowerBoughtSignal.RemoveListener(ActivateTowerHandler);
     }
 
     private void SubscribeToTowers(TowerButton button)
@@ -51,12 +54,15 @@ public class TowerMenuMediator : Mediator
     private void TowerButtonChosenHandler(TowerButton button)
     {
         Debug.Log("TowerButtonChosenHandler");
-        button.ActivateTower();
         TowerChosenSignal.Dispatch(button);
         foreach (var tower in _towers)
         {
             tower.OnTowerButtonClick -= TowerButtonChosenHandler;
             _subscribedToTowers = false;
         }
+    }
+    private void ActivateTowerHandler(TowerButton button)
+    {
+        button.ActivateTower();
     }
 }

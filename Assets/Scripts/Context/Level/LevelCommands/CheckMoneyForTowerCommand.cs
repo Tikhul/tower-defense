@@ -20,6 +20,7 @@ public class CheckMoneyForTowerCommand : Command
         {
             GameModel.Player.ActualCoins -= TowerButton.TowerView.TowerSO.Cost;
             injectionBinder.GetInstance<ChangePlayerDataSignal>().Dispatch(GameModel.Player);
+            injectionBinder.GetInstance<TowerBoughtSignal>().Dispatch(TowerButton);
         }
     }
 }

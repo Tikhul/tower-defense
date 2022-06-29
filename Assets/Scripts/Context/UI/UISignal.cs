@@ -20,6 +20,7 @@ public class CreateUpgradeMenuSignal : Signal<CellButton> { }
 public class UpgradeMenuCreatedSignal : Signal<List<UpgradeSO>, TowerView> { }
 public class HideMenuSignal : Signal { }
 public class TowerChosenSignal : Signal<TowerButton> { }
+public class TowerBoughtSignal : Signal<TowerButton> { }
 public class UpgradeChosenSignal : Signal<UpgradeButton> { }
 public class ShowTowerDataSignal : Signal<TowerModel> { }
 public class TowerUpgradedSignal : Signal { }
