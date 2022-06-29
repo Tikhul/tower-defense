@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c18dc586293d34419bd88f6255549a4, type: 3}
-  m_Name: LevelScriptableObject 1
+  m_Script: {fileID: 11500000, guid: 2d44e40a481a86b40aafd9f9c5c99eb7, type: 3}
+  m_Name: WaveScriptableObject 1
   m_EditorClassIdentifier: 
   _id: 1
-  _name: Level 1
-  _enemyWay: {fileID: 11400000, guid: ed5d73b9eca1eb648b8647da9f610dad, type: 2}
-  _wavePipeline: {fileID: 11400000, guid: d0985c68c386e564085065e999fb5fbc, type: 2}
+  _waveHold: 0

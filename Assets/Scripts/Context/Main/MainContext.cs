@@ -17,11 +17,11 @@ public class MainContext : MainSignalContext
             .To<LoadEnemiesConfigsCommand>()
             .To<LoadTowersConfigsCommand>()
             .To<LoadLevelPipelineConfigsCommand>()
+            .To<LoadWavePipelinesConfigsCommand>()
             .To<LoadUpgradesConfigsCommand>()
             .To<LoadPlayerConfigCommand>()
             .To<LoadBoardConfigCommand>()
             .To<LoadUIContextCommand>()
-            .To<LoadWavePipelinesConfigsCommand>()
             .InSequence()
             .Once();
         injectionBinder.Bind<UIContextLoadedSignal>().ToSingleton();

@@ -7,7 +7,7 @@ public class WavePipelineSO : Config
 {
     [SerializeField] private List<WaveSO> _waves;
     public List<WaveSO> Waves => _waves;
-    public List<IWaveModel> GetLevelModels()
+    public List<IWaveModel> GetWaveModels()
     {
         var list = new List<IWaveModel>();
 

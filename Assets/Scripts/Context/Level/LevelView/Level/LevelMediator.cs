@@ -15,32 +15,17 @@ public class LevelMediator : Mediator
     public override void OnRegister()
     {
         View.OnSpaceClick += NexStageHandler;
-        LevelsPipelineModel.OnPipelineBegin += OnPipelineBeginHandler;
         LevelsPipelineModel.OnPipelineComplete += OnPipelineCompleteHandler;
     }
-
-    public override void OnRemove()
-    {
-        
-    }
-
     private void NexStageHandler()
     {
-        //  LevelsPipelineModel.CompleteCurrentLevel();
-        // LevelsPipelineModel.BeginNextLevel();
         ShowRestartPanelSignal.Dispatch();
-    }
-
-    private void OnPipelineBeginHandler()
-    {
- 
     }
     private void OnPipelineCompleteHandler()
     {
         PipelineEndedSignal.Dispatch();
         ShowEndPanelSignal.Dispatch();
         View.OnSpaceClick -= NexStageHandler;
-        LevelsPipelineModel.OnPipelineBegin -= OnPipelineBeginHandler;
         LevelsPipelineModel.OnPipelineComplete -= OnPipelineCompleteHandler;
         Debug.Log("OnPipelineCompleteHandler");
     }
