@@ -21,6 +21,7 @@ public class MainContext : MainSignalContext
             .To<LoadPlayerConfigCommand>()
             .To<LoadBoardConfigCommand>()
             .To<LoadUIContextCommand>()
+            .To<LoadWavePipelinesConfigsCommand>()
             .InSequence()
             .Once();
         injectionBinder.Bind<UIContextLoadedSignal>().ToSingleton();
@@ -30,8 +31,10 @@ public class MainContext : MainSignalContext
         injectionBinder.Bind<LevelsLibraryModel>().ToSingleton().CrossContext();
         injectionBinder.Bind<PlayerLibraryModel>().ToSingleton().CrossContext();
         injectionBinder.Bind<BoardLibraryModel>().ToSingleton().CrossContext();
+        injectionBinder.Bind<WavesLibraryModel>().ToSingleton().CrossContext();
         injectionBinder.Bind<PlayerSO>().ToSingleton().CrossContext();
         injectionBinder.Bind<BoardSO>().ToSingleton().CrossContext();
         injectionBinder.Bind<LevelsPipelineSO>().ToSingleton().CrossContext();
+        injectionBinder.Bind<WavePipelineSO>().ToSingleton().CrossContext();
     }
 }

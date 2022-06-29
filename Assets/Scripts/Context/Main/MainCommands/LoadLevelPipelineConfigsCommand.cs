@@ -6,6 +6,6 @@ public class LoadLevelPipelineConfigsCommand : LoadConfigsCommand<LevelsLibraryM
 {
     protected override string GetPath()
     {
-        return StaticName.PIPELINES_PATH;
+        return StaticName.LEVEL_PIPELINES_PATH;
     }
 }

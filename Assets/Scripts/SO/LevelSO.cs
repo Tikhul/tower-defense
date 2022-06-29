@@ -7,7 +7,7 @@ public class LevelSO : Config
 {
     [SerializeField] private string _name;
     [SerializeField] private EnemyWaySO _enemyWay;
-    [SerializeField] private List<WaveSO> _waves;
+    [SerializeField] private WavePipelineSO _wavePipeline;
 
     public string Name
     {
@@ -25,11 +25,11 @@ public class LevelSO : Config
     }
 
     /// <summary>
-    /// Cписок волн, из которых состоит уровень
+    /// Пайплайн волн, из которых состоит уровень
     /// </summary>
-    public List<WaveSO> Waves
+    public WavePipelineSO WavePipeline
     {
-        get => _waves;
-        set => _waves = value;
+        get => _wavePipeline;
+        set => _wavePipeline = value;
     }
 }

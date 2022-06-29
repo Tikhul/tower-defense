@@ -18,7 +18,8 @@ public static class StaticName
     public const string BOARD_PATH = "Configs/Board";
     public const string ENEMIES_PATH = "Configs/Enemies";
     public const string TOWERS_PATH = "Configs/Towers";
-    public const string PIPELINES_PATH = "Configs/Pipelines";
+    public const string LEVEL_PIPELINES_PATH = "Configs/Level_Pipelines";
+    public const string WAVE_PIPELINES_PATH = "Configs/Wave_Pipelines";
     public const string ENEMIES_WAYS_PATH = "Configs/EnemiesWays";
     public const string UPGRADES_PATH = "Configs/Upgrades";
 
