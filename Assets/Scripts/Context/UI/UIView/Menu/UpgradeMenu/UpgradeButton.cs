@@ -38,10 +38,17 @@ public class UpgradeButton : MonoBehaviour
     
     private void OnEnable()
     {
-        _button.onClick.AddListener(delegate
-        {
-            Debug.Log("onClick");
-            OnUpgradeButtonClick?.Invoke(this);
-        });
+        _button.onClick.AddListener(OnClickHandler);
+    }
+
+    private void OnDisable()
+    {
+        _button.onClick.RemoveListener(OnClickHandler);
+    }
+
+    private void OnClickHandler()
+    {
+        Debug.Log("onClick");
+        OnUpgradeButtonClick?.Invoke(this);
     }
 }
