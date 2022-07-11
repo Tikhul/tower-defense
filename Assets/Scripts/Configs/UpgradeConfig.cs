@@ -14,47 +14,27 @@ public class UpgradeConfig : Config
     /// <summary>
     /// Урон башни
     /// </summary>
-    public int Damage
-    {
-        get => _upgradeDamage;
-        set => _upgradeDamage = value;
-    }
+    public int Damage => _upgradeDamage;
 
     /// <summary>
     /// Показатель увеличения радиуса стрельбы
     /// </summary>
-    public float ShootRadius
-    {
-        get => _upgradeRadius;
-        set => _upgradeRadius = value;
-    }
+    public float ShootRadius => _upgradeRadius;
 
     /// <summary>
     /// Показатель увеличения скорострельности
     /// </summary>
-    public int ShootFrequency
-    {
-        get => _upgradeFrequency;
-        set => _upgradeFrequency = value;
-    }
+    public int ShootFrequency => _upgradeFrequency;
 
     /// <summary>
     /// Показатель увеличения урона
     /// </summary>
-    public int BulletsNumber
-    {
-        get => _upgradeBulletsNumber;
-        set => _upgradeBulletsNumber = value;
-    }
+    public int BulletsNumber => _upgradeBulletsNumber;
 
     /// <summary>
     /// Cтоимость улучшения
     /// </summary>
-    public int Cost
-    {
-        get => _cost;
-        set => _cost = value;
-    }
+    public int Cost => _cost;
 }
 
 

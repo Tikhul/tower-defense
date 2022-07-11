@@ -12,6 +12,8 @@ public class CreateGameCommand : Command
     [Inject] public PlayerLibraryModel PlayerLibraryModel { get; set; }
     [Inject] public BoardLibraryModel BoardLibraryModel { get; set; }
 
+    private BoardLibraryModel BoardLibraryModel1 => injectionBinder.GetInstance<BoardLibraryModel>();
+
     public override void Execute()
     {
         var player = new PlayerModel(PlayerLibraryModel.GetLibraryDataById("player"));

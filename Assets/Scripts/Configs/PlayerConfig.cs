@@ -10,18 +10,10 @@ public class PlayerConfig : Config
     /// <summary>
     /// Начальное здоровье игрока
     /// </summary>
-    public int InitialHealth
-    {
-        get => _initialHealth;
-        set => _initialHealth = value;
-    }
+    public int InitialHealth => _initialHealth;
 
     /// <summary>
     /// Начальное количество валюты
     /// </summary>
-    public int InitialCoins
-    {
-        get => _initialCoins;
-        set => _initialCoins = value;
-    }
+    public int InitialCoins => _initialCoins;
 }

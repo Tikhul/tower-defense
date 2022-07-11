@@ -9,27 +9,15 @@ public class LevelConfig : Config
     [SerializeField] private EnemyWayConfig _enemyWay;
     [SerializeField] private WavePipelineConfig _wavePipeline;
 
-    public string Name
-    {
-        get => _name;
-        set => _name = value;
-    }
+    public string Name => _name;
 
     /// <summary>
     /// Конфиг маршрута, по которому будут двигаться враги в уровне
     /// </summary>
-    public EnemyWayConfig EnemyWay
-    {
-        get => _enemyWay;
-        set => _enemyWay = value;
-    }
+    public EnemyWayConfig EnemyWay => _enemyWay;
 
     /// <summary>
     /// Пайплайн волн, из которых состоит уровень
     /// </summary>
-    public WavePipelineConfig WavePipeline
-    {
-        get => _wavePipeline;
-        set => _wavePipeline = value;
-    }
+    public WavePipelineConfig WavePipeline => _wavePipeline;
 }

@@ -11,18 +11,10 @@ public class WaveConfig : Config
     /// <summary>
     /// Задержка перед началом появления врагов в волне
     /// </summary>
-    public float WaveHold
-    {
-        get => _waveHold;
-        set => _waveHold = value;
-    }
+    public float WaveHold => _waveHold;
 
     /// <summary>
     /// Словарь в форме: типа врага - количество в волне
     /// </summary>
-    public Dictionary<EnemyConfig, int> EnemiesAmounts
-    {
-        get => _enemiesAmounts;
-        set => _enemiesAmounts = value;
-    }
+    public Dictionary<EnemyConfig, int> EnemiesAmounts => _enemiesAmounts;
 }

@@ -12,36 +12,20 @@ public class EnemyConfig : Config
     /// <summary>
     /// Начальное здоровье врага
     /// </summary>
-    public int InitialHealth
-    {
-        get => _initialHealth;
-        set => _initialHealth = value;
-    }
+    public int InitialHealth => _initialHealth;
 
     /// <summary>
     /// Наносимый урон для игрока
     /// </summary>
-    public int Damage
-    {
-        get => _damage;
-        set => _damage = value;
-    }
+    public int Damage => _damage;
 
     /// <summary>
     /// Скорость движения
     /// </summary>
-    public float Speed
-    {
-        get => _speed;
-        set => _speed = value;
-    }
+    public float Speed => _speed;
 
     /// <summary>
     /// Rоличество валюты, начисляемое игроку за его убийство
     /// </summary>
-    public int CoinsForKill
-    {
-        get => _coinsForKill;
-        set => _coinsForKill = value;
-    }
+    public int CoinsForKill => _coinsForKill;
 }

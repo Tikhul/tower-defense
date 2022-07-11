@@ -15,55 +15,31 @@ public class TowerConfig : Config
     /// <summary>
     /// Урон башни
     /// </summary>
-    public int Damage
-    {
-        get => _damage;
-        set => _damage = value;
-    }
+    public int Damage => _damage;
 
     /// <summary>
     /// Радиус стрельбы
     /// </summary>
-    public float ShootRadius
-    {
-        get => _shootRadius;
-        set => _shootRadius = value;
-    }
+    public float ShootRadius => _shootRadius;
 
     /// <summary>
     /// Скорострельность (промежуток между выстрелами)
     /// </summary>
-    public float ShootFrequency
-    {
-        get => _shootFrequency;
-        set => _shootFrequency = value;
-    }
+    public float ShootFrequency => _shootFrequency;
 
     /// <summary>
     /// Cколько врагов атакует за раз
     /// </summary>
-    public int BulletsNumber
-    {
-        get => _bulletsNumber;
-        set => _bulletsNumber = value;
-    }
+    public int BulletsNumber => _bulletsNumber;
 
     /// <summary>
     /// Стоимость постройки
     /// </summary>
-    public int Cost
-    {
-        get => _cost;
-        set => _cost = value;
-    }
+    public int Cost => _cost;
 
     /// <summary>
     /// Улучшения для данного сооружения
     /// </summary>
-    public List<UpgradeConfig> Upgrades
-    {
-        get => _upgrades;
-        set => _upgrades = value;
-    }
+    public List<UpgradeConfig> Upgrades => _upgrades;
 }
 

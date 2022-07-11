@@ -10,30 +10,10 @@ public class BoardConfig : Config
     [SerializeField] private GameObject _rows;
     [SerializeField] private GameObject _columns;
 
-    public int RowNumber
-    {
-        get => _rowNumber;
-        set => _rowNumber = value;
-    }
-    public GameObject ButtonExample
-    {
-        get => _buttonExample;
-        set => _buttonExample = value;
-    }
-    public GameObject ParentPanel
-    {
-        get => _parentPanel;
-        set => _parentPanel = value;
-    }
-    public GameObject Rows
-    {
-        get => _rows;
-        set => _rows = value;
-    }
-    public GameObject Columns
-    {
-        get => _columns;
-        set => _columns = value;
-    }
+    public int RowNumber => _rowNumber;
+    public GameObject ButtonExample => _buttonExample;
+    public GameObject ParentPanel => _parentPanel;
+    public GameObject Rows => _rows;
+    public GameObject Columns => _columns;
 }
 

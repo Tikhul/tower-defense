@@ -10,9 +10,5 @@ public class EnemyWayConfig : Config
     /// <summary>
     /// Индексы клеток, по которым идет маршрут врагов
     /// </summary>
-    public List<string> Indexes
-    {
-        get => _indexes;
-        set => _indexes = value;
-    }
+    public List<string> Indexes => _indexes;
 }
