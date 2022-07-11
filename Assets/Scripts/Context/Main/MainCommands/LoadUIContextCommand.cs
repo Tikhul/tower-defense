@@ -9,6 +9,5 @@ public class LoadUIContextCommand : Command
 	public override void Execute()
     {
 		SceneManager.LoadSceneAsync(StaticName.UI_CONTEXT_SCENE, LoadSceneMode.Additive);
-		injectionBinder.GetInstance<UIContextLoadedSignal>().Dispatch();
 	}
 }

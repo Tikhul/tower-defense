@@ -24,7 +24,6 @@ public class UIContext : UISignalContext
         mediationBinder.BindView<UpgradeMenuView>().ToMediator<UpgradeMenuMediator>();
         mediationBinder.BindView<WarningsView>().ToMediator<WarningsMediator>();
 
-        commandBinder.Bind<LoadGameContextSignal>().To<LoadGameContextCommand>().Once();
         commandBinder.Bind<CreateTowerMenuSignal>().To<CreateTowerMenuCommand>();
         commandBinder.Bind<CreateUpgradeMenuSignal>().To<CreateUpgradeMenuCommand>();
 
@@ -32,7 +31,6 @@ public class UIContext : UISignalContext
         injectionBinder.Bind<RestartLevelChosenSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<ShowEndPanelSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<ShowRestartPanelSignal>().ToSingleton().CrossContext();
-        injectionBinder.Bind<GameContextLoadedSignal>().ToSingleton();
         injectionBinder.Bind<PassLevelDataSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<CellButtonCreatedSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<BlockBoardSignal>().ToSingleton().CrossContext();

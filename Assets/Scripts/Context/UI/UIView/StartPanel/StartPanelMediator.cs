@@ -6,7 +6,7 @@ using UnityEngine;
 public class StartPanelMediator : Mediator
 {
     [Inject] public StartPanelView View { get; set; }
-    [Inject] public LoadGameContextSignal LoadGameContextSignal { get; set; }
+    [Inject] public LoadContextsSignal LoadContextsSignal { get; set; }
 
     public override void OnRegister()
     {
@@ -16,6 +16,6 @@ public class StartPanelMediator : Mediator
     private void OnStartButtonClickHandler()
     {
         View.Hide();
-        LoadGameContextSignal.Dispatch();
+        LoadContextsSignal.Dispatch();
     }
 }

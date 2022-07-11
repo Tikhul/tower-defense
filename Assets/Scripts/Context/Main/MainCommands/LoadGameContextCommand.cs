@@ -9,7 +9,6 @@ public class LoadGameContextCommand : Command
 	public override void Execute()
 	{
 		SceneManager.LoadSceneAsync(StaticName.GAME_CONTEXT_SCENE, LoadSceneMode.Additive);
-		injectionBinder.GetInstance<GameContextLoadedSignal>().Dispatch();
 	}
 }
 

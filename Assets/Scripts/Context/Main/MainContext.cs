@@ -24,7 +24,9 @@ public class MainContext : MainSignalContext
             .To<LoadUIContextCommand>()
             .InSequence()
             .Once();
-        injectionBinder.Bind<UIContextLoadedSignal>().ToSingleton();
+       // commandBinder.Bind<LoadContextsSignal>().To<LoadGameContextCommand>();
+
+        injectionBinder.Bind<LoadContextsSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<EnemiesLibraryModel>().ToSingleton().CrossContext();
         injectionBinder.Bind<TowersLibraryModel>().ToSingleton().CrossContext();
         injectionBinder.Bind<UpgradesLibraryModel>().ToSingleton().CrossContext();
