@@ -20,50 +20,37 @@ public class BoardMediator : Mediator
 
     public override void OnRegister()
     {
-
         DrawBoardSignal.Dispatch(View.BoardParent);
         OnEnemyDrawnSignal.AddListener(DrawEnemiesHandler);
         DrawEnemyWaySignal.Dispatch();
-        RestartLevelChosenSignal.AddListener(ClearTowersHandler);
-        NextLevelChosenSignal.AddListener(NextLevelChosenSignalHandler);
-        RestartLevelChosenSignal.AddListener(ShowPanelHandler);
-        //NextLevelChosenSignal.AddListener(ShowPanelHandler);
-        ShowRestartPanelSignal.AddListener(HidePanelHandler);
-        PipelineEndedSignal.AddListener(HidePanelHandler);
-        PipelineEndedSignal.AddListener(Unsubscribe);
-        BlockBoardSignal.AddListener(BlockBoardHandler);
-        UnblockBoardSignal.AddListener(UnBlockBoardHandler);
+        RestartLevelChosenSignal.AddListener(LevelStartHandler);
+        NextLevelChosenSignal.AddListener(LevelStartHandler);
+        ShowRestartPanelSignal.AddListener(HidePanel);
+        PipelineEndedSignal.AddListener(PipelineEndedHandler);
+        BlockBoardSignal.AddListener(BlockBoard);
+        UnblockBoardSignal.AddListener(UnBlockBoard);
     }
 
     public override void OnRemove()
     {
-        RestartLevelChosenSignal.RemoveListener(ClearTowersHandler);
-        NextLevelChosenSignal.RemoveListener(NextLevelChosenSignalHandler);
-        RestartLevelChosenSignal.RemoveListener(ShowPanelHandler);
-        //NextLevelChosenSignal.RemoveListener(ShowPanelHandler);
-        ShowRestartPanelSignal.RemoveListener(HidePanelHandler);
-        PipelineEndedSignal.RemoveListener(HidePanelHandler);
-        PipelineEndedSignal.RemoveListener(Unsubscribe);
-        BlockBoardSignal.RemoveListener(BlockBoardHandler);
-        UnblockBoardSignal.RemoveListener(UnBlockBoardHandler);
+        RestartLevelChosenSignal.RemoveListener(LevelStartHandler);
+        NextLevelChosenSignal.RemoveListener(LevelStartHandler);
+        ShowRestartPanelSignal.RemoveListener(HidePanel);
+        PipelineEndedSignal.RemoveListener(PipelineEndedHandler);
+        BlockBoardSignal.RemoveListener(BlockBoard);
+        UnblockBoardSignal.RemoveListener(UnBlockBoard);
     }
-    private void NextLevelChosenSignalHandler()
+    private void LevelStartHandler()
     {
-        ClearTowersHandler();
-        ShowPanelHandler();
+        ClearTowers();
+        ShowPanel();
     }
 
-    private void HidePanelHandler()
+    private void PipelineEndedHandler()
     {
-        View.Hide();
+        HidePanel();
+        Unsubscribe();
     }
-
-    private void ShowPanelHandler()
-    {
-        View.Show();
-        //View.gameObject.SetActive(false);
-    }
-
     private void DrawEnemiesHandler()
     {
         View.DrawEnemiesWays(GameModel.Board.CurrentCellList);
@@ -75,15 +62,24 @@ public class BoardMediator : Mediator
         OnEnemyDrawnSignal.RemoveListener(DrawEnemiesHandler);
     }
 
-    private void BlockBoardHandler()
+    private void BlockBoard()
     {
         View.BlockBoard();
     }
-    private void UnBlockBoardHandler()
+    private void UnBlockBoard()
     {
         View.UnblockBoard();
     }
-    private void ClearTowersHandler()
+    private void HidePanel()
+    {
+        View.Hide();
+    }
+
+    private void ShowPanel()
+    {
+        View.Show();
+    }
+    private void ClearTowers()
     {
         List<CellButton> buttonsWithTowers = GameModel.Board.CurrentCellList.FindAll(x => x.State == CellState.HasTower);
         View.ClearTowers(buttonsWithTowers);
