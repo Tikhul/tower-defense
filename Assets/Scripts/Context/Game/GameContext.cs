@@ -19,7 +19,7 @@ public class GameContext : GameSignalContext
             .To<LoadLevelContextCommand>()
             .InSequence();
         injectionBinder.Bind<LevelContextLoadedSignal>().ToSingleton();
-        injectionBinder.Bind<PlayerModel>().ToSingleton();
+        injectionBinder.Bind<PlayerModel>().ToSingleton().CrossContext();
         injectionBinder.Bind<BoardModel>().ToSingleton().CrossContext();
         injectionBinder.Bind<GameModel>().ToSingleton().CrossContext();
     }

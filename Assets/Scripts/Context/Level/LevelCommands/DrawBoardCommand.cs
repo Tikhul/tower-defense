@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class DrawBoardCommand : Command
 {
-    [Inject] public GameModel GameModel { get; set; }
-    [Inject] public DrawBoardSignal DrawBoardSignal { get; set; }
     [Inject] public GameObject boardParent { get; set; }
+    private GameModel GameModel => injectionBinder.GetInstance<GameModel>();
     public override void Execute()
     {
         DrawBoard();

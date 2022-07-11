@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class StartPipelineCommand : Command
 {
-    [Inject] public LevelsLibraryModel LevelsLibraryModel { get; set; }
-    [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
+    private LevelsPipelineModel LevelsPipelineModel => injectionBinder.GetInstance<LevelsPipelineModel>();
     public override void Execute()
     {
-        LevelsPipelineModel.Config = LevelsLibraryModel.GetLibraryDataById("pipeline");
+        LevelsPipelineModel.Config = injectionBinder.GetInstance<LevelsLibraryModel>().GetLibraryDataById("pipeline");
         LevelsPipelineModel.Begin();
         injectionBinder.GetInstance<PassLevelDataSignal>().Dispatch(LevelsPipelineModel.CurrentLevel);
         Debug.Log("StartPipelineCommand");

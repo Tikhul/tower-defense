@@ -9,7 +9,6 @@ using UnityEngine;
 public class CreateTowerModelCommand : Command
 {
     [Inject] public TowerButton TowerButton { get; set; }
-    [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     public override void Execute()
     {
         Debug.Log("CreateTowerModelCommand");

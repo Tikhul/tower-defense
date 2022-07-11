@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BeginNextLevelCommand : Command
 {
-    [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
+    private LevelsPipelineModel LevelsPipelineModel => injectionBinder.GetInstance<LevelsPipelineModel>();
     public override void Execute()
     {
         LevelsPipelineModel.BeginNextLevel();

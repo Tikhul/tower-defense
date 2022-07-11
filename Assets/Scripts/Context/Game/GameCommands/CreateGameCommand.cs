@@ -8,11 +8,9 @@ using UnityEngine;
 /// </summary>
 public class CreateGameCommand : Command
 {
-    [Inject] public GameModel GameModel { get; set; }
-    [Inject] public PlayerLibraryModel PlayerLibraryModel { get; set; }
-    [Inject] public BoardLibraryModel BoardLibraryModel { get; set; }
-
-    private BoardLibraryModel BoardLibraryModel1 => injectionBinder.GetInstance<BoardLibraryModel>();
+    private GameModel GameModel => injectionBinder.GetInstance<GameModel>();
+    private PlayerLibraryModel PlayerLibraryModel => injectionBinder.GetInstance<PlayerLibraryModel>();
+    private BoardLibraryModel BoardLibraryModel => injectionBinder.GetInstance<BoardLibraryModel>();
 
     public override void Execute()
     {

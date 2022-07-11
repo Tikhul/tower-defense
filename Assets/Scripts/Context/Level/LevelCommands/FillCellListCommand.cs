@@ -8,10 +8,10 @@ using UnityEngine;
 /// </summary>
 public class FillCellListCommand : Command
 {
-    [Inject] public GameModel GameModel { get; set; }
     [Inject] public GameObject Button { get; set; }
     [Inject] public char Char { get; set; }
     [Inject] public int Int { get; set; }
+    private GameModel GameModel => injectionBinder.GetInstance<GameModel>();
     public override void Execute()
     {
         CellButton buttonSettings = Button.GetComponent<CellButton>();

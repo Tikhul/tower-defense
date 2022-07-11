@@ -6,7 +6,7 @@ using UnityEngine;
 public class CheckMoneyForTowerCommand : Command
 {
     [Inject] public TowerButton TowerButton { get; set; }
-    [Inject] public GameModel GameModel { get; set; }
+    private GameModel GameModel => injectionBinder.GetInstance<GameModel>();
 
     public override void Execute()
     {
