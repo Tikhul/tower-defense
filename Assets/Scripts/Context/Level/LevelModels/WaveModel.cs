@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class WaveModel : IWaveModel
 {
-    public WaveSO Config { get; private set; }
-    public Dictionary<EnemySO, int> EnemiesAmounts { get; private set; } = new Dictionary<EnemySO, int>();
+    public WaveConfig Config { get; private set; }
+    public Dictionary<EnemyConfig, int> EnemiesAmounts { get; private set; } = new Dictionary<EnemyConfig, int>();
     public WaveState State { get; private set; } = WaveState.NonActive;
 
     public event Action OnWaveBegin;
     public event Action OnWaveComplete;
 
-    public WaveModel(WaveSO _config)
+    public WaveModel(WaveConfig _config)
     {
         Config = _config;
         EnemiesAmounts = _config.EnemiesAmounts;
@@ -33,8 +33,8 @@ public class WaveModel : IWaveModel
 
 public interface IWaveModel
 {
-    WaveSO Config { get; }
-    Dictionary<EnemySO, int> EnemiesAmounts { get; }
+    WaveConfig Config { get; }
+    Dictionary<EnemyConfig, int> EnemiesAmounts { get; }
     WaveState State { get; }
     void BeginWave();
     void CompleteWave();

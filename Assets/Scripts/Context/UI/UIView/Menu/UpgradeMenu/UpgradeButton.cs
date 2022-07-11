@@ -34,7 +34,7 @@ public class UpgradeButton : MonoBehaviour
         get => _speedUpgradeText;
         set => _speedUpgradeText = value;
     }
-    public UpgradeSO UpgradeConfig { get; set; }
+    public UpgradeConfig UpgradeConfig { get; set; }
     
     private void OnEnable()
     {

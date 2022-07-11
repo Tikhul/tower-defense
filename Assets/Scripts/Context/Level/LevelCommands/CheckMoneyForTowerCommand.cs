@@ -10,7 +10,7 @@ public class CheckMoneyForTowerCommand : Command
 
     public override void Execute()
     {
-        if(TowerButton.TowerView.TowerSO.Cost > GameModel.Player.ActualCoins)
+        if(TowerButton.TowerView.TowerConfig.Cost > GameModel.Player.ActualCoins)
         {
             Debug.Log("Недостаточно денег");
             injectionBinder.GetInstance<NoMoneySignal>().Dispatch();
@@ -18,7 +18,7 @@ public class CheckMoneyForTowerCommand : Command
         }
         else
         {
-            GameModel.Player.ActualCoins -= TowerButton.TowerView.TowerSO.Cost;
+            GameModel.Player.ActualCoins -= TowerButton.TowerView.TowerConfig.Cost;
             injectionBinder.GetInstance<ChangePlayerDataSignal>().Dispatch(GameModel.Player);
             injectionBinder.GetInstance<TowerBoughtSignal>().Dispatch(TowerButton);
         }

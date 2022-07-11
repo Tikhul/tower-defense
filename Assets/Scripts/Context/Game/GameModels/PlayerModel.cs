@@ -6,7 +6,7 @@ public class PlayerModel
 {
     public int InitialCoins { get; }
     public int InitialHealth { get; }
-    public PlayerModel(PlayerSO settings)
+    public PlayerModel(PlayerConfig settings)
     {
         InitialCoins = settings.InitialCoins;
         InitialHealth = settings.InitialHealth;

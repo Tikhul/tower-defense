@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadLevelPipelineConfigsCommand : LoadConfigsCommand<LevelsLibraryModel, LevelsPipelineSO>
+public class LoadLevelPipelineConfigsCommand : LoadConfigsCommand<LevelsLibraryModel, LevelsPipelineConfig>
 {
     protected override string GetPath()
     {

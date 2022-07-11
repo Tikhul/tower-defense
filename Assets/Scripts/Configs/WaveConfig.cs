@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WaveScriptableObject", menuName = "ScriptableObjects/WaveSO", order = 5)]
-public class WaveSO : Config
+[CreateAssetMenu(fileName = "WaveConfig", menuName = "ScriptableObjects/WaveConfig", order = 5)]
+public class WaveConfig : Config
 {
     [SerializeField] private float _waveHold;
-    [SerializeField] private Dictionary<EnemySO, int> _enemiesAmounts;
+    [SerializeField] private Dictionary<EnemyConfig, int> _enemiesAmounts;
 
     /// <summary>
     /// Задержка перед началом появления врагов в волне
@@ -20,7 +20,7 @@ public class WaveSO : Config
     /// <summary>
     /// Словарь в форме: типа врага - количество в волне
     /// </summary>
-    public Dictionary<EnemySO, int> EnemiesAmounts
+    public Dictionary<EnemyConfig, int> EnemiesAmounts
     {
         get => _enemiesAmounts;
         set => _enemiesAmounts = value;

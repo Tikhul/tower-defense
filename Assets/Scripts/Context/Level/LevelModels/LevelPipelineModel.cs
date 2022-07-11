@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelsPipelineModel
 {
     private List<ILevelModel> _levelModels { get; set; }
-    public LevelsPipelineSO Config { get; set; }
+    public LevelsPipelineConfig Config { get; set; }
     public ILevelModel CurrentLevel => _levelModels.LastOrDefault(e => e.State.Equals(LevelState.Active) || e.State.Equals(LevelState.Completed));
     public event Action OnPipelineBegin;
     public event Action OnPipelineComplete;

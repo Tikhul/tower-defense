@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class LevelsLibraryModel : LibraryModel<LevelsPipelineSO>
+public class LevelsLibraryModel : LibraryModel<LevelsPipelineConfig>
 {
 
 }

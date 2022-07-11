@@ -25,9 +25,9 @@ public class BoardMediator : Mediator
         OnEnemyDrawnSignal.AddListener(DrawEnemiesHandler);
         DrawEnemyWaySignal.Dispatch();
         RestartLevelChosenSignal.AddListener(ClearTowersHandler);
-        NextLevelChosenSignal.AddListener(ClearTowersHandler);
+        NextLevelChosenSignal.AddListener(NextLevelChosenSignalHandler);
         RestartLevelChosenSignal.AddListener(ShowPanelHandler);
-        NextLevelChosenSignal.AddListener(ShowPanelHandler);
+        //NextLevelChosenSignal.AddListener(ShowPanelHandler);
         ShowRestartPanelSignal.AddListener(HidePanelHandler);
         PipelineEndedSignal.AddListener(HidePanelHandler);
         PipelineEndedSignal.AddListener(Unsubscribe);
@@ -38,15 +38,21 @@ public class BoardMediator : Mediator
     public override void OnRemove()
     {
         RestartLevelChosenSignal.RemoveListener(ClearTowersHandler);
-        NextLevelChosenSignal.RemoveListener(ClearTowersHandler);
+        NextLevelChosenSignal.RemoveListener(NextLevelChosenSignalHandler);
         RestartLevelChosenSignal.RemoveListener(ShowPanelHandler);
-        NextLevelChosenSignal.RemoveListener(ShowPanelHandler);
+        //NextLevelChosenSignal.RemoveListener(ShowPanelHandler);
         ShowRestartPanelSignal.RemoveListener(HidePanelHandler);
         PipelineEndedSignal.RemoveListener(HidePanelHandler);
         PipelineEndedSignal.RemoveListener(Unsubscribe);
         BlockBoardSignal.RemoveListener(BlockBoardHandler);
         UnblockBoardSignal.RemoveListener(UnBlockBoardHandler);
     }
+    private void NextLevelChosenSignalHandler()
+    {
+        ClearTowersHandler();
+        ShowPanelHandler();
+    }
+
     private void HidePanelHandler()
     {
         View.Hide();
@@ -55,6 +61,7 @@ public class BoardMediator : Mediator
     private void ShowPanelHandler()
     {
         View.Show();
+        //View.gameObject.SetActive(false);
     }
 
     private void DrawEnemiesHandler()

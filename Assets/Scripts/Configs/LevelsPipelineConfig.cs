@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelsPipelineScriptableObject", menuName = "ScriptableObjects/LevelsPipelineSO", order = 7)]
+[CreateAssetMenu(fileName = "LevelsPipelineConfig", menuName = "ScriptableObjects/LevelsPipelineConfig", order = 7)]
 
-public class LevelsPipelineSO : Config
+public class LevelsPipelineConfig : Config
 {
-    [SerializeField] private List<LevelSO> _levels;
-    public List<LevelSO> Levels => _levels;
+    [SerializeField] private List<LevelConfig> _levels;
+    public List<LevelConfig> Levels => _levels;
 
     public List<ILevelModel> GetLevelModels()
     {

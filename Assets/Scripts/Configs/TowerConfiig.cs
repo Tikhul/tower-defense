@@ -2,15 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "TowerScriptableObject", menuName = "ScriptableObjects/TowerSO", order = 3)]
-public class TowerSO : Config
+[CreateAssetMenu(fileName = "TowerConfig", menuName = "ScriptableObjects/TowerConfig", order = 3)]
+public class TowerConfig : Config
 {
     [SerializeField] private int _damage;
     [SerializeField] private float _shootRadius;
     [SerializeField] private float _shootFrequency;
     [SerializeField] private int _bulletsNumber;
     [SerializeField] private int _cost;
-    [SerializeField] private List<UpgradeSO> _upgrades;
+    [SerializeField] private List<UpgradeConfig> _upgrades;
 
     /// <summary>
     /// Урон башни
@@ -60,7 +60,7 @@ public class TowerSO : Config
     /// <summary>
     /// Улучшения для данного сооружения
     /// </summary>
-    public List<UpgradeSO> Upgrades
+    public List<UpgradeConfig> Upgrades
     {
         get => _upgrades;
         set => _upgrades = value;

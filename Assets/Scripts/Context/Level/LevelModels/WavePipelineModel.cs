@@ -7,11 +7,11 @@ using UnityEngine;
 public class WavePipelineModel
 {
     private List<IWaveModel> _waveModels { get; set; }
-    public WavePipelineSO Config { get; set; }
+    public WavePipelineConfig Config { get; set; }
     public IWaveModel CurrentWave => _waveModels.LastOrDefault(e => e.State.Equals(WaveState.Active) || e.State.Equals(WaveState.Completed));
     public event Action OnPipelineBegin;
     public event Action OnPipelineComplete;
-    public WavePipelineModel(WavePipelineSO _config)
+    public WavePipelineModel(WavePipelineConfig _config)
     {
         Config = _config;
     }

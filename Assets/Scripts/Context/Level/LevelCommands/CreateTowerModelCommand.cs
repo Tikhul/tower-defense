@@ -13,8 +13,8 @@ public class CreateTowerModelCommand : Command
     public override void Execute()
     {
         Debug.Log("CreateTowerModelCommand");
-        TowerModel newTower = new TowerModel(TowerButton.TowerView.TowerSO);
-        Debug.Log(TowerButton.TowerView.TowerSO.name);
+        TowerModel newTower = new TowerModel(TowerButton.TowerView.TowerConfig);
+        Debug.Log(TowerButton.TowerView.TowerConfig.name);
         injectionBinder.GetInstance<ShowTowerDataSignal>().Dispatch(newTower);
     }
 }

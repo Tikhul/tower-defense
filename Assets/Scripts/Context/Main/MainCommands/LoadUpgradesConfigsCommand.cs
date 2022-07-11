@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadUpgradesConfigsCommand : LoadConfigsCommand<UpgradesLibraryModel, UpgradeSO>
+public class LoadUpgradesConfigsCommand : LoadConfigsCommand<UpgradesLibraryModel, UpgradeConfig>
 {
     protected override string GetPath()
     {

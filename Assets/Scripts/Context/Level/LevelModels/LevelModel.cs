@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class LevelModel : ILevelModel
 {
-    public LevelSO Config { get; private set; }
+    public LevelConfig Config { get; private set; }
     public EnemyWayModel EnemyWay { get; private set; }
     public LevelState State { get; private set; } = LevelState.NonActive;
     public WavePipelineModel LevelWaves { get; private set; }
 
-    public LevelModel(LevelSO config)
+    public LevelModel(LevelConfig config)
     {
         Config = config;
         EnemyWay = new EnemyWayModel(config.EnemyWay);
@@ -34,7 +34,7 @@ public class LevelModel : ILevelModel
 
 public interface ILevelModel
 {
-    LevelSO Config { get; }
+    LevelConfig Config { get; }
     EnemyWayModel EnemyWay { get; }
     WavePipelineModel LevelWaves { get; }
     LevelState State { get; }

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelScriptableObject", menuName = "ScriptableObjects/LevelSO", order = 6)]
-public class LevelSO : Config
+[CreateAssetMenu(fileName = "LevelConfig", menuName = "ScriptableObjects/LevelConfig", order = 6)]
+public class LevelConfig : Config
 {
     [SerializeField] private string _name;
-    [SerializeField] private EnemyWaySO _enemyWay;
-    [SerializeField] private WavePipelineSO _wavePipeline;
+    [SerializeField] private EnemyWayConfig _enemyWay;
+    [SerializeField] private WavePipelineConfig _wavePipeline;
 
     public string Name
     {
@@ -18,7 +18,7 @@ public class LevelSO : Config
     /// <summary>
     /// Конфиг маршрута, по которому будут двигаться враги в уровне
     /// </summary>
-    public EnemyWaySO EnemyWay
+    public EnemyWayConfig EnemyWay
     {
         get => _enemyWay;
         set => _enemyWay = value;
@@ -27,7 +27,7 @@ public class LevelSO : Config
     /// <summary>
     /// Пайплайн волн, из которых состоит уровень
     /// </summary>
-    public WavePipelineSO WavePipeline
+    public WavePipelineConfig WavePipeline
     {
         get => _wavePipeline;
         set => _wavePipeline = value;

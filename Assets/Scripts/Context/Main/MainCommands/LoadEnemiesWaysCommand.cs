@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadEnemiesWaysCommand : LoadConfigsCommand<EnemyWayLibraryModel, EnemyWaySO>
+public class LoadEnemiesWaysCommand : LoadConfigsCommand<EnemyWayLibraryModel, EnemyWayConfig>
 {
     protected override string GetPath()
     {

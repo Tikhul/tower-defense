@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class TowerView : MonoBehaviour
 {
-    [SerializeField] private TowerSO _towerSO;
+    [SerializeField] private TowerConfig _towerConfig;
     [SerializeField] private Image _towerImage;
 
-    public TowerSO TowerSO
+    public TowerConfig TowerConfig
     {
-        get => _towerSO;
-        set => _towerSO = value;
+        get => _towerConfig;
+        set => _towerConfig = value;
     }
     public Image TowerImage
     {
@@ -20,22 +20,22 @@ public class TowerView : MonoBehaviour
     }
     public string TowerCostText
     {
-        get => _towerSO.Cost.ToString();
+        get => _towerConfig.Cost.ToString();
     }
     public string TowerDamageText
     {
-        get => _towerSO.Damage.ToString();
+        get => _towerConfig.Damage.ToString();
     }
     public string TowerRadiusText
     {
-        get => _towerSO.ShootRadius.ToString();
+        get => _towerConfig.ShootRadius.ToString();
     }
     public string TowerFrequencyText
     {
-        get => _towerSO.ShootFrequency.ToString();
+        get => _towerConfig.ShootFrequency.ToString();
     }
     public string TowerBulletsText
     {
-        get => _towerSO.BulletsNumber.ToString();
+        get => _towerConfig.BulletsNumber.ToString();
     }
 }

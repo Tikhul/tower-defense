@@ -11,7 +11,7 @@ public class UpgradeMenuView : BaseMenuView
     [SerializeField] private TMPro.TMP_Text _speedText;
 
     public event Action<List<UpgradeButton>> OnUpgradeButtonCreated = delegate { };
-    public void SetUpUpgradeButtons(List<UpgradeSO> _list, TowerView activeView)
+    public void SetUpUpgradeButtons(List<UpgradeConfig> _list, TowerView activeView)
     {
         List<UpgradeButton> _tempList = new List<UpgradeButton>();
 

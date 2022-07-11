@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWayLibraryModel : LibraryModel<EnemyWaySO>
+public class EnemyWayLibraryModel : LibraryModel<EnemyWayConfig>
 {
    
 }

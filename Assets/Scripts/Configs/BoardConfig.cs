@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "BoardScriptableObject", menuName = "ScriptableObjects/BoardSO", order = 8)]
-public class BoardSO : Config
+[CreateAssetMenu(fileName = "BoardConfig", menuName = "ScriptableObjects/BoardConfig", order = 8)]
+public class BoardConfig : Config
 {
     [SerializeField] private int _rowNumber = 3;
     [SerializeField] private GameObject _buttonExample;

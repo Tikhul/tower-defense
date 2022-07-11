@@ -7,9 +7,9 @@ public class BoardModel
 {
     private List<CellButton> _currentCellList = new List<CellButton>();
     private List<CellButton> _allCellList = new List<CellButton>();
-    public BoardSO Settings { get; }
+    public BoardConfig Settings { get; }
 
-    public BoardModel (BoardSO settings)
+    public BoardModel (BoardConfig settings)
     {
         Settings = settings;
     }

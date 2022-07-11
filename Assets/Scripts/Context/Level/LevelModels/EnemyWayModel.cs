@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyWayModel
 {
-    public EnemyWaySO Config { get; private set; }
+    public EnemyWayConfig Config { get; private set; }
 
-    public EnemyWayModel(EnemyWaySO config)
+    public EnemyWayModel(EnemyWayConfig config)
     {
         Config = config;
     }

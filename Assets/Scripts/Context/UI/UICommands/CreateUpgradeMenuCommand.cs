@@ -15,9 +15,9 @@ public class CreateUpgradeMenuCommand : Command
     {
         TowerView activeView = CellButton.Towers.TowerViews.FirstOrDefault(c => c.gameObject.activeInHierarchy);
 
-        List<UpgradeSO> _list = new List<UpgradeSO>();
+        List<UpgradeConfig> _list = new List<UpgradeConfig>();
 
-        foreach (var upgrade in activeView.TowerSO.Upgrades)
+        foreach (var upgrade in activeView.TowerConfig.Upgrades)
         {
             _list.Add(upgrade);
         }
