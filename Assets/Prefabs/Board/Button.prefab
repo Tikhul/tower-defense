@@ -431,6 +431,10 @@ PrefabInstance:
       propertyPath: _towerImage
       value: 
       objectReference: {fileID: 4721465840665183329}
+    - target: {fileID: 8672650979701896303, guid: 355bc07f3a2b91345a840f61d5dbbb8b, type: 3}
+      propertyPath: _towerConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a2f77893533a904499464bbcc9f9692, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 355bc07f3a2b91345a840f61d5dbbb8b, type: 3}
 --- !u!224 &1860674369287770827 stripped
@@ -475,6 +479,10 @@ PrefabInstance:
       propertyPath: _towerImage
       value: 
       objectReference: {fileID: 5507926390931649781}
+    - target: {fileID: 1220316799819699735, guid: 5d5ebae4582fed34e875a8893a926a4b, type: 3}
+      propertyPath: _towerConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 7baf873000dc0e5429b29f57cd9b2da4, type: 2}
     - target: {fileID: 5838767739036659122, guid: 5d5ebae4582fed34e875a8893a926a4b, type: 3}
       propertyPath: m_Name
       value: Yellow_tower
@@ -611,6 +619,10 @@ PrefabInstance:
       propertyPath: _towerImage
       value: 
       objectReference: {fileID: 7925523823032054340}
+    - target: {fileID: 3940320148237444277, guid: b34295b543d583644bb22908f7953bb0, type: 3}
+      propertyPath: _towerConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 67f08345943ffc440a181f4900dbc3b8, type: 2}
     - target: {fileID: 8148530515816304751, guid: b34295b543d583644bb22908f7953bb0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -835,6 +847,10 @@ PrefabInstance:
       propertyPath: _towerText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7183441239946235373, guid: 33d5a460873a280428185f6f99315b96, type: 3}
+      propertyPath: _towerConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: a5da5f0eff7f70a41a8d305bf10413d6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33d5a460873a280428185f6f99315b96, type: 3}
 --- !u!224 &4782279996657316795 stripped
