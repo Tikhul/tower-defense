@@ -25,7 +25,5 @@ public class GameSignalContext : MVCSContext
     public override void Launch()
     {
         base.Launch();
-
-        injectionBinder.GetInstance<LoadLevelContextSignal>().Dispatch();
     }
 }

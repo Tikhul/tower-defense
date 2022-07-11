@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelNameMediator : Mediator
 {
     [Inject] public LevelNameView View { get; set; }
-    [Inject] public LoadContextsSignal LoadContextsSignal { get; set; }
+    [Inject] public LevelContextLoadedSignal LevelContextLoadedSignal { get; set; }
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     [Inject] public ShowRestartPanelSignal ShowRestartPanelSignal { get; set; }
@@ -17,7 +17,7 @@ public class LevelNameMediator : Mediator
     {
         NextLevelChosenSignal.AddListener(ShowPanelHandler);
         RestartLevelChosenSignal.AddListener(ShowPanelHandler);
-        LoadContextsSignal.AddListener(ShowPanelHandler);
+        LevelContextLoadedSignal.AddListener(ShowPanelHandler);
         PassLevelDataSignal.AddListener(ShowLevelNameHandler);
         ShowRestartPanelSignal.AddListener(HidePanelHandler);
         ShowEndPanelSignal.AddListener(HidePanelHandler);
@@ -27,7 +27,7 @@ public class LevelNameMediator : Mediator
     {
         NextLevelChosenSignal.RemoveListener(ShowPanelHandler);
         RestartLevelChosenSignal.RemoveListener(ShowPanelHandler);
-        LoadContextsSignal.RemoveListener(ShowPanelHandler);
+        LevelContextLoadedSignal.RemoveListener(ShowPanelHandler);
         ShowRestartPanelSignal.RemoveListener(HidePanelHandler);
         ShowEndPanelSignal.RemoveListener(HidePanelHandler);
     }

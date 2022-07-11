@@ -5,4 +5,6 @@ using UnityEngine;
 
 public class StartSignal : Signal { }
 public class LoadContextsSignal : Signal { }
+public class GameContextLoadedSignal : Signal { }
+public class LevelContextLoadedSignal : Signal { }
 
