@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerModel
 {
-    public int InitialCoins { get; }
-    public int InitialHealth { get; }
-    public PlayerModel(PlayerConfig settings)
+    public int InitialCoins { get; set; }
+    public int InitialHealth { get; set; }
+    public void Initialize(PlayerConfig settings)
     {
         InitialCoins = settings.InitialCoins;
         InitialHealth = settings.InitialHealth;

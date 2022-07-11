@@ -32,9 +32,5 @@ public class MainContext : MainSignalContext
         injectionBinder.Bind<PlayerLibraryModel>().ToSingleton().CrossContext();
         injectionBinder.Bind<BoardLibraryModel>().ToSingleton().CrossContext();
         injectionBinder.Bind<WavesLibraryModel>().ToSingleton().CrossContext();
-        injectionBinder.Bind<PlayerConfig>().ToSingleton().CrossContext();
-        injectionBinder.Bind<BoardConfig>().ToSingleton().CrossContext();
-        injectionBinder.Bind<LevelsPipelineConfig>().ToSingleton().CrossContext();
-        injectionBinder.Bind<WavePipelineConfig>().ToSingleton().CrossContext();
     }
 }

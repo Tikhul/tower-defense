@@ -14,11 +14,11 @@ public class CreateGameCommand : Command
 
     public override void Execute()
     {
-        var player = new PlayerModel(PlayerLibraryModel.GetLibraryDataById("player"));
-        var board = new BoardModel(BoardLibraryModel.GetLibraryDataById("board"));
-        GameModel.Player = player;
-        GameModel.Board = board;
+        GameModel.Player = new PlayerModel();
+        GameModel.Player.Initialize(PlayerLibraryModel.GetLibraryDataById("player"));
+        GameModel.Board = new BoardModel();
+        GameModel.Board.Initialize(BoardLibraryModel.GetLibraryDataById("board"));
 
-        injectionBinder.GetInstance<ChangePlayerDataSignal>().Dispatch(player);
+        injectionBinder.GetInstance<ChangePlayerDataSignal>().Dispatch(GameModel.Player);
     }
 }
