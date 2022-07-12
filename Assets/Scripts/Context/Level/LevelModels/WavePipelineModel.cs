@@ -36,7 +36,6 @@ public class WavePipelineModel
         OnPipelineBegin?.Invoke();
         Debug.Log("Begin wave");
     }
-
     public void End()
     {
         foreach (var wave in _waveModels.Where(x => x.State == WaveState.Active))
@@ -63,11 +62,5 @@ public class WavePipelineModel
     {
         CurrentWave.CompleteWave();
         Debug.Log("CompleteCurrentWave " + CurrentWave.Config.Id);
-    }
-
-    public void RestartWave()
-    {
-        CurrentWave.BeginWave();
-        Debug.Log("RestartWave " + CurrentWave.Config.Id);
     }
 }

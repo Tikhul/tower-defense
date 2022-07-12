@@ -36,7 +36,6 @@ public class BoardView : BaseView
                 button.GetComponent<Image>().color = Color.white;
             }
         }
-        Debug.Log("DrawEnemiesWays");
     }
 
     public void BlockBoard()

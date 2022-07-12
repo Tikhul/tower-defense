@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WaveScriptableObject
   m_EditorClassIdentifier: 
   _id: 0
-  _waveHold: 0
+  _waveHold: 5

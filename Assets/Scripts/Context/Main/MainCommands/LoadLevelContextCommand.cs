@@ -10,6 +10,5 @@ public class LoadLevelContextCommand : Command
 	{
 		SceneManager.LoadSceneAsync(StaticName.LEVEL_CONTEXT_SCENE, LoadSceneMode.Additive);
 		injectionBinder.GetInstance<LevelContextLoadedSignal>().Dispatch();
-		Debug.Log("LoadLevelContextCommand");
 	}
 }
