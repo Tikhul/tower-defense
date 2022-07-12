@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,15 +7,32 @@ using UnityEngine;
 public class WaveConfig : Config
 {
     [SerializeField] private float _waveHold;
-    [SerializeField] private Dictionary<EnemyConfig, int> _enemiesAmounts;
+    [SerializeField] private List<EnemyData> _enemyData;
 
     /// <summary>
     /// Задержка перед началом появления врагов в волне
     /// </summary>
     public float WaveHold => _waveHold;
-
     /// <summary>
-    /// Словарь в форме: типа врага - количество в волне
+    /// Словарь с формате: модель врага - количество появлений в волне
     /// </summary>
-    public Dictionary<EnemyConfig, int> EnemiesAmounts => _enemiesAmounts;
+    /// <returns></returns>
+    public Dictionary<EnemyModel, int> GetEnemiesAmounts()
+    {
+        Dictionary<EnemyModel, int> dict = new Dictionary<EnemyModel, int>();
+        foreach (var data in _enemyData)
+        {
+            dict.Add(new EnemyModel(data.Config), data.Amount);
+        }
+        return dict;
+    }
+}
+
+[Serializable]
+public class EnemyData
+{
+    [SerializeField] private EnemyConfig _config;
+    [SerializeField] private int _amount;
+    public EnemyConfig Config => _config;
+    public int Amount => _amount;
 }
