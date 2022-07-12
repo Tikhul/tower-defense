@@ -15,7 +15,7 @@ public class TowerButtonView : View
     [SerializeField] private Image _towerButtonImage;
     [SerializeField] private Button _button;
     public TowerView TowerView { get; set; }
-    public event Action<TowerButtonView> OnTowerButtonClick = delegate { };
+    public event Action OnTowerButtonClick = delegate { };
     public TMPro.TMP_Text TowerCostText
     {
         get => _towerCostText;
@@ -48,16 +48,21 @@ public class TowerButtonView : View
     }
     private void OnEnable()
     {
-        _button.onClick.AddListener(delegate
-        {
-            OnTowerButtonClick?.Invoke(this);
-        });
+        _button.onClick.AddListener(OnClickHandler);
     }
 
+    private void OnDisable()
+    {
+        _button.onClick.RemoveListener(OnClickHandler);
+    }
     public void ActivateTower()
     {
-        Debug.Log("Activate Tower");
         TowerView.GetComponentInParent<CellButton>().State = CellState.HasTower;
         TowerView.gameObject.SetActive(true);
+    }
+    private void OnClickHandler()
+    {
+        OnTowerButtonClick?.Invoke();
+        Debug.Log("OnClickHandler");
     }
 }
