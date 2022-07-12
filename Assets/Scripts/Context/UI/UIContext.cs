@@ -1,8 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using context;
+using context.main;
+using context.ui;
+using strange.extensions.signal.impl;
 using UnityEngine;
 
-public class UIContext : UISignalContext
+public class UIContext : CoreContext
 {
     public UIContext(MonoBehaviour view)
         : base(view)
@@ -10,26 +12,14 @@ public class UIContext : UISignalContext
 
     }
 
-    protected override void mapBindings()
+    protected override Signal GetStartSignalInstance()
     {
-        base.mapBindings();
+        return injectionBinder.GetInstance<context.ui.StartSignal>();
+    }
 
-        mediationBinder.BindView<StartPanelView>().ToMediator<StartPanelMediator>();
-        mediationBinder.BindView<EndPanelView>().ToMediator<EndPanelMediator>();
-        mediationBinder.BindView<LevelRestartView>().ToMediator<LevelRestartMediator>();
-        mediationBinder.BindView<LevelNameView>().ToMediator<LevelNameMediator>();
-        mediationBinder.BindView<MenuView>().ToMediator<MenuMediator>();
-        mediationBinder.BindView<TowerMenuView>().ToMediator<TowerMenuMediator>();
-        mediationBinder.BindView<UserDataView>().ToMediator<UserDataMediator>();
-        mediationBinder.BindView<UpgradeMenuView>().ToMediator<UpgradeMenuMediator>();
-        mediationBinder.BindView<WarningsView>().ToMediator<WarningsMediator>();
-
-        commandBinder.Bind<CreateTowerMenuSignal>().To<CreateTowerMenuCommand>();
-        commandBinder.Bind<CreateUpgradeMenuSignal>().To<CreateUpgradeMenuCommand>();
-        commandBinder.Bind<LoadContextsSignal>()
-            .To<LoadGameContextCommand>()
-            .To<LoadLevelContextCommand>()
-            .InSequence();
+    protected override void MapSignals()
+    {
+        base.MapSignals();
 
         injectionBinder.Bind<NextLevelChosenSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<RestartLevelChosenSignal>().ToSingleton().CrossContext();
@@ -49,6 +39,42 @@ public class UIContext : UISignalContext
         injectionBinder.Bind<TowerUpgradedSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<NoMoneySignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<TowerBoughtSignal>().ToSingleton().CrossContext();
-        
+
+        commandBinder.Bind<CreateTowerMenuSignal>().To<CreateTowerMenuCommand>();
+        commandBinder.Bind<CreateUpgradeMenuSignal>().To<CreateUpgradeMenuCommand>();
+        commandBinder.Bind<LoadContextsSignal>()
+            .To<LoadGameContextCommand>()
+            .To<LoadLevelContextCommand>()
+            .InSequence();
+    }
+
+    protected override void MapMediators()
+    {
+        base.MapMediators();
+
+        mediationBinder.BindView<TowerButton>().ToMediator<TowerButtonMediator>();
+        mediationBinder.BindView<StartPanelView>().ToMediator<StartPanelMediator>();
+        mediationBinder.BindView<EndPanelView>().ToMediator<EndPanelMediator>();
+        mediationBinder.BindView<LevelRestartView>().ToMediator<LevelRestartMediator>();
+        mediationBinder.BindView<LevelNameView>().ToMediator<LevelNameMediator>();
+        mediationBinder.BindView<MenuView>().ToMediator<MenuMediator>();
+        mediationBinder.BindView<TowerMenuView>().ToMediator<TowerMenuMediator>();
+        mediationBinder.BindView<UserDataView>().ToMediator<UserDataMediator>();
+        mediationBinder.BindView<UpgradeMenuView>().ToMediator<UpgradeMenuMediator>();
+        mediationBinder.BindView<WarningsView>().ToMediator<WarningsMediator>();
+    }
+
+    protected override void MapAsIndependentContext()
+    {
+        commandBinder.Bind<context.ui.StartSignal>()
+            .InSequence()
+            .Once();
+    }
+
+    protected override void MapAsModuleContext()
+    {
+        commandBinder.Bind<context.ui.StartSignal>()
+            .InSequence()
+            .Once();
     }
 }

@@ -7,7 +7,7 @@ public class MainContextView : ContextView
 {
     void Start()
     {
-        var context = new MainContext(this);
-        context.Start();
+        context = new MainContext(this);
+        //context.Start();
     }
 }

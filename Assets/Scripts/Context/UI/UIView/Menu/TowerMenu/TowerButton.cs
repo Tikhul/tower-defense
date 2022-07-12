@@ -1,10 +1,11 @@
+using strange.extensions.mediation.impl;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TowerButton : MonoBehaviour
+public class TowerButton : View
 {
     [SerializeField] private TMPro.TMP_Text _towerCostText;
     [SerializeField] private TMPro.TMP_Text _towerDamageText;

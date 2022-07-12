@@ -1,3 +1,5 @@
+using context.ui;
+using strange.extensions.context.api;
 using strange.extensions.mediation.impl;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +14,8 @@ public class TowerMenuMediator : Mediator
     [Inject] public HideMenuSignal HideMenuSignal { get; set; }
     [Inject] public TowerChosenSignal TowerChosenSignal { get; set; }
     [Inject] public TowerBoughtSignal TowerBoughtSignal { get; set; }
+   // [Inject(ContextKeys.CONTEXT_VIEW)] public GameObject contextView { get; set; }
+
     public override void OnRegister()
     {
         TowerMenuCreatedSignal.AddListener(SetUpTowerButtonsHandler);

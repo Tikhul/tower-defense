@@ -7,8 +7,8 @@ public class UIContextView : ContextView
 {
     void Start()
     {
-        var context = new UIContext(this);
-        context.Start();
+        context = new UIContext(this);
+        //context.Start();
     }
 }
 

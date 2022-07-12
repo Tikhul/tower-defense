@@ -7,7 +7,7 @@ public class LevelContextView : ContextView
 {
     void Start()
     {
-        var context = new LevelContext(this);
-        context.Start();
+        context = new LevelContext(this);
+        //context.Start();
     }
 }

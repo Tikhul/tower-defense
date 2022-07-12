@@ -1,8 +1,12 @@
+using context;
+using context.level;
+using context.ui;
+using strange.extensions.signal.impl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelContext : LevelSignalContext
+public class LevelContext : CoreContext
 {
     public LevelContext(MonoBehaviour view)
         : base(view)
@@ -10,13 +14,32 @@ public class LevelContext : LevelSignalContext
 
     }
 
-    protected override void mapBindings()
+    protected override Signal GetStartSignalInstance()
     {
-        base.mapBindings();
+        return injectionBinder.GetInstance<context.level.StartSignal>();
+    }
 
-        mediationBinder.BindView<BoardView>().ToMediator<BoardMediator>();
-        mediationBinder.BindView<LevelView>().ToMediator<LevelMediator>();
+    protected override void MapAsIndependentContext()
+    {
+        commandBinder.Bind<context.level.StartSignal>()
+            .InSequence()
+            .Once();
+        
+    }
 
+    protected override void MapAsModuleContext()
+    {
+        commandBinder.Bind<context.level.StartSignal>()
+            .InSequence()
+            .Once();
+    }
+    protected override void MapSignals()
+    {
+        base.MapSignals();
+
+        injectionBinder.Bind<OnEnemyDrawnSignal>().ToSingleton();
+        injectionBinder.Bind<PassLevelDataSignal>();
+        injectionBinder.Bind<PipelineEndedSignal>().ToSingleton().CrossContext();
         commandBinder.Bind<DrawBoardSignal>().To<DrawBoardCommand>().Once();
         commandBinder.Bind<FillCellListSignal>().To<FillCellListCommand>();
         commandBinder.Bind<PipelineStartSignal>().To<StartPipelineCommand>().Once();
@@ -37,10 +60,18 @@ public class LevelContext : LevelSignalContext
             .To<CheckMoneyForUpgradeCommand>()
             .To<UpgradeTowerCommand>()
             .InSequence();
+    }
+    protected override void MapMediators()
+    {
+        base.MapMediators();
 
-        injectionBinder.Bind<OnEnemyDrawnSignal>().ToSingleton();
-        injectionBinder.Bind<PassLevelDataSignal>();
-        injectionBinder.Bind<PipelineEndedSignal>().ToSingleton().CrossContext();
+        mediationBinder.BindView<BoardView>().ToMediator<BoardMediator>();
+        mediationBinder.BindView<LevelView>().ToMediator<LevelMediator>();
+    }
+    protected override void MapEntities()
+    {
+        base.MapEntities();
+
         injectionBinder.Bind<LevelsPipelineModel>().ToSingleton();
         injectionBinder.Bind<WavePipelineModel>().ToSingleton();
         injectionBinder.Bind<LevelModel>();

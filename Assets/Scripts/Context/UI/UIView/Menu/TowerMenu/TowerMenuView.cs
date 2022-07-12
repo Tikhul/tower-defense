@@ -13,7 +13,7 @@ public class TowerMenuView : BaseMenuView
         foreach (var tower in _list)
         {
             GameObject newButton = (GameObject)Instantiate(Resources.Load(StaticName.TOWER_BUTTON_PATH));
-            
+
             newButton.transform.SetParent(ParentPanel.transform);
             newButton.transform.localScale = new Vector3(1, 1, 1);
             newButton.transform.localPosition = new Vector3(0, 0, 0);

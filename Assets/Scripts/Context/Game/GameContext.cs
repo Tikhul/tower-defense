@@ -1,8 +1,11 @@
+using context;
+using context.game;
+using strange.extensions.signal.impl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameContext : GameSignalContext
+public class GameContext : CoreContext
 {
     public GameContext(MonoBehaviour view)
         : base(view)
@@ -10,11 +13,23 @@ public class GameContext : GameSignalContext
 
     }
 
-    protected override void mapBindings()
+    protected override Signal GetStartSignalInstance()
     {
-        base.mapBindings();
+        return injectionBinder.GetInstance<StartSignal>();
+    }
 
-        commandBinder.Bind<GameContextLoadedSignal>().To<CreateGameCommand>();
+    protected override void MapAsIndependentContext()
+    {
+        commandBinder.Bind<StartSignal>().To<CreateGameCommand>();
+    }
+
+    protected override void MapAsModuleContext()
+    {
+        commandBinder.Bind<StartSignal>().To<CreateGameCommand>();
+    }
+    protected override void MapEntities()
+    {
+        base.MapEntities();
 
         injectionBinder.Bind<PlayerModel>().ToSingleton().CrossContext();
         injectionBinder.Bind<BoardModel>().ToSingleton().CrossContext();
