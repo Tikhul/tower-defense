@@ -26,6 +26,10 @@ public class UIContext : UISignalContext
 
         commandBinder.Bind<CreateTowerMenuSignal>().To<CreateTowerMenuCommand>();
         commandBinder.Bind<CreateUpgradeMenuSignal>().To<CreateUpgradeMenuCommand>();
+        commandBinder.Bind<LoadContextsSignal>()
+            .To<LoadGameContextCommand>()
+            .To<LoadLevelContextCommand>()
+            .InSequence();
 
         injectionBinder.Bind<NextLevelChosenSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<RestartLevelChosenSignal>().ToSingleton().CrossContext();
@@ -45,6 +49,6 @@ public class UIContext : UISignalContext
         injectionBinder.Bind<TowerUpgradedSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<NoMoneySignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<TowerBoughtSignal>().ToSingleton().CrossContext();
-        injectionBinder.Bind<LoadContextsSignal>().ToSingleton().CrossContext();
+        
     }
 }
