@@ -9,12 +9,12 @@ using UnityEngine;
 /// </summary>
 public class CreateTowerModelCommand : Command
 {
-    [Inject] public TowerButton TowerButton { get; set; }
+    [Inject] public TowerButtonView TowerButtonView { get; set; }
     public override void Execute()
     {
         Debug.Log("CreateTowerModelCommand");
-        TowerModel newTower = new TowerModel(TowerButton.TowerView.TowerConfig);
-        Debug.Log(TowerButton.TowerView.TowerConfig.name);
+        TowerModel newTower = new TowerModel(TowerButtonView.TowerView.TowerConfig);
+        Debug.Log(TowerButtonView.TowerView.TowerConfig.name);
         injectionBinder.GetInstance<ShowTowerDataSignal>().Dispatch(newTower);
     }
 }

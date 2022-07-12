@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class TowerButtonMediator : Mediator
 {
-    [Inject] public TowerButton View { get; set; }
+    [Inject] public TowerButtonView View { get; set; }
 }

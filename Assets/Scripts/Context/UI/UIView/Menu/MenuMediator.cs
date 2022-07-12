@@ -62,7 +62,7 @@ public class MenuMediator : Mediator
         }
             Debug.Log("ShowMenu");
     }
-    private void TowerButtonClickedHandler(TowerButton button)
+    private void TowerButtonClickedHandler(TowerButtonView button)
     {
         HideMenu();
     }

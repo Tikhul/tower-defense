@@ -52,7 +52,7 @@ public class UIContext : CoreContext
     {
         base.MapMediators();
 
-        mediationBinder.BindView<TowerButton>().ToMediator<TowerButtonMediator>();
+        mediationBinder.BindView<TowerButtonView>().ToMediator<TowerButtonMediator>();
         mediationBinder.BindView<StartPanelView>().ToMediator<StartPanelMediator>();
         mediationBinder.BindView<EndPanelView>().ToMediator<EndPanelMediator>();
         mediationBinder.BindView<LevelRestartView>().ToMediator<LevelRestartMediator>();

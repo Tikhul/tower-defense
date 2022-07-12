@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class CheckMoneyForTowerCommand : Command
 {
-    [Inject] public TowerButton TowerButton { get; set; }
+    [Inject] public TowerButtonView TowerButtonView { get; set; }
     private GameModel GameModel => injectionBinder.GetInstance<GameModel>();
 
     public override void Execute()
     {
-        if(TowerButton.TowerView.TowerConfig.Cost > GameModel.Player.ActualCoins)
+        if(TowerButtonView.TowerView.TowerConfig.Cost > GameModel.Player.ActualCoins)
         {
             Debug.Log("Недостаточно денег");
             injectionBinder.GetInstance<NoMoneySignal>().Dispatch();
@@ -19,9 +19,9 @@ public class CheckMoneyForTowerCommand : Command
         }
         else
         {
-            GameModel.Player.ActualCoins -= TowerButton.TowerView.TowerConfig.Cost;
+            GameModel.Player.ActualCoins -= TowerButtonView.TowerView.TowerConfig.Cost;
             injectionBinder.GetInstance<ChangePlayerDataSignal>().Dispatch(GameModel.Player);
-            injectionBinder.GetInstance<TowerBoughtSignal>().Dispatch(TowerButton);
+            injectionBinder.GetInstance<TowerBoughtSignal>().Dispatch(TowerButtonView);
         }
     }
 }

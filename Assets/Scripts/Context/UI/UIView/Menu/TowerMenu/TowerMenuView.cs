@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class TowerMenuView : BaseMenuView
 {
-    public event Action<TowerButton> OnTowerButtonCreated = delegate { };
+    public event Action<TowerButtonView> OnTowerButtonCreated = delegate { };
     public void SetUpTowerButtons(List<TowerView> _list)
     {
         foreach (var tower in _list)
@@ -17,7 +17,7 @@ public class TowerMenuView : BaseMenuView
             newButton.transform.SetParent(ParentPanel.transform);
             newButton.transform.localScale = new Vector3(1, 1, 1);
             newButton.transform.localPosition = new Vector3(0, 0, 0);
-            TowerButton b = newButton.GetComponent<TowerButton>();
+            TowerButtonView b = newButton.GetComponent<TowerButtonView>();
             b.TowerCostText.text = "Цена: " + tower.TowerCostText;
             b.TowerDamageText.text = "Урон: " + tower.TowerDamageText;
             b.TowerRadiusText.text = "Радиус: " + tower.TowerRadiusText;
@@ -31,7 +31,7 @@ public class TowerMenuView : BaseMenuView
     public override void ClearMenu()
     {
         Debug.Log("ClearMenu");
-        foreach(var button in GetComponentsInChildren<TowerButton>())
+        foreach(var button in GetComponentsInChildren<TowerButtonView>())
         {
             Destroy(button.gameObject);
         }

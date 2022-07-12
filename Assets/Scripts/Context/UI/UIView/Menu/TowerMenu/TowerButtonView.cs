@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TowerButton : View
+public class TowerButtonView : View
 {
     [SerializeField] private TMPro.TMP_Text _towerCostText;
     [SerializeField] private TMPro.TMP_Text _towerDamageText;
@@ -15,7 +15,7 @@ public class TowerButton : View
     [SerializeField] private Image _towerButtonImage;
     [SerializeField] private Button _button;
     public TowerView TowerView { get; set; }
-    public event Action<TowerButton> OnTowerButtonClick = delegate { };
+    public event Action<TowerButtonView> OnTowerButtonClick = delegate { };
     public TMPro.TMP_Text TowerCostText
     {
         get => _towerCostText;

@@ -8,13 +8,12 @@ using UnityEngine;
 public class TowerMenuMediator : Mediator
 {
     private bool _subscribedToTowers = false;
-    private List<TowerButton> _towers = new List<TowerButton>();
+    private List<TowerButtonView> _towers = new List<TowerButtonView>();
     [Inject] public TowerMenuView View { get; set; }
     [Inject] public TowerMenuCreatedSignal TowerMenuCreatedSignal { get; set; }
     [Inject] public HideMenuSignal HideMenuSignal { get; set; }
     [Inject] public TowerChosenSignal TowerChosenSignal { get; set; }
     [Inject] public TowerBoughtSignal TowerBoughtSignal { get; set; }
-   // [Inject(ContextKeys.CONTEXT_VIEW)] public GameObject contextView { get; set; }
 
     public override void OnRegister()
     {
@@ -31,7 +30,7 @@ public class TowerMenuMediator : Mediator
         TowerBoughtSignal.RemoveListener(ActivateTowerHandler);
     }
 
-    private void SubscribeToTowers(TowerButton button)
+    private void SubscribeToTowers(TowerButtonView button)
     {
         _towers.Add(button);
         button.OnTowerButtonClick += TowerButtonChosenHandler;
@@ -55,7 +54,7 @@ public class TowerMenuMediator : Mediator
             }
         }
     }
-    private void TowerButtonChosenHandler(TowerButton button)
+    private void TowerButtonChosenHandler(TowerButtonView button)
     {
         Debug.Log("TowerButtonChosenHandler");
         TowerChosenSignal.Dispatch(button);
@@ -65,7 +64,7 @@ public class TowerMenuMediator : Mediator
             _subscribedToTowers = false;
         }
     }
-    private void ActivateTowerHandler(TowerButton button)
+    private void ActivateTowerHandler(TowerButtonView button)
     {
         button.ActivateTower();
     }
