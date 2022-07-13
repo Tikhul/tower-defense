@@ -5,5 +5,6 @@ using UnityEngine;
 
 public class CellButtonMediator : Mediator
 {
-    
+    [Inject] public CellButtonView View { get; set; }
+    // TODO: перенести все из BoardMediator
 }
