@@ -19,12 +19,13 @@ public class BoardMediator : Mediator
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
     [Inject] public BlockBoardSignal BlockBoardSignal { get; set; }
     [Inject] public UnblockBoardSignal UnblockBoardSignal { get; set; }
-    [Inject] public OnEnemyWayDrawnSignal OnEnemyWayDrawnSignal { get; set; }
+    [Inject] public OnEnemyWayDefinedSignal OnEnemyWayDefinedSignal { get; set; }
+    [Inject] public CreateEnemiesSignal CreateEnemiesSignal { get; set; }
 
     public override void OnRegister()
     {
         DrawBoardSignal.Dispatch(View.BoardParent);
-        OnEnemyWayDrawnSignal.AddListener(DrawEnemiesHandler);
+        OnEnemyWayDefinedSignal.AddListener(DrawEnemiesHandler);
         DrawEnemyWaySignal.Dispatch();
         RestartLevelChosenSignal.AddListener(LevelStartHandler);
         NextLevelChosenSignal.AddListener(LevelStartHandler);
@@ -57,11 +58,12 @@ public class BoardMediator : Mediator
     private void DrawEnemiesHandler()
     {
         View.DrawEnemiesWays(GameModel.Board.CurrentCellList);
+        CreateEnemiesSignal.Dispatch(LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemiesAmounts);
     }
 
     private void Unsubscribe()
     {
-        OnEnemyWayDrawnSignal.RemoveListener(DrawEnemiesHandler);
+        OnEnemyWayDefinedSignal.RemoveListener(DrawEnemiesHandler);
     }
 
     private void BlockBoard()
