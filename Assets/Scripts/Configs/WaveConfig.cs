@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WaveConfig", menuName = "ScriptableObjects/WaveConfig", order = 5)]
@@ -14,17 +15,22 @@ public class WaveConfig : Config
     /// </summary>
     public float WaveHold => _waveHold;
     /// <summary>
-    /// Словарь с формате: модель врага - количество появлений в волне
+    /// Рандомизированный список всех моделей врагов
     /// </summary>
     /// <returns></returns>
-    public Dictionary<EnemyModel, int> GetEnemiesAmounts()
+    public List<EnemyModel> GetEnemies()
     {
-        Dictionary<EnemyModel, int> dict = new Dictionary<EnemyModel, int>();
+        List<EnemyModel> _tempList = new List<EnemyModel>();
         foreach (var data in _enemyData)
         {
-            dict.Add(new EnemyModel(data.Config), data.Amount);
+            for(int i=0; i < data.Amount; i++)
+            {
+                _tempList.Add(new EnemyModel(data.Config));
+            }
         }
-        return dict;
+        System.Random rng = new System.Random();
+        
+    return _tempList.OrderBy(a => rng.Next()).ToList();
     }
 }
 

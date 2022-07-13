@@ -6,7 +6,7 @@ using UnityEngine;
 public class WaveModel : IWaveModel
 {
     public WaveConfig Config { get; private set; }
-    public Dictionary<EnemyModel, int> EnemiesAmounts { get; private set; } = new Dictionary<EnemyModel, int>();
+    public List<EnemyModel> WaveEnemies { get; private set; } = new List<EnemyModel>();
     public WaveState State { get; private set; } = WaveState.NonActive;
 
     public event Action OnWaveBegin;
@@ -15,7 +15,7 @@ public class WaveModel : IWaveModel
     public WaveModel(WaveConfig _config)
     {
         Config = _config;
-        EnemiesAmounts = _config.GetEnemiesAmounts();
+        WaveEnemies = _config.GetEnemies();
     }
     public void BeginWave()
     {
@@ -34,7 +34,7 @@ public class WaveModel : IWaveModel
 public interface IWaveModel
 {
     WaveConfig Config { get; }
-    Dictionary<EnemyModel, int> EnemiesAmounts { get; }
+    List<EnemyModel> WaveEnemies { get; }
     WaveState State { get; }
     void BeginWave();
     void CompleteWave();

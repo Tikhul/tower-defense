@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 1
   _waveHold: 0
+  _enemyData: []

@@ -58,7 +58,7 @@ public class BoardMediator : Mediator
     private void DrawEnemiesHandler()
     {
         View.DrawEnemiesWays(GameModel.Board.CurrentCellList);
-        CreateEnemiesSignal.Dispatch(LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemiesAmounts);
+        CreateEnemiesSignal.Dispatch(LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.WaveEnemies);
     }
 
     private void Unsubscribe()

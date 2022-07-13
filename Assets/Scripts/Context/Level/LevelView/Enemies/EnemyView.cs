@@ -5,5 +5,6 @@ using UnityEngine;
 
 public class EnemyView : View
 {
-    
+    [SerializeField] private EnemyConfig _config;
+    public EnemyConfig Config => _config;
 }
