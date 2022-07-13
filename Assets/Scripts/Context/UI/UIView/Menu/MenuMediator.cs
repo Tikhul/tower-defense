@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class MenuMediator : Mediator
 {
-    private List<CellButton> _cells = new List<CellButton>();
+    private List<CellButtonView> _cells = new List<CellButtonView>();
     
     private bool _subscribedToCells = false;
     
     [Inject] public MenuView View { get; set; }
-    [Inject] public CellButtonCreatedSignal CellButtonCreatedSignal { get; set; }
+    [Inject] public CellButtonViewCreatedSignal CellButtonViewCreatedSignal { get; set; }
     [Inject] public BlockBoardSignal BlockBoardSignal { get; set; }
     [Inject] public UnblockBoardSignal UnblockBoardSignal { get; set; }
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
@@ -22,24 +22,24 @@ public class MenuMediator : Mediator
 
     public override void OnRegister()
     {
-        CellButtonCreatedSignal.AddListener(SubscribeToCells);
+        CellButtonViewCreatedSignal.AddListener(SubscribeToCells);
         TowerChosenSignal.AddListener(TowerButtonClickedHandler);
     }
 
     public override void OnRemove()
     {
-        CellButtonCreatedSignal.RemoveListener(SubscribeToCells);
+        CellButtonViewCreatedSignal.RemoveListener(SubscribeToCells);
         TowerChosenSignal.RemoveListener(TowerButtonClickedHandler);
 
     }
-    private void SubscribeToCells(CellButton cell)
+    private void SubscribeToCells(CellButtonView cell)
     {
         _cells.Add(cell);
-        cell.OnCellButtonClick += ShowMenu;
+        cell.OnCellButtonViewClick += ShowMenu;
         _subscribedToCells = true;
     }
 
-    private void ShowMenu(CellButton receivedCell)
+    private void ShowMenu(CellButtonView receivedCell)
     {
         BlockBoardSignal.Dispatch();
 
@@ -57,7 +57,7 @@ public class MenuMediator : Mediator
 
         foreach (var cell in _cells)
         {
-            cell.OnCellButtonClick -= ShowMenu;
+            cell.OnCellButtonViewClick -= ShowMenu;
             _subscribedToCells = false;
         }
             Debug.Log("ShowMenu");
@@ -75,7 +75,7 @@ public class MenuMediator : Mediator
         {
             foreach (var cell in _cells)
             {
-                cell.OnCellButtonClick += ShowMenu;
+                cell.OnCellButtonViewClick += ShowMenu;
                 _subscribedToCells = true;
             }
         }

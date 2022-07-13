@@ -57,7 +57,7 @@ public class TowerButtonView : View
     }
     public void ActivateTower()
     {
-        TowerView.GetComponentInParent<CellButton>().State = CellState.HasTower;
+        TowerView.GetComponentInParent<CellButtonView>().State = CellState.HasTower;
         TowerView.gameObject.SetActive(true);
     }
     private void OnClickHandler()

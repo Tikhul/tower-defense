@@ -21,7 +21,7 @@ public class BoardView : BaseView
         _canvas.worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
-    public void DrawEnemiesWays(List<CellButton> allButtons)
+    public void DrawEnemiesWays(List<CellButtonView> allButtons)
     {
         foreach (var button in allButtons)
         {
@@ -40,7 +40,7 @@ public class BoardView : BaseView
 
     public void BlockBoard()
     {
-        foreach(var cell in GetComponentsInChildren<CellButton>())
+        foreach(var cell in GetComponentsInChildren<CellButtonView>())
         {
             cell.ButtonElement.interactable = false;
         }
@@ -48,7 +48,7 @@ public class BoardView : BaseView
 
     public void UnblockBoard()
     {
-        foreach (var cell in GetComponentsInChildren<CellButton>())
+        foreach (var cell in GetComponentsInChildren<CellButtonView>())
         {
             if (!cell.State.Equals(CellState.EnemyWay))
             {
@@ -58,7 +58,7 @@ public class BoardView : BaseView
             
     }
 
-    public void ClearTowers(List<CellButton> buttonsWithTower)
+    public void ClearTowers(List<CellButtonView> buttonsWithTower)
     {
         foreach (var button in buttonsWithTower)
         {

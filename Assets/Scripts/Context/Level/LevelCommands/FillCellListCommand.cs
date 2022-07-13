@@ -16,12 +16,12 @@ public class FillCellListCommand : Command
     private GameModel GameModel => injectionBinder.GetInstance<GameModel>();
     public override void Execute()
     {
-        CellButton buttonSettings = Button.GetComponent<CellButton>();
+        CellButtonView buttonSettings = Button.GetComponent<CellButtonView>();
         buttonSettings.CellChar = Char;
         buttonSettings.CellInt = Int;
         GameModel.Board.CurrentCellList.Add(buttonSettings);
         GameModel.Board.AllCellList.Add(buttonSettings);
-        injectionBinder.GetInstance<CellButtonCreatedSignal>().Dispatch(buttonSettings);
+        injectionBinder.GetInstance<CellButtonViewCreatedSignal>().Dispatch(buttonSettings);
 
         if (GameModel.Board.AllCellList.Count == GameModel.Board.Settings.RowNumber * GameModel.Board.Settings.RowNumber)
         {

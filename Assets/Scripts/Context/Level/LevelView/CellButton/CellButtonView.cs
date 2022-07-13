@@ -7,7 +7,7 @@ using System;
 /// <summary>
 /// Кнопка для поля
 /// </summary>
-public class CellButton : MonoBehaviour
+public class CellButtonView : View
 {
     private int _cellInt;
     private char _cellChar;
@@ -16,7 +16,7 @@ public class CellButton : MonoBehaviour
     [SerializeField] private Button _buttonElement;
     [SerializeField] private AllTowersView _towers;
 
-    public event Action<CellButton> OnCellButtonClick = delegate { };
+    public event Action<CellButtonView> OnCellButtonViewClick = delegate { };
     public int CellInt
     {
         get => _cellInt;
@@ -46,7 +46,7 @@ public class CellButton : MonoBehaviour
     {
         _buttonElement.onClick.AddListener(delegate
         {
-            OnCellButtonClick?.Invoke(this);
+            OnCellButtonViewClick?.Invoke(this);
         });
     }
 }

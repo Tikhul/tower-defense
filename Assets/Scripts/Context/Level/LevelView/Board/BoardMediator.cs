@@ -83,7 +83,7 @@ public class BoardMediator : Mediator
     }
     private void ClearTowers()
     {
-        List<CellButton> buttonsWithTowers = GameModel.Board.CurrentCellList.FindAll(x => x.State == CellState.HasTower);
+        List<CellButtonView> buttonsWithTowers = GameModel.Board.CurrentCellList.FindAll(x => x.State == CellState.HasTower);
         View.ClearTowers(buttonsWithTowers);
     }
 }

@@ -10,11 +10,11 @@ using UnityEngine;
 /// </summary>
 public class CreateUpgradeMenuCommand : Command
 {
-    [Inject] public CellButton CellButton { get; set; }
+    [Inject] public CellButtonView CellButtonView { get; set; }
 
     public override void Execute()
     {
-        TowerView activeView = CellButton.Towers.TowerViews.FirstOrDefault(c => c.gameObject.activeInHierarchy);
+        TowerView activeView = CellButtonView.Towers.TowerViews.FirstOrDefault(c => c.gameObject.activeInHierarchy);
 
         List<UpgradeConfig> _list = new List<UpgradeConfig>();
 
