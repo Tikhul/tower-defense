@@ -10,7 +10,6 @@ public class UpgradeMenuView : BaseMenuView
     [SerializeField] private TMPro.TMP_Text _radiusText;
     [SerializeField] private TMPro.TMP_Text _speedText;
 
-    public event Action<List<UpgradeButtonView>> OnUpgradeButtonViewCreated = delegate { };
     public void SetUpUpgradeButtonViews(List<UpgradeConfig> _list, TowerView activeView)
     {
         List<UpgradeButtonView> _tempList = new List<UpgradeButtonView>();
@@ -30,8 +29,6 @@ public class UpgradeMenuView : BaseMenuView
             b.ActiveView = activeView;
             _tempList.Add(b);
         }
-
-        OnUpgradeButtonViewCreated?.Invoke(_tempList);
     }
 
     public void ShowTowerData(TowerModel tower)

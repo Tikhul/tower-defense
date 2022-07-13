@@ -26,6 +26,7 @@ public class UIContext : CoreContext
         injectionBinder.Bind<ShowEndPanelSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<ShowRestartPanelSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<PassLevelDataSignal>().ToSingleton().CrossContext();
+        injectionBinder.Bind<PassTowersDictionarySignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<CellButtonCreatedSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<BlockBoardSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<UnblockBoardSignal>().ToSingleton().CrossContext();
@@ -36,7 +37,6 @@ public class UIContext : CoreContext
         injectionBinder.Bind<TowerChosenSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<UpgradeChosenSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<ShowTowerDataSignal>().ToSingleton().CrossContext();
-        injectionBinder.Bind<TowerUpgradedSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<NoMoneySignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<TowerBoughtSignal>().ToSingleton().CrossContext();
 

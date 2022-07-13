@@ -7,7 +7,7 @@ public class CheckMoneyForUpgradeCommand : Command
 {
     [Inject] public UpgradeButtonView UpgradeButtonView { get; set; }
 
-    public override void Execute()
+public override void Execute()
     {
         
     }

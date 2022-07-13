@@ -9,9 +9,7 @@ public class UpgradeMenuMediator : Mediator
     [Inject] public UpgradeMenuView View { get; set; }
     [Inject] public UpgradeMenuCreatedSignal UpgradeMenuCreatedSignal { get; set; }
     [Inject] public HideMenuSignal HideMenuSignal { get; set; }
-    [Inject] public UpgradeChosenSignal UpgradeChosenSignal { get; set; }
     [Inject] public ShowTowerDataSignal ShowTowerDataSignal { get; set; }
-    [Inject] public TowerUpgradedSignal TowerUpgradedSignal { get; set; }
 
     public override void OnRegister()
     {

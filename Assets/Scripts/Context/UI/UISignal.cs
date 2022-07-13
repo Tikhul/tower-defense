@@ -11,6 +11,7 @@ namespace context.ui
     public class RestartLevelChosenSignal : Signal { }
     public class ShowEndPanelSignal : Signal { }
     public class PassLevelDataSignal : Signal<ILevelModel> { }
+    public class PassTowersDictionarySignal : Signal<Dictionary<TowerView, TowerModel>> { }
     public class CellButtonCreatedSignal : Signal<CellButton> { }
     public class BlockBoardSignal : Signal { }
     public class UnblockBoardSignal : Signal { }
@@ -24,6 +25,5 @@ namespace context.ui
     public class TowerBoughtSignal : Signal { }
     public class UpgradeChosenSignal : Signal<UpgradeButtonView> { }
     public class ShowTowerDataSignal : Signal<TowerModel> { }
-    public class TowerUpgradedSignal : Signal { }
     public class NoMoneySignal : Signal { }
 }

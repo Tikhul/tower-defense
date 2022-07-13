@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class LevelModel : ILevelModel
 {
+    public Dictionary<TowerView, TowerModel> TowerData { get; set; } = new Dictionary<TowerView, TowerModel> ();
     public LevelConfig Config { get; private set; }
     public EnemyWayModel EnemyWay { get; private set; }
     public LevelState State { get; private set; } = LevelState.NonActive;
@@ -34,6 +35,7 @@ public class LevelModel : ILevelModel
 
 public interface ILevelModel
 {
+    Dictionary<TowerView, TowerModel> TowerData { get; }
     LevelConfig Config { get; }
     EnemyWayModel EnemyWay { get; }
     WavePipelineModel LevelWaves { get; }
