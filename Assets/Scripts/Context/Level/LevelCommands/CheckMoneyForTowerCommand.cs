@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Проверка, достаточно ли денег на покупку башни
+/// </summary>
 public class CheckMoneyForTowerCommand : Command
 {
     [Inject] public TowerButtonView TowerButtonView { get; set; }
