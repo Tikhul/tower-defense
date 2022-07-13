@@ -37,7 +37,7 @@ public class LevelContext : CoreContext
     {
         base.MapSignals();
 
-        injectionBinder.Bind<OnEnemyDrawnSignal>().ToSingleton();
+        injectionBinder.Bind<OnEnemyWayDrawnSignal>().ToSingleton();
         injectionBinder.Bind<PassLevelDataSignal>();
         injectionBinder.Bind<PipelineEndedSignal>().ToSingleton().CrossContext();
         commandBinder.Bind<DrawBoardSignal>().To<DrawBoardCommand>().Once();
@@ -60,6 +60,7 @@ public class LevelContext : CoreContext
             .To<CheckMoneyForUpgradeCommand>()
             .To<UpgradeTowerCommand>()
             .InSequence();
+        commandBinder.Bind<CreateEnemiesSignal>().To<CreateEnemiesCommand>();
     }
     protected override void MapMediators()
     {

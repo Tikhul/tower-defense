@@ -11,5 +11,6 @@ namespace context.level
     public class PipelineStartSignal : Signal { }
     public class PipelineEndedSignal : Signal { }
     public class DrawEnemyWaySignal : Signal { }
-    public class OnEnemyDrawnSignal : Signal { }
+    public class OnEnemyWayDrawnSignal : Signal { }
+    public class CreateEnemiesSignal : Signal<Dictionary<EnemyModel, int>> { }
 }
