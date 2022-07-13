@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyView : View
+public class EnemyMediator : Mediator
 {
-    
+    [Inject] public EnemyView View { get; set; }
 }
