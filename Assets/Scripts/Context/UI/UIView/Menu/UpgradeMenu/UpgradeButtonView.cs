@@ -14,7 +14,7 @@ public class UpgradeButtonView : View
     [SerializeField] private Button _button;
   
     public TowerView ActiveView { get; set; }
-    public event Action<UpgradeButtonView> OnUpgradeButtonViewClick = delegate { };
+    public event Action OnUpgradeButtonViewClick = delegate { };
     public TMPro.TMP_Text CostText
     {
         get => _costText;
@@ -50,6 +50,6 @@ public class UpgradeButtonView : View
     private void OnClickHandler()
     {
         Debug.Log("onClick");
-        OnUpgradeButtonViewClick?.Invoke(this);
+        OnUpgradeButtonViewClick?.Invoke();
     }
 }
