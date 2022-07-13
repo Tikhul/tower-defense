@@ -10,10 +10,10 @@ public class UpgradeMenuView : BaseMenuView
     [SerializeField] private TMPro.TMP_Text _radiusText;
     [SerializeField] private TMPro.TMP_Text _speedText;
 
-    public event Action<List<UpgradeButton>> OnUpgradeButtonCreated = delegate { };
-    public void SetUpUpgradeButtons(List<UpgradeConfig> _list, TowerView activeView)
+    public event Action<List<UpgradeButtonView>> OnUpgradeButtonViewCreated = delegate { };
+    public void SetUpUpgradeButtonViews(List<UpgradeConfig> _list, TowerView activeView)
     {
-        List<UpgradeButton> _tempList = new List<UpgradeButton>();
+        List<UpgradeButtonView> _tempList = new List<UpgradeButtonView>();
 
         foreach (var upgrade in _list)
         {
@@ -21,7 +21,7 @@ public class UpgradeMenuView : BaseMenuView
             newButton.transform.SetParent(ParentPanel.transform);
             newButton.transform.localScale = new Vector3(1, 1, 1);
             newButton.transform.localPosition = new Vector3(0, 0, 0);
-            UpgradeButton b = newButton.GetComponent<UpgradeButton>();
+            UpgradeButtonView b = newButton.GetComponent<UpgradeButtonView>();
             b.UpgradeConfig = upgrade;
             b.CostText.text = "Цена: " + upgrade.Cost;
             b.DamageUpgradeText.text = "Урон + " + upgrade.Damage;
@@ -31,7 +31,7 @@ public class UpgradeMenuView : BaseMenuView
             _tempList.Add(b);
         }
 
-        OnUpgradeButtonCreated?.Invoke(_tempList);
+        OnUpgradeButtonViewCreated?.Invoke(_tempList);
     }
 
     public void ShowTowerData(TowerModel tower)
@@ -42,7 +42,7 @@ public class UpgradeMenuView : BaseMenuView
     }
     public override void ClearMenu()
     {
-        foreach(var button in GetComponentsInChildren<UpgradeButton>())
+        foreach(var button in GetComponentsInChildren<UpgradeButtonView>())
         {
             Destroy(button.gameObject);
         }

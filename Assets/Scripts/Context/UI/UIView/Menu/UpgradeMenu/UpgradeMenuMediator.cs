@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class UpgradeMenuMediator : Mediator
 {
-    private List<UpgradeButton> _upgradeButtons = new List<UpgradeButton>();
+    private List<UpgradeButtonView> _upgradeButtons = new List<UpgradeButtonView>();
     private bool _subscribedToUpdate = false;
     [Inject] public UpgradeMenuView View { get; set; }
     [Inject] public UpgradeMenuCreatedSignal UpgradeMenuCreatedSignal { get; set; }
@@ -18,21 +18,21 @@ public class UpgradeMenuMediator : Mediator
     public override void OnRegister()
     {
         ShowTowerDataSignal.AddListener(ShowTowerDataHandler);
-        UpgradeMenuCreatedSignal.AddListener(SetUpUpgradeButtonsHandler);
+        UpgradeMenuCreatedSignal.AddListener(SetUpUpgradeButtonViewsHandler);
         HideMenuSignal.AddListener(ClearMenuHandler);
-        View.OnUpgradeButtonCreated += GetUpgrades;
+        View.OnUpgradeButtonViewCreated += GetUpgrades;
         TowerUpgradedSignal.AddListener(SubscribeToUpgradeHandler);
     }
     public override void OnRemove()
     {
         ShowTowerDataSignal.RemoveListener(ShowTowerDataHandler);
-        UpgradeMenuCreatedSignal.RemoveListener(SetUpUpgradeButtonsHandler);
+        UpgradeMenuCreatedSignal.RemoveListener(SetUpUpgradeButtonViewsHandler);
         HideMenuSignal.RemoveListener(ClearMenuHandler);
         TowerUpgradedSignal.RemoveListener(SubscribeToUpgradeHandler);
     }
-    private void SetUpUpgradeButtonsHandler(List<UpgradeConfig> _list, TowerView activeView)
+    private void SetUpUpgradeButtonViewsHandler(List<UpgradeConfig> _list, TowerView activeView)
     {
-        View.SetUpUpgradeButtons(_list, activeView);
+        View.SetUpUpgradeButtonViews(_list, activeView);
         View.Show();
     }
     private void ClearMenuHandler()
@@ -41,11 +41,11 @@ public class UpgradeMenuMediator : Mediator
         View.ClearMenu();
         SubscribeToUpgradeHandler();
     }
-    private void GetUpgrades(List<UpgradeButton> _list)
+    private void GetUpgrades(List<UpgradeButtonView> _list)
     {
         _upgradeButtons.Clear();
         _upgradeButtons.AddRange(_list);
-        View.OnUpgradeButtonCreated -= GetUpgrades;
+        View.OnUpgradeButtonViewCreated -= GetUpgrades;
         SubscribeToUpgradeHandler();
       //  Debug.Log("GetUpgrades");
     }
@@ -57,8 +57,7 @@ public class UpgradeMenuMediator : Mediator
         //{
             foreach (var button in _upgradeButtons)
             {
-                Debug.Log("Подписка");
-                button.OnUpgradeButtonClick += UpgradeTowerHandler;
+                button.OnUpgradeButtonViewClick += UpgradeTowerHandler;
             }
         //}
         _subscribedToUpdate = true;
@@ -69,11 +68,11 @@ public class UpgradeMenuMediator : Mediator
         foreach (var button in _upgradeButtons)
         {
             Debug.Log("Отписка");
-            button.OnUpgradeButtonClick -= UpgradeTowerHandler;
+            button.OnUpgradeButtonViewClick -= UpgradeTowerHandler;
         }
         _subscribedToUpdate = false;
     }
-    private void UpgradeTowerHandler(UpgradeButton button)
+    private void UpgradeTowerHandler(UpgradeButtonView button)
     {
         Debug.Log("UpgradeTowerHandler");
         UnsubscribeToUpgradeHandler();

@@ -61,6 +61,7 @@ public class UIContext : CoreContext
         mediationBinder.BindView<TowerMenuView>().ToMediator<TowerMenuMediator>();
         mediationBinder.BindView<UserDataView>().ToMediator<UserDataMediator>();
         mediationBinder.BindView<UpgradeMenuView>().ToMediator<UpgradeMenuMediator>();
+        mediationBinder.BindView<UpgradeButtonView>().ToMediator<UpgradeButtonMediator>();
         mediationBinder.BindView<WarningsView>().ToMediator<WarningsMediator>();
     }
 

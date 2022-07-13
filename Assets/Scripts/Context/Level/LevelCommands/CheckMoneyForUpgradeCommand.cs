@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CheckMoneyForUpgradeCommand : Command
 {
-    [Inject] public UpgradeButton UpgradeButton { get; set; }
+    [Inject] public UpgradeButtonView UpgradeButtonView { get; set; }
 
     public override void Execute()
     {

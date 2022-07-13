@@ -22,7 +22,7 @@ namespace context.ui
     public class HideMenuSignal : Signal { }
     public class TowerChosenSignal : Signal<TowerButtonView> { }
     public class TowerBoughtSignal : Signal { }
-    public class UpgradeChosenSignal : Signal<UpgradeButton> { }
+    public class UpgradeChosenSignal : Signal<UpgradeButtonView> { }
     public class ShowTowerDataSignal : Signal<TowerModel> { }
     public class TowerUpgradedSignal : Signal { }
     public class NoMoneySignal : Signal { }

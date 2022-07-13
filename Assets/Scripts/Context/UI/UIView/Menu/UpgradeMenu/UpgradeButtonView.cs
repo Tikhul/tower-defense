@@ -1,10 +1,11 @@
+using strange.extensions.mediation.impl;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpgradeButton : MonoBehaviour
+public class UpgradeButtonView : View
 {
     [SerializeField] private TMPro.TMP_Text _costText;
     [SerializeField] private TMPro.TMP_Text _damageUpgradeText;
@@ -13,7 +14,7 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField] private Button _button;
   
     public TowerView ActiveView { get; set; }
-    public event Action<UpgradeButton> OnUpgradeButtonClick = delegate { };
+    public event Action<UpgradeButtonView> OnUpgradeButtonViewClick = delegate { };
     public TMPro.TMP_Text CostText
     {
         get => _costText;
@@ -49,6 +50,6 @@ public class UpgradeButton : MonoBehaviour
     private void OnClickHandler()
     {
         Debug.Log("onClick");
-        OnUpgradeButtonClick?.Invoke(this);
+        OnUpgradeButtonViewClick?.Invoke(this);
     }
 }
