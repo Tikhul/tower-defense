@@ -38,14 +38,6 @@ public class BoardView : BaseView
         }
     }
 
-    public void BlockBoard()
-    {
-        foreach(var cell in GetComponentsInChildren<CellButtonView>())
-        {
-            cell.ButtonElement.interactable = false;
-        }
-    }
-
     public void UnblockBoard()
     {
         foreach (var cell in GetComponentsInChildren<CellButtonView>())

@@ -49,6 +49,17 @@ public class CellButtonView : View
             OnCellButtonViewClick?.Invoke(this);
         });
     }
+    public void BlockButton()
+    {
+        ButtonElement.interactable = false;
+    }
+    public void UnblockButton()
+    {
+        if (!State.Equals(CellState.EnemyWay))
+        {
+            ButtonElement.interactable = true;
+        }
+    }
 }
 
 public enum CellState
