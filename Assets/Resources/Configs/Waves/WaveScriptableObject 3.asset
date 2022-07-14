@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 3
   _waveHold: 0
+  _enemyData:
+  - _config: {fileID: 11400000, guid: b6aeaa37b25e1fd419f3bb88ef9b56f3, type: 2}
+    _amount: 3
+  - _config: {fileID: 11400000, guid: eb49b9ff3cbf5e84da6060a5993d0aa7, type: 2}
+    _amount: 2

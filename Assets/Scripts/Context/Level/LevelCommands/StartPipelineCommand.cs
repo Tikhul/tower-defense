@@ -14,6 +14,5 @@ public class StartPipelineCommand : Command
         LevelsPipelineModel.Begin();
         injectionBinder.GetInstance<PassLevelDataSignal>().Dispatch(LevelsPipelineModel.CurrentLevel);
         injectionBinder.GetInstance<DefineEnemyWaySignal>().Dispatch();
-        Debug.Log("StartPipelinecommand");
     }
 }

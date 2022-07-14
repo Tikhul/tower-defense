@@ -15,6 +15,7 @@ public class CellButtonView : View
     [SerializeField] private TMP_Text _buttonText;
     [SerializeField] private Button _buttonElement;
     [SerializeField] private AllTowersView _towers;
+    [SerializeField] private AllEnemiesView _enemies;
 
     public event Action<CellButtonView> OnCellButtonViewClick = delegate { };
     public int CellInt
@@ -41,6 +42,11 @@ public class CellButtonView : View
     {
         get => _towers;
         set => _towers = value;
+    }
+    public AllEnemiesView Enemies
+    {
+        get => _enemies;
+        set => _enemies = value;
     }
     private void OnEnable()
     {
@@ -81,6 +87,18 @@ public class CellButtonView : View
         {
             ButtonElement.interactable = true;
             GetComponent<Image>().color = Color.white;
+        }
+    }
+
+    public void ActivateEnemy(EnemyModel enemy)
+    {
+        foreach(var enemyView in _enemies.EnemyViews)
+        {
+            if (enemy.Config.Id.Equals(enemyView.Config.Id))
+            {
+                enemyView.gameObject.SetActive(true);
+                Debug.Log("ActivateEnemy " + enemyView.Config.Id);
+            }
         }
     }
 }
