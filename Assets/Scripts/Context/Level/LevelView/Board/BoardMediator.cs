@@ -11,7 +11,6 @@ public class BoardMediator : Mediator
     [Inject] public BoardView View { get; set; }
     [Inject] public GameModel GameModel { get; set; }
     [Inject] public DrawBoardSignal DrawBoardSignal { get; set; }
-    [Inject] public DrawEnemyWaySignal DrawEnemyWaySignal { get; set; }
     [Inject] public ShowRestartPanelSignal ShowRestartPanelSignal { get; set; }
     [Inject] public PipelineEndedSignal PipelineEndedSignal { get; set; }
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
@@ -23,43 +22,31 @@ public class BoardMediator : Mediator
     {
         DrawBoardSignal.Dispatch(View.BoardParent);
         OnEnemyWayDefinedSignal.AddListener(DrawEnemiesHandler);
-        DrawEnemyWaySignal.Dispatch();
-        RestartLevelChosenSignal.AddListener(LevelStartHandler);
-        NextLevelChosenSignal.AddListener(LevelStartHandler);
-        ShowRestartPanelSignal.AddListener(HidePanel);
-        PipelineEndedSignal.AddListener(PipelineEndedHandler);
+        RestartLevelChosenSignal.AddListener(ShowPanelHandler);
+        NextLevelChosenSignal.AddListener(ShowPanelHandler);
+        ShowRestartPanelSignal.AddListener(HidePanelHandler);
+        PipelineEndedSignal.AddListener(HidePanelHandler);
     }
 
     public override void OnRemove()
     {
-        RestartLevelChosenSignal.RemoveListener(LevelStartHandler);
-        NextLevelChosenSignal.RemoveListener(LevelStartHandler);
-        ShowRestartPanelSignal.RemoveListener(HidePanel);
-        PipelineEndedSignal.RemoveListener(PipelineEndedHandler);
+        RestartLevelChosenSignal.RemoveListener(ShowPanelHandler);
+        NextLevelChosenSignal.RemoveListener(ShowPanelHandler);
+        ShowRestartPanelSignal.RemoveListener(HidePanelHandler);
+        PipelineEndedSignal.RemoveListener(HidePanelHandler);
+        OnEnemyWayDefinedSignal.RemoveListener(DrawEnemiesHandler);
     }
-    private void LevelStartHandler()
+    private void ShowPanelHandler()
     {
         View.Show();
     }
 
-    private void PipelineEndedHandler()
+    private void HidePanelHandler()
     {
-        HidePanel();
-        Unsubscribe();
+        View.Hide();
     }
     private void DrawEnemiesHandler()
     {
-        View.DrawEnemiesWays(GameModel.Board.CurrentCellList);
         CreateEnemiesSignal.Dispatch();
-    }
-
-    private void Unsubscribe()
-    {
-        OnEnemyWayDefinedSignal.RemoveListener(DrawEnemiesHandler);
-    }
-
-    private void HidePanel()
-    {
-        View.Hide();
     }
 }

@@ -70,6 +70,19 @@ public class CellButtonView : View
             }
         }
     }
+    public void DrawEnemyWay()
+    {
+        if (State.Equals(CellState.EnemyWay))
+        {
+            ButtonElement.interactable = false;
+            GetComponent<Image>().color = Color.blue;
+        }
+        else
+        {
+            ButtonElement.interactable = true;
+            GetComponent<Image>().color = Color.white;
+        }
+    }
 }
 
 public enum CellState

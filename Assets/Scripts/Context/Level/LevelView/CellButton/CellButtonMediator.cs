@@ -1,3 +1,4 @@
+using context.level;
 using context.ui;
 using strange.extensions.mediation.impl;
 using System.Collections;
@@ -11,12 +12,16 @@ public class CellButtonMediator : Mediator
     [Inject] public UnblockBoardSignal UnblockBoardSignal { get; set; }
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
+    [Inject] public OnEnemyWayDefinedSignal OnEnemyWayDefinedSignal { get; set; }
+    [Inject] public DrawEnemyWaySignal DrawEnemyWaySignal { get; set; }
     public override void OnRegister()
     {
+        DrawEnemyWaySignal.Dispatch();
         BlockBoardSignal.AddListener(BlockButtonHandler);
         UnblockBoardSignal.AddListener(UnblockButtonHandler);
         RestartLevelChosenSignal.AddListener(ClearButtonHandler);
         NextLevelChosenSignal.AddListener(ClearButtonHandler);
+        OnEnemyWayDefinedSignal.AddListener(DrawEnemyHandler);
     }
     public override void OnRemove()
     {
@@ -24,6 +29,7 @@ public class CellButtonMediator : Mediator
         UnblockBoardSignal.RemoveListener(UnblockButtonHandler);
         RestartLevelChosenSignal.RemoveListener(ClearButtonHandler);
         NextLevelChosenSignal.RemoveListener(ClearButtonHandler);
+        OnEnemyWayDefinedSignal.RemoveListener(DrawEnemyHandler);
     }
     private void BlockButtonHandler()
     {
@@ -37,5 +43,8 @@ public class CellButtonMediator : Mediator
     {
         View.ClearButton();
     }
-    // TODO: перенести все из BoardMediator
+    private void DrawEnemyHandler()
+    {
+        View.DrawEnemyWay();
+    }
 }

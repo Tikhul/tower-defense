@@ -20,21 +20,4 @@ public class BoardView : BaseView
     {
         _canvas.worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
-
-    public void DrawEnemiesWays(List<CellButtonView> allButtons)
-    {
-        foreach (var button in allButtons)
-        {
-            if (button.State.Equals(CellState.EnemyWay))
-            {
-                button.ButtonElement.interactable = false;
-                button.GetComponent<Image>().color = Color.blue;
-            }
-            else
-            {
-                button.ButtonElement.interactable = true;
-                button.GetComponent<Image>().color = Color.white;
-            }
-        }
-    }
 }
