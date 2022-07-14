@@ -1,9 +1,6 @@
 using context.level;
 using context.ui;
 using strange.extensions.mediation.impl;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class CellButtonMediator : Mediator
 {
@@ -13,10 +10,9 @@ public class CellButtonMediator : Mediator
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
     [Inject] public OnEnemyWayDefinedSignal OnEnemyWayDefinedSignal { get; set; }
-    [Inject] public DrawEnemyWaySignal DrawEnemyWaySignal { get; set; }
     public override void OnRegister()
     {
-        DrawEnemyWaySignal.Dispatch();
+        DrawEnemyHandler();
         BlockBoardSignal.AddListener(BlockButtonHandler);
         UnblockBoardSignal.AddListener(UnblockButtonHandler);
         RestartLevelChosenSignal.AddListener(ClearButtonHandler);

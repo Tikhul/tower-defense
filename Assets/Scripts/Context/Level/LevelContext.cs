@@ -48,9 +48,9 @@ public class LevelContext : CoreContext
             .To<BeginNextLevelCommand>()
             .InSequence();
         commandBinder.Bind<RestartLevelChosenSignal>().To<RestartLevelCommand>();
-        commandBinder.Bind<DrawEnemyWaySignal>()
+        commandBinder.Bind<DefineEnemyWaySignal>()
             .To<ClearEnemyWayCommand>()
-            .To<SetEnemyWayCommand>()
+            .To<DefineEnemyWayCommand>()
             .InSequence();
         commandBinder.Bind<TowerChosenSignal>()
             .To<CheckMoneyForTowerCommand>()

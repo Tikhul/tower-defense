@@ -7,7 +7,7 @@ using UnityEngine;
 /// <summary>
 /// Подстановка статуса EnemyWay клеткам, по которым идет путь врагов
 /// </summary>
-public class SetEnemyWayCommand : Command
+public class DefineEnemyWayCommand : Command
 {
     public override void Execute()
     {
