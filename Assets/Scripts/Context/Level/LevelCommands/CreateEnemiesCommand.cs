@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CreateEnemiesCommand : Command
 {
-    [Inject] public List<EnemyModel> ReceivedEnemies { get; set; }
+  //  [Inject] public List<EnemyModel> ReceivedEnemies { get; set; }
     public override void Execute()
     {
         Debug.Log("CreateEnemiesCommand");

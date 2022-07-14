@@ -37,27 +37,4 @@ public class BoardView : BaseView
             }
         }
     }
-
-    public void UnblockBoard()
-    {
-        foreach (var cell in GetComponentsInChildren<CellButtonView>())
-        {
-            if (!cell.State.Equals(CellState.EnemyWay))
-            {
-                cell.ButtonElement.interactable = true;
-            }
-        }
-            
-    }
-
-    public void ClearTowers(List<CellButtonView> buttonsWithTower)
-    {
-        foreach (var button in buttonsWithTower)
-        {
-            foreach(var tower in button.Towers.TowerViews)
-            {
-                tower.gameObject.SetActive(false);
-            }
-        }
-    }
 }

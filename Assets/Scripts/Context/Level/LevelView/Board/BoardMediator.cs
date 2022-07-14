@@ -10,7 +10,6 @@ public class BoardMediator : Mediator
 {
     [Inject] public BoardView View { get; set; }
     [Inject] public GameModel GameModel { get; set; }
-    [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public DrawBoardSignal DrawBoardSignal { get; set; }
     [Inject] public DrawEnemyWaySignal DrawEnemyWaySignal { get; set; }
     [Inject] public ShowRestartPanelSignal ShowRestartPanelSignal { get; set; }
@@ -40,8 +39,7 @@ public class BoardMediator : Mediator
     }
     private void LevelStartHandler()
     {
-        ClearTowers();
-        ShowPanel();
+        View.Show();
     }
 
     private void PipelineEndedHandler()
@@ -52,7 +50,7 @@ public class BoardMediator : Mediator
     private void DrawEnemiesHandler()
     {
         View.DrawEnemiesWays(GameModel.Board.CurrentCellList);
-        CreateEnemiesSignal.Dispatch(LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.WaveEnemies);
+        CreateEnemiesSignal.Dispatch();
     }
 
     private void Unsubscribe()
@@ -63,15 +61,5 @@ public class BoardMediator : Mediator
     private void HidePanel()
     {
         View.Hide();
-    }
-
-    private void ShowPanel()
-    {
-        View.Show();
-    }
-    private void ClearTowers()
-    {
-        List<CellButtonView> buttonsWithTowers = GameModel.Board.CurrentCellList.FindAll(x => x.State == CellState.HasTower);
-        View.ClearTowers(buttonsWithTowers);
     }
 }

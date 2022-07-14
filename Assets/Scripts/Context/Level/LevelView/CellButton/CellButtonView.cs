@@ -60,6 +60,16 @@ public class CellButtonView : View
             ButtonElement.interactable = true;
         }
     }
+    public void ClearButton()
+    {
+        if (State.Equals(CellState.HasTower))
+        {
+            foreach(var tower in Towers.TowerViews)
+            {
+                tower.gameObject.SetActive(false);
+            }
+        }
+    }
 }
 
 public enum CellState
