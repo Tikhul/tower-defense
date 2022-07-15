@@ -89,18 +89,6 @@ public class CellButtonView : View
             GetComponent<Image>().color = Color.white;
         }
     }
-
-    public void ActivateEnemy(EnemyModel enemy)
-    {
-        foreach(var enemyView in _enemies.EnemyViews)
-        {
-            if (enemy.Config.Id.Equals(enemyView.Config.Id))
-            {
-                enemyView.gameObject.SetActive(true);
-                Debug.Log("ActivateEnemy " + enemyView.Config.Id);
-            }
-        }
-    }
 }
 
 public enum CellState

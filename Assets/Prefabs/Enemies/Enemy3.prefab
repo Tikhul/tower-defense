@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6766073143137085274}
   - component: {fileID: 1504694088289526472}
   m_Layer: 0
-  m_Name: Enemy1
+  m_Name: Enemy3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,4 +108,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d67e52a94e57f746a09f934efa8fdcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: eb49b9ff3cbf5e84da6060a5993d0aa7, type: 2}
+  _config: {fileID: 11400000, guid: 06c69fa2f7b847142bd4fcb439f1b3e8, type: 2}
