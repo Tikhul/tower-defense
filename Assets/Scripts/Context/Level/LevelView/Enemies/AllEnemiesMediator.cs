@@ -20,21 +20,30 @@ public class AllEnemiesMediator : Mediator
     }
     private void DrawEnemiesHandler()
     {
-        Debug.Log("DrawEnemiesHandler");
-        List<EnemyModel> _tempList = new List<EnemyModel>();
-
-        _tempList.AddRange(LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.WaveEnemies);
-
-        for (int i = 0; i < _tempList.Count; i++)
+        if (LevelsPipelineModel.CurrentLevel.EnemyWay.Config.Indexes[0].Equals(
+            View.CellButtonView.CellInt.ToString() + View.CellButtonView.CellChar.ToString()))
         {
-            StartCoroutine(ActivateEnemy(_tempList[i]));
+            List<EnemyModel> _tempList = new List<EnemyModel>();
+            _tempList.AddRange(LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.WaveEnemies);
+            StartCoroutine(ActivateEnemy(_tempList));
         }
     }
 
-    private IEnumerator ActivateEnemy(EnemyModel enemy)
+    private IEnumerator ActivateEnemy(List<EnemyModel> _enemies)
     {
-        View.ActivateEnemy(LevelsPipelineModel.CurrentLevel.EnemyWay.Config.Indexes[0], enemy);
-        yield return new WaitForSeconds(1.5f);
-        Debug.Log("ActivateEnemyCoroutine");
+        for (int i=0; i< _enemies.Count; i++)
+        {
+            if (i == 0)
+            {
+                View.ActivateEnemy(_enemies[i]);
+                Debug.Log("ActivateEnemy - first");
+            }
+            else
+            {
+                yield return new WaitForSeconds(2f);
+                View.ActivateEnemy(_enemies[i]);
+                Debug.Log("ActivateEnemy");
+            }
+        }
     }
 }

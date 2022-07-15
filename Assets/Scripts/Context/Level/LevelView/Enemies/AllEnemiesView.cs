@@ -8,10 +8,10 @@ public class AllEnemiesView : View
     [SerializeField] private List<GameObject> _enemyPrefabs;
     [SerializeField] private CellButtonView _cellButtonView;
     public List<GameObject> EnemyPrefabs => _enemyPrefabs;
-    public void ActivateEnemy(string index, EnemyModel model)
+    public CellButtonView CellButtonView => _cellButtonView;
+    public void ActivateEnemy(EnemyModel model)
     {
-        if(index.Equals(_cellButtonView.CellInt.ToString() + _cellButtonView.CellChar.ToString()))
-        {
+        
             foreach(var enemy in _enemyPrefabs)
             {
                 if (enemy.GetComponent<EnemyView>().Config.Id.Equals(model.Config.Id))
@@ -22,6 +22,6 @@ public class AllEnemiesView : View
                     _newEnemy.transform.localScale = enemy.transform.localScale;
                 }
             }
-        }
+        
     }
 }
