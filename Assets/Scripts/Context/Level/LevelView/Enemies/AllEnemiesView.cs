@@ -11,17 +11,16 @@ public class AllEnemiesView : View
     public CellButtonView CellButtonView => _cellButtonView;
     public void ActivateEnemy(EnemyModel model)
     {
-        
-            foreach(var enemy in _enemyPrefabs)
+        foreach(var enemy in _enemyPrefabs)
+        {
+            if (enemy.GetComponent<EnemyView>().Config.Id.Equals(model.Config.Id))
             {
-                if (enemy.GetComponent<EnemyView>().Config.Id.Equals(model.Config.Id))
-                {
-                    GameObject _newEnemy = Instantiate(enemy);
-                    _newEnemy.transform.parent = transform;
-                    _newEnemy.transform.localPosition = enemy.transform.position;
-                    _newEnemy.transform.localScale = enemy.transform.localScale;
-                }
+                GameObject _newEnemy = Instantiate(enemy);
+                _newEnemy.transform.parent = transform;
+                _newEnemy.transform.localPosition = enemy.transform.position;
+                _newEnemy.transform.localScale = enemy.transform.localScale;
             }
+        }
         
     }
 }
