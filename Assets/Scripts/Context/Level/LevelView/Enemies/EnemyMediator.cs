@@ -3,6 +3,7 @@ using context.ui;
 using strange.extensions.mediation.impl;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyMediator : Mediator
@@ -12,6 +13,7 @@ public class EnemyMediator : Mediator
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
+    [Inject] public GameModel GameModel { get; set; }
     public override void OnRegister()
     {
         EnemyActivatedSignal.AddListener(FillWayPointsHandler);
@@ -25,7 +27,8 @@ public class EnemyMediator : Mediator
     }
     private void FillWayPointsHandler()
     {
-        View.FillWayPoints(LevelsPipelineModel.CurrentLevel.EnemyWay);
+        View.FillWayPoints(LevelsPipelineModel.CurrentLevel.EnemyWay
+            .GetEnemyWayTransforms(GameModel.Board.CurrentCellList.Where(x=>x.State.Equals(CellState.EnemyWay)).ToList()));
         EnemyActivatedSignal.RemoveListener(FillWayPointsHandler);
     }
     private void ClearEnemiesHandler()

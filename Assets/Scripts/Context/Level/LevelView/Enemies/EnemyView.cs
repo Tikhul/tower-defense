@@ -10,9 +10,15 @@ public class EnemyView : View
     [SerializeField] private DOTweenPath _path;
     public EnemyConfig Config => _config;
     public DOTweenPath Path => _path;
-    public void FillWayPoints(EnemyWayModel enemyWay)
+    public void FillWayPoints(List<Vector3> _receivedTransforms)
     {
         Debug.Log("FillWayPoints");
+        for(int i=0; i<_receivedTransforms.Count; i++)
+        {
+            Path.wps.Add(_receivedTransforms[i]);
+        }
+        Debug.Log(Path.tween.PathLength());
+        Path.DOPlay();
     }
     public void ClearEnemies()
     {
