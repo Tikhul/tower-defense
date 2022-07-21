@@ -10,8 +10,7 @@ public class AllEnemiesView : View
     [SerializeField] private CellButtonView _cellButtonView;
     public List<GameObject> EnemyPrefabs => _enemyPrefabs;
     public CellButtonView CellButtonView => _cellButtonView;
-    public event Action OnEnemyInstanciated = delegate { };
-    public void ActivateEnemy(EnemyModel model)
+    public void ActivateEnemy(EnemyModel model, bool isLast)
     {
         foreach(var enemy in _enemyPrefabs)
         {
@@ -21,7 +20,7 @@ public class AllEnemiesView : View
                 _newEnemy.transform.parent = transform;
                 _newEnemy.transform.localPosition = enemy.transform.position;
                 _newEnemy.transform.localScale = enemy.transform.localScale;
-                OnEnemyInstanciated.Invoke();
+                _newEnemy.GetComponent<EnemyView>().IsLast = isLast;
             }
         }
     }

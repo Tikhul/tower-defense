@@ -61,6 +61,10 @@ public class LevelContext : CoreContext
             .To<CheckMoneyForUpgradeCommand>()
             .To<UpgradeTowerCommand>()
             .InSequence();
+        commandBinder.Bind<WaveEndedSignal>()
+            .To<EndCurrentWaveCommand>()
+            .To<BeginNextWaveCommand>()
+            .InSequence();
     }
     protected override void MapMediators()
     {

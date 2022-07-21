@@ -19,6 +19,7 @@ public class AllEnemiesMediator : Mediator
         OnEnemyWayDefinedSignal.AddListener(DrawEnemiesHandler);
         PipelineEndedSignal.AddListener(Unsubscribe);
     }
+
     private void DrawEnemiesHandler()
     {
         if (LevelsPipelineModel.CurrentLevel.EnemyWay.Config.Indexes[0].Equals(
@@ -31,18 +32,34 @@ public class AllEnemiesMediator : Mediator
     }
     private IEnumerator ActivateEnemy(List<EnemyModel> _enemies)
     {
-        for (int i=0; i< _enemies.Count; i++)
+        for (int i=0; i < _enemies.Count; i++)
         {
             if (i == 0)
             {
-                yield return new WaitForSeconds(1f);
-                View.ActivateEnemy(_enemies[i]);
+                if(i != _enemies.Count - 1)
+                {
+                    yield return new WaitForSeconds(1f);
+                    View.ActivateEnemy(_enemies[i], false);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(1f);
+                    View.ActivateEnemy(_enemies[i], true);
+                }
                 Debug.Log("ActivateEnemy - first");
             }
             else
             {
-                yield return new WaitForSeconds(2f);
-                View.ActivateEnemy(_enemies[i]);
+                if (i != _enemies.Count - 1)
+                {
+                    yield return new WaitForSeconds(2f);
+                    View.ActivateEnemy(_enemies[i], false);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(2f);
+                    View.ActivateEnemy(_enemies[i], true);
+                }
                 Debug.Log("ActivateEnemy");
             }
         }
