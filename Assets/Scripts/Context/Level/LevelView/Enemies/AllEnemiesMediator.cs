@@ -1,4 +1,5 @@
 using context.level;
+using context.ui;
 using strange.extensions.mediation.impl;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,16 +9,14 @@ using UnityEngine;
 public class AllEnemiesMediator : Mediator
 {
     [Inject] public AllEnemiesView View { get; set; }
-    [Inject] public OnEnemyWayDefinedSignal OnEnemyWayDefinedSignal { get; set; }
-    [Inject] public ActivateEnemySignal ActivateEnemySignal { get; set; }
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
-    [Inject] public PipelineStartSignal PipelineStartSignal { get; set; }
-    [Inject] public PipelineEndedSignal PipelineEndedSignal { get; set; }
+    [Inject] public ActivateWaveSignal ActivateWaveSignal { get; set; }
+    [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
     public override void OnRegister()
     {
         DrawEnemiesHandler();
-        OnEnemyWayDefinedSignal.AddListener(DrawEnemiesHandler);
-        PipelineEndedSignal.AddListener(Unsubscribe);
+        ActivateWaveSignal.AddListener(DrawEnemiesHandler);
+        NextLevelChosenSignal.AddListener(DrawEnemiesHandler);
     }
 
     private void DrawEnemiesHandler()
@@ -64,8 +63,12 @@ public class AllEnemiesMediator : Mediator
             }
         }
     }
+    private void Subscribe()
+    {
+        ActivateWaveSignal.AddListener(DrawEnemiesHandler);
+    }
     private void Unsubscribe()
     {
-        OnEnemyWayDefinedSignal.RemoveListener(DrawEnemiesHandler);
+        ActivateWaveSignal.RemoveListener(DrawEnemiesHandler);
     }
 }
