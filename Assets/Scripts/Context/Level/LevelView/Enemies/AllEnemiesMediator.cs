@@ -34,7 +34,8 @@ public class AllEnemiesMediator : Mediator
         for (int i=0; i< _enemies.Count; i++)
         {
             if (i == 0)
-            { 
+            {
+                yield return new WaitForSeconds(1f);
                 View.ActivateEnemy(_enemies[i]);
                 Debug.Log("ActivateEnemy - first");
             }

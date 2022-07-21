@@ -14,7 +14,7 @@ public class EnemyView : View
     {
         Debug.Log("FillWayPoints");
         Path.wps.AddRange(_receivedTransforms);
-        transform.DOPath(Path.wps.ToArray(), 5f);
+        transform.DOPath(Path.wps.ToArray(), 6f);
         Debug.Log(Path.wps.Count);
     }
     public void ClearEnemies()
