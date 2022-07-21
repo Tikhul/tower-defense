@@ -17,8 +17,7 @@ public class EnemyView : View
         {
             Path.wps.Add(_receivedTransforms[i]);
         }
-        Debug.Log(Path.tween.PathLength());
-        Path.DOPlay();
+        transform.DOPath(Path.wps.ToArray(), 5f);
     }
     public void ClearEnemies()
     {
