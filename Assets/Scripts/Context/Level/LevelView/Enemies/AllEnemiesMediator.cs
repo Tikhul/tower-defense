@@ -11,16 +11,13 @@ public class AllEnemiesMediator : Mediator
     [Inject] public OnEnemyWayDefinedSignal OnEnemyWayDefinedSignal { get; set; }
     [Inject] public ActivateEnemySignal ActivateEnemySignal { get; set; }
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
-    [Inject] public EnemyActivatedSignal EnemyActivatedSignal { get; set; }
     [Inject] public PipelineStartSignal PipelineStartSignal { get; set; }
+    [Inject] public PipelineEndedSignal PipelineEndedSignal { get; set; }
     public override void OnRegister()
     {
         DrawEnemiesHandler();
         OnEnemyWayDefinedSignal.AddListener(DrawEnemiesHandler);
-    }
-    public override void OnRemove()
-    {
-        OnEnemyWayDefinedSignal.RemoveListener(DrawEnemiesHandler);
+        PipelineEndedSignal.AddListener(Unsubscribe);
     }
     private void DrawEnemiesHandler()
     {
@@ -39,16 +36,18 @@ public class AllEnemiesMediator : Mediator
             if (i == 0)
             { 
                 View.ActivateEnemy(_enemies[i]);
-                EnemyActivatedSignal.Dispatch();
                 Debug.Log("ActivateEnemy - first");
             }
             else
             {
                 yield return new WaitForSeconds(2f);
                 View.ActivateEnemy(_enemies[i]);
-                EnemyActivatedSignal.Dispatch();
                 Debug.Log("ActivateEnemy");
             }
         }
+    }
+    private void Unsubscribe()
+    {
+        OnEnemyWayDefinedSignal.RemoveListener(DrawEnemiesHandler);
     }
 }

@@ -13,5 +13,4 @@ namespace context.level
     public class DefineEnemyWaySignal : Signal { }
     public class OnEnemyWayDefinedSignal : Signal { }
     public class ActivateEnemySignal : Signal<string, EnemyModel> { }
-    public class EnemyActivatedSignal : Signal { }
 }

@@ -13,14 +13,13 @@ public class EnemyView : View
     public void FillWayPoints(List<Vector3> _receivedTransforms)
     {
         Debug.Log("FillWayPoints");
-        for(int i=0; i<_receivedTransforms.Count; i++)
-        {
-            Path.wps.Add(_receivedTransforms[i]);
-        }
+        Path.wps.AddRange(_receivedTransforms);
         transform.DOPath(Path.wps.ToArray(), 5f);
+        Debug.Log(Path.wps.Count);
     }
     public void ClearEnemies()
     {
+        transform.DOKill();
         Destroy(gameObject);
     }
 }

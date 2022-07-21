@@ -9,14 +9,13 @@ using UnityEngine;
 public class EnemyMediator : Mediator
 {
     [Inject] public EnemyView View { get; set; }
-    [Inject] public EnemyActivatedSignal EnemyActivatedSignal { get; set; }
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     [Inject] public GameModel GameModel { get; set; }
     public override void OnRegister()
     {
-        EnemyActivatedSignal.AddListener(FillWayPointsHandler);
+        FillWayPointsHandler();
         NextLevelChosenSignal.AddListener(ClearEnemiesHandler);
         RestartLevelChosenSignal.AddListener(ClearEnemiesHandler);
     }
@@ -29,7 +28,6 @@ public class EnemyMediator : Mediator
     {
         View.FillWayPoints(LevelsPipelineModel.CurrentLevel.EnemyWay
             .GetEnemyWayTransforms(GameModel.Board.CurrentCellList.Where(x=>x.State.Equals(CellState.EnemyWay)).ToList()));
-        EnemyActivatedSignal.RemoveListener(FillWayPointsHandler);
     }
     private void ClearEnemiesHandler()
     {
