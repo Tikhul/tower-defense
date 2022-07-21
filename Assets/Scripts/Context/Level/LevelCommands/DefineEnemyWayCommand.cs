@@ -9,15 +9,18 @@ using UnityEngine;
 /// </summary>
 public class DefineEnemyWayCommand : Command
 {
+    private List<string> _indices => injectionBinder.GetInstance<LevelsPipelineModel>().CurrentLevel.EnemyWay.Config.Indexes;
     public override void Execute()
     {
         foreach(CellButtonView cell in injectionBinder.GetInstance<GameModel>().Board.CurrentCellList)
         {
-            foreach (string index in injectionBinder.GetInstance<LevelsPipelineModel>().CurrentLevel.EnemyWay.Config.Indexes)
+            for (int i = 0; i< _indices.Count; i++)
             {
-                if(index.Equals(cell.CellInt.ToString() + cell.CellChar.ToString()))
+                var index = _indices[i];
+                if (index.Equals(cell.CellInt.ToString() + cell.CellChar.ToString()))
                 {
                     cell.State = CellState.EnemyWay;
+                    cell.OrderIndex = i;
                 }
             }
         }

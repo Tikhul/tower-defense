@@ -29,7 +29,9 @@ public class EnemyMediator : Mediator
     private void FillWayPointsHandler()
     {
         View.FillWayPoints(LevelsPipelineModel.CurrentLevel.EnemyWay
-            .GetEnemyWayTransforms(GameModel.Board.CurrentCellList.Where(x=>x.State.Equals(CellState.EnemyWay)).ToList()));
+            .GetEnemyWayTransforms(GameModel.Board.CurrentCellList.Where(x=>x.State.Equals(CellState.EnemyWay))
+            .OrderBy(x=>x.OrderIndex)
+            .ToList()));
     }
     private void ClearEnemiesHandler()
     {

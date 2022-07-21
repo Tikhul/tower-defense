@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyView : View
+public class EnemyView : BaseView
 {
     [SerializeField] private EnemyConfig _config;
     [SerializeField] private DOTweenPath _path;

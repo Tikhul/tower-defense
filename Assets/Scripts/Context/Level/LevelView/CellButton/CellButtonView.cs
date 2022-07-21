@@ -12,6 +12,7 @@ public class CellButtonView : View
     private int _cellInt;
     private char _cellChar;
     public CellState State { get; set; } = CellState.Empty;
+    public int OrderIndex { get; set; }
     [SerializeField] private TMP_Text _buttonText;
     [SerializeField] private Button _buttonElement;
     [SerializeField] private AllTowersView _towers;

@@ -65,12 +65,4 @@ public class AllEnemiesMediator : Mediator
             }
         }
     }
-    private void Subscribe()
-    {
-        ActivateWaveSignal.AddListener(DrawEnemiesHandler);
-    }
-    private void Unsubscribe()
-    {
-        ActivateWaveSignal.RemoveListener(DrawEnemiesHandler);
-    }
 }
