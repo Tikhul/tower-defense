@@ -14,12 +14,14 @@ public class EnemyMediator : Mediator
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     [Inject] public GameModel GameModel { get; set; }
     [Inject] public WaveEndedSignal WaveEndedSignal { get; set; }
+    [Inject] public ChangeHealthSignal ChangeHealthSignal { get; set; }
     public override void OnRegister()
     {
         FillWayPointsHandler();
         NextLevelChosenSignal.AddListener(ClearEnemiesHandler);
         RestartLevelChosenSignal.AddListener(ClearEnemiesHandler);
         View.OnLastEnemy += WaveFinishedHandler;
+        View.OnEnemyWayCompleted += MinusHealthHandler;
     }
     public override void OnRemove()
     {
@@ -40,5 +42,9 @@ public class EnemyMediator : Mediator
     private void WaveFinishedHandler()
     {
         WaveEndedSignal.Dispatch();
+    }
+    private void MinusHealthHandler(int damage)
+    {
+        ChangeHealthSignal.Dispatch(damage);
     }
 }

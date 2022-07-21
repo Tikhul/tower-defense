@@ -13,6 +13,7 @@ public class EnemyView : BaseView
     public EnemyConfig Config => _config;
     public DOTweenPath Path => _path;
     public event Action OnLastEnemy = delegate { };
+    public event Action<int> OnEnemyWayCompleted = delegate { };
     public void FillWayPoints(List<Vector3> _receivedTransforms)
     {
         Path.wps.AddRange(_receivedTransforms);
@@ -25,6 +26,7 @@ public class EnemyView : BaseView
             OnLastEnemy.Invoke();
         }
         IsLast = false;
+        OnEnemyWayCompleted.Invoke(Config.Damage);
         ClearEnemies();
     }
     public void ClearEnemies()
