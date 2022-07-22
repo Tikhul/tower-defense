@@ -18,7 +18,7 @@ public class AllEnemiesView : View
             {
                 GameObject _newEnemy = Instantiate(enemy);
                 _newEnemy.transform.parent = transform;
-                _newEnemy.transform.localPosition = transform.position;
+                _newEnemy.transform.localPosition = transform.localPosition;
                 _newEnemy.transform.localScale = enemy.transform.localScale;
                 _newEnemy.GetComponent<EnemyView>().IsLast = isLast;
             }

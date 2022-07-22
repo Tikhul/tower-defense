@@ -45,7 +45,7 @@ public class TowerView : BaseView
     {
         _newBullet.GetComponent<Rigidbody>().isKinematic = false;
         _newBullet.GetComponent<Rigidbody>().useGravity = true;
-       _newBullet.GetComponent<Rigidbody>().AddForce(transform.up, ForceMode.Impulse);
+       _newBullet.GetComponent<Rigidbody>().AddForce(transform.forward, ForceMode.Impulse);
         Debug.Log("ShootBullet");
     }
 }
