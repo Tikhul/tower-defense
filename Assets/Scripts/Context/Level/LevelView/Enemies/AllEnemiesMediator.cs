@@ -12,14 +12,19 @@ public class AllEnemiesMediator : Mediator
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public ActivateWaveSignal ActivateWaveSignal { get; set; }
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
+    [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     public override void OnRegister()
     {
         DrawEnemiesHandler();
         ActivateWaveSignal.AddListener(DrawEnemiesHandler);
         NextLevelChosenSignal.AddListener(DrawEnemiesHandler);
+        RestartLevelChosenSignal.AddListener(DrawEnemiesHandler);
         LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.OnWaveBegin += DrawEnemiesHandler;
     }
-
+    public override void OnRemove()
+    {
+        LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.OnWaveBegin -= DrawEnemiesHandler;
+    }
     private void DrawEnemiesHandler()
     {
         if (LevelsPipelineModel.CurrentLevel.EnemyWay.Config.Indexes[0].Equals(
