@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TowerView : MonoBehaviour
+public class TowerView : BaseView
 {
     [SerializeField] private TowerConfig _towerConfig;
     [SerializeField] private Image _towerImage;
@@ -37,5 +37,12 @@ public class TowerView : MonoBehaviour
     public string TowerBulletsText
     {
         get => _towerConfig.BulletsNumber.ToString();
+    }
+    public void CreateBullets()
+    {
+        for(int i=0; i < _towerConfig.BulletsNumber; i++)
+        {
+            Debug.Log("CreateBullets");
+        }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297b6a2535f9f634d8d595fd0e1318ff, type: 3}
   m_Name: TowerScriptableObject_blue
   m_EditorClassIdentifier: 
-  _id: 
+  _id: blue
   _damage: 10
   _shootRadius: 20
   _shootFrequency: 30

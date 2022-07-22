@@ -3,13 +3,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeMenuView : BaseMenuView
 {
     [SerializeField] private TMPro.TMP_Text _damageText;
     [SerializeField] private TMPro.TMP_Text _radiusText;
     [SerializeField] private TMPro.TMP_Text _speedText;
-
+    [SerializeField] private Button _shootButton;
+    public event Action OnShootButtonClicked = delegate { };
     public void SetUpUpgradeButtonViews(List<UpgradeConfig> _list, TowerView activeView)
     {
         List<UpgradeButtonView> _tempList = new List<UpgradeButtonView>();
@@ -43,5 +45,17 @@ public class UpgradeMenuView : BaseMenuView
         {
             Destroy(button.gameObject);
         }
+    }
+    private void OnEnable()
+    {
+        _shootButton.onClick.AddListener(OnClickHandler);
+    }
+    private void OnDisable()
+    {
+        _shootButton.onClick.RemoveListener(OnClickHandler);
+    }
+    private void OnClickHandler()
+    {
+        OnShootButtonClicked?.Invoke();
     }
 }

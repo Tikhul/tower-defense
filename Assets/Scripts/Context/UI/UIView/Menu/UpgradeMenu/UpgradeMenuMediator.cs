@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class UpgradeMenuMediator : Mediator
 {
+    private TowerModel _towerModel;
+    private TowerView _towerView;
     [Inject] public UpgradeMenuView View { get; set; }
     [Inject] public UpgradeMenuCreatedSignal UpgradeMenuCreatedSignal { get; set; }
     [Inject] public HideMenuSignal HideMenuSignal { get; set; }
@@ -16,15 +18,18 @@ public class UpgradeMenuMediator : Mediator
         ShowTowerDataSignal.AddListener(ShowTowerDataHandler);
         UpgradeMenuCreatedSignal.AddListener(SetUpUpgradeButtonViewsHandler);
         HideMenuSignal.AddListener(ClearMenuHandler);
+        View.OnShootButtonClicked += ShootHandler;
     }
     public override void OnRemove()
     {
         ShowTowerDataSignal.RemoveListener(ShowTowerDataHandler);
         UpgradeMenuCreatedSignal.RemoveListener(SetUpUpgradeButtonViewsHandler);
         HideMenuSignal.RemoveListener(ClearMenuHandler);
+        View.OnShootButtonClicked -= ShootHandler;
     }
     private void SetUpUpgradeButtonViewsHandler(List<UpgradeConfig> _list, TowerView activeView)
     {
+        _towerView = activeView;
         View.SetUpUpgradeButtonViews(_list, activeView);
         View.Show();
     }
@@ -35,6 +40,11 @@ public class UpgradeMenuMediator : Mediator
     }
     private void ShowTowerDataHandler(TowerModel tower)
     {
+        _towerModel = tower;
         View.ShowTowerData(tower);
+    }
+    private void ShootHandler()
+    {
+        _towerView.CreateBullets();
     }
 }
