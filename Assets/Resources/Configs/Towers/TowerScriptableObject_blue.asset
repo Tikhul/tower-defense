@@ -15,8 +15,8 @@ MonoBehaviour:
   _id: blue
   _damage: 10
   _shootRadius: 20
-  _shootFrequency: 30
-  _bulletsNumber: 0
+  _shootFrequency: 3
+  _bulletsNumber: 3
   _cost: 10
   _upgrades:
   - {fileID: 11400000, guid: afd380ebe7d7dbe44b5fc4fa9e68287f, type: 2}

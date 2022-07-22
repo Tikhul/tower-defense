@@ -38,11 +38,16 @@ public class TowerView : BaseView
     {
         get => _towerConfig.BulletsNumber.ToString();
     }
-    public void CreateBullets()
+    public void CreateBullets(TowerModel _tower)
     {
-        for(int i=0; i < _towerConfig.BulletsNumber; i++)
+        StartCoroutine(WaitAndShoot(_tower));
+    }
+    private IEnumerator WaitAndShoot(TowerModel _tower)
+    {
+        for (int i = 0; i < _tower.BulletsNumber; i++)
         {
-            Debug.Log("CreateBullets");
-        }
+            yield return new WaitForSeconds(_tower.ShootFrequency);
+            Debug.Log("Shoot");
+        }  
     }
 }

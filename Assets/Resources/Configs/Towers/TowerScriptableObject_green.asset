@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: green
   _damage: 0
   _shootRadius: 0
-  _shootFrequency: 0
+  _shootFrequency: 2
   _bulletsNumber: 0
   _cost: 20
   _upgrades: []
