@@ -13,6 +13,7 @@ class StandardPartPrototype : BoardPartsPrototype
         GameObject newObject = Instantiate(objToCreate);
         newObject.GetComponent<RectTransform>().sizeDelta = new Vector2(width, height);
         newObject.transform.SetParent(parent.transform);
+        newObject.transform.rotation = parent.transform.rotation;
         newObject.transform.localScale = new Vector3(1, 1, 1);
         newObject.transform.localPosition = newObject.transform.position;
         return newObject;
