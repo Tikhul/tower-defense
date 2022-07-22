@@ -16,8 +16,9 @@ public class EnemyView : BaseView
     public event Action<int> OnEnemyWayCompleted = delegate { };
     public void FillWayPoints(List<Vector3> _receivedTransforms)
     {
+        var _duration = _receivedTransforms.Count / _config.Speed;
         Path.wps.AddRange(_receivedTransforms);
-        transform.DOPath(Path.wps.ToArray(), 6f).OnComplete(PerformAfterPath);
+        transform.DOPath(Path.wps.ToArray(), _duration).OnComplete(PerformAfterPath);
     }
     private void PerformAfterPath()
     {
