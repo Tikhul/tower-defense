@@ -44,7 +44,7 @@ public class AllEnemiesMediator : Mediator
             {
                 if(i != _enemies.Count - 1)
                 {
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.Config.WaveHold);
                     View.ActivateEnemy(_enemies[i], false);
                 }
                 else
