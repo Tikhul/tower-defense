@@ -7,6 +7,8 @@ public class TowerView : BaseView
 {
     [SerializeField] private TowerConfig _towerConfig;
     [SerializeField] private Image _towerImage;
+    [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private GameObject _bulletParent;
 
     public TowerConfig TowerConfig
     {
@@ -18,26 +20,11 @@ public class TowerView : BaseView
         get => _towerImage;
         set => _towerImage = value;
     }
-    public string TowerCostText
-    {
-        get => _towerConfig.Cost.ToString();
-    }
-    public string TowerDamageText
-    {
-        get => _towerConfig.Damage.ToString();
-    }
-    public string TowerRadiusText
-    {
-        get => _towerConfig.ShootRadius.ToString();
-    }
-    public string TowerFrequencyText
-    {
-        get => _towerConfig.ShootDelay.ToString();
-    }
-    public string TowerBulletsText
-    {
-        get => _towerConfig.BulletsNumber.ToString();
-    }
+    public string TowerCostText => _towerConfig.Cost.ToString();
+    public string TowerDamageText => _towerConfig.Damage.ToString();
+    public string TowerRadiusText => _towerConfig.ShootRadius.ToString();
+    public string TowerFrequencyText => _towerConfig.ShootDelay.ToString();
+    public string TowerBulletsText => _towerConfig.BulletsNumber.ToString();
     public void CreateBullets(TowerModel _tower)
     {
         StartCoroutine(WaitAndShoot(_tower));
@@ -47,7 +34,18 @@ public class TowerView : BaseView
         for (int i = 0; i < _tower.BulletsNumber; i++)
         {
             yield return new WaitForSeconds(_tower.ShootDelay);
-            Debug.Log("Shoot");
+            GameObject _newBullet = Instantiate(_bulletPrefab);
+            _newBullet.transform.parent = _bulletParent.transform;
+            _newBullet.transform.localPosition = _bulletPrefab.transform.position;
+            _newBullet.transform.localScale = _bulletPrefab.transform.localScale;
+            ShootBullet(_newBullet);
         }  
+    }
+    private void ShootBullet(GameObject _newBullet)
+    {
+        _newBullet.GetComponent<Rigidbody>().isKinematic = false;
+        _newBullet.GetComponent<Rigidbody>().useGravity = true;
+       _newBullet.GetComponent<Rigidbody>().AddForce(transform.up, ForceMode.Impulse);
+        Debug.Log("ShootBullet");
     }
 }
