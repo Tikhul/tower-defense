@@ -7,7 +7,7 @@ public class TowerConfig : Config
 {
     [SerializeField] private int _damage;
     [SerializeField] private float _shootRadius;
-    [SerializeField] private float _shootFrequency;
+    [SerializeField] private float _ShootDelay;
     [SerializeField] private int _bulletsNumber;
     [SerializeField] private int _cost;
     [SerializeField] private List<UpgradeConfig> _upgrades;
@@ -25,7 +25,7 @@ public class TowerConfig : Config
     /// <summary>
     /// Скорострельность (промежуток между выстрелами)
     /// </summary>
-    public float ShootFrequency => _shootFrequency;
+    public float ShootDelay => _ShootDelay;
 
     /// <summary>
     /// Cколько врагов атакует за раз

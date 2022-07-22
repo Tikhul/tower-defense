@@ -32,7 +32,7 @@ public class TowerView : BaseView
     }
     public string TowerFrequencyText
     {
-        get => _towerConfig.ShootFrequency.ToString();
+        get => _towerConfig.ShootDelay.ToString();
     }
     public string TowerBulletsText
     {
@@ -46,7 +46,7 @@ public class TowerView : BaseView
     {
         for (int i = 0; i < _tower.BulletsNumber; i++)
         {
-            yield return new WaitForSeconds(_tower.ShootFrequency);
+            yield return new WaitForSeconds(_tower.ShootDelay);
             Debug.Log("Shoot");
         }  
     }

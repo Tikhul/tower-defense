@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: red
   _damage: 0
   _shootRadius: 0
-  _shootFrequency: 1
+  _ShootDelay: 2
   _bulletsNumber: 0
   _cost: 30
   _upgrades: []

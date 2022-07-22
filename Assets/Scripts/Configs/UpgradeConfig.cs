@@ -24,7 +24,7 @@ public class UpgradeConfig : Config
     /// <summary>
     /// Показатель увеличения скорострельности
     /// </summary>
-    public int ShootFrequency => _upgradeFrequency;
+    public int ShootDelay => _upgradeFrequency;
 
     /// <summary>
     /// Показатель увеличения урона

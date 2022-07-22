@@ -21,7 +21,7 @@ public class TowerMenuView : BaseMenuView
             b.TowerCostText.text = "Цена: " + tower.TowerCostText;
             b.TowerDamageText.text = "Урон: " + tower.TowerDamageText;
             b.TowerRadiusText.text = "Радиус: " + tower.TowerRadiusText;
-            b.TowerFrequencyText.text = "Скорость: " + tower.TowerFrequencyText;
+            b.TowerFrequencyText.text = "Задержка: " + tower.TowerFrequencyText;
             b.TowerBulletsText.text = "Враги: " + tower.TowerBulletsText;
             b.TowerButtonImage.sprite = tower.GetComponentInChildren<Image>().sprite;
             b.TowerView = tower;

@@ -7,7 +7,7 @@ public class TowerModel
     public TowerConfig Config { get; private set; }
     public int Damage { get; set; }
     public float ShootRadius { get; set; }
-    public float ShootFrequency { get; set; }
+    public float ShootDelay { get; set; }
     public int BulletsNumber { get; set; }
     public int Cost { get; set; }
     public TowerModel(TowerConfig config)
@@ -15,7 +15,7 @@ public class TowerModel
         Config = config;
         Damage = config.Damage;
         ShootRadius = config.ShootRadius;
-        ShootFrequency = config.ShootFrequency;
+        ShootDelay = config.ShootDelay;
         BulletsNumber = config.BulletsNumber;
         Cost = config.Cost;
     }
@@ -24,7 +24,8 @@ public class TowerModel
     {
         Damage += upgradeConfig.Damage;
         ShootRadius += upgradeConfig.ShootRadius;
-        ShootFrequency += upgradeConfig.ShootFrequency;
+        ShootDelay -= upgradeConfig.ShootDelay;
         BulletsNumber += upgradeConfig.BulletsNumber;
+        if (ShootDelay < 0.5) ShootDelay = 0.5f;
     }
 }

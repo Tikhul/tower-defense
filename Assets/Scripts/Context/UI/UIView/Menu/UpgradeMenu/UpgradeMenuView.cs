@@ -27,7 +27,7 @@ public class UpgradeMenuView : BaseMenuView
             b.CostText.text = "Цена: " + upgrade.Cost;
             b.DamageUpgradeText.text = "Урон + " + upgrade.Damage;
             b.RadiusUpgradeText.text = "Радиус + " + upgrade.ShootRadius;
-            b.SpeedUpgradeText.text = "Скорость + " + upgrade.ShootFrequency;
+            b.SpeedUpgradeText.text = "Задержка - " + upgrade.ShootDelay;
             b.ActiveView = activeView;
             _tempList.Add(b);
         }
@@ -37,7 +37,7 @@ public class UpgradeMenuView : BaseMenuView
     {
         _damageText.text = "Урон: " + tower.Damage;
         _radiusText.text = "Радиус: " + tower.ShootRadius;
-        _speedText.text = "Скорость: " + tower.ShootFrequency;
+        _speedText.text = "Задержка: " + tower.ShootDelay;
     }
     public override void ClearMenu()
     {
