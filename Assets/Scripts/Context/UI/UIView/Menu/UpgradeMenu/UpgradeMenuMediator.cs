@@ -13,6 +13,7 @@ public class UpgradeMenuMediator : Mediator
     [Inject] public HideMenuSignal HideMenuSignal { get; set; }
     [Inject] public ShowTowerDataSignal ShowTowerDataSignal { get; set; }
     [Inject] public ShootSignal ShootSignal { get; set; }
+    [Inject] public UpgradeChosenSignal UpgradeChosenSignal { get; set; }
 
     public override void OnRegister()
     {
@@ -20,6 +21,7 @@ public class UpgradeMenuMediator : Mediator
         UpgradeMenuCreatedSignal.AddListener(SetUpUpgradeButtonViewsHandler);
         HideMenuSignal.AddListener(ClearMenuHandler);
         View.OnShootButtonClicked += ShootHandler;
+        UpgradeChosenSignal.AddListener(UpgradeHandler);
     }
     public override void OnRemove()
     {
@@ -27,7 +29,7 @@ public class UpgradeMenuMediator : Mediator
         UpgradeMenuCreatedSignal.RemoveListener(SetUpUpgradeButtonViewsHandler);
         HideMenuSignal.RemoveListener(ClearMenuHandler);
         View.OnShootButtonClicked -= ShootHandler;
-        View.OnShootButtonClicked -= ShootHandler;
+        UpgradeChosenSignal.RemoveListener(UpgradeHandler);
     }
     private void SetUpUpgradeButtonViewsHandler(List<UpgradeConfig> _list, TowerView activeView)
     {
@@ -49,5 +51,9 @@ public class UpgradeMenuMediator : Mediator
     {
         _towerView.CreateBullets(_towerModel);
         ShootSignal.Dispatch();
+    }
+    private void UpgradeHandler(UpgradeButtonView _view)
+    {
+        _towerView.UpgradeRadius(_view.UpgradeConfig.ShootRadius);
     }
 }

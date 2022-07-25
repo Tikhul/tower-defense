@@ -10,6 +10,7 @@ public class TowerView : BaseView
     [SerializeField] private Image _towerImage;
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private GameObject _bulletParent;
+    [SerializeField] private SphereCollider _shootRadius;
 
     public TowerConfig TowerConfig
     {
@@ -26,10 +27,23 @@ public class TowerView : BaseView
     public string TowerRadiusText => _towerConfig.ShootRadius.ToString();
     public string TowerFrequencyText => _towerConfig.ShootDelay.ToString();
     public string TowerBulletsText => _towerConfig.BulletsNumber.ToString();
+    private void OnEnable()
+    {
+        SetRadiusCollider();
+    }
+    private void SetRadiusCollider()
+    {
+        _shootRadius.radius = _towerConfig.ShootRadius / 30;
+    }
     public void CreateBullets(TowerModel _tower)
     {
         StartCoroutine(WaitAndShoot(_tower));
     }
+    /// <summary>
+    /// Отсрочка выстрела, настройка снаряда
+    /// </summary>
+    /// <param name="_tower"></param>
+    /// <returns></returns>
     private IEnumerator WaitAndShoot(TowerModel _tower)
     {
         for (int i = 0; i < _tower.BulletsNumber; i++)
@@ -42,6 +56,11 @@ public class TowerView : BaseView
             ShootBullet(_newBullet, _tower.ShootRadius);
         }  
     }
+    /// <summary>
+    /// Выстрел снарядом
+    /// </summary>
+    /// <param name="_newBullet"></param>
+    /// <param name="_radius"></param>
     private void ShootBullet(GameObject _newBullet, float _radius)
     {
         var z = _newBullet.transform.position.z;
@@ -50,5 +69,12 @@ public class TowerView : BaseView
             z += _radius
             ), 1f); ;
         Debug.Log("ShootBullet");
+    }
+    /// <summary>
+    /// Увеличение коллайдера, который показывает радиус стрельбы
+    /// </summary>
+    public void UpgradeRadius(float _upgrade)
+    {
+        _shootRadius.radius += _upgrade / 30;
     }
 }
