@@ -39,15 +39,15 @@ public class TowerView : BaseView
             _newBullet.transform.parent = _bulletParent.transform;
             _newBullet.transform.localPosition = _bulletPrefab.transform.position;
             _newBullet.transform.localScale = _bulletPrefab.transform.localScale;
-            ShootBullet(_newBullet);
+            ShootBullet(_newBullet, _tower.ShootRadius);
         }  
     }
-    private void ShootBullet(GameObject _newBullet)
+    private void ShootBullet(GameObject _newBullet, float _radius)
     {
         var z = _newBullet.transform.position.z;
         _newBullet.transform.DOMove(new Vector3(_newBullet.transform.position.x,
              _newBullet.transform.position.y,
-            z += 120
+            z += _radius
             ), 1f); ;
         Debug.Log("ShootBullet");
     }

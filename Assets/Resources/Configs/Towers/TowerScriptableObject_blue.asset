@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: blue
   _damage: 10
-  _shootRadius: 20
+  _shootRadius: 120
   _ShootDelay: 4
   _bulletsNumber: 3
   _cost: 10
