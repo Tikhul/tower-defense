@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class TowerView : BaseView
 {
@@ -43,9 +44,11 @@ public class TowerView : BaseView
     }
     private void ShootBullet(GameObject _newBullet)
     {
-        _newBullet.GetComponent<Rigidbody>().isKinematic = false;
-        _newBullet.GetComponent<Rigidbody>().useGravity = true;
-       _newBullet.GetComponent<Rigidbody>().AddForce(transform.forward, ForceMode.Impulse);
+        var z = _newBullet.transform.position.z;
+        _newBullet.transform.DOMove(new Vector3(_newBullet.transform.position.x,
+             _newBullet.transform.position.y,
+            z += 120
+            ), 1f); ;
         Debug.Log("ShootBullet");
     }
 }
