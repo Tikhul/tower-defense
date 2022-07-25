@@ -29,7 +29,6 @@ public class EnemyView : BaseView
         IsLast = false;
         OnEnemyWayCompleted?.Invoke(Config.Damage);
         ClearEnemies();
-        Debug.Log("PerformAfterPath");
     }
     public void ClearEnemies()
     {

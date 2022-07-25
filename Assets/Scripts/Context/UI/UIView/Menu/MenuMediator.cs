@@ -19,20 +19,20 @@ public class MenuMediator : Mediator
     [Inject] public CreateUpgradeMenuSignal CreateUpgradeMenuSignal { get; set; }
     [Inject] public HideMenuSignal HideMenuSignal { get; set; }
     [Inject] public TowerChosenSignal TowerChosenSignal { get; set; }
-    [Inject] public ShootSignal ShootSignal { get; set; }
+    [Inject] public PrepareForShootSignal PrepareForShootSignal { get; set; }
 
     public override void OnRegister()
     {
         CellButtonViewCreatedSignal.AddListener(SubscribeToCells);
         TowerChosenSignal.AddListener(TowerButtonClickedHandler);
-        ShootSignal.AddListener(HideMenuHandler);
+        PrepareForShootSignal.AddListener(ShootButtonClickedHandler);
     }
 
     public override void OnRemove()
     {
         CellButtonViewCreatedSignal.RemoveListener(SubscribeToCells);
         TowerChosenSignal.RemoveListener(TowerButtonClickedHandler);
-        ShootSignal.RemoveListener(HideMenuHandler);
+        PrepareForShootSignal.RemoveListener(ShootButtonClickedHandler);
     }
     private void SubscribeToCells(CellButtonView cell)
     {
@@ -67,6 +67,11 @@ public class MenuMediator : Mediator
     private void TowerButtonClickedHandler(TowerButtonView button)
     {
         HideMenuHandler();
+    }
+    private void ShootButtonClickedHandler(TowerModel _tower)
+    {
+        HideMenuHandler();
+
     }
     private void HideMenuHandler()
     {

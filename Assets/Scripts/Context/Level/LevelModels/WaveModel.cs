@@ -9,6 +9,8 @@ public class WaveModel : IWaveModel
     public List<EnemyModel> WaveEnemies { get; private set; } = new List<EnemyModel>();
     public WaveState State { get; private set; } = WaveState.NonActive;
 
+    public List<EnemyView> EnemiesOnScene { get; set; } = new List<EnemyView>();
+
     public event Action OnWaveBegin;
     public event Action OnWaveComplete;
 
@@ -35,6 +37,7 @@ public interface IWaveModel
 {
     WaveConfig Config { get; }
     List<EnemyModel> WaveEnemies { get; }
+    List<EnemyView> EnemiesOnScene { get; }
     WaveState State { get; }
     void BeginWave();
     void CompleteWave();

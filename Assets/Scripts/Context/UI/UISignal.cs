@@ -26,5 +26,5 @@ namespace context.ui
     public class UpgradeChosenSignal : Signal<UpgradeButtonView> { }
     public class ShowTowerDataSignal : Signal<TowerModel> { }
     public class NoMoneySignal : Signal { }
-    public class ShootSignal : Signal { }
+    public class PrepareForShootSignal : Signal<TowerModel> { }
 }

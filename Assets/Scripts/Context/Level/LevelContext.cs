@@ -65,7 +65,8 @@ public class LevelContext : CoreContext
             .To<EndCurrentWaveCommand>()
             .To<BeginNextWaveCommand>()
             .InSequence();
-        commandBinder.Bind<ChangeHealthSignal>().To<ChangeHealthCommand>();
+        commandBinder.Bind<ChangePlayerHealthSignal>().To<ChangeHealthCommand>();
+        commandBinder.Bind<CollectEnemiesTransformsSignal>().To<CollectEnemiesTransformsCommand>();
     }
     protected override void MapMediators()
     {

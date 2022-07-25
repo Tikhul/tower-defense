@@ -14,5 +14,6 @@ namespace context.level
     public class OnEnemyWayDefinedSignal : Signal { }
     public class WaveEndedSignal : Signal { }
     public class ActivateWaveSignal : Signal { }
-    public class ChangeHealthSignal : Signal<int> { }
+    public class ChangePlayerHealthSignal : Signal<int> { }
+    public class CollectEnemiesTransformsSignal : Signal<Vector3> { }
 }
