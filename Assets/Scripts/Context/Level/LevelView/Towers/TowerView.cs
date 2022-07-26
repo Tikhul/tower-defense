@@ -16,6 +16,7 @@ public class TowerView : BaseView
     [SerializeField] private GameObject _direction;
     private float _bulletTime = 0.5f;
     public bool IsShooting { get; set; } = false;
+    public event Action<TowerModel> OnBulletShot = delegate { };
     public TowerConfig TowerConfig
     {
         get => _towerConfig;
@@ -66,12 +67,13 @@ public class TowerView : BaseView
         _newBullet.transform.parent = _bulletParent.transform;
         _newBullet.transform.localPosition = _bulletPrefab.transform.position;
         _newBullet.transform.localScale = _bulletPrefab.transform.localScale;
-        ShootBullet(_newBullet, _tower.ShootRadius);
+        ShootBullet(_newBullet, _tower);
     }
-    private void ShootBullet(GameObject _newBullet, float _radius)
+    private void ShootBullet(GameObject _newBullet, TowerModel _tower)
     {
         var z = _newBullet.transform.position.z;
-        _newBullet.transform.DOLocalMoveY(_radius, _bulletTime);
+        _newBullet.transform.DOLocalMoveY(_tower.ShootRadius, _bulletTime);
+        OnBulletShot.Invoke(_tower);
         Debug.Log("ShootBullet");
     }
 }
