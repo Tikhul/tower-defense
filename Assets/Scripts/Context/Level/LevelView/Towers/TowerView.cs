@@ -71,10 +71,7 @@ public class TowerView : BaseView
     private void ShootBullet(GameObject _newBullet, float _radius)
     {
         var z = _newBullet.transform.position.z;
-        _newBullet.transform.DOMove(new Vector3(_newBullet.transform.position.x,
-             _newBullet.transform.position.y,
-            z += _radius
-            ), _bulletTime);
+        _newBullet.transform.DOLocalMoveY(_radius, _bulletTime);
         Debug.Log("ShootBullet");
     }
 }
