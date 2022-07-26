@@ -30,7 +30,6 @@ public class TowerMediator : Mediator
             {
                 TurnTowerHandler(_enemyTransforms);
                 _enemyTransforms.Clear();
-                Debug.Log("Done");
             }
         }
     }
