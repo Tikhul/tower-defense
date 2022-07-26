@@ -64,7 +64,7 @@ public class EnemyMediator : Mediator
         if ((elapsedPercentage + addPercentage) < 1)
         {
             var getPoint = View.EnemyTween.PathGetPoint(elapsedPercentage + addPercentage);
-            CollectEnemiesTransformsSignal.Dispatch(getPoint);
+            CollectEnemiesTransformsSignal.Dispatch(getPoint, _tower);
         }
     }
 }

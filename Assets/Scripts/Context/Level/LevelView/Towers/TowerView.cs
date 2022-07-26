@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Linq;
+using System;
 
 public class TowerView : BaseView
 {
@@ -13,6 +14,7 @@ public class TowerView : BaseView
     [SerializeField] private GameObject _bulletParent;
     [SerializeField] private SphereCollider _shootRadius;
     [SerializeField] private GameObject _direction;
+    private float _bulletTime = 0.5f;
     public bool IsShooting { get; set; } = false;
     public TowerConfig TowerConfig
     {
@@ -37,41 +39,6 @@ public class TowerView : BaseView
     {
         _shootRadius.radius = _towerConfig.ShootRadius / 30;
     }
-    public void CreateBullets(TowerModel _tower)
-    {
-        StartCoroutine(WaitAndShoot(_tower));
-    }
-    /// <summary>
-    /// Отсрочка выстрела, настройка снаряда
-    /// </summary>
-    /// <param name="_tower"></param>
-    /// <returns></returns>
-    private IEnumerator WaitAndShoot(TowerModel _tower)
-    {
-        for (int i = 0; i < _tower.BulletsNumber; i++)
-        {
-            yield return new WaitForSeconds(_tower.ShootDelay);
-            GameObject _newBullet = Instantiate(_bulletPrefab);
-            _newBullet.transform.parent = _bulletParent.transform;
-            _newBullet.transform.localPosition = _bulletPrefab.transform.position;
-            _newBullet.transform.localScale = _bulletPrefab.transform.localScale;
-            ShootBullet(_newBullet, _tower.ShootRadius);
-        }  
-    }
-    /// <summary>
-    /// Выстрел снарядом
-    /// </summary>
-    /// <param name="_newBullet"></param>
-    /// <param name="_radius"></param>
-    private void ShootBullet(GameObject _newBullet, float _radius)
-    {
-        var z = _newBullet.transform.position.z;
-        _newBullet.transform.DOMove(new Vector3(_newBullet.transform.position.x,
-             _newBullet.transform.position.y,
-            z += _radius
-            ), 1f); ;
-        Debug.Log("ShootBullet");
-    }
     /// <summary>
     /// Увеличение коллайдера, который показывает радиус стрельбы
     /// </summary>
@@ -82,10 +49,32 @@ public class TowerView : BaseView
     /// <summary>
     /// Поворот башни к ближайшему врагу
     /// </summary>
-    public void TurnTower(List<Vector3> _enemiesTransforms)
+    public void LaunchShooting(List<Vector3> _receivedTransforms, TowerModel _towerModel)
+    {
+        StartCoroutine(TurnTower(_receivedTransforms, _towerModel));
+    }
+    public IEnumerator TurnTower(List<Vector3> _enemiesTransforms, TowerModel _towerModel)
     {
         _enemiesTransforms.OrderBy(x => Vector3.Distance(transform.position, x));
         Vector3 _nearestEnemy = _enemiesTransforms.First();
-        _direction.transform.DOLookAt(_nearestEnemy, 1f);
+        yield return _direction.transform.DOLookAt(_nearestEnemy, _towerModel.ShootDelay - _bulletTime).WaitForCompletion();
+        CreateBullet(_towerModel);
+    }
+    private void CreateBullet(TowerModel _tower)
+    {
+        GameObject _newBullet = Instantiate(_bulletPrefab);
+        _newBullet.transform.parent = _bulletParent.transform;
+        _newBullet.transform.localPosition = _bulletPrefab.transform.position;
+        _newBullet.transform.localScale = _bulletPrefab.transform.localScale;
+        ShootBullet(_newBullet, _tower.ShootRadius);
+    }
+    private void ShootBullet(GameObject _newBullet, float _radius)
+    {
+        var z = _newBullet.transform.position.z;
+        _newBullet.transform.DOMove(new Vector3(_newBullet.transform.position.x,
+             _newBullet.transform.position.y,
+            z += _radius
+            ), _bulletTime);
+        Debug.Log("ShootBullet");
     }
 }
