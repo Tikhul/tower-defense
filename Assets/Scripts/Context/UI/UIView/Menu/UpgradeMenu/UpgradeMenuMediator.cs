@@ -49,7 +49,7 @@ public class UpgradeMenuMediator : Mediator
     }
     private void PrepareForShootHandler()
     {
-        //_towerView.CreateBullets(_towerModel);
+        _towerView.IsShooting = true;
         PrepareForShootSignal.Dispatch(_towerModel);
     }
     private void UpgradeHandler(UpgradeButtonView _view)

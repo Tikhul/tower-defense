@@ -12,7 +12,7 @@ public class TowerView : BaseView
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private GameObject _bulletParent;
     [SerializeField] private SphereCollider _shootRadius;
-
+    public bool IsShooting { get; set; } = false;
     public TowerConfig TowerConfig
     {
         get => _towerConfig;
@@ -77,5 +77,14 @@ public class TowerView : BaseView
     public void UpgradeRadius(float _upgrade)
     {
         _shootRadius.radius += _upgrade / 30;
+    }
+    /// <summary>
+    /// Поворот башни к ближайшему врагу
+    /// </summary>
+    public void TurnTower(List<Vector3> _enemiesTransforms)
+    {
+        _enemiesTransforms.OrderBy(x => Vector3.Distance(transform.position, x));
+        Vector3 _nearestEnemy = _enemiesTransforms.Last();
+        transform.DOLocalRotate(new Vector3(0, 0, 90+_nearestEnemy.z), TowerConfig.ShootDelay);
     }
 }
