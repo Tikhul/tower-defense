@@ -25,7 +25,7 @@ public class TowerMediator : Mediator
     }
     private void CollectEnemyTransforms(Vector3 _enemyTransform, TowerModel _tower)
     {
-        if (View.IsShooting)
+        if (View.IsShooting && View.ShootsNumber <= _tower.BulletsNumber)
         {
             _enemyTransforms.Add(_enemyTransform);
             if (_enemyTransforms.Count ==

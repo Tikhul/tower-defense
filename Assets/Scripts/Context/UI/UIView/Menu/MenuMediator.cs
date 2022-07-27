@@ -70,7 +70,6 @@ public class MenuMediator : Mediator
     private void ShootButtonClickedHandler(TowerModel _tower)
     {
         HideMenuHandler();
-
     }
     private void HideMenuHandler()
     {

@@ -50,6 +50,7 @@ public class TowerView : BaseView
     }
     public void LaunchShooting(List<Vector3> _receivedTransforms, TowerModel _towerModel)
     {
+        ShootsNumber += 1;
         StartCoroutine(TurnTower(_receivedTransforms, _towerModel));
     }
     public IEnumerator TurnTower(List<Vector3> _enemiesTransforms, TowerModel _towerModel)
@@ -67,18 +68,13 @@ public class TowerView : BaseView
         _newBullet.transform.localScale = _bulletPrefab.transform.localScale;
         _newBullet.GetComponent<BulletView>().BulletDamage = _tower.Damage;
         ShootBullet(_newBullet, _tower);
-        Debug.Log("CreateBullet");
     }
     private void ShootBullet(GameObject _newBullet, TowerModel _tower)
     {
         _newBullet.transform.DOLocalMoveY(_tower.ShootRadius * 2, _bulletTime);
-        ShootsNumber += 1;
+        OnBulletShot?.Invoke(_tower);
 
-        if (ShootsNumber < _tower.BulletsNumber)
-        {
-            OnBulletShot.Invoke(_tower);
-        }
-        else
+        if (ShootsNumber >= _tower.BulletsNumber)
         {
             ShootsNumber = 0;
             IsShooting = false;

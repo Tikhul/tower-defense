@@ -22,6 +22,5 @@ public class CreateTowerMenuCommand : Command
         }
 
         injectionBinder.GetInstance<TowerMenuCreatedSignal>().Dispatch(_list);
-        Debug.Log("CreateTowerMenuCommand");
     }
 }

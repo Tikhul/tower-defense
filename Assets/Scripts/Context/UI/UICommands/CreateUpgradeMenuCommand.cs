@@ -24,6 +24,5 @@ public class CreateUpgradeMenuCommand : Command
         }
         
         injectionBinder.GetInstance<UpgradeMenuCreatedSignal>().Dispatch(_list, activeView);
-        Debug.Log("CreateUpgradeMenuCommand");
     }
 }
