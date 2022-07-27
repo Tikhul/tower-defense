@@ -67,7 +67,7 @@ public class EnemyMediator : Mediator
         Debug.Log("PredictEnemyTransform");
         
         var elapsedPercentage = View.EnemyTween.ElapsedPercentage();
-        var addPercentage = View.Path.duration / _tower.ShootDelay;
+        var addPercentage = _tower.ShootDelay / View.EnemyTween.Duration();
 
         if ((elapsedPercentage + addPercentage) < 1)
         {

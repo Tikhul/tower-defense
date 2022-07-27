@@ -57,23 +57,22 @@ public class TowerView : BaseView
     }
     public IEnumerator TurnTower(List<Vector3> _enemiesTransforms, TowerModel _towerModel)
     {
-        _enemiesTransforms.OrderBy(x => Vector3.Distance(transform.position, x));
-        Vector3 _nearestEnemy = _enemiesTransforms.First();
+        Vector3 _nearestEnemy = _enemiesTransforms.OrderBy(x => Vector3.Distance(transform.position, x)).First();
         yield return _direction.transform.DOLookAt(_nearestEnemy, _towerModel.ShootDelay - _bulletTime).WaitForCompletion();
-        CreateBullet(_towerModel);
+        CreateBullet(_towerModel, _nearestEnemy);
     }
-    private void CreateBullet(TowerModel _tower)
+    private void CreateBullet(TowerModel _tower, Vector3 _enemyTransform)
     {
         GameObject _newBullet = Instantiate(_bulletPrefab);
         _newBullet.transform.parent = _bulletParent.transform;
         _newBullet.transform.localPosition = _bulletPrefab.transform.position;
         _newBullet.transform.localScale = _bulletPrefab.transform.localScale;
         _newBullet.GetComponent<BulletView>().BulletDamage = _tower.Damage;
-        ShootBullet(_newBullet, _tower);
+        ShootBullet(_newBullet, _tower, _enemyTransform);
     }
-    private void ShootBullet(GameObject _newBullet, TowerModel _tower)
+    private void ShootBullet(GameObject _newBullet, TowerModel _tower, Vector3 _enemyTransform)
     {
-        Tween _tween = _newBullet.transform.DOLocalMoveY(_tower.ShootRadius * 2, _bulletTime);
+        Tween _tween = _newBullet.transform.DOLocalMoveY(Vector3.Distance(transform.position, _enemyTransform), _bulletTime);
         OnBulletShot?.Invoke(_tower);
 
         if (ShootsNumber >= _tower.BulletsNumber)
