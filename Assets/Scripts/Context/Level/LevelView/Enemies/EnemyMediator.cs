@@ -20,7 +20,7 @@ public class EnemyMediator : Mediator
     [Inject] public CollectEnemiesTransformsSignal CollectEnemiesTransformsSignal { get; set; }
     public override void OnRegister()
     {
-        LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemiesOnScene.Add(View);
+        LevelsPipelineModel.CurrentLevel.LevelWaves.EnemiesOnScene.Add(View);
         FillWayPointsHandler();
         NextLevelChosenSignal.AddListener(ClearEnemiesHandler);
         RestartLevelChosenSignal.AddListener(ClearEnemiesHandler);
@@ -30,7 +30,7 @@ public class EnemyMediator : Mediator
     }
     public override void OnRemove()
     {
-        LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemiesOnScene.Remove(View);
+        LevelsPipelineModel.CurrentLevel.LevelWaves.EnemiesOnScene.Remove(View);
         NextLevelChosenSignal.RemoveListener(ClearEnemiesHandler);
         RestartLevelChosenSignal.RemoveListener(ClearEnemiesHandler);
         PrepareForShootSignal.RemoveListener(PredictEnemyTransform);
