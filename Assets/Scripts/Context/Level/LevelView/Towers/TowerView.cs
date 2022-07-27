@@ -14,6 +14,7 @@ public class TowerView : BaseView
     [SerializeField] private GameObject _bulletParent;
     [SerializeField] private SphereCollider _shootRadius;
     [SerializeField] private GameObject _direction;
+    [SerializeField] private Button _cellButton;
     private float _bulletTime = 0.5f;
     public bool IsShooting { get; set; } = false;
     public int ShootsNumber { get; set; } = 0;
@@ -50,6 +51,7 @@ public class TowerView : BaseView
     }
     public void LaunchShooting(List<Vector3> _receivedTransforms, TowerModel _towerModel)
     {
+        _cellButton.interactable = false;
         ShootsNumber += 1;
         StartCoroutine(TurnTower(_receivedTransforms, _towerModel));
     }
@@ -78,6 +80,7 @@ public class TowerView : BaseView
         {
             ShootsNumber = 0;
             IsShooting = false;
+            _cellButton.interactable = true;
         }
         Debug.Log("ShootBullet");
     }
