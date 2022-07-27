@@ -9,8 +9,6 @@ public class WaveModel : IWaveModel
     public List<EnemyModel> WaveEnemies { get; private set; } = new List<EnemyModel>();
     public WaveState State { get; private set; } = WaveState.NonActive;
 
-    
-
     public event Action OnWaveBegin;
     public event Action OnWaveComplete;
 

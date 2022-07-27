@@ -31,6 +31,11 @@ public class LevelModel : ILevelModel
         LevelWaves.End();
         Debug.Log("CompleteLevel");
     }
+    public void RestartLevel()
+    {
+        LevelWaves.CurrentWave.CompleteWave();
+        BeginLevel();
+    }
 }
 
 public interface ILevelModel
@@ -43,6 +48,7 @@ public interface ILevelModel
 
     void BeginLevel();
     void CompleteLevel();
+    void RestartLevel();
 }
 
 public enum LevelState

@@ -63,7 +63,7 @@ public class LevelsPipelineModel
 
     public void RestartLevel()
     {
-        CurrentLevel.BeginLevel();
+        CurrentLevel.RestartLevel();
         Debug.Log("RestartLevel " + CurrentLevel.Config.Name);
     }
 }

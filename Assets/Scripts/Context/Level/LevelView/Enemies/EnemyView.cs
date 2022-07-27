@@ -26,7 +26,6 @@ public class EnemyView : BaseView
         var _duration = _receivedTransforms.Count / _config.Speed;
         Path.wps.AddRange(_receivedTransforms);
         EnemyTween = transform.DOPath(Path.wps.ToArray(), _duration).OnComplete(PerformAfterPath);
-        Debug.Log("EnemyTween1" + _duration);
     }
     private void PerformAfterPath()
     {
