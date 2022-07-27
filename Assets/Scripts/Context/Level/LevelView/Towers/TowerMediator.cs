@@ -27,6 +27,7 @@ public class TowerMediator : Mediator
     {
         if (View.IsShooting && View.ShootsNumber <= _tower.BulletsNumber)
         {
+            Debug.Log("CollectEnemyTransforms");
             _enemyTransforms.Add(_enemyTransform);
             if (_enemyTransforms.Count ==
                 LevelsPipelineModel.CurrentLevel.LevelWaves.EnemiesOnScene.Count)
@@ -38,6 +39,7 @@ public class TowerMediator : Mediator
     }
     private void TurnTowerHandler(List<Vector3> _receivedTransforms, TowerModel _towerModel)
     {
+        Debug.Log("TurnTowerHandler");
         View.LaunchShooting(_receivedTransforms, _towerModel);
     }
     private void PrepareAnotherShootHandler(TowerModel _towerModel)

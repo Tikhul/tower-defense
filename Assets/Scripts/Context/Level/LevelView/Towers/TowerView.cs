@@ -73,15 +73,20 @@ public class TowerView : BaseView
     }
     private void ShootBullet(GameObject _newBullet, TowerModel _tower)
     {
-        _newBullet.transform.DOLocalMoveY(_tower.ShootRadius * 2, _bulletTime);
+        Tween _tween = _newBullet.transform.DOLocalMoveY(_tower.ShootRadius * 2, _bulletTime);
         OnBulletShot?.Invoke(_tower);
 
         if (ShootsNumber >= _tower.BulletsNumber)
         {
             ShootsNumber = 0;
             IsShooting = false;
-            _cellButton.interactable = true;
+            _tween.OnComplete(UnBlockCell);
         }
         Debug.Log("ShootBullet");
+    }
+
+    private void UnBlockCell()
+    {
+        _cellButton.interactable = true;
     }
 }
