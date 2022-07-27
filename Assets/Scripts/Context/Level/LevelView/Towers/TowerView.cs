@@ -58,7 +58,7 @@ public class TowerView : BaseView
     public IEnumerator TurnTower(List<Vector3> _enemiesTransforms, TowerModel _towerModel)
     {
         Vector3 _nearestEnemy = _enemiesTransforms.OrderBy(x => Vector3.Distance(transform.position, x)).First();
-        yield return _direction.transform.DOLookAt(_nearestEnemy, _towerModel.ShootDelay - _bulletTime).WaitForCompletion();
+        yield return _direction.transform.DOLookAt(_nearestEnemy, _towerModel.ShootDelay).WaitForCompletion();
         CreateBullet(_towerModel, _nearestEnemy);
     }
     private void CreateBullet(TowerModel _tower, Vector3 _enemyTransform)

@@ -66,12 +66,11 @@ public class EnemyMediator : Mediator
     {
         Debug.Log("PredictEnemyTransform");
         
-        var elapsedPercentage = View.EnemyTween.ElapsedPercentage();
-        var addPercentage = _tower.ShootDelay / View.EnemyTween.Duration();
+        var _percentage = (_tower.ShootDelay + View.EnemyTween.Elapsed()) / View.EnemyTween.Duration();
 
-        if ((elapsedPercentage + addPercentage) < 1)
+        if (_percentage < 1)
         {
-            var getPoint = View.EnemyTween.PathGetPoint(elapsedPercentage + addPercentage);
+            var getPoint = View.EnemyTween.PathGetPoint(_percentage);
             CollectEnemiesTransformsSignal.Dispatch(getPoint, _tower);
         }
     }
