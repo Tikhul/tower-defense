@@ -33,7 +33,7 @@ public class LevelModel : ILevelModel
     }
     public void RestartLevel()
     {
-        LevelWaves.CurrentWave.CompleteWave();
+        LevelWaves.Restart();
         BeginLevel();
     }
 }

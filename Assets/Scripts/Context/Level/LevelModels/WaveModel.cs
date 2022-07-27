@@ -29,6 +29,10 @@ public class WaveModel : IWaveModel
         OnWaveComplete?.Invoke();
         Debug.Log("CompleteWave " + Config.Id);
     }
+    public void RestartWave()
+    {
+        State = WaveState.NonActive;
+    }
 }
 
 public interface IWaveModel
@@ -38,7 +42,7 @@ public interface IWaveModel
     WaveState State { get; }
     void BeginWave();
     void CompleteWave();
-
+    void RestartWave();
     event Action OnWaveBegin;
     event Action OnWaveComplete;
 }

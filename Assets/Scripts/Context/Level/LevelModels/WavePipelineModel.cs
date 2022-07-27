@@ -64,4 +64,12 @@ public class WavePipelineModel
         CurrentWave.CompleteWave();
         Debug.Log("CompleteCurrentWave " + CurrentWave.Config.Id);
     }
+    public void Restart()
+    {
+        CurrentWave.CompleteWave();
+        foreach (var wave in _waveModels.Where(x => x.State != WaveState.NonActive))
+        {
+            wave.RestartWave();
+        }
+    }
 }
