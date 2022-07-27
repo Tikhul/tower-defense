@@ -52,7 +52,6 @@ public class AllEnemiesMediator : Mediator
                     yield return new WaitForSeconds(1f);
                     View.ActivateEnemy(_enemies[i], true);
                 }
-                Debug.Log("ActivateEnemy - first");
             }
             else
             {
@@ -66,7 +65,6 @@ public class AllEnemiesMediator : Mediator
                     yield return new WaitForSeconds(2f);
                     View.ActivateEnemy(_enemies[i], true);
                 }
-                Debug.Log("ActivateEnemy");
             }
         }
     }

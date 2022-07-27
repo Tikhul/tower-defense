@@ -9,9 +9,15 @@ public class EnemyView : BaseView
 {
     [SerializeField] private EnemyConfig _config;
     [SerializeField] private DOTweenPath _path;
+    private int _actualEnemyHealth;
     public Tween EnemyTween { get; set; }
     public bool IsLast { get; set; }
     public EnemyConfig Config => _config;
+    public int ActualEnemyHealth
+    {
+        get => _actualEnemyHealth = Config.InitialHealth;
+        set => _actualEnemyHealth = value;
+    }
     public DOTweenPath Path => _path;
     public event Action OnLastEnemy = delegate { };
     public event Action<int> OnEnemyWayCompleted = delegate { };
@@ -35,5 +41,14 @@ public class EnemyView : BaseView
     {
         transform.DOKill();
         Destroy(gameObject);
+    }
+    public void Damage(int _damage)
+    {
+        Debug.Log("HitEemy");
+        ActualEnemyHealth -= _damage;
+        if (ActualEnemyHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

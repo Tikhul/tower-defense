@@ -25,12 +25,10 @@ public class TowerMenuView : BaseMenuView
             b.TowerBulletsText.text = "Враги: " + tower.TowerBulletsText;
             b.TowerButtonImage.sprite = tower.GetComponentInChildren<Image>().sprite;
             b.TowerView = tower;
-            // OnTowerButtonCreated?.Invoke(b);
         }
     }
     public override void ClearMenu()
     {
-        Debug.Log("ClearMenu");
         foreach(var button in GetComponentsInChildren<TowerButtonView>())
         {
             Destroy(button.gameObject);

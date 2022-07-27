@@ -63,6 +63,5 @@ public class TowerButtonView : View
     private void OnClickHandler()
     {
         OnTowerButtonClick?.Invoke();
-        Debug.Log("OnClickHandler");
     }
 }

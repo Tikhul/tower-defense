@@ -65,12 +65,13 @@ public class TowerView : BaseView
         _newBullet.transform.parent = _bulletParent.transform;
         _newBullet.transform.localPosition = _bulletPrefab.transform.position;
         _newBullet.transform.localScale = _bulletPrefab.transform.localScale;
+        _newBullet.GetComponent<BulletView>().BulletDamage = _tower.Damage;
         ShootBullet(_newBullet, _tower);
+        Debug.Log("CreateBullet");
     }
     private void ShootBullet(GameObject _newBullet, TowerModel _tower)
     {
-        var z = _newBullet.transform.position.z;
-        _newBullet.transform.DOLocalMoveY(_tower.ShootRadius, _bulletTime);
+        _newBullet.transform.DOLocalMoveY(_tower.ShootRadius * 2, _bulletTime);
         ShootsNumber += 1;
 
         if (ShootsNumber < _tower.BulletsNumber)

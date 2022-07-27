@@ -62,7 +62,6 @@ public class MenuMediator : Mediator
             cell.OnCellButtonViewClick -= ShowMenu;
             _subscribedToCells = false;
         }
-            Debug.Log("ShowMenu");
     }
     private void TowerButtonClickedHandler(TowerButtonView button)
     {
@@ -87,6 +86,5 @@ public class MenuMediator : Mediator
             }
         }
         HideMenuSignal.Dispatch();
-        Debug.Log("HideMenu");
     }
 }
