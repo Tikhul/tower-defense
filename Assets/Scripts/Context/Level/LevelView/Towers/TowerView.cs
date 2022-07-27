@@ -16,6 +16,7 @@ public class TowerView : BaseView
     [SerializeField] private GameObject _direction;
     private float _bulletTime = 0.5f;
     public bool IsShooting { get; set; } = false;
+    public int ShootsNumber { get; set; } = 0;
     public event Action<TowerModel> OnBulletShot = delegate { };
     public TowerConfig TowerConfig
     {
@@ -47,9 +48,6 @@ public class TowerView : BaseView
     {
         _shootRadius.radius += _upgrade / 30;
     }
-    /// <summary>
-    /// Поворот башни к ближайшему врагу
-    /// </summary>
     public void LaunchShooting(List<Vector3> _receivedTransforms, TowerModel _towerModel)
     {
         StartCoroutine(TurnTower(_receivedTransforms, _towerModel));
@@ -73,7 +71,17 @@ public class TowerView : BaseView
     {
         var z = _newBullet.transform.position.z;
         _newBullet.transform.DOLocalMoveY(_tower.ShootRadius, _bulletTime);
-        OnBulletShot.Invoke(_tower);
+        ShootsNumber += 1;
+
+        if (ShootsNumber < _tower.BulletsNumber)
+        {
+            OnBulletShot.Invoke(_tower);
+        }
+        else
+        {
+            ShootsNumber = 0;
+            IsShooting = false;
+        }
         Debug.Log("ShootBullet");
     }
 }
