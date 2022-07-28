@@ -17,7 +17,7 @@ public class TowerView : BaseView
     [SerializeField] private Button _cellButton;
     private float _bulletTime = 0.5f;
     public bool IsShooting { get; set; } = false;
-    public int ShootsNumber { get; set; } = 0;
+    public int ShootsNumber { get; set; }
     public event Action<TowerModel> OnBulletShot = delegate { };
     public TowerConfig TowerConfig
     {
@@ -36,6 +36,7 @@ public class TowerView : BaseView
     public string TowerBulletsText => _towerConfig.BulletsNumber.ToString();
     private void OnEnable()
     {
+        ShootsNumber = 0;
         SetRadiusCollider();
     }
     private void SetRadiusCollider()
@@ -72,13 +73,7 @@ public class TowerView : BaseView
     }
     private IEnumerator ShootBullet(GameObject _newBullet, TowerModel _tower, Vector3 _enemyTransform)
     {
-        if (ShootsNumber > _tower.BulletsNumber)
-        {
-            ShootsNumber = 0;
-            IsShooting = false;
-            UnBlockCell();
-        }
-        else if(ShootsNumber == _tower.BulletsNumber)
+        if(ShootsNumber == _tower.BulletsNumber)
         {
             _newBullet.transform.DOLocalMoveY(Vector3.Distance(transform.position, _enemyTransform), _bulletTime).WaitForCompletion();
         }
@@ -90,8 +85,10 @@ public class TowerView : BaseView
         Debug.Log("ShootBullet");
     }
 
-    private void UnBlockCell()
+    public void RenewData()
     {
+        ShootsNumber = 0;
+        IsShooting = false;
         _cellButton.interactable = true;
     }
 }
