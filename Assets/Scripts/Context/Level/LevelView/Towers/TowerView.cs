@@ -52,18 +52,21 @@ public class TowerView : BaseView
     }
     public void LaunchShooting(List<Vector3> _receivedTransforms, TowerModel _towerModel)
     {
+        Debug.Log("LaunchShooting");
         _cellButton.interactable = false;
         ShootsNumber += 1;
         StartCoroutine(TurnTower(_receivedTransforms, _towerModel));
     }
     public IEnumerator TurnTower(List<Vector3> _enemiesTransforms, TowerModel _towerModel)
     {
+        Debug.Log("TurnTower");
         Vector3 _nearestEnemy = _enemiesTransforms.OrderBy(x => Vector3.Distance(transform.position, x)).First();
         yield return _direction.transform.DOLookAt(_nearestEnemy, _towerModel.ShootDelay).WaitForCompletion();
         CreateBullet(_towerModel, _nearestEnemy);
     }
     private void CreateBullet(TowerModel _tower, Vector3 _enemyTransform)
     {
+        Debug.Log("CreateBullet");
         GameObject _newBullet = Instantiate(_bulletPrefab);
         _newBullet.transform.parent = _bulletParent.transform;
         _newBullet.transform.localPosition = _bulletPrefab.transform.position;
@@ -73,20 +76,24 @@ public class TowerView : BaseView
     }
     private IEnumerator ShootBullet(GameObject _newBullet, TowerModel _tower, Vector3 _enemyTransform)
     {
+        Debug.Log("ShootBullet");
         if(ShootsNumber == _tower.BulletsNumber)
         {
-            _newBullet.transform.DOLocalMoveY(Vector3.Distance(transform.position, _enemyTransform), _bulletTime).WaitForCompletion();
+            yield return _newBullet.transform.DOLocalMoveY(
+                Vector3.Distance(transform.position, _enemyTransform), _bulletTime).WaitForCompletion();
+            RenewData();
         }
-        else
+        else if(ShootsNumber < _tower.BulletsNumber)
         {
-            yield return _newBullet.transform.DOLocalMoveY(Vector3.Distance(transform.position, _enemyTransform), _bulletTime).WaitForCompletion();
+            yield return _newBullet.transform.DOLocalMoveY(
+                Vector3.Distance(transform.position, _enemyTransform), _bulletTime).WaitForCompletion();
             OnBulletShot?.Invoke(_tower);
         }
-        Debug.Log("ShootBullet");
     }
 
     public void RenewData()
     {
+        Debug.Log("RenewData");
         ShootsNumber = 0;
         IsShooting = false;
         _cellButton.interactable = true;

@@ -25,15 +25,11 @@ public class TowerMediator : Mediator
     }
     private void LaunchShootingHandler(List<Vector3> _receivedTransforms, TowerModel _towerModel)
     {
-        if (View.IsShooting && View.ShootsNumber < _towerModel.BulletsNumber)
+        if (View.IsShooting)
         {
             View.LaunchShooting(_receivedTransforms, _towerModel);
             Debug.Log("LaunchShootingHandler");
         } 
-        else if(View.IsShooting && View.ShootsNumber == _towerModel.BulletsNumber)
-        {
-            View.RenewData();
-        }
     }
     private void PrepareAnotherShootHandler(TowerModel _towerModel)
     {
