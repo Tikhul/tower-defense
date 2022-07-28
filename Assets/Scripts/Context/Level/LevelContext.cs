@@ -48,9 +48,13 @@ public class LevelContext : CoreContext
         commandBinder.Bind<PipelineStartSignal>().To<StartPipelineCommand>().Once();
         commandBinder.Bind<NextLevelChosenSignal>()
             .To<EndCurrentLevelCommand>()
+            .To<RenewPlayerHealthCommand>()
             .To<BeginNextLevelCommand>()
             .InSequence();
-        commandBinder.Bind<RestartLevelChosenSignal>().To<RestartLevelCommand>();
+        commandBinder.Bind<RestartLevelChosenSignal>()
+            .To<RenewPlayerHealthCommand>()
+            .To<RenewPlayerMoneyCommand>()
+            .To<RestartLevelCommand>();
         commandBinder.Bind<DefineEnemyWaySignal>()
             .To<ClearEnemyWayCommand>()
             .To<DefineEnemyWayCommand>()
