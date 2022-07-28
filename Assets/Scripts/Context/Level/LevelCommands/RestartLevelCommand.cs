@@ -9,5 +9,6 @@ public class RestartLevelCommand : Command
     public override void Execute()
     {
         injectionBinder.GetInstance<LevelsPipelineModel>().RestartLevel();
+        injectionBinder.GetInstance<ActivateWaveSignal>().Dispatch();
     }
 }
