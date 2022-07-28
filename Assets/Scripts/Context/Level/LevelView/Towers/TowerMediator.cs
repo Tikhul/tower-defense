@@ -32,12 +32,12 @@ public class TowerMediator : Mediator
             if (_enemyTransforms.Count ==
                 LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemiesOnScene.Count)
             {
-                TurnTowerHandler(_enemyTransforms.FindAll(x => !x.Equals(Vector3.zero)), _tower);
+                LaunchShootingHandler(_enemyTransforms.FindAll(x => !x.Equals(Vector3.zero)), _tower);
                 _enemyTransforms.Clear();
             }
         }
     }
-    private void TurnTowerHandler(List<Vector3> _receivedTransforms, TowerModel _towerModel)
+    private void LaunchShootingHandler(List<Vector3> _receivedTransforms, TowerModel _towerModel)
     {
         Debug.Log("TurnTowerHandler");
         View.LaunchShooting(_receivedTransforms, _towerModel);

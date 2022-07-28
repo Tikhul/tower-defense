@@ -68,18 +68,24 @@ public class TowerView : BaseView
         _newBullet.transform.localPosition = _bulletPrefab.transform.position;
         _newBullet.transform.localScale = _bulletPrefab.transform.localScale;
         _newBullet.GetComponent<BulletView>().BulletDamage = _tower.Damage;
-        ShootBullet(_newBullet, _tower, _enemyTransform);
+        StartCoroutine(ShootBullet(_newBullet, _tower, _enemyTransform));
     }
-    private void ShootBullet(GameObject _newBullet, TowerModel _tower, Vector3 _enemyTransform)
+    private IEnumerator ShootBullet(GameObject _newBullet, TowerModel _tower, Vector3 _enemyTransform)
     {
-        Tween _tween = _newBullet.transform.DOLocalMoveY(Vector3.Distance(transform.position, _enemyTransform), _bulletTime);
-        OnBulletShot?.Invoke(_tower);
-
-        if (ShootsNumber >= _tower.BulletsNumber)
+        if (ShootsNumber > _tower.BulletsNumber)
         {
             ShootsNumber = 0;
             IsShooting = false;
-            _tween.OnComplete(UnBlockCell);
+            UnBlockCell();
+        }
+        else if(ShootsNumber == _tower.BulletsNumber)
+        {
+            _newBullet.transform.DOLocalMoveY(Vector3.Distance(transform.position, _enemyTransform), _bulletTime).WaitForCompletion();
+        }
+        else
+        {
+            yield return _newBullet.transform.DOLocalMoveY(Vector3.Distance(transform.position, _enemyTransform), _bulletTime).WaitForCompletion();
+            OnBulletShot?.Invoke(_tower);
         }
         Debug.Log("ShootBullet");
     }
