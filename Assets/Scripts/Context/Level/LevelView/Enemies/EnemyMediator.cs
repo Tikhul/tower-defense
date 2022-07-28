@@ -16,7 +16,6 @@ public class EnemyMediator : Mediator
     [Inject] public GameModel GameModel { get; set; }
     [Inject] public WaveEndedSignal WaveEndedSignal { get; set; }
     [Inject] public ChangePlayerHealthSignal ChangePlayerHealthSignal { get; set; }
-    [Inject] public CollectEnemiesTransformsSignal CollectEnemiesTransformsSignal { get; set; }
     [Inject] public ChangeEnemyHealthSignal ChangeEnemyHealthSignal { get; set; }
     public override void OnRegister()
     {
@@ -62,13 +61,5 @@ public class EnemyMediator : Mediator
     private void DamageEnemyHandler(int _damage)
     {
         View.Damage(_damage);
-    }
-    private void PredictEnemyTransform(TowerModel _tower)
-    {
-        Debug.Log("PredictEnemyTransform");
-        
-        var _percentage = (_tower.ShootDelay + View.EnemyTween.Elapsed()) / View.EnemyTween.Duration();
-        var getPoint = View.EnemyTween.PathGetPoint(_percentage);
-        CollectEnemiesTransformsSignal.Dispatch(getPoint, _tower);
     }
 }

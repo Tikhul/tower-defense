@@ -41,7 +41,6 @@ public class LevelContext : CoreContext
         injectionBinder.Bind<ActivateWaveSignal>().ToSingleton();
         injectionBinder.Bind<PassLevelDataSignal>();
         injectionBinder.Bind<PipelineEndedSignal>().ToSingleton().CrossContext();
-        injectionBinder.Bind<CollectEnemiesTransformsSignal>().ToSingleton();
         injectionBinder.Bind<ChangeEnemyHealthSignal>().ToSingleton();
         commandBinder.Bind<DrawBoardSignal>().To<DrawBoardCommand>().Once();
         commandBinder.Bind<FillCellListSignal>().To<FillCellListCommand>();
