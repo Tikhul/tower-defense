@@ -11,7 +11,6 @@ public class TowerMediator : Mediator
     [Inject] public TowerView View { get; set; }
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public CollectEnemiesTransformsSignal CollectEnemiesTransformsSignal { get; set; }
-    [Inject] public PrepareForShootSignal PrepareForShootSignal { get; set; }
 
     public override void OnRegister()
     {
@@ -44,6 +43,6 @@ public class TowerMediator : Mediator
     }
     private void PrepareAnotherShootHandler(TowerModel _towerModel)
     {
-        PrepareForShootSignal.Dispatch(_towerModel);
+        
     }
 }

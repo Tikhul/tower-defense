@@ -39,8 +39,8 @@ public class UIContext : CoreContext
         injectionBinder.Bind<ShowTowerDataSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<NoMoneySignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<TowerBoughtSignal>().ToSingleton().CrossContext();
-        injectionBinder.Bind<PrepareForShootSignal>().ToSingleton().CrossContext();
 
+        commandBinder.Bind<PrepareForShootSignal>().To<PrepareForShootCommand>();
         commandBinder.Bind<CreateTowerMenuSignal>().To<CreateTowerMenuCommand>();
         commandBinder.Bind<CreateUpgradeMenuSignal>().To<CreateUpgradeMenuCommand>();
         commandBinder.Bind<LoadContextsSignal>()

@@ -16,7 +16,6 @@ public class EnemyMediator : Mediator
     [Inject] public GameModel GameModel { get; set; }
     [Inject] public WaveEndedSignal WaveEndedSignal { get; set; }
     [Inject] public ChangePlayerHealthSignal ChangePlayerHealthSignal { get; set; }
-    [Inject] public PrepareForShootSignal PrepareForShootSignal { get; set; }
     [Inject] public CollectEnemiesTransformsSignal CollectEnemiesTransformsSignal { get; set; }
     [Inject] public ChangeEnemyHealthSignal ChangeEnemyHealthSignal { get; set; }
     public override void OnRegister()
@@ -27,7 +26,6 @@ public class EnemyMediator : Mediator
         RestartLevelChosenSignal.AddListener(ClearEnemiesHandler);
         View.OnEnemyDestroy += WaveFinishedHandler;
         View.OnEnemyWayCompleted += ChangePlayerHealthHandler;
-        PrepareForShootSignal.AddListener(PredictEnemyTransform);
         ChangeEnemyHealthSignal.AddListener(DamageEnemyHandler);
     }
     public override void OnRemove()
@@ -35,7 +33,6 @@ public class EnemyMediator : Mediator
         LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemiesOnScene.Remove(View);
         NextLevelChosenSignal.RemoveListener(ClearEnemiesHandler);
         RestartLevelChosenSignal.RemoveListener(ClearEnemiesHandler);
-        PrepareForShootSignal.RemoveListener(PredictEnemyTransform);
         View.OnEnemyWayCompleted -= ChangePlayerHealthHandler;
         ChangeEnemyHealthSignal.RemoveListener(DamageEnemyHandler);
         View.OnEnemyDestroy -= WaveFinishedHandler;
