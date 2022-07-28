@@ -11,7 +11,6 @@ public class EnemyView : BaseView
     [SerializeField] private DOTweenPath _path;
     private int _actualEnemyHealth;
     public Tween EnemyTween { get; set; }
-    public bool IsLast { get; set; }
     public EnemyConfig Config => _config;
     public int ActualEnemyHealth
     {
@@ -19,7 +18,7 @@ public class EnemyView : BaseView
         set => _actualEnemyHealth = value;
     }
     public DOTweenPath Path => _path;
-    public event Action OnLastEnemy = delegate { };
+    public event Action OnEnemyDestroy = delegate { };
     public event Action<int> OnEnemyWayCompleted = delegate { };
     public void FillWayPoints(List<Vector3> _receivedTransforms)
     {
@@ -29,16 +28,12 @@ public class EnemyView : BaseView
     }
     private void PerformAfterPath()
     {
-        if (IsLast)
-        {
-            OnLastEnemy.Invoke();
-        }
-        IsLast = false;
         OnEnemyWayCompleted?.Invoke(Config.Damage);
         ClearEnemies();
     }
     public void ClearEnemies()
     {
+        OnEnemyDestroy?.Invoke();
         transform.DOKill();
         Destroy(gameObject);
     }

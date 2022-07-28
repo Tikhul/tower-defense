@@ -9,7 +9,6 @@ public class WavePipelineModel
     private List<IWaveModel> _waveModels { get; set; }
     public WavePipelineConfig Config { get; set; }
     public IWaveModel CurrentWave => _waveModels.LastOrDefault(e => e.State.Equals(WaveState.Active) || e.State.Equals(WaveState.Completed));
-    public List<EnemyView> EnemiesOnScene { get; set; } = new List<EnemyView>();
     public event Action OnPipelineBegin;
     public event Action OnPipelineComplete;
     public WavePipelineModel(WavePipelineConfig _config)

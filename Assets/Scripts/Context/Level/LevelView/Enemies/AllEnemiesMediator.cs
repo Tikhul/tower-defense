@@ -11,8 +11,6 @@ public class AllEnemiesMediator : Mediator
     [Inject] public AllEnemiesView View { get; set; }
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public ActivateWaveSignal ActivateWaveSignal { get; set; }
-    [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
-    [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     public override void OnRegister()
     {
         DrawEnemiesHandler();
@@ -29,8 +27,7 @@ public class AllEnemiesMediator : Mediator
         {
             List<EnemyModel> _tempList = new List<EnemyModel>();
             _tempList.AddRange(LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.WaveEnemies);
-            StartCoroutine(ActivateEnemy(_tempList));
-            
+            StartCoroutine(ActivateEnemy(_tempList));  
         }
     }
     private IEnumerator ActivateEnemy(List<EnemyModel> _enemies)
@@ -39,29 +36,13 @@ public class AllEnemiesMediator : Mediator
         {
             if (i == 0)
             {
-                if(i != _enemies.Count - 1)
-                {
-                    yield return new WaitForSeconds(LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.Config.WaveHold);
-                    View.ActivateEnemy(_enemies[i], false);
-                }
-                else
-                {
-                    yield return new WaitForSeconds(1f);
-                    View.ActivateEnemy(_enemies[i], true);
-                }
+                yield return new WaitForSeconds(LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.Config.WaveHold);
+                View.ActivateEnemy(_enemies[i]);
             }
             else
             {
-                if (i != _enemies.Count - 1)
-                {
-                    yield return new WaitForSeconds(2f);
-                    View.ActivateEnemy(_enemies[i], false);
-                }
-                else
-                {
-                    yield return new WaitForSeconds(2f);
-                    View.ActivateEnemy(_enemies[i], true);
-                }
+                yield return new WaitForSeconds(2f);
+                View.ActivateEnemy(_enemies[i]);
             }
         }
     }
