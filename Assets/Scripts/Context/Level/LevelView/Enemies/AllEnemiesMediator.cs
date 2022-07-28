@@ -17,13 +17,10 @@ public class AllEnemiesMediator : Mediator
     {
         DrawEnemiesHandler();
         ActivateWaveSignal.AddListener(DrawEnemiesHandler);
-        NextLevelChosenSignal.AddListener(DrawEnemiesHandler);
-        RestartLevelChosenSignal.AddListener(DrawEnemiesHandler);
-        LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.OnWaveBegin += DrawEnemiesHandler;
     }
     public override void OnRemove()
     {
-        LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.OnWaveBegin -= DrawEnemiesHandler;
+        ActivateWaveSignal.RemoveListener(DrawEnemiesHandler);
     }
     private void DrawEnemiesHandler()
     {
@@ -33,7 +30,7 @@ public class AllEnemiesMediator : Mediator
             List<EnemyModel> _tempList = new List<EnemyModel>();
             _tempList.AddRange(LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.WaveEnemies);
             StartCoroutine(ActivateEnemy(_tempList));
-            ActivateWaveSignal.RemoveListener(DrawEnemiesHandler);
+            
         }
     }
     private IEnumerator ActivateEnemy(List<EnemyModel> _enemies)
