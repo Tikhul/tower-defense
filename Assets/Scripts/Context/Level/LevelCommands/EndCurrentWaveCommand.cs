@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using context.level;
+using context.ui;
 
 public class EndCurrentWaveCommand : Command
 {
@@ -11,6 +12,7 @@ public class EndCurrentWaveCommand : Command
     public override void Execute()
     {
         CurrentLevel.LevelWaves.CompleteCurrentWave();
+
         if(CurrentLevel.LevelWaves.WaveModels.Where(x => x.State.Equals(WaveState.Completed)).ToList().Count.Equals(
             CurrentLevel.LevelWaves.WaveModels.Count))
         {

@@ -403,7 +403,7 @@ MonoBehaviour:
   _damageText: {fileID: 1598356123}
   _radiusText: {fileID: 891921914}
   _speedText: {fileID: 1624893796}
-  _shootButton: {fileID: 1946082280}
+  _shootButtonView: {fileID: 1946082283}
 --- !u!1 &251494429
 GameObject:
   m_ObjectHideFlags: 0
@@ -3119,6 +3119,7 @@ GameObject:
   - component: {fileID: 1946082282}
   - component: {fileID: 1946082281}
   - component: {fileID: 1946082280}
+  - component: {fileID: 1946082283}
   m_Layer: 5
   m_Name: ShootButton
   m_TagString: Untagged
@@ -3185,7 +3186,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1946082281}
   m_OnClick:
     m_PersistentCalls:
@@ -3228,6 +3229,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946082278}
   m_CullTransparentMesh: 1
+--- !u!114 &1946082283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946082278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57eee32ca488fb4cbecde4e492ba11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shootButton: {fileID: 1946082280}
 --- !u!1 &2087143418
 GameObject:
   m_ObjectHideFlags: 0

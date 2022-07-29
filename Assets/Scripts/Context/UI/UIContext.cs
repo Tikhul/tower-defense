@@ -33,14 +33,17 @@ public class UIContext : CoreContext
         injectionBinder.Bind<ChangePlayerDataSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<TowerMenuCreatedSignal>().ToSingleton();
         injectionBinder.Bind<UpgradeMenuCreatedSignal>().ToSingleton();
-        injectionBinder.Bind<HideMenuSignal>().ToSingleton();
+        injectionBinder.Bind<HideSubMenuSignal>().ToSingleton();
+        injectionBinder.Bind<HideMenuSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<TowerChosenSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<UpgradeChosenSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<ShowTowerDataSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<NoMoneySignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<TowerBoughtSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<PrepareForShootSignal>().ToSingleton().CrossContext();
-        
+        injectionBinder.Bind<BlockShootButtonSignal>().ToSingleton().CrossContext();
+        injectionBinder.Bind<UnBlockShootButtonSignal>().ToSingleton().CrossContext();
+
         commandBinder.Bind<CreateTowerMenuSignal>().To<CreateTowerMenuCommand>();
         commandBinder.Bind<CreateUpgradeMenuSignal>().To<CreateUpgradeMenuCommand>();
         commandBinder.Bind<LoadContextsSignal>()
@@ -64,6 +67,7 @@ public class UIContext : CoreContext
         mediationBinder.BindView<UpgradeMenuView>().ToMediator<UpgradeMenuMediator>();
         mediationBinder.BindView<UpgradeButtonView>().ToMediator<UpgradeButtonMediator>();
         mediationBinder.BindView<WarningsView>().ToMediator<WarningsMediator>();
+        mediationBinder.BindView<ShootButtonView>().ToMediator<ShootButtonMediator>();
     }
 
     protected override void MapAsIndependentContext()

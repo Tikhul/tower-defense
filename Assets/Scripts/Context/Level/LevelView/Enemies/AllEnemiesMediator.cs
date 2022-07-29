@@ -1,4 +1,5 @@
 using context.level;
+using context.ui;
 using strange.extensions.mediation.impl;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ public class AllEnemiesMediator : Mediator
     [Inject] public AllEnemiesView View { get; set; }
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public ActivateWaveSignal ActivateWaveSignal { get; set; }
+    [Inject] public UnBlockShootButtonSignal UnBlockShootButtonSignal { get; set; }
     public override void OnRegister()
     {
         DrawEnemiesHandler();
@@ -36,6 +38,7 @@ public class AllEnemiesMediator : Mediator
             {
                 yield return new WaitForSeconds(LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.Config.WaveHold);
                 View.ActivateEnemy(_enemies[i]);
+                UnBlockShootButtonSignal.Dispatch();
             }
             else
             {

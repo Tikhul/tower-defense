@@ -9,8 +9,7 @@ public class LevelMediator : Mediator
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public ShowRestartPanelSignal ShowRestartPanelSignal { get; set; }
     [Inject] public PipelineEndedSignal PipelineEndedSignal { get; set; }
-    [Inject] public ShowEndPanelSignal ShowEndPanelSignal { get; set; }
-
+    [Inject] public LevelEndedSignal LevelEndedSignal { get; set; }
     public override void OnRegister()
     {
         View.OnSpaceClick += NexStageHandler;
@@ -18,7 +17,7 @@ public class LevelMediator : Mediator
     }
     private void NexStageHandler()
     {
-        ShowRestartPanelSignal.Dispatch();
+        LevelEndedSignal.Dispatch();
     }
     private void OnPipelineCompleteHandler()
     {

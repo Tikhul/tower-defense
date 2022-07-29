@@ -9,17 +9,17 @@ public class TowerMenuMediator : Mediator
 {
     [Inject] public TowerMenuView View { get; set; }
     [Inject] public TowerMenuCreatedSignal TowerMenuCreatedSignal { get; set; }
-    [Inject] public HideMenuSignal HideMenuSignal { get; set; }
+    [Inject] public HideSubMenuSignal HideSubMenuSignal { get; set; }
 
     public override void OnRegister()
     {
         TowerMenuCreatedSignal.AddListener(SetUpTowerButtonsHandler);
-        HideMenuSignal.AddListener(ClearMenuHandler);
+        HideSubMenuSignal.AddListener(ClearMenuHandler);
     }
     public override void OnRemove()
     {
         TowerMenuCreatedSignal.RemoveListener(SetUpTowerButtonsHandler);
-        HideMenuSignal.RemoveListener(ClearMenuHandler);
+        HideSubMenuSignal.RemoveListener(ClearMenuHandler);
     }
 
     private void SetUpTowerButtonsHandler(List<TowerView> list)

@@ -13,6 +13,7 @@ public class EnemyMediator : Mediator
     [Inject] public WaveEndedSignal WaveEndedSignal { get; set; }
     [Inject] public ChangePlayerHealthSignal ChangePlayerHealthSignal { get; set; }
     [Inject] public ChangeEnemyHealthSignal ChangeEnemyHealthSignal { get; set; }
+    [Inject] public BlockShootButtonSignal BlockShootButtonSignal { get; set; }
     public override void OnRegister()
     {
         LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemiesOnScene.Add(View);
@@ -47,6 +48,7 @@ public class EnemyMediator : Mediator
 
         if (LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemiesOnScene.Count == 1)
         {
+            BlockShootButtonSignal.Dispatch();
             WaveEndedSignal.Dispatch();
         }
     }

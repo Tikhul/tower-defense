@@ -21,10 +21,13 @@ namespace context.ui
     public class CreateUpgradeMenuSignal : Signal<CellButtonView> { }
     public class UpgradeMenuCreatedSignal : Signal<List<UpgradeConfig>, TowerView> { }
     public class HideMenuSignal : Signal { }
+    public class HideSubMenuSignal : Signal { }
     public class TowerChosenSignal : Signal<TowerButtonView> { }
     public class TowerBoughtSignal : Signal { }
     public class UpgradeChosenSignal : Signal<UpgradeButtonView> { }
     public class ShowTowerDataSignal : Signal<TowerModel> { }
     public class NoMoneySignal : Signal { }
     public class PrepareForShootSignal : Signal<TowerModel> { }
+    public class BlockShootButtonSignal : Signal { }
+    public class UnBlockShootButtonSignal : Signal { }
 }
