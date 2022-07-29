@@ -2,6 +2,7 @@ using context.level;
 using context.ui;
 using strange.extensions.mediation.impl;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TowerMediator : Mediator
@@ -25,7 +26,17 @@ public class TowerMediator : Mediator
     {
         if (View.IsShooting)
         {
-            View.LaunchShooting(_receivedTransforms, _towerModel);
+            if (_receivedTransforms.Any())
+            {
+                View.LaunchShooting(_receivedTransforms, _towerModel);
+            }
+            else
+            {
+                _receivedTransforms.Add(new Vector3(View.transform.position.x, 
+                    View.transform.position.y,
+                    View.transform.position.z + _towerModel.ShootRadius));
+                View.LaunchShooting(_receivedTransforms, _towerModel);
+            }
             Debug.Log("LaunchShootingHandler");
         } 
     }
