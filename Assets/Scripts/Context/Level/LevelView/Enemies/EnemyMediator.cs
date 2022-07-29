@@ -19,8 +19,7 @@ public class EnemyMediator : Mediator
         FillWayPointsHandler();
         NextLevelChosenSignal.AddListener(ClearEnemiesHandler);
         RestartLevelChosenSignal.AddListener(ClearEnemiesHandler);
-        View.OnEnemyDestroy += WaveFinishedHandler;
-        View.OnEnemyWayCompleted += ChangePlayerHealthHandler;
+        View.OnEnemyWayCompleted += EnemyWayFinishedHandler;
         ChangeEnemyHealthSignal.AddListener(DamageEnemyHandler);
     }
     public override void OnRemove()
@@ -28,9 +27,8 @@ public class EnemyMediator : Mediator
         LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemiesOnScene.Remove(View);
         NextLevelChosenSignal.RemoveListener(ClearEnemiesHandler);
         RestartLevelChosenSignal.RemoveListener(ClearEnemiesHandler);
-        View.OnEnemyWayCompleted -= ChangePlayerHealthHandler;
+        View.OnEnemyWayCompleted -= EnemyWayFinishedHandler;
         ChangeEnemyHealthSignal.RemoveListener(DamageEnemyHandler);
-        View.OnEnemyDestroy -= WaveFinishedHandler;
     }
     private void FillWayPointsHandler()
     {
@@ -43,16 +41,14 @@ public class EnemyMediator : Mediator
     {
         View.ClearEnemies();
     }
-    private void WaveFinishedHandler()
+    private void EnemyWayFinishedHandler(int _damage)
     {
+        ChangePlayerHealthSignal.Dispatch(_damage);
+
         if (LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemiesOnScene.Count == 1)
         {
             WaveEndedSignal.Dispatch();
         }
-    }
-    private void ChangePlayerHealthHandler(int _damage)
-    {
-        ChangePlayerHealthSignal.Dispatch(_damage);
     }
     private void DamageEnemyHandler(int _damage)
     {

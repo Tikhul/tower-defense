@@ -16,7 +16,6 @@ public class EnemyView : BaseView
         set => _actualEnemyHealth = value;
     }
     public DOTweenPath Path => _path;
-    public event Action OnEnemyDestroy = delegate { };
     public event Action<int> OnEnemyWayCompleted = delegate { };
     public void FillWayPoints(List<Vector3> _receivedTransforms)
     {
@@ -31,7 +30,6 @@ public class EnemyView : BaseView
     }
     public void ClearEnemies()
     {
-        OnEnemyDestroy?.Invoke();
         transform.DOKill();
         Destroy(gameObject);
     }
