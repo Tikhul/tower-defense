@@ -10,6 +10,7 @@ public class BeginNextWaveCommand : Command
     {
         injectionBinder.GetInstance<LevelsPipelineModel>().CurrentLevel.LevelWaves.BeginNextWave();
         injectionBinder.GetInstance<ActivateWaveSignal>().Dispatch();
+        Debug.Log("BeginNextWaveCommand");
     }
     
 }

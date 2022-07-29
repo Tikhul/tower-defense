@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class WavePipelineModel
 {
-    private List<IWaveModel> _waveModels { get; set; }
+    public List<IWaveModel> WaveModels { get; set; }
     public WavePipelineConfig Config { get; set; }
-    public IWaveModel CurrentWave => _waveModels.LastOrDefault(e => e.State.Equals(WaveState.Active) || e.State.Equals(WaveState.Completed));
+    public IWaveModel CurrentWave => WaveModels.LastOrDefault(e => e.State.Equals(WaveState.Active) || e.State.Equals(WaveState.Completed));
     public event Action OnPipelineBegin;
     public event Action OnPipelineComplete;
     public WavePipelineModel(WavePipelineConfig _config)
@@ -17,20 +17,20 @@ public class WavePipelineModel
     }
     private IWaveModel GetNextWave()
     {
-        if (CurrentWave == null) return _waveModels.FirstOrDefault();
+        if (CurrentWave == null) return WaveModels.FirstOrDefault();
 
-        var index = _waveModels.IndexOf(CurrentWave);
+        var index = WaveModels.IndexOf(CurrentWave);
         index++;
 
-        if (_waveModels.Count <= index)
+        if (WaveModels.Count <= index)
         {
             return null;
         }
-        return _waveModels[index];
+        return WaveModels[index];
     }
     public void Begin()
     {
-        _waveModels = Config.GetWaveModels();
+        WaveModels = Config.GetWaveModels();
         var first = GetNextWave();
         first.BeginWave();
         OnPipelineBegin?.Invoke();
@@ -38,7 +38,7 @@ public class WavePipelineModel
     }
     public void End()
     {
-        foreach (var wave in _waveModels.Where(x => x.State == WaveState.Active))
+        foreach (var wave in WaveModels.Where(x => x.State == WaveState.Active))
         {
             wave.CompleteWave();
         }

@@ -2,11 +2,18 @@ using strange.extensions.command.impl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EndCurrentWaveCommand : Command
 {
+    private ILevelModel CurrentLevel => injectionBinder.GetInstance<LevelsPipelineModel>().CurrentLevel;
     public override void Execute()
     {
-        injectionBinder.GetInstance<LevelsPipelineModel>().CurrentLevel.LevelWaves.CompleteCurrentWave();
+        CurrentLevel.LevelWaves.CompleteCurrentWave();
+        if(CurrentLevel.LevelWaves.WaveModels.Where(x => x.State == WaveState.Completed).ToList().Count.Equals(
+            CurrentLevel.LevelWaves.WaveModels.Count))
+        {
+            Fail();
+        }
     }
 }
