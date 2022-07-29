@@ -50,18 +50,23 @@ public class TowerView : BaseView
     {
         _shootRadius.radius += _upgrade / 30;
     }
-    public void LaunchShooting(List<Vector3> _receivedTransforms, TowerModel _towerModel)
+    public void LaunchShooting(Dictionary<Vector3, EnemyView> _receivedTransforms, TowerModel _towerModel)
     {
         Debug.Log("LaunchShooting");
         _cellButton.interactable = false;
         ShootsNumber += 1;
         StartCoroutine(TurnTower(_receivedTransforms, _towerModel));
     }
-    public IEnumerator TurnTower(List<Vector3> _enemiesTransforms, TowerModel _towerModel)
+    public IEnumerator TurnTower(Dictionary<Vector3, EnemyView> _enemiesTransforms, TowerModel _towerModel)
     {
         Debug.Log("TurnTower");
-        Vector3 _nearestEnemy = _enemiesTransforms.OrderBy(x => Vector3.Distance(transform.position, x)).First();
+        Vector3 _nearestEnemy = _enemiesTransforms.Keys.OrderBy(x => Vector3.Distance(transform.position, x)).First();
+        Debug.Log(_enemiesTransforms[_nearestEnemy].Config.Id);
+        Debug.Log(_nearestEnemy);
+        
         yield return _direction.transform.DOLookAt(_nearestEnemy, _towerModel.ShootDelay).WaitForCompletion();
+        Debug.Log(_enemiesTransforms[_nearestEnemy].transform.position);
+
         CreateBullet(_towerModel, _nearestEnemy);
     }
     private void CreateBullet(TowerModel _tower, Vector3 _enemyTransform)

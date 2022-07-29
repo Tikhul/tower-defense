@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: blue
   _damage: 10
   _shootRadius: 200
-  _ShootDelay: 4
+  _ShootDelay: 3
   _bulletsNumber: 4
   _cost: 10
   _upgrades:

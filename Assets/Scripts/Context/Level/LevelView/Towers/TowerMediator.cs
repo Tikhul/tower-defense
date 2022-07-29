@@ -21,7 +21,7 @@ public class TowerMediator : Mediator
         ReadyToShootSignal.RemoveListener(LaunchShootingHandler);
         View.OnBulletShot -= PrepareAnotherShootHandler;
     }
-    private void LaunchShootingHandler(List<Vector3> _receivedTransforms, TowerModel _towerModel)
+    private void LaunchShootingHandler(Dictionary<Vector3, EnemyView> _receivedTransforms, TowerModel _towerModel)
     {
         if (View.IsShooting)
         {
