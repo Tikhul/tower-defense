@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using context.level;
 
 public class EndCurrentWaveCommand : Command
 {
@@ -10,9 +11,10 @@ public class EndCurrentWaveCommand : Command
     public override void Execute()
     {
         CurrentLevel.LevelWaves.CompleteCurrentWave();
-        if(CurrentLevel.LevelWaves.WaveModels.Where(x => x.State == WaveState.Completed).ToList().Count.Equals(
+        if(CurrentLevel.LevelWaves.WaveModels.Where(x => x.State.Equals(WaveState.Completed)).ToList().Count.Equals(
             CurrentLevel.LevelWaves.WaveModels.Count))
         {
+            injectionBinder.GetInstance<LevelEndedSignal>().Dispatch();
             Fail();
         }
     }

@@ -23,7 +23,6 @@ public class LevelMediator : Mediator
     private void OnPipelineCompleteHandler()
     {
         PipelineEndedSignal.Dispatch();
-        ShowEndPanelSignal.Dispatch();
         View.OnSpaceClick -= NexStageHandler;
         LevelsPipelineModel.OnPipelineComplete -= OnPipelineCompleteHandler;
         Debug.Log("OnPipelineCompleteHandler");

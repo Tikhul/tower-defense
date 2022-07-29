@@ -10,6 +10,7 @@ namespace context.level
     public class FillCellListSignal : Signal<GameObject, char, int> { }
     public class PipelineStartSignal : Signal { }
     public class PipelineEndedSignal : Signal { }
+    public class LevelEndedSignal : Signal { }
     public class DefineEnemyWaySignal : Signal { }
     public class OnEnemyWayDefinedSignal : Signal { }
     public class WaveEndedSignal : Signal { }

@@ -5,28 +5,28 @@ using UnityEngine;
 
 public class LevelsPipelineModel
 {
-    private List<ILevelModel> _levelModels { get; set; }
+    public List<ILevelModel> LevelModels { get; set; }
     public LevelsPipelineConfig Config { get; set; }
-    public ILevelModel CurrentLevel => _levelModels.LastOrDefault(e => e.State.Equals(LevelState.Active) || e.State.Equals(LevelState.Completed));
+    public ILevelModel CurrentLevel => LevelModels.LastOrDefault(e => e.State.Equals(LevelState.Active) || e.State.Equals(LevelState.Completed));
     public event Action OnPipelineBegin;
     public event Action OnPipelineComplete;
 
     private ILevelModel GetNextLevel()
     {
-        if (CurrentLevel == null) return _levelModels.FirstOrDefault();
+        if (CurrentLevel == null) return LevelModels.FirstOrDefault();
 
-        var index = _levelModels.IndexOf(CurrentLevel);
+        var index = LevelModels.IndexOf(CurrentLevel);
         index++;
 
-        if (_levelModels.Count <= index)
+        if (LevelModels.Count <= index)
         {
             return null;
         }
-        return _levelModels[index];
+        return LevelModels[index];
     }
     public void Begin()
     {
-        _levelModels = Config.GetLevelModels();
+        LevelModels = Config.GetLevelModels();
         var first = GetNextLevel();
         first.BeginLevel();
         OnPipelineBegin?.Invoke();
@@ -35,7 +35,7 @@ public class LevelsPipelineModel
 
     public void End()
     {
-        foreach (var level in _levelModels.Where(x => x.State == LevelState.Active))
+        foreach (var level in LevelModels.Where(x => x.State == LevelState.Active))
         {
             level.CompleteLevel();
         }
