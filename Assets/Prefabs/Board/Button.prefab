@@ -434,6 +434,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7707069584881060204, guid: 98f5b48591d73684b974fa7948120666, type: 3}
+      propertyPath: _cellButton
+      value: 
+      objectReference: {fileID: 1027707768107338640}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f5b48591d73684b974fa7948120666, type: 3}
 --- !u!4 &3261203008911242576 stripped
@@ -511,6 +515,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7707069584881060204, guid: ea979134e9a7e4e48ad5339ccc6723e3, type: 3}
+      propertyPath: _cellButton
+      value: 
+      objectReference: {fileID: 1027707768107338640}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea979134e9a7e4e48ad5339ccc6723e3, type: 3}
 --- !u!4 &2009633366498023144 stripped
@@ -588,6 +596,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7707069584881060204, guid: 0d719e54f78d1ae409161ae7ec55cb5f, type: 3}
+      propertyPath: _cellButton
+      value: 
+      objectReference: {fileID: 1027707768107338640}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d719e54f78d1ae409161ae7ec55cb5f, type: 3}
 --- !u!4 &1165254845668439963 stripped

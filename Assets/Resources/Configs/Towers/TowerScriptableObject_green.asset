@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: TowerScriptableObject_green
   m_EditorClassIdentifier: 
   _id: green
-  _damage: 0
-  _shootRadius: 0
+  _damage: 15
+  _shootRadius: 200
   _ShootDelay: 3
-  _bulletsNumber: 0
+  _bulletsNumber: 3
   _cost: 20
-  _upgrades: []
+  _upgrades:
+  - {fileID: 11400000, guid: f80f6bfa53e260b4a99f7e2135daa7a5, type: 2}
+  - {fileID: 11400000, guid: 8b43d3f95107786438c2cfd814a8a8ee, type: 2}
+  - {fileID: 11400000, guid: 4e3cb5544f10f224ea5020124b2e968e, type: 2}
+  - {fileID: 11400000, guid: 7a6fdbfa038f064459a70b3f330fec06, type: 2}
+  - {fileID: 11400000, guid: 4917c4ae2055a8c49a62102a3c83c74a, type: 2}

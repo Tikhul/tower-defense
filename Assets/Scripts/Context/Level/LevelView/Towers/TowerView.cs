@@ -64,7 +64,7 @@ public class TowerView : BaseView
         Debug.Log(_enemiesTransforms[_nearestEnemy].Config.Id);
         Debug.Log(_nearestEnemy);
         
-        yield return _direction.transform.DOLookAt(_nearestEnemy, _towerModel.ShootDelay).WaitForCompletion();
+        yield return _direction.transform.DOLookAt(_nearestEnemy, _towerModel.ShootDelay - _bulletTime).WaitForCompletion();
         Debug.Log(_enemiesTransforms[_nearestEnemy].transform.position);
 
         CreateBullet(_towerModel, _nearestEnemy);

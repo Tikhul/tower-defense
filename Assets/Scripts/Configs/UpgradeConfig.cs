@@ -7,8 +7,8 @@ public class UpgradeConfig : Config
 {
     [SerializeField] private int _upgradeDamage;
     [SerializeField] private float _upgradeRadius;
-    [SerializeField] private int _upgradeFrequency;
-    [SerializeField] private int _upgradeBulletsNumber;
+    [SerializeField] private float _upgradeFrequency;
+ //   [SerializeField] private int _upgradeBulletsNumber;
     [SerializeField] private int _cost;
 
     /// <summary>
@@ -24,12 +24,12 @@ public class UpgradeConfig : Config
     /// <summary>
     /// Показатель увеличения скорострельности
     /// </summary>
-    public int ShootDelay => _upgradeFrequency;
+    public float ShootDelay => _upgradeFrequency;
 
     /// <summary>
     /// Показатель увеличения урона
     /// </summary>
-    public int BulletsNumber => _upgradeBulletsNumber;
+  //  public int BulletsNumber => _upgradeBulletsNumber;
 
     /// <summary>
     /// Cтоимость улучшения

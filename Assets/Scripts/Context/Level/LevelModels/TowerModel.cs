@@ -25,7 +25,7 @@ public class TowerModel
         Damage += upgradeConfig.Damage;
         ShootRadius += upgradeConfig.ShootRadius;
         ShootDelay -= upgradeConfig.ShootDelay;
-        BulletsNumber += upgradeConfig.BulletsNumber;
+ //       BulletsNumber += upgradeConfig.BulletsNumber;
         if (ShootDelay < 0.5) ShootDelay = 0.5f;
     }
 }
