@@ -62,10 +62,10 @@ public class TowerView : BaseView
   //      Debug.Log("TurnTower");
         Vector3 _nearestEnemy = _enemiesTransforms.Keys.OrderBy(x => Vector3.Distance(transform.position, x)).First();
         Debug.Log(_enemiesTransforms[_nearestEnemy].Config.Id);
-        Debug.Log(_nearestEnemy);
+        Debug.Log("Ожидание " + _nearestEnemy);
         
         yield return _direction.transform.DOLookAt(_nearestEnemy, _towerModel.ShootDelay - _bulletTime).WaitForCompletion();
-        Debug.Log(_enemiesTransforms[_nearestEnemy].transform.position);
+        Debug.Log("Реальность " + _enemiesTransforms[_nearestEnemy].transform.position);
 
         CreateBullet(_towerModel, _nearestEnemy);
     }

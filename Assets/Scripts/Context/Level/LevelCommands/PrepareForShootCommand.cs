@@ -8,19 +8,18 @@ public class PrepareForShootCommand : Command
 {
     [Inject] public TowerModel TowerModel { get; set; }
     private List<EnemyView> _enemyViews => injectionBinder.GetInstance<LevelsPipelineModel>().CurrentLevel.LevelWaves.CurrentWave.EnemiesOnScene;
-    private float _waveHold => injectionBinder.GetInstance<LevelsPipelineModel>().CurrentLevel.LevelWaves.CurrentWave.Config.WaveHold;
     public override void Execute()
     {
         Dictionary<Vector3, EnemyView> _tempList = new Dictionary<Vector3, EnemyView>();
-        for (int i=0; i < _enemyViews.Count; i++)
+        foreach (var view in _enemyViews)
         {
-            var _percentage = (TowerModel.ShootDelay + _enemyViews[i].EnemyTween.Elapsed() + (_waveHold * (i+1))) 
-                / _enemyViews[i].EnemyTween.Duration();
+            var _percentage = (TowerModel.ShootDelay + view.EnemyTween.Elapsed()) 
+                / view.EnemyTween.Duration();
 
             if (_percentage < 1)
             {
-                var getPoint = _enemyViews[i].EnemyTween.PathGetPoint(_percentage);
-                _tempList.Add(getPoint, _enemyViews[i]);
+                var getPoint = view.EnemyTween.PathGetPoint(_percentage);
+                _tempList.Add(getPoint, view);
             }
         }
         injectionBinder.GetInstance<ReadyToShootSignal>().Dispatch(_tempList, TowerModel);
