@@ -11,14 +11,17 @@ public class AllEnemiesMediator : Mediator
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public ActivateWaveSignal ActivateWaveSignal { get; set; }
     [Inject] public UnBlockShootButtonSignal UnBlockShootButtonSignal { get; set; }
+    [Inject] public ChangeEnemyHealthSignal ChangeEnemyHealthSignal { get; set; }
     public override void OnRegister()
     {
         DrawEnemiesHandler();
         ActivateWaveSignal.AddListener(DrawEnemiesHandler);
+        ChangeEnemyHealthSignal.AddListener(DamageEnemyHandler);
     }
     public override void OnRemove()
     {
         ActivateWaveSignal.RemoveListener(DrawEnemiesHandler);
+        ChangeEnemyHealthSignal.RemoveListener(DamageEnemyHandler);
     }
     private void DrawEnemiesHandler()
     {
@@ -46,5 +49,9 @@ public class AllEnemiesMediator : Mediator
                 View.ActivateEnemy(_enemies[i]);
             }
         }
+    }
+    private void DamageEnemyHandler(int _damage, EnemyView _view)
+    {
+        _view.Damage(_damage);
     }
 }

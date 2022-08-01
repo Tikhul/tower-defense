@@ -16,6 +16,6 @@ namespace context.level
     public class WaveEndedSignal : Signal { }
     public class ActivateWaveSignal : Signal { }
     public class ChangePlayerHealthSignal : Signal<int> { }
-    public class ChangeEnemyHealthSignal : Signal<int> { }
+    public class ChangeEnemyHealthSignal : Signal<int, EnemyView> { }
     public class ReadyToShootSignal : Signal<Dictionary<Vector3, EnemyView>, TowerModel> { }
 }

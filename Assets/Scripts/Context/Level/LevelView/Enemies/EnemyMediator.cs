@@ -12,7 +12,7 @@ public class EnemyMediator : Mediator
     [Inject] public GameModel GameModel { get; set; }
     [Inject] public WaveEndedSignal WaveEndedSignal { get; set; }
     [Inject] public ChangePlayerHealthSignal ChangePlayerHealthSignal { get; set; }
-    [Inject] public ChangeEnemyHealthSignal ChangeEnemyHealthSignal { get; set; }
+    
     [Inject] public BlockShootButtonSignal BlockShootButtonSignal { get; set; }
     public override void OnRegister()
     {
@@ -21,7 +21,6 @@ public class EnemyMediator : Mediator
         NextLevelChosenSignal.AddListener(ClearEnemiesHandler);
         RestartLevelChosenSignal.AddListener(ClearEnemiesHandler);
         View.OnEnemyWayCompleted += EnemyWayFinishedHandler;
-        ChangeEnemyHealthSignal.AddListener(DamageEnemyHandler);
     }
     public override void OnRemove()
     {
@@ -29,7 +28,6 @@ public class EnemyMediator : Mediator
         NextLevelChosenSignal.RemoveListener(ClearEnemiesHandler);
         RestartLevelChosenSignal.RemoveListener(ClearEnemiesHandler);
         View.OnEnemyWayCompleted -= EnemyWayFinishedHandler;
-        ChangeEnemyHealthSignal.RemoveListener(DamageEnemyHandler);
     }
     private void FillWayPointsHandler()
     {
@@ -52,8 +50,5 @@ public class EnemyMediator : Mediator
             WaveEndedSignal.Dispatch();
         }
     }
-    private void DamageEnemyHandler(int _damage)
-    {
-        View.Damage(_damage);
-    }
+    
 }

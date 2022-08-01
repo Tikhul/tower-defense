@@ -16,9 +16,9 @@ public class BulletMediator : Mediator
     {
         View.OnBulletHit -= ChangeEnemyHealthHandler;
     }
-    private void ChangeEnemyHealthHandler(int _damage)
+    private void ChangeEnemyHealthHandler(int _damage, EnemyView _view)
     {
-        ChangeEnemyHealthSignal.Dispatch(_damage);
+        ChangeEnemyHealthSignal.Dispatch(_damage, _view);
     }
 }
  
