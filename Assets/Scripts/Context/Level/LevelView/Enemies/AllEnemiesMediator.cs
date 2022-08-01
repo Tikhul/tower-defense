@@ -45,7 +45,7 @@ public class AllEnemiesMediator : Mediator
             }
             else
             {
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.Config.WaveHold);
                 View.ActivateEnemy(_enemies[i]);
             }
         }

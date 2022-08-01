@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaveScriptableObject 1
   m_EditorClassIdentifier: 
   _id: 1
-  _waveHold: 5
+  _waveHold: 1
   _enemyData:
   - _config: {fileID: 11400000, guid: b6aeaa37b25e1fd419f3bb88ef9b56f3, type: 2}
     _amount: 3

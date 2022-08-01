@@ -40,7 +40,6 @@ public class EnemyView : BaseView
     }
     public void Damage(int _damage)
     {
-        Debug.Log("HitEnemy");
         _actualEnemyHealth -= _damage;
         ShowEnemyHealth(_actualEnemyHealth);
         if (_actualEnemyHealth <= 0)

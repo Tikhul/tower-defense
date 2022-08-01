@@ -2,6 +2,7 @@ using context.level;
 using context.ui;
 using strange.extensions.mediation.impl;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TowerMediator : Mediator
@@ -23,7 +24,7 @@ public class TowerMediator : Mediator
     }
     private void LaunchShootingHandler(Dictionary<Vector3, EnemyView> _receivedTransforms, TowerModel _towerModel)
     {
-        if (View.IsShooting)
+        if (View.IsShooting && _receivedTransforms.Any())
         {
             View.LaunchShooting(_receivedTransforms, _towerModel);
   //          Debug.Log("LaunchShootingHandler");
