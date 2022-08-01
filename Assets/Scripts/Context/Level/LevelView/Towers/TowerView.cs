@@ -86,6 +86,7 @@ public class TowerView : BaseView
         {
             yield return _newBullet.transform.DOLocalMoveY(
                 Vector3.Distance(transform.position, _enemyTransform), _bulletTime).WaitForCompletion();
+            DestroyBullet(_newBullet);
             RenewData();
         }
         else if(ShootsNumber < _tower.BulletsNumber)
@@ -93,6 +94,14 @@ public class TowerView : BaseView
             yield return _newBullet.transform.DOLocalMoveY(
                 Vector3.Distance(transform.position, _enemyTransform), _bulletTime).WaitForCompletion();
             OnBulletShot?.Invoke(_tower);
+            DestroyBullet(_newBullet);
+        }
+    }
+    private void DestroyBullet(GameObject _bullet)
+    {
+        if(_bullet != null)
+        {
+            Destroy(_bullet);
         }
     }
     private void RenewData()
