@@ -52,14 +52,14 @@ public class TowerView : BaseView
     }
     public void LaunchShooting(Dictionary<Vector3, EnemyView> _receivedTransforms, TowerModel _towerModel)
     {
-        Debug.Log("LaunchShooting");
+  //      Debug.Log("LaunchShooting");
         _cellButton.interactable = false;
         ShootsNumber += 1;
         StartCoroutine(TurnTower(_receivedTransforms, _towerModel));
     }
     public IEnumerator TurnTower(Dictionary<Vector3, EnemyView> _enemiesTransforms, TowerModel _towerModel)
     {
-        Debug.Log("TurnTower");
+  //      Debug.Log("TurnTower");
         Vector3 _nearestEnemy = _enemiesTransforms.Keys.OrderBy(x => Vector3.Distance(transform.position, x)).First();
         Debug.Log(_enemiesTransforms[_nearestEnemy].Config.Id);
         Debug.Log(_nearestEnemy);
@@ -71,7 +71,7 @@ public class TowerView : BaseView
     }
     private void CreateBullet(TowerModel _tower, Vector3 _enemyTransform)
     {
-        Debug.Log("CreateBullet");
+  //      Debug.Log("CreateBullet");
         GameObject _newBullet = Instantiate(_bulletPrefab);
         _newBullet.transform.parent = _bulletParent.transform;
         _newBullet.transform.localPosition = _bulletPrefab.transform.position;
@@ -81,7 +81,7 @@ public class TowerView : BaseView
     }
     private IEnumerator ShootBullet(GameObject _newBullet, TowerModel _tower, Vector3 _enemyTransform)
     {
-        Debug.Log("ShootBullet");
+ //       Debug.Log("ShootBullet");
         if(ShootsNumber == _tower.BulletsNumber)
         {
             yield return _newBullet.transform.DOLocalMoveY(
@@ -98,7 +98,7 @@ public class TowerView : BaseView
 
     public void RenewData()
     {
-        Debug.Log("RenewData");
+//        Debug.Log("RenewData");
         ShootsNumber = 0;
         IsShooting = false;
         _cellButton.interactable = true;

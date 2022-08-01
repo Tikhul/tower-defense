@@ -26,7 +26,7 @@ public class TowerMediator : Mediator
         if (View.IsShooting)
         {
             View.LaunchShooting(_receivedTransforms, _towerModel);
-            Debug.Log("LaunchShootingHandler");
+  //          Debug.Log("LaunchShootingHandler");
         } 
     }
     private void PrepareAnotherShootHandler(TowerModel _towerModel)

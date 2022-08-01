@@ -7,6 +7,7 @@ public class EnemyView : BaseView
 {
     [SerializeField] private EnemyConfig _config;
     [SerializeField] private DOTweenPath _path;
+    [SerializeField] private TMPro.TMP_Text _enemyData;
     private int _actualEnemyHealth;
     public Tween EnemyTween { get; set; }
     public EnemyConfig Config => _config;
@@ -17,6 +18,10 @@ public class EnemyView : BaseView
     }
     public DOTweenPath Path => _path;
     public event Action<int> OnEnemyWayCompleted = delegate { };
+    private void OnEnable()
+    {
+        ShowEnemyHealth(ActualEnemyHealth);
+    }
     public void FillWayPoints(List<Vector3> _receivedTransforms)
     {
         var _duration = _receivedTransforms.Count / _config.Speed;
@@ -35,11 +40,16 @@ public class EnemyView : BaseView
     }
     public void Damage(int _damage)
     {
-        Debug.Log("HitEemy");
-        ActualEnemyHealth -= _damage;
-        if (ActualEnemyHealth <= 0)
+        Debug.Log("HitEnemy");
+        _actualEnemyHealth -= _damage;
+        ShowEnemyHealth(_actualEnemyHealth);
+        if (_actualEnemyHealth <= 0)
         {
             Destroy(gameObject);
         }
+    }
+    private void ShowEnemyHealth(int _health)
+    {
+        _enemyData.text = _health.ToString();
     }
 }

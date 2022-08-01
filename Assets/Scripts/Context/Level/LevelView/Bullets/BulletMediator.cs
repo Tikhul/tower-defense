@@ -10,11 +10,11 @@ public class BulletMediator : Mediator
     [Inject] public ChangeEnemyHealthSignal ChangeEnemyHealthSignal { get; set; }
     public override void OnRegister()
     {
-        ChangeEnemyHealthSignal.AddListener(ChangeEnemyHealthHandler);
+        View.OnBulletHit += ChangeEnemyHealthHandler;
     }
     public override void OnRemove()
     {
-        ChangeEnemyHealthSignal.RemoveListener(ChangeEnemyHealthHandler);
+        View.OnBulletHit -= ChangeEnemyHealthHandler;
     }
     private void ChangeEnemyHealthHandler(int _damage)
     {

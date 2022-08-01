@@ -22,6 +22,6 @@ public class PrepareForShootCommand : Command
             }
         }
         injectionBinder.GetInstance<ReadyToShootSignal>().Dispatch(_tempList, TowerModel);
-        Debug.Log("PrepareForShootCommand");
+ //       Debug.Log("PrepareForShootCommand");
     }
 }
