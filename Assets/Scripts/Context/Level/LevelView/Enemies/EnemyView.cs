@@ -24,9 +24,8 @@ public class EnemyView : BaseView
     }
     public void FillWayPoints(List<Vector3> _receivedTransforms)
     {
-        var _duration = _receivedTransforms.Count / _config.Speed;
         Path.wps.AddRange(_receivedTransforms);
-        EnemyTween = transform.DOPath(Path.wps.ToArray(), _duration).OnComplete(PerformAfterPath);
+        EnemyTween = transform.DOPath(Path.wps.ToArray(), _config.Speed).SetSpeedBased().OnComplete(PerformAfterPath);
     }
     private void PerformAfterPath()
     {
