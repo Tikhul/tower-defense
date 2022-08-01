@@ -55,19 +55,18 @@ public class TowerView : BaseView
   //      Debug.Log("LaunchShooting");
         _cellButton.interactable = false;
         ShootsNumber += 1;
-        StartCoroutine(TurnTower(_receivedTransforms, _towerModel));
+        TurnTower(_receivedTransforms, _towerModel);
     }
-    public IEnumerator TurnTower(Dictionary<Vector3, EnemyView> _enemiesTransforms, TowerModel _towerModel)
+    public void TurnTower(Dictionary<Vector3, EnemyView> _enemiesTransforms, TowerModel _towerModel)
     {
   //      Debug.Log("TurnTower");
         Vector3 _nearestEnemy = _enemiesTransforms.Keys.OrderBy(x => Vector3.Distance(transform.position, x)).First();
         Debug.Log(_enemiesTransforms[_nearestEnemy].Config.Id);
         Debug.Log("Ожидание " + _nearestEnemy);
         
-        yield return _direction.transform.DOLookAt(_nearestEnemy, _towerModel.ShootDelay - _bulletTime).WaitForCompletion();
+        _direction.transform.DOLookAt(_nearestEnemy, _towerModel.ShootDelay - _bulletTime)
+            .OnComplete(() => CreateBullet(_towerModel, _nearestEnemy));
         Debug.Log("Реальность " + _enemiesTransforms[_nearestEnemy].transform.position);
-
-        CreateBullet(_towerModel, _nearestEnemy);
     }
     private void CreateBullet(TowerModel _tower, Vector3 _enemyTransform)
     {
@@ -84,9 +83,9 @@ public class TowerView : BaseView
  //       Debug.Log("ShootBullet");
         if(ShootsNumber == _tower.BulletsNumber)
         {
-            yield return _newBullet.transform.DOLocalMoveY(
-                Vector3.Distance(transform.position, _enemyTransform), _bulletTime).WaitForCompletion();
-            DestroyBullet(_newBullet);
+            _newBullet.transform.DOLocalMoveY(
+                Vector3.Distance(transform.position, _enemyTransform), _bulletTime)
+                .OnComplete(() => DestroyBullet(_newBullet));
             RenewData();
         }
         else if(ShootsNumber < _tower.BulletsNumber)
