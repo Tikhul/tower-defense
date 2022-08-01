@@ -15,4 +15,11 @@ public class BulletView : BaseView
             Destroy(gameObject);
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag.Equals("ShootRadius"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

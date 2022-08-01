@@ -15,7 +15,7 @@ public class TowerView : BaseView
     [SerializeField] private SphereCollider _shootRadius;
     [SerializeField] private GameObject _direction;
     [SerializeField] private Button _cellButton;
-    private float _bulletTime = 0.5f;
+    private float _bulletTime = 1f;
     public bool IsShooting { get; set; } = false;
     public int ShootsNumber { get; set; }
     public event Action<TowerModel> OnBulletShot = delegate { };
@@ -48,7 +48,7 @@ public class TowerView : BaseView
     /// </summary>
     public void UpgradeRadius(float _upgrade)
     {
-        _shootRadius.radius += _upgrade / 30;
+        _shootRadius.radius += _upgrade / 30 - 30;
     }
     public void LaunchShooting(Dictionary<Vector3, EnemyView> _receivedTransforms, TowerModel _towerModel)
     {
@@ -87,27 +87,16 @@ public class TowerView : BaseView
             yield return _newBullet.transform.DOLocalMoveY(
                 Vector3.Distance(transform.position, _enemyTransform), _bulletTime).WaitForCompletion();
             RenewData();
-            DestroyBullet(_newBullet);
         }
         else if(ShootsNumber < _tower.BulletsNumber)
         {
             yield return _newBullet.transform.DOLocalMoveY(
                 Vector3.Distance(transform.position, _enemyTransform), _bulletTime).WaitForCompletion();
             OnBulletShot?.Invoke(_tower);
-            DestroyBullet(_newBullet);
         }
-    }
-
-    private void DestroyBullet(GameObject _bullet)
-    {
-        if(_bullet != null)
-        {
-            Destroy(_bullet);
-        }  
     }
     private void RenewData()
     {
-//        Debug.Log("RenewData");
         ShootsNumber = 0;
         IsShooting = false;
         _cellButton.interactable = true;
