@@ -18,9 +18,9 @@ public class DrawBoardCommand : Command
         BoardPartsPrototype prototype = new StandardPartPrototype();
         int rowNumber = GameModel.Board.Settings.RowNumber;
         float fullSideScale = GameModel.Board.Settings.ParentPanel.transform.localScale.x;
-        float smallSideScale = fullSideScale / rowNumber * (rowNumber * 0.5f);
+        float smallSideScale = fullSideScale / rowNumber * 10;
         float moveWidth = GameModel.Board.Settings.ParentPanel.GetComponent<BoxCollider>().size.x
-            / rowNumber / (rowNumber * 0.5f);
+            / rowNumber / 10;
         Debug.Log(GameModel.Board.Settings.ParentPanel.GetComponent<BoxCollider>().size.x);
         Debug.Log(moveWidth);
 
