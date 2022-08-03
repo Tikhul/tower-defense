@@ -87,6 +87,7 @@ public class LevelContext : CoreContext
         mediationBinder.BindView<AllBulletsView>().ToMediator<AllBulletsMediator>();
         mediationBinder.BindView<BulletView>().ToMediator<BulletMediator>();
         mediationBinder.BindView<TowerView>().ToMediator<TowerMediator>();
+        mediationBinder.BindView<CellView>().ToMediator<CellMediator>();
     }
     protected override void MapEntities()
     {

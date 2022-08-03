@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: board
   _rowNumber: 20
-  _buttonExample: {fileID: 1027707768107338654, guid: a5811acf409d16c4f8d559c4bf76f227, type: 3}
+  _buttonExample: {fileID: 6972294490763327953, guid: 1cb75c4245172fe408b875060a218589, type: 3}
   _parentPanel: {fileID: 139042361601652585, guid: 21c60facf1358ae43afcef1624d82184, type: 3}
-  _rows: {fileID: 7360667085895534239, guid: 9b4b4bf0e117c03418a2e03aa54d75f8, type: 3}
-  _columns: {fileID: 7802181479087238692, guid: c76008c9e2cbf1e4b9e839a1d94c1f2c, type: 3}
+  _rows: {fileID: 640317525916658126, guid: 8b11c808d5eba554faee3c230b14b9ba, type: 3}
+  _columns: {fileID: 5753602120302610787, guid: 60875e5d55a29bf4587cf3cc2c3937ca, type: 3}

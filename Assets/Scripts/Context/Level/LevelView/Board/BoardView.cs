@@ -3,7 +3,6 @@ using UnityEngine;
 public class BoardView : BaseView
 {
     [SerializeField] private GameObject _boardParent;
-    [SerializeField] private Canvas _canvas;
     [SerializeField] private GameObject _cameraPosition;
     public GameObject BoardParent
     {
@@ -17,6 +16,5 @@ public class BoardView : BaseView
         _mainCamera.orthographic = false;
         _mainCamera.transform.position = _cameraPosition.transform.position;
         _mainCamera.transform.rotation = _cameraPosition.transform.rotation;
-        _canvas.worldCamera = _mainCamera;
     }
 }
