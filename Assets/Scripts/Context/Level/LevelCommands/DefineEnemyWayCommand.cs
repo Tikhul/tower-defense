@@ -17,8 +17,6 @@ public class DefineEnemyWayCommand : Command
             for (int i = 0; i< _indices.Count; i++)
             {
                 var index = _indices[i];
-                Debug.Log(cell.CellInt.ToString() + cell.CellChar.ToString());
-                Debug.Log(index);
                 if (index.Equals(cell.CellInt.ToString() + cell.CellChar.ToString()))
                 {
                     cell.State = CellState.EnemyWay;
