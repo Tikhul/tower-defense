@@ -35,7 +35,7 @@ public class DrawBoardCommand : Command
                     new Vector3(smallSideScale, 0.5f, smallSideScale), 
                     new Vector3(moveWidth, 0, 0));
 
-                prototype.AdjustButtonPosition(button, b);
+                prototype.AdjustButtonPosition(button, b, rowNumber);
                 prototype.AdjustRowPosition(row, button, r, moveWidth);
 
                 injectionBinder.GetInstance<FillCellListSignal>().Dispatch(button, StaticName.Alphabet[b], r);
