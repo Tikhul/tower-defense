@@ -108,3 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c0c02f2bd504a40a10b85f862c9851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mouseOverColor: {r: 0.38679248, g: 0.37037206, b: 0.37037206, a: 0.5686275}
+  _originalColor: {r: 1, g: 1, b: 1, a: 0}
+  _meshRenderer: {fileID: 6972294490763327956}
