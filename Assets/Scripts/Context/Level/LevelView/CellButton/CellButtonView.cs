@@ -92,9 +92,3 @@ public class CellButtonView : View
     }
 }
 
-public enum CellState
-{
-    Empty,
-    HasTower,
-    EnemyWay
-}

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public interface IInteractableEvents
 {
-    event Action OnTryInteract;
-    event Action OnInteract;
+    event Action OnShoot;
+    event Action<CellView> OnUpgradeMenuOpen;
+    event Action OnTowerMenuOpen;
 }

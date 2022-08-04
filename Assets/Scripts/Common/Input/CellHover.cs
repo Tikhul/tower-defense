@@ -7,14 +7,25 @@ public class CellHover : BaseView
     [SerializeField] Color _mouseOverColor;
     [SerializeField] Color _originalColor;
     [SerializeField] MeshRenderer _meshRenderer;
-
+    public MeshRenderer MeshRenderer
+    {
+        get => _meshRenderer;
+        set => _meshRenderer = value;
+    }
+    public bool Interactable { get; set; }
     void OnMouseOver()
     {
-        _meshRenderer.material.color = _mouseOverColor;
+        if (Interactable)
+        {
+            _meshRenderer.material.color = _mouseOverColor;
+        }
     }
 
     void OnMouseExit()
     {
-        _meshRenderer.material.color = _originalColor;
+        if (Interactable)
+        {
+            _meshRenderer.material.color = _originalColor;
+        }      
     }
 }

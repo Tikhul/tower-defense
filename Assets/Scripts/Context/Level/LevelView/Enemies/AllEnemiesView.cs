@@ -7,9 +7,9 @@ using UnityEngine;
 public class AllEnemiesView : View
 {
     [SerializeField] private List<GameObject> _enemyPrefabs;
-    [SerializeField] private CellButtonView _cellButtonView;
+    [SerializeField] private CellView _cellView;
     public List<GameObject> EnemyPrefabs => _enemyPrefabs;
-    public CellButtonView CellButtonView => _cellButtonView;
+    public CellView CellView => _cellView;
     public void ActivateEnemy(EnemyModel model)
     {
         foreach(var enemy in _enemyPrefabs)

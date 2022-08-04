@@ -10,13 +10,13 @@ using UnityEngine;
 /// </summary>
 public class CreateTowerMenuCommand : Command
 {
-    [Inject] public CellButtonView CellButtonView { get; set; }
+    [Inject] public CellView CellView { get; set; }
 
     public override void Execute()
     {
         List<TowerView> _list = new List<TowerView>();
 
-        foreach (var tower in CellButtonView.Towers.TowerViews)
+        foreach (var tower in CellView.Towers.TowerViews)
         {
             _list.Add(tower);
         }

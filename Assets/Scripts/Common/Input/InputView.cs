@@ -14,13 +14,13 @@ public class InputView : MonoBehaviour
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                var interactable = hit.transform.GetComponentInParent<IInteractable>();
-                if(interactable != null && Input.GetKeyDown(_shootKey))
+                var interactable = hit.transform.GetComponentInParent<CellView>();
+                if(interactable != null && Input.GetKeyDown(_shootKey) && interactable.Interactable)
                 {
                     interactable.TryShoot();
                     Debug.Log("Shoot");
                 }
-                else if(interactable != null && Input.GetKeyDown(_menuKey))
+                else if(interactable != null && Input.GetKeyDown(_menuKey) && interactable.Interactable)
                 {
                     interactable.TryOpenMenu();
                     Debug.Log("Menu");

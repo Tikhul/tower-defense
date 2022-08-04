@@ -25,8 +25,8 @@ public class AllEnemiesMediator : Mediator
     }
     private void DrawEnemiesHandler()
     {
-        if (LevelsPipelineModel.CurrentLevel.EnemyWay.Config.Indexes[0].Equals(
-            View.CellButtonView.CellInt.ToString() + View.CellButtonView.CellChar.ToString()))
+        if (LevelsPipelineModel.CurrentLevel.EnemyWay.Config.Indices[0].Equals(
+            View.CellView.CellInt.ToString() + View.CellView.CellChar.ToString()))
         {
             List<EnemyModel> _tempList = new List<EnemyModel>();
             _tempList.AddRange(LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.WaveEnemies);

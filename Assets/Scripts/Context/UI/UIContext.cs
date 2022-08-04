@@ -27,7 +27,7 @@ public class UIContext : CoreContext
         injectionBinder.Bind<ShowRestartPanelSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<PassLevelDataSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<PassTowersDictionarySignal>().ToSingleton().CrossContext();
-        injectionBinder.Bind<CellButtonViewCreatedSignal>().ToSingleton().CrossContext();
+        injectionBinder.Bind<CellViewCreatedSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<BlockBoardSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<UnblockBoardSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<ChangePlayerDataSignal>().ToSingleton().CrossContext();

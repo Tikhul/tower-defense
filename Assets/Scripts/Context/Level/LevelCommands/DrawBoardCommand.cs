@@ -21,8 +21,6 @@ public class DrawBoardCommand : Command
         float smallSideScale = fullSideScale / rowNumber * 10;
         float moveWidth = GameModel.Board.Settings.ParentPanel.GetComponent<BoxCollider>().size.x
             / rowNumber / 10;
-        Debug.Log(GameModel.Board.Settings.ParentPanel.GetComponent<BoxCollider>().size.x);
-        Debug.Log(moveWidth);
 
         for (int r = 0; r < rowNumber; r++)
         {
@@ -37,7 +35,7 @@ public class DrawBoardCommand : Command
 
                 prototype.AdjustButtonPosition(button, b, rowNumber);
                 prototype.AdjustRowPosition(row, button, r, moveWidth);
-
+ 
                 injectionBinder.GetInstance<FillCellListSignal>().Dispatch(button, StaticName.Alphabet[b], r);
             }
         }

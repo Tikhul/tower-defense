@@ -5,14 +5,60 @@ using UnityEngine;
 
 public class CellView : CellHover, IInteractable
 {
-    public event Action OnTryInteract;
-    public event Action OnInteract;
+    private Color _enemyColor = Color.blue;
+    public int CellInt { get; set; }
+    public char CellChar { get; set; }
+    public int OrderIndex { get; set; }
+    public CellState State { get; set; } = CellState.Empty;
+    public event Action OnShoot;
+    public event Action<CellView> OnUpgradeMenuOpen;
+    public event Action OnTowerMenuOpen;
+    [SerializeField] private AllTowersView _towers;
+    [SerializeField] private AllEnemiesView _enemies;
+    public AllTowersView Towers
+    {
+        get => _towers;
+        set => _towers = value;
+    }
+    public AllEnemiesView Enemies
+    {
+        get => _enemies;
+        set => _enemies = value;
+    }
+    private void OnEnable()
+    {
+        Interactable = true;
+    }
     public void TryOpenMenu()
     {
-        Debug.Log("TryOpenMenu");
+        if (State.Equals(CellState.Empty))
+        {
+            OnTowerMenuOpen?.Invoke();
+        }
+        else if (State.Equals(CellState.HasTower))
+        {
+            OnUpgradeMenuOpen?.Invoke(this);
+        }
     }
     public void TryShoot()
     {
-        Debug.Log("TryShoot");
+        if (State.Equals(CellState.HasTower))
+        {
+            OnShoot?.Invoke();
+        }
     }
+    public void DrawEnemyWay()
+    {
+        if (State.Equals(CellState.EnemyWay))
+        {
+            Interactable = false;
+            MeshRenderer.material.color = _enemyColor;
+        }
+    }
+}
+public enum CellState
+{
+    Empty,
+    HasTower,
+    EnemyWay
 }
