@@ -15,5 +15,5 @@ MonoBehaviour:
   _id: EnemyConfig1
   _initialHealth: 100
   _damage: 10
-  _speed: 20
+  _speed: 0.5
   _coinsForKill: 0

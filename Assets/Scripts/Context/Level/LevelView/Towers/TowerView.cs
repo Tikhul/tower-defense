@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 using System.Linq;
 using System;
@@ -9,12 +8,12 @@ using System;
 public class TowerView : BaseView
 {
     [SerializeField] private TowerConfig _towerConfig;
-    [SerializeField] private Image _towerImage;
+    [SerializeField] private Sprite _towerImage;
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private GameObject _bulletParent;
     [SerializeField] private SphereCollider _shootRadius;
     [SerializeField] private GameObject _direction;
-    [SerializeField] private Button _cellButton;
+    [SerializeField] private CellView _cellView;
     private float _bulletTime = 1f;
     public bool IsShooting { get; set; } = false;
     public int ShootsNumber { get; set; }
@@ -24,7 +23,7 @@ public class TowerView : BaseView
         get => _towerConfig;
         set => _towerConfig = value;
     }
-    public Image TowerImage
+    public Sprite TowerImage
     {
         get => _towerImage;
         set => _towerImage = value;
@@ -53,7 +52,7 @@ public class TowerView : BaseView
     public void LaunchShooting(Dictionary<Vector3, EnemyView> _receivedTransforms, TowerModel _towerModel)
     {
   //      Debug.Log("LaunchShooting");
-        _cellButton.interactable = false;
+       // _cellView.interactable = false;
         ShootsNumber += 1;
         TurnTower(_receivedTransforms, _towerModel);
     }
@@ -107,6 +106,6 @@ public class TowerView : BaseView
     {
         ShootsNumber = 0;
         IsShooting = false;
-        _cellButton.interactable = true;
+    //    _cellButton.interactable = true;
     }
 }
