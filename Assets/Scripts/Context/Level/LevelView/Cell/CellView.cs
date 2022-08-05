@@ -12,7 +12,7 @@ public class CellView : CellHover, IInteractable
     public CellState State { get; set; } = CellState.Empty;
     public event Action OnShoot;
     public event Action<CellView> OnUpgradeMenuOpen;
-    public event Action OnTowerMenuOpen;
+    public event Action<CellView> OnTowerMenuOpen;
     [SerializeField] private AllTowersView _towers;
     [SerializeField] private AllEnemiesView _enemies;
     public AllTowersView Towers
@@ -33,7 +33,7 @@ public class CellView : CellHover, IInteractable
     {
         if (State.Equals(CellState.Empty))
         {
-            OnTowerMenuOpen?.Invoke();
+            OnTowerMenuOpen?.Invoke(this);
         }
         else if (State.Equals(CellState.HasTower))
         {
@@ -54,6 +54,18 @@ public class CellView : CellHover, IInteractable
             Interactable = false;
             MeshRenderer.material.color = _enemyColor;
         }
+    }
+    public void BlockCell()
+    {
+        Interactable = false;
+    }
+    public void UnblockCell()
+    {
+        if (!State.Equals(CellState.EnemyWay))
+        {
+            Interactable = true;
+            ClearColor();
+        }     
     }
 }
 public enum CellState

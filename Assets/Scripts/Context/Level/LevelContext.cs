@@ -81,7 +81,7 @@ public class LevelContext : CoreContext
 
         mediationBinder.BindView<BoardView>().ToMediator<BoardMediator>();
         mediationBinder.BindView<LevelView>().ToMediator<LevelMediator>();
-        mediationBinder.BindView<CellButtonView>().ToMediator<CellButtonMediator>();
+  //      mediationBinder.BindView<CellButtonView>().ToMediator<CellButtonMediator>();
         mediationBinder.BindView<EnemyView>().ToMediator<EnemyMediator>();
         mediationBinder.BindView<AllEnemiesView>().ToMediator<AllEnemiesMediator>();
         mediationBinder.BindView<AllBulletsView>().ToMediator<AllBulletsMediator>();

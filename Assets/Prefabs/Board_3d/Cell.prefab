@@ -214,7 +214,7 @@ MonoBehaviour:
   _mouseOverColor: {r: 0.38679248, g: 0.37037206, b: 0.37037206, a: 0.5686275}
   _originalColor: {r: 1, g: 1, b: 1, a: 0}
   _meshRenderer: {fileID: 6972294490763327956}
-  _towers: {fileID: 0}
+  _towers: {fileID: 2019743639925988067}
   _enemies: {fileID: 6203038251578685485}
 --- !u!1001 &369462575416555311
 PrefabInstance:

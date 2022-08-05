@@ -20,12 +20,15 @@ public class CellHover : BaseView
             _meshRenderer.material.color = _mouseOverColor;
         }
     }
-
     void OnMouseExit()
     {
         if (Interactable)
         {
             _meshRenderer.material.color = _originalColor;
         }      
+    }
+    public void ClearColor()
+    {
+        _meshRenderer.material.color = _originalColor;
     }
 }

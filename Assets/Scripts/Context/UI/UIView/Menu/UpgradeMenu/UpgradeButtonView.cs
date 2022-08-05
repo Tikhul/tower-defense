@@ -49,7 +49,6 @@ public class UpgradeButtonView : View
 
     private void OnClickHandler()
     {
-        Debug.Log("onClick");
         OnUpgradeButtonViewClick?.Invoke();
     }
 }

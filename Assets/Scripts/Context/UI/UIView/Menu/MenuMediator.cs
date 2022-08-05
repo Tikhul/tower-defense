@@ -38,29 +38,34 @@ public class MenuMediator : Mediator
     private void SubscribeToCells(CellView cell)
     {
         _cells.Add(cell);
-      //  cell.OnCellButtonViewClick += ShowMenu;
+        cell.OnTowerMenuOpen += ShowTowerMenuHandler;
+        cell.OnUpgradeMenuOpen += ShowUpgradeMenuHandler;
         _subscribedToCells = true;
     }
 
-    private void ShowMenu(CellView receivedCell)
+    private void ShowTowerMenuHandler(CellView receivedCell)
     {
         BlockBoardSignal.Dispatch();
-
-        if (receivedCell.State.Equals(CellState.Empty))
-        {
-            CreateTowerMenuSignal.Dispatch(receivedCell);
-        }
-        else if (receivedCell.State.Equals(CellState.HasTower))
-        {
-            CreateUpgradeMenuSignal.Dispatch(receivedCell);
-        }
-
+        CreateTowerMenuSignal.Dispatch(receivedCell);
         View.Show();
         View.OnCloseMenu += HideMenuHandler;
 
         foreach (var cell in _cells)
         {
-      //      cell.OnCellButtonViewClick -= ShowMenu;
+            cell.OnTowerMenuOpen -= ShowTowerMenuHandler;
+            _subscribedToCells = false;
+        }
+    }
+    private void ShowUpgradeMenuHandler(CellView receivedCell)
+    {
+        BlockBoardSignal.Dispatch();
+        CreateUpgradeMenuSignal.Dispatch(receivedCell);
+        View.Show();
+        View.OnCloseMenu += HideMenuHandler;
+
+        foreach (var cell in _cells)
+        {
+            cell.OnUpgradeMenuOpen -= ShowUpgradeMenuHandler;
             _subscribedToCells = false;
         }
     }
@@ -68,7 +73,7 @@ public class MenuMediator : Mediator
     {
         HideMenuHandler();
     }
-    private void ShootButtonClickedHandler(TowerModel _tower)
+    private void ShootButtonClickedHandler(TowerModel tower)
     {
         HideMenuHandler();
     }
@@ -81,7 +86,8 @@ public class MenuMediator : Mediator
         {
             foreach (var cell in _cells)
             {
-       //         cell.OnCellButtonViewClick += ShowMenu;
+                cell.OnTowerMenuOpen += ShowTowerMenuHandler;
+                cell.OnUpgradeMenuOpen += ShowUpgradeMenuHandler;
                 _subscribedToCells = true;
             }
         }

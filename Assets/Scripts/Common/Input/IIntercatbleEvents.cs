@@ -7,5 +7,5 @@ public interface IInteractableEvents
 {
     event Action OnShoot;
     event Action<CellView> OnUpgradeMenuOpen;
-    event Action OnTowerMenuOpen;
+    event Action<CellView> OnTowerMenuOpen;
 }
