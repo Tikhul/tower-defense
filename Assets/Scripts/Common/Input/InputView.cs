@@ -12,7 +12,9 @@ public class InputView : MonoBehaviour
         if (Input.GetKeyDown(_shootKey) || Input.GetKeyDown(_menuKey))
         {
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            LayerMask layer = LayerMask.GetMask("Default");
+
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layer))
             {
                 var interactable = hit.transform.GetComponentInParent<CellView>();
                 if(interactable != null && Input.GetKeyDown(_shootKey) && interactable.Interactable)

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 20835238263209842}
   - component: {fileID: 427150204009327305}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AllBulletsView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 8111946727239896295}
   - component: {fileID: 7266446258721509980}
   - component: {fileID: 1518785067819620681}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 7361000363212085745}
   - component: {fileID: 6250597904546670380}
   - component: {fileID: 9062810715025852145}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TowerCylinder
   m_TagString: ShootRadius
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3107136081942988345}
   - component: {fileID: 7707069584881060204}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Blue_tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1209331164999773965}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ShootDirection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
