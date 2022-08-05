@@ -67,6 +67,17 @@ public class CellView : CellHover, IInteractable
             ClearColor();
         }     
     }
+    public void ClearCell()
+    {
+        if (State.Equals(CellState.HasTower))
+        {
+            foreach (var tower in Towers.TowerViews)
+            {
+                tower.gameObject.SetActive(false);
+                State = CellState.Empty;
+            }
+        }
+    }
 }
 public enum CellState
 {

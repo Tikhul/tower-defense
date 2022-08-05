@@ -36,4 +36,8 @@ public class CellMediator : Mediator
     {
         View.UnblockCell();
     }
+    private void ClearButtonHandler()
+    {
+        View.ClearCell();
+    }
 }

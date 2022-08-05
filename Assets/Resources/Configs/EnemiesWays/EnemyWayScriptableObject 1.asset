@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyWayScriptableObject 1
   m_EditorClassIdentifier: 
   _id: 1
-  _indexes:
+  _indices:
   - 1a
   - 1b
   - 2b
