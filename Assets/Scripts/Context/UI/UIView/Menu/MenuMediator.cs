@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class MenuMediator : Mediator
 {
-    private List<CellView> _cells = new List<CellView>();
+ //   private List<CellView> _cells = new List<CellView>();
     
-    private bool _subscribedToCells = false;
+  //  private bool _subscribedToCells = false;
     
     [Inject] public MenuView View { get; set; }
     [Inject] public CellViewCreatedSignal CellViewCreatedSignal { get; set; }
@@ -37,10 +37,11 @@ public class MenuMediator : Mediator
     }
     private void SubscribeToCells(CellView cell)
     {
-        _cells.Add(cell);
+     //   _cells.Add(cell);
         cell.OnTowerMenuOpen += ShowTowerMenuHandler;
         cell.OnUpgradeMenuOpen += ShowUpgradeMenuHandler;
-        _subscribedToCells = true;
+      //  _subscribedToCells = true;
+        View.OnCloseMenu += HideMenuHandler;
     }
 
     private void ShowTowerMenuHandler(CellView receivedCell)
@@ -48,26 +49,12 @@ public class MenuMediator : Mediator
         BlockBoardSignal.Dispatch();
         CreateTowerMenuSignal.Dispatch(receivedCell);
         View.Show();
-        View.OnCloseMenu += HideMenuHandler;
-
-        foreach (var cell in _cells)
-        {
-            cell.OnTowerMenuOpen -= ShowTowerMenuHandler;
-            _subscribedToCells = false;
-        }
     }
     private void ShowUpgradeMenuHandler(CellView receivedCell)
     {
         BlockBoardSignal.Dispatch();
         CreateUpgradeMenuSignal.Dispatch(receivedCell);
         View.Show();
-        View.OnCloseMenu += HideMenuHandler;
-
-        foreach (var cell in _cells)
-        {
-            cell.OnUpgradeMenuOpen -= ShowUpgradeMenuHandler;
-            _subscribedToCells = false;
-        }
     }
     private void TowerButtonClickedHandler(TowerButtonView button)
     {
@@ -81,16 +68,6 @@ public class MenuMediator : Mediator
     {
         UnblockBoardSignal.Dispatch();
         HideMenu();
-        View.OnCloseMenu -= HideMenuHandler;
-        if (!_subscribedToCells)
-        {
-            foreach (var cell in _cells)
-            {
-                cell.OnTowerMenuOpen += ShowTowerMenuHandler;
-                cell.OnUpgradeMenuOpen += ShowUpgradeMenuHandler;
-                _subscribedToCells = true;
-            }
-        }
         HideSubMenuSignal.Dispatch();
     }
 
