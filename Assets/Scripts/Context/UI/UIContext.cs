@@ -40,7 +40,6 @@ public class UIContext : CoreContext
         injectionBinder.Bind<ShowTowerDataSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<NoMoneySignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<TowerBoughtSignal>().ToSingleton().CrossContext();
-        injectionBinder.Bind<PrepareForShootSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<BlockShootButtonSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<UnBlockShootButtonSignal>().ToSingleton().CrossContext();
 

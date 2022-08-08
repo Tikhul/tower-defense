@@ -24,7 +24,6 @@ public class LevelContext : CoreContext
         commandBinder.Bind<context.level.StartSignal>()
             .InSequence()
             .Once();
-        
     }
 
     protected override void MapAsModuleContext()
@@ -40,9 +39,10 @@ public class LevelContext : CoreContext
         injectionBinder.Bind<OnEnemyWayDefinedSignal>().ToSingleton();
         injectionBinder.Bind<ActivateWaveSignal>().ToSingleton();
         injectionBinder.Bind<PassLevelDataSignal>();
-        commandBinder.Bind<PipelineEndedSignal>().To<PipelineEndCommand>();
         injectionBinder.Bind<ChangeEnemyHealthSignal>().ToSingleton();
         injectionBinder.Bind<ReadyToShootSignal>().ToSingleton();
+        injectionBinder.Bind<PrepareForShootSignal>().ToSingleton();
+        commandBinder.Bind<PipelineEndedSignal>().To<PipelineEndCommand>();
         commandBinder.Bind<DrawBoardSignal>().To<DrawBoardCommand>().Once();
         commandBinder.Bind<FillCellListSignal>().To<FillCellListCommand>();
         commandBinder.Bind<PipelineStartSignal>().To<StartPipelineCommand>().Once();
@@ -52,6 +52,8 @@ public class LevelContext : CoreContext
             .To<BeginNextLevelCommand>()
             .InSequence();
         commandBinder.Bind<RestartLevelChosenSignal>()
+            .To<ClearEnemyWayCommand>()
+            .To<DefineEnemyWayCommand>()
             .To<RenewPlayerHealthCommand>()
             .To<RenewPlayerMoneyCommand>()
             .To<RestartLevelCommand>();
@@ -81,7 +83,6 @@ public class LevelContext : CoreContext
 
         mediationBinder.BindView<BoardView>().ToMediator<BoardMediator>();
         mediationBinder.BindView<LevelView>().ToMediator<LevelMediator>();
-  //      mediationBinder.BindView<CellButtonView>().ToMediator<CellButtonMediator>();
         mediationBinder.BindView<EnemyView>().ToMediator<EnemyMediator>();
         mediationBinder.BindView<AllEnemiesView>().ToMediator<AllEnemiesMediator>();
         mediationBinder.BindView<AllBulletsView>().ToMediator<AllBulletsMediator>();

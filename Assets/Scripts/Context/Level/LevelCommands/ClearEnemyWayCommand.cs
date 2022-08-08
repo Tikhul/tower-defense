@@ -10,6 +10,8 @@ public class ClearEnemyWayCommand : Command
         foreach (CellView cell in injectionBinder.GetInstance<GameModel>().Board.CurrentCellList)
         {
             cell.State = CellState.Empty;
+            cell.Interactable = true;
+            cell.ClearColor();
         }
     }
 }

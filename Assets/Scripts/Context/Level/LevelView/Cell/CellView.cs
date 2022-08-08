@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CellView : CellHover, IInteractable
@@ -10,7 +11,7 @@ public class CellView : CellHover, IInteractable
     public char CellChar { get; set; }
     public int OrderIndex { get; set; }
     public CellState State { get; set; } = CellState.Empty;
-    public event Action OnShoot;
+    public event Action<TowerView> OnShoot;
     public event Action<CellView> OnUpgradeMenuOpen;
     public event Action<CellView> OnTowerMenuOpen;
     [SerializeField] private AllTowersView _towers;
@@ -44,7 +45,7 @@ public class CellView : CellHover, IInteractable
     {
         if (State.Equals(CellState.HasTower))
         {
-            OnShoot?.Invoke();
+            OnShoot?.Invoke(Towers.TowerViews.FirstOrDefault(x => x.gameObject.activeInHierarchy));
         }
     }
     public void DrawEnemyWay()
@@ -66,17 +67,6 @@ public class CellView : CellHover, IInteractable
             Interactable = true;
             ClearColor();
         }     
-    }
-    public void ClearCell()
-    {
-        if (State.Equals(CellState.HasTower))
-        {
-            foreach (var tower in Towers.TowerViews)
-            {
-                tower.gameObject.SetActive(false);
-                State = CellState.Empty;
-            }
-        }
     }
 }
 public enum CellState

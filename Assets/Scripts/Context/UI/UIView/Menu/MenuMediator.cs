@@ -18,13 +18,11 @@ public class MenuMediator : Mediator
     [Inject] public HideSubMenuSignal HideSubMenuSignal { get; set; }
     [Inject] public HideMenuSignal HideMenuSignal { get; set; }
     [Inject] public TowerChosenSignal TowerChosenSignal { get; set; }
-    [Inject] public PrepareForShootSignal PrepareForShootSignal { get; set; }
 
     public override void OnRegister()
     {
         CellViewCreatedSignal.AddListener(SubscribeToCells);
         TowerChosenSignal.AddListener(TowerButtonClickedHandler);
-        PrepareForShootSignal.AddListener(ShootButtonClickedHandler);
         HideMenuSignal.AddListener(HideMenuHandler);
     }
 
@@ -32,7 +30,6 @@ public class MenuMediator : Mediator
     {
         CellViewCreatedSignal.RemoveListener(SubscribeToCells);
         TowerChosenSignal.RemoveListener(TowerButtonClickedHandler);
-        PrepareForShootSignal.RemoveListener(ShootButtonClickedHandler);
         HideMenuSignal.RemoveListener(HideMenuHandler);
     }
     private void SubscribeToCells(CellView cell)
@@ -57,10 +54,6 @@ public class MenuMediator : Mediator
         View.Show();
     }
     private void TowerButtonClickedHandler(TowerButtonView button)
-    {
-        HideMenuHandler();
-    }
-    private void ShootButtonClickedHandler(TowerModel tower)
     {
         HideMenuHandler();
     }
