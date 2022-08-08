@@ -45,67 +45,69 @@ public class TowerView : BaseView
     /// <summary>
     /// Увеличение коллайдера, который показывает радиус стрельбы
     /// </summary>
-    public void UpgradeRadius(float _upgrade)
+    public void UpgradeRadius(float upgrade)
     {
-        _shootRadius.radius += _upgrade / 30 - 30;
+        _shootRadius.radius += upgrade / 30 - 30;
     }
-    public void LaunchShooting(Dictionary<Vector3, EnemyView> _receivedTransforms, TowerModel _towerModel)
+    public void LaunchShooting(Dictionary<Vector3, EnemyView> receivedTransforms, TowerModel towerModel)
     {
-  //      Debug.Log("LaunchShooting");
-       // _cellView.interactable = false;
+        _cellView.Interactable = false;
         ShootsNumber += 1;
-        TurnTower(_receivedTransforms, _towerModel);
+        TurnTower(receivedTransforms, towerModel);
     }
-    public void TurnTower(Dictionary<Vector3, EnemyView> _enemiesTransforms, TowerModel _towerModel)
+    public void TurnTower(Dictionary<Vector3, EnemyView> enemiesTransforms, TowerModel towerModel)
     {
-  //      Debug.Log("TurnTower");
-        Vector3 _nearestEnemy = _enemiesTransforms.Keys.OrderBy(x => Vector3.Distance(transform.position, x)).First();
-        Debug.Log(_enemiesTransforms[_nearestEnemy].Config.Id);
-        Debug.Log("Ожидание " + _nearestEnemy);
+        Vector3 nearestEnemy = enemiesTransforms.Keys.OrderBy(x => Vector3.Distance(transform.position, x)).First();
+        Debug.Log(enemiesTransforms[nearestEnemy].Config.Id);
+        Debug.Log("Ожидание " + nearestEnemy);
         
-        _direction.transform.DOLookAt(_nearestEnemy, _towerModel.ShootDelay - _bulletTime)
-            .OnComplete(() => CreateBullet(_towerModel, _nearestEnemy));
-        Debug.Log("Реальность " + _enemiesTransforms[_nearestEnemy].transform.position);
+        _direction.transform.DOLookAt(nearestEnemy, towerModel.ShootDelay - _bulletTime)
+            .OnComplete(() => CreateBullet(towerModel, nearestEnemy));
+        Debug.Log("Реальность " + enemiesTransforms[nearestEnemy].transform.position);
     }
-    private void CreateBullet(TowerModel _tower, Vector3 _enemyTransform)
+    private void CreateBullet(TowerModel tower, Vector3 enemyTransform)
     {
   //      Debug.Log("CreateBullet");
         GameObject _newBullet = Instantiate(_bulletPrefab);
         _newBullet.transform.parent = _bulletParent.transform;
         _newBullet.transform.localPosition = _bulletPrefab.transform.position;
         _newBullet.transform.localScale = _bulletPrefab.transform.localScale;
-        _newBullet.GetComponent<BulletView>().BulletDamage = _tower.Damage;
-        StartCoroutine(ShootBullet(_newBullet, _tower, _enemyTransform));
+        _newBullet.GetComponent<BulletView>().BulletDamage = tower.Damage;
+        StartCoroutine(ShootBullet(_newBullet, tower, enemyTransform));
     }
-    private IEnumerator ShootBullet(GameObject _newBullet, TowerModel _tower, Vector3 _enemyTransform)
+    private IEnumerator ShootBullet(GameObject newBullet, TowerModel tower, Vector3 enemyTransform)
     {
  //       Debug.Log("ShootBullet");
-        if(ShootsNumber == _tower.BulletsNumber)
+        if(ShootsNumber == tower.BulletsNumber)
         {
-            _newBullet.transform.DOLocalMoveY(
-                Vector3.Distance(transform.position, _enemyTransform), _bulletTime)
-                .OnComplete(() => DestroyBullet(_newBullet));
+            newBullet.transform.DOLocalMoveY(
+                Vector3.Distance(transform.position, enemyTransform), _bulletTime)
+                .OnComplete(() => DestroyBullet(newBullet));
             RenewData();
         }
-        else if(ShootsNumber < _tower.BulletsNumber)
+        else if(ShootsNumber < tower.BulletsNumber)
         {
-            yield return _newBullet.transform.DOLocalMoveY(
-                Vector3.Distance(transform.position, _enemyTransform), _bulletTime).WaitForCompletion();
-            OnBulletShot?.Invoke(_tower);
-            DestroyBullet(_newBullet);
+            yield return newBullet.transform.DOLocalMoveY(
+                Vector3.Distance(transform.position, enemyTransform), _bulletTime)
+                .OnComplete(() => AfterShoot(tower, newBullet));
         }
     }
-    private void DestroyBullet(GameObject _bullet)
+    private void AfterShoot(TowerModel tower, GameObject bullet)
     {
-        if(_bullet != null)
+        OnBulletShot?.Invoke(tower);
+        DestroyBullet(bullet);
+    }
+    private void DestroyBullet(GameObject bullet)
+    {
+        if(bullet != null)
         {
-            Destroy(_bullet);
+            Destroy(bullet);
         }
     }
     private void RenewData()
     {
         ShootsNumber = 0;
         IsShooting = false;
-    //    _cellButton.interactable = true;
+        _cellView.Interactable = true;
     }
 }

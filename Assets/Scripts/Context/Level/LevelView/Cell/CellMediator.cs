@@ -45,6 +45,5 @@ public class CellMediator : Mediator
         tower.IsShooting = true;
         var towerModel = LevelsPipelineModel.CurrentLevel.TowerData[tower];
         PrepareForShootSignal.Dispatch(towerModel);
-        Debug.Log("PrepareForShootHandler");
     }
 }
