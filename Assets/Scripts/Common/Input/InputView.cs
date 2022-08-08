@@ -7,14 +7,14 @@ public class InputView : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private KeyCode _shootKey;
     [SerializeField] private KeyCode _menuKey;
+    [SerializeField] private LayerMask _layerMask;
     void Update()
     {
         if (Input.GetKeyDown(_shootKey) || Input.GetKeyDown(_menuKey))
         {
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            LayerMask layer = LayerMask.GetMask("Default");
 
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layer))
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _layerMask))
             {
                 var interactable = hit.transform.GetComponentInParent<CellView>();
                 if(interactable != null && Input.GetKeyDown(_shootKey) && interactable.Interactable)
