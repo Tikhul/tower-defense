@@ -15,6 +15,7 @@ public class TowerView : BaseView
     [SerializeField] private CellView _cellView;
     private float _bulletTime = 1f;
     public bool IsShooting { get; set; } = false;
+    public List<EnemyView> EnemyViews { get; set; } = new List<EnemyView>();
     public int ShootsNumber { get; set; }
     public event Action<TowerModel> OnBulletShot = delegate { };
     public TowerConfig TowerConfig
@@ -41,7 +42,7 @@ public class TowerView : BaseView
 
     private void SetRadiusCollider()
     {
-        _shootRadius.radius = _towerConfig.ShootRadius / 30;
+        _shootRadius.radius = _towerConfig.ShootRadius;
     }
 
     /// <summary>
@@ -49,7 +50,7 @@ public class TowerView : BaseView
     /// </summary>
     public void UpgradeRadius(float upgrade)
     {
-        _shootRadius.radius += upgrade / 30 - 30;
+        _shootRadius.radius += upgrade;
     }
 
     public void LaunchShooting(Dictionary<Vector3, EnemyView> receivedTransforms, TowerModel towerModel)
@@ -119,5 +120,21 @@ public class TowerView : BaseView
         ShootsNumber = 0;
         IsShooting = false;
         _cellView.Interactable = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Enemy"))
+        {
+            EnemyViews.Add(other.gameObject.GetComponent<EnemyView>());
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag.Equals("Enemy"))
+        {
+            EnemyViews.Remove(other.gameObject.GetComponent<EnemyView>());
+        }
     }
 }

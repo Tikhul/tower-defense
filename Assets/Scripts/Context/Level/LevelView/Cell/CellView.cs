@@ -30,6 +30,7 @@ public class CellView : CellHover, IInteractable
     {
         Interactable = true;
     }
+    
     public void TryOpenMenu()
     {
         if (State.Equals(CellState.Empty))
@@ -41,13 +42,16 @@ public class CellView : CellHover, IInteractable
             OnUpgradeMenuOpen?.Invoke(this);
         }
     }
+
     public void TryShoot()
     {
         if (State.Equals(CellState.HasTower))
         {
             OnShoot?.Invoke(Towers.TowerViews.FirstOrDefault(x => x.gameObject.activeInHierarchy));
         }
+        Debug.Log("TryShoot");
     }
+
     public void DrawEnemyWay()
     {
         if (State.Equals(CellState.EnemyWay))
@@ -56,10 +60,12 @@ public class CellView : CellHover, IInteractable
             MeshRenderer.material.color = _enemyColor;
         }
     }
+
     public void BlockCell()
     {
         Interactable = false;
     }
+
     public void UnblockCell()
     {
         if (!State.Equals(CellState.EnemyWay))
@@ -69,6 +75,7 @@ public class CellView : CellHover, IInteractable
         }     
     }
 }
+
 public enum CellState
 {
     Empty,

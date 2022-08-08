@@ -7,14 +7,15 @@ using UnityEngine;
 public class PrepareForShootCommand : Command
 {
     [Inject] public TowerModel TowerModel { get; set; }
-    private List<EnemyView> _enemyViews => injectionBinder.GetInstance<LevelsPipelineModel>().CurrentLevel.LevelWaves.CurrentWave.EnemiesOnScene;
+    [Inject] public TowerView TowerView { get; set; }
 
     public override void Execute()
     {
         Dictionary<Vector3, EnemyView> tempList = new Dictionary<Vector3, EnemyView>();
-
-        foreach (var view in _enemyViews)
+        Debug.Log(TowerView.EnemyViews.Count);
+        foreach (var view in TowerView.EnemyViews)
         {
+            
             var _percentage = (TowerModel.ShootDelay + view.EnemyTween.Elapsed()) 
                 / view.EnemyTween.Duration();
 
@@ -24,7 +25,7 @@ public class PrepareForShootCommand : Command
                 tempList.Add(getPoint, view);
             }
         }
-
+        Debug.Log("PrepareForShootCommand");
         injectionBinder.GetInstance<ReadyToShootSignal>().Dispatch(tempList, TowerModel);
     }
 }

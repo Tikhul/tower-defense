@@ -32,6 +32,6 @@ public class TowerMediator : Mediator
     }
     private void PrepareAnotherShootHandler(TowerModel _towerModel)
     {
-        PrepareForShootSignal.Dispatch(_towerModel);
+        PrepareForShootSignal.Dispatch(_towerModel, View);
     }
 }
