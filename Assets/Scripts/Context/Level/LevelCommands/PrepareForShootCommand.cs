@@ -2,6 +2,7 @@ using context.level;
 using DG.Tweening;
 using strange.extensions.command.impl;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PrepareForShootCommand : Command
@@ -11,21 +12,28 @@ public class PrepareForShootCommand : Command
 
     public override void Execute()
     {
-        Dictionary<Vector3, EnemyView> tempList = new Dictionary<Vector3, EnemyView>();
-        Debug.Log(TowerView.EnemyViews.Count);
+        List<Vector3> tempList = new List<Vector3>();
+
         foreach (var view in TowerView.EnemyViews)
         {
-            
-            var _percentage = (TowerModel.ShootDelay + view.EnemyTween.Elapsed()) 
+            var percentage = (TowerModel.ShootDelay + view.EnemyTween.Elapsed()) 
                 / view.EnemyTween.Duration();
 
-            if (_percentage < 1)
+            if (percentage < 1)
             {
-                var getPoint = view.EnemyTween.PathGetPoint(_percentage);
-                tempList.Add(getPoint, view);
+                var getPoint = view.EnemyTween.PathGetPoint(percentage);
+                tempList.Add(getPoint);
             }
         }
-        Debug.Log("PrepareForShootCommand");
-        injectionBinder.GetInstance<ReadyToShootSignal>().Dispatch(tempList, TowerModel);
+
+        if (tempList.Any())
+        {
+            injectionBinder.GetInstance<ReadyToShootSignal>().Dispatch(GetNearestEnemy(tempList), TowerModel);
+        }
+    }
+
+    private Vector3 GetNearestEnemy(List<Vector3> enemiesTransforms)
+    {
+        return enemiesTransforms.OrderBy(x => Vector3.Distance(TowerView.transform.position, x)).First();
     }
 }

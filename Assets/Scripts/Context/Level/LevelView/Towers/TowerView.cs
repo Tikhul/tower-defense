@@ -53,22 +53,26 @@ public class TowerView : BaseView
         _shootRadius.radius += upgrade;
     }
 
-    public void LaunchShooting(Dictionary<Vector3, EnemyView> receivedTransforms, TowerModel towerModel)
+    public void LaunchShooting(Vector3 nearestEnemy, TowerModel towerModel)
     {
         _cellView.Interactable = false;
         ShootsNumber += 1;
-        TurnTower(receivedTransforms, towerModel);
+        TurnTower(nearestEnemy, towerModel);
     }
 
-    public void TurnTower(Dictionary<Vector3, EnemyView> enemiesTransforms, TowerModel towerModel)
+    public void TurnTower(Vector3 nearestEnemy, TowerModel towerModel)
     {
-        Vector3 nearestEnemy = enemiesTransforms.Keys.OrderBy(x => Vector3.Distance(transform.position, x)).First();
-        Debug.Log(enemiesTransforms[nearestEnemy].Config.Id);
         Debug.Log("Ожидание " + nearestEnemy);
         
         _direction.transform.DOLookAt(nearestEnemy, towerModel.ShootDelay - _bulletTime)
             .OnComplete(() => CreateBullet(towerModel, nearestEnemy));
-        Debug.Log("Реальность " + enemiesTransforms[nearestEnemy].transform.position);
+
+        // Для дебага
+        if (EnemyViews.Any())
+        {
+            var enemy = EnemyViews.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).First();
+            Debug.Log("Реальность " + enemy.gameObject.transform.position);
+        }
     }
 
     private void CreateBullet(TowerModel tower, Vector3 enemyTransform)
@@ -110,7 +114,6 @@ public class TowerView : BaseView
     {
         if(bullet != null)
         {
-            bullet.transform.DOKill();
             Destroy(bullet);
         }
     }
