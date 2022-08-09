@@ -55,6 +55,7 @@ public class TowerView : BaseView
 
     public void LaunchShooting(Vector3 nearestEnemy, TowerModel towerModel)
     {
+        _cellView.BlockCell();
         ShootsNumber += 1;
         TurnTower(nearestEnemy, towerModel);
     }
@@ -75,7 +76,6 @@ public class TowerView : BaseView
 
     private void CreateBullet(TowerModel tower, Vector3 enemyTransform)
     {
-        //      Debug.Log("CreateBullet");
         GameObject _newBullet = Instantiate(_bulletPrefab);
         _newBullet.transform.parent = _bulletParent.transform;
         _newBullet.transform.localPosition = _bulletPrefab.transform.position;
@@ -86,7 +86,6 @@ public class TowerView : BaseView
 
     private void ShootBullet(GameObject newBullet, TowerModel tower, Vector3 enemyTransform)
     {
- //       Debug.Log("ShootBullet");
         if(ShootsNumber == tower.BulletsNumber)
         {
             newBullet.transform.DOLocalMoveZ(
@@ -104,7 +103,15 @@ public class TowerView : BaseView
 
     private void AfterShoot(TowerModel tower, GameObject bullet)
     {
-        OnBulletShot?.Invoke(tower);
+        if (EnemyViews.Any())
+        {
+            OnBulletShot?.Invoke(tower);
+        }
+        else
+        {
+            RenewData();
+        }
+        
         DestroyBullet(bullet);
     }
 

@@ -42,7 +42,6 @@ public class CellMediator : Mediator
     {
         if (towerView.EnemyViews.Any())
         {
-            View.BlockCell();
             towerView.IsShooting = true;
             var towerModel = LevelsPipelineModel.CurrentLevel.TowerData[towerView];
             PrepareForShootSignal.Dispatch(towerModel, towerView);
