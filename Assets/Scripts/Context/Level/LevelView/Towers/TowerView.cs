@@ -98,33 +98,27 @@ public class TowerView : BaseView
         }
     }
 
-    private void Test()
-    {
-        Debug.Log("Test - OnBulletShot");
-        // Äכÿ הובאדא
-        if (EnemyViews.Any())
-        {
-            var enemy = EnemyViews.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).First();
-            //   Debug.Log("Ðואכüםמסעü " + enemy.gameObject.transform.position);
-            //   Debug.Log("Ðואכüםמסעü " + enemy.Config.Id);
-            //   Debug.Log("Ðואכüםמסעü " + enemy.EnemyTween.ElapsedPercentage());
-        }
-    }
-
     private void AfterShoot(TowerModel tower, GameObject bullet)
     {
         Debug.Log("AfterShoot");
         if (EnemyViews.Any())
         {
             Debug.Log("OnBulletShot");
+            // Äכÿ הובאדא
+            if (EnemyViews.Any())
+            {
+                var enemy = EnemyViews.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).First();
+                //   Debug.Log("Ðואכüםמסעü " + enemy.gameObject.transform.position);
+                //   Debug.Log("Ðואכüםמסעü " + enemy.Config.Id);
+                Debug.Log("Ðואכüםמסעü " + enemy.gameObject.transform.position);
+            }
             OnBulletShot?.Invoke(tower);
-            DestroyBullet(bullet);
-            //  Test();
         }
         else
         {
             RenewData();
         }
+        DestroyBullet(bullet);
     }
 
     private void DestroyBullet(GameObject bullet)

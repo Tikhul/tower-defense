@@ -12,7 +12,6 @@ public class PrepareForShootCommand : Command
 
     public override void Execute()
     {
-        Retain();
         Debug.Log("PrepareForShootCommand");
         List<Vector3> tempList = new List<Vector3>();
  
@@ -20,10 +19,11 @@ public class PrepareForShootCommand : Command
         {
             var percentage = (TowerModel.ShootDelay + view.EnemyTween.Elapsed()) 
                 / view.EnemyTween.Duration();
-     //       Debug.Log("ќжидание " + percentage);
+            
             if (percentage < 1)
             {
                 var getPoint = view.EnemyTween.PathGetPoint(percentage);
+                Debug.Log("ќжидание " + getPoint);
                 tempList.Add(getPoint);
             }
         }
@@ -32,7 +32,6 @@ public class PrepareForShootCommand : Command
         {
             injectionBinder.GetInstance<ReadyToShootSignal>().Dispatch(GetNearestEnemy(tempList), TowerModel);
         }
-        Release();
     }
 
     private Vector3 GetNearestEnemy(List<Vector3> enemiesTransforms)
