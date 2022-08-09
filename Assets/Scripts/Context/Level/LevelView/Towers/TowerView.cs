@@ -71,6 +71,7 @@ public class TowerView : BaseView
         {
             var enemy = EnemyViews.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).First();
             Debug.Log("Ðואכüםמסעü " + enemy.gameObject.transform.position);
+            Debug.Log("Ðואכüםמסעü " + enemy.Config.Id);
         }
     }
 
