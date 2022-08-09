@@ -28,7 +28,8 @@ public class EnemyView : BaseView
     {
         Path.wps.AddRange(_receivedTransforms);
         EnemyTween = transform.DOPath(Path.wps.ToArray(), _config.Speed)
-            .SetSpeedBased().SetEase(Ease.Linear)
+            .SetSpeedBased()
+            .SetEase(Ease.Linear)
             .OnComplete(PerformAfterPath);        
     }
 
