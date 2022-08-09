@@ -18,6 +18,7 @@ public class BulletMediator : Mediator
     }
     private void ChangeEnemyHealthHandler(int _damage, EnemyView _view)
     {
+        Debug.Log("ChangeEnemyHealthHandler");
         ChangeEnemyHealthSignal.Dispatch(_damage, _view);
     }
 }

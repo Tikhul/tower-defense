@@ -11,14 +11,8 @@ public class BulletView : BaseView
     {
         if (other.gameObject.tag.Equals("Enemy"))
         {
+            Debug.Log("OnBulletHit");
             OnBulletHit?.Invoke(BulletDamage, other.gameObject.GetComponent<EnemyView>());
-            Destroy(gameObject);
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag.Equals("ShootRadius"))
-        {
             Destroy(gameObject);
         }
     }
