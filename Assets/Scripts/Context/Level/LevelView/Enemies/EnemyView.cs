@@ -18,25 +18,32 @@ public class EnemyView : BaseView
     }
     public DOTweenPath Path => _path;
     public event Action<int> OnEnemyWayCompleted = delegate { };
+
     private void OnEnable()
     {
         ShowEnemyHealth(ActualEnemyHealth);
     }
+
     public void FillWayPoints(List<Vector3> _receivedTransforms)
     {
         Path.wps.AddRange(_receivedTransforms);
-        EnemyTween = transform.DOPath(Path.wps.ToArray(), _config.Speed).SetSpeedBased().OnComplete(PerformAfterPath);
+        EnemyTween = transform.DOPath(Path.wps.ToArray(), _config.Speed)
+            .SetSpeedBased().SetEase(Ease.Linear)
+            .OnComplete(PerformAfterPath);        
     }
+
     private void PerformAfterPath()
     {
         OnEnemyWayCompleted?.Invoke(Config.Damage);
         ClearEnemies();
     }
+
     public void ClearEnemies()
     {
         transform.DOKill();
         Destroy(gameObject);
     }
+
     public void Damage(int _damage)
     {
         ActualEnemyHealth -= _damage;

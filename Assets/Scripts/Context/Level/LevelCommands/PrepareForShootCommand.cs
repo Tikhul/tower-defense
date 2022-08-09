@@ -12,14 +12,14 @@ public class PrepareForShootCommand : Command
 
     public override void Execute()
     {
-        Debug.Log("PrepareForShootCommand");
+     //   Debug.Log("PrepareForShootCommand");
         List<Vector3> tempList = new List<Vector3>();
  
         foreach (var view in TowerView.EnemyViews)
         {
             var percentage = (TowerModel.ShootDelay + view.EnemyTween.Elapsed()) 
                 / view.EnemyTween.Duration();
-            
+            Debug.Log("PrepareForShootCommand " + view.EnemyTween.Duration());
             if (percentage < 1)
             {
                 var getPoint = view.EnemyTween.PathGetPoint(percentage);
