@@ -1,6 +1,7 @@
 using context.level;
 using context.ui;
 using strange.extensions.mediation.impl;
+using System.Linq;
 
 public class CellMediator : Mediator
 {
@@ -39,8 +40,12 @@ public class CellMediator : Mediator
     }
     private void PrepareForShootHandler(TowerView towerView)
     {
-        towerView.IsShooting = true;
-        var towerModel = LevelsPipelineModel.CurrentLevel.TowerData[towerView];
-        PrepareForShootSignal.Dispatch(towerModel, towerView);
+        if (towerView.EnemyViews.Any())
+        {
+            View.BlockCell();
+            towerView.IsShooting = true;
+            var towerModel = LevelsPipelineModel.CurrentLevel.TowerData[towerView];
+            PrepareForShootSignal.Dispatch(towerModel, towerView);
+        }
     }
 }

@@ -55,7 +55,6 @@ public class TowerView : BaseView
 
     public void LaunchShooting(Vector3 nearestEnemy, TowerModel towerModel)
     {
-        _cellView.Interactable = false;
         ShootsNumber += 1;
         TurnTower(nearestEnemy, towerModel);
     }
@@ -118,11 +117,11 @@ public class TowerView : BaseView
         }
     }
 
-    private void RenewData()
+    public void RenewData()
     {
         ShootsNumber = 0;
         IsShooting = false;
-        _cellView.Interactable = true;
+        _cellView.UnblockCell();
     }
 
     private void OnTriggerEnter(Collider other)

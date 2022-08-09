@@ -16,16 +16,16 @@ public class InputView : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _layerMask))
             {
-                var interactable = hit.transform.GetComponentInParent<CellView>();
-                if(interactable != null && Input.GetKeyDown(_shootKey) && interactable.Interactable)
+                var interactable = hit.transform.GetComponentInParent<IInteractable>();
+                if(interactable != null && Input.GetKeyDown(_shootKey))
                 {
                     interactable.TryShoot();
-                    Debug.Log("Shoot");
+                    Debug.Log("TryShoot");
                 }
-                else if(interactable != null && Input.GetKeyDown(_menuKey) && interactable.Interactable)
+                else if(interactable != null && Input.GetKeyDown(_menuKey))
                 {
                     interactable.TryOpenMenu();
-                    Debug.Log("Menu");
+                    Debug.Log("TryOpenMenu");
                 }
             }
         }

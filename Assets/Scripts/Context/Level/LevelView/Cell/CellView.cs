@@ -31,7 +31,7 @@ public class CellView : CellHover, IInteractable
     
     public void TryOpenMenu()
     {
-        if (State.Equals(CellState.Empty))
+        if (State.Equals(CellState.Empty) && Interactable)
         {
             OnTowerMenuOpen?.Invoke(this);
         }
@@ -43,11 +43,11 @@ public class CellView : CellHover, IInteractable
 
     public void TryShoot()
     {
-        if (State.Equals(CellState.HasTower))
+        if (State.Equals(CellState.HasTower) && Interactable)
         {
             OnShoot?.Invoke(Towers.TowerViews.FirstOrDefault(x => x.gameObject.activeInHierarchy));
+            Debug.Log("Shoot");
         }
-        Debug.Log("TryShoot");
     }
 
     public void DrawEnemyWay()
