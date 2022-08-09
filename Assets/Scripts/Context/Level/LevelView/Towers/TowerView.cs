@@ -99,7 +99,6 @@ public class TowerView : BaseView
             newBullet.transform.DOLocalMoveZ(
                 Vector3.Distance(transform.position, enemyTransform) * 100 + 40, _bulletTime)
                 .OnComplete(() => AfterShoot(tower, newBullet));
-            Debug.Log(Vector3.Distance(transform.position, enemyTransform));
         }
     }
 
