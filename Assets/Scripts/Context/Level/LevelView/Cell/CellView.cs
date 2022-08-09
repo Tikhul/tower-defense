@@ -45,8 +45,8 @@ public class CellView : CellHover, IInteractable
     {
         if (State.Equals(CellState.HasTower) && Interactable)
         {
-            OnShoot?.Invoke(Towers.TowerViews.FirstOrDefault(x => x.gameObject.activeInHierarchy));
             Debug.Log("Shoot");
+            OnShoot?.Invoke(Towers.TowerViews.FirstOrDefault(x => x.gameObject.activeInHierarchy));
         }
     }
 

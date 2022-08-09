@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputView : MonoBehaviour
@@ -19,13 +17,12 @@ public class InputView : MonoBehaviour
                 var interactable = hit.transform.GetComponentInParent<IInteractable>();
                 if(interactable != null && Input.GetKeyDown(_shootKey))
                 {
-                    interactable.TryShoot();
                     Debug.Log("TryShoot");
+                    interactable.TryShoot();   
                 }
                 else if(interactable != null && Input.GetKeyDown(_menuKey))
                 {
                     interactable.TryOpenMenu();
-                    Debug.Log("TryOpenMenu");
                 }
             }
         }
