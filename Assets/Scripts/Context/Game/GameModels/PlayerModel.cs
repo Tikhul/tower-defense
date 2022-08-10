@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class PlayerModel
 {
     public int InitialCoins { get; set; }
-    public int InitialHealth { get; set; }
+    public int InitialHealth { get; private set; }
+    public int ActualCoins { get; set; }
+    public int ActualHealth { get; set; }
     public void Initialize(PlayerConfig settings)
     {
         InitialCoins = settings.InitialCoins;
@@ -13,6 +11,4 @@ public class PlayerModel
         ActualCoins = settings.InitialCoins;
         ActualHealth = settings.InitialHealth;
     }
-    public int ActualCoins { get; set; }
-    public int ActualHealth { get; set; }
 }

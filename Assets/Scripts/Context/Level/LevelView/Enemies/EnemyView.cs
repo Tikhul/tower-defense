@@ -8,25 +8,19 @@ public class EnemyView : BaseView
     [SerializeField] private EnemyConfig _config;
     [SerializeField] private DOTweenPath _path;
     [SerializeField] private TMPro.TMP_Text _enemyData;
-    private int _actualEnemyHealth;
     public Tween EnemyTween { get; set; }
     public EnemyConfig Config => _config;
-    public int ActualEnemyHealth
-    {
-        get => _actualEnemyHealth = Config.InitialHealth;
-        set => _actualEnemyHealth = value;
-    }
     public DOTweenPath Path => _path;
     public event Action<int> OnEnemyWayCompleted = delegate { };
 
     private void OnEnable()
     {
-        ShowEnemyHealth(ActualEnemyHealth);
+        ShowEnemyHealth(Config.InitialHealth);
     }
 
-    public void FillWayPoints(List<Vector3> _receivedTransforms)
+    public void FillWayPoints(List<Vector3> receivedTransforms)
     {
-        Path.wps.AddRange(_receivedTransforms);
+        Path.wps.AddRange(receivedTransforms);
         EnemyTween = transform.DOPath(Path.wps.ToArray(), _config.Speed)
             .SetSpeedBased()
             .SetEase(Ease.Linear)
@@ -41,21 +35,18 @@ public class EnemyView : BaseView
 
     public void ClearEnemies()
     {
-        transform.DOKill();
+     //   transform.DOKill();
         Destroy(gameObject);
     }
-
-    public void Damage(int _damage)
+    
+    public void ShowEnemyHealth(int health)
     {
-        ActualEnemyHealth -= _damage;
-        ShowEnemyHealth(ActualEnemyHealth);
-        if (ActualEnemyHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
+        _enemyData.text = health.ToString();
     }
-    private void ShowEnemyHealth(int _health)
+
+    public void DestroyEnemy()
     {
-        _enemyData.text = _health.ToString();
+        Debug.Log("DestroyEnemy");
+        Destroy(gameObject);
     }
 }

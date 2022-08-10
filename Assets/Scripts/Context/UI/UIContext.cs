@@ -31,6 +31,7 @@ public class UIContext : CoreContext
         injectionBinder.Bind<BlockBoardSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<UnblockBoardSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<ChangePlayerDataSignal>().ToSingleton().CrossContext();
+       
         injectionBinder.Bind<TowerMenuCreatedSignal>().ToSingleton();
         injectionBinder.Bind<UpgradeMenuCreatedSignal>().ToSingleton();
         injectionBinder.Bind<HideSubMenuSignal>().ToSingleton();

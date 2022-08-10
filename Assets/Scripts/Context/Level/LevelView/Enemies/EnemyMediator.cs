@@ -12,11 +12,9 @@ public class EnemyMediator : Mediator
     [Inject] public GameModel GameModel { get; set; }
     [Inject] public WaveEndedSignal WaveEndedSignal { get; set; }
     [Inject] public ChangePlayerHealthSignal ChangePlayerHealthSignal { get; set; }
-    
     [Inject] public BlockShootButtonSignal BlockShootButtonSignal { get; set; }
     public override void OnRegister()
     {
-        LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemiesOnScene.Add(View);
         FillWayPointsHandler();
         NextLevelChosenSignal.AddListener(ClearEnemiesHandler);
         RestartLevelChosenSignal.AddListener(ClearEnemiesHandler);
@@ -24,7 +22,6 @@ public class EnemyMediator : Mediator
     }
     public override void OnRemove()
     {
-        LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemiesOnScene.Remove(View);
         NextLevelChosenSignal.RemoveListener(ClearEnemiesHandler);
         RestartLevelChosenSignal.RemoveListener(ClearEnemiesHandler);
         View.OnEnemyWayCompleted -= EnemyWayFinishedHandler;
@@ -40,15 +37,14 @@ public class EnemyMediator : Mediator
     {
         View.ClearEnemies();
     }
-    private void EnemyWayFinishedHandler(int _damage)
+    private void EnemyWayFinishedHandler(int damage)
     {
-        ChangePlayerHealthSignal.Dispatch(_damage);
+        ChangePlayerHealthSignal.Dispatch(damage);
 
-        if (LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemiesOnScene.Count == 1)
+        if (LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemyData.Count == 1)
         {
             BlockShootButtonSignal.Dispatch();
             WaveEndedSignal.Dispatch();
         }
     }
-    
 }
