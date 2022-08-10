@@ -13,11 +13,11 @@ public class TowerView : BaseView
     [SerializeField] private SphereCollider _shootRadius;
     [SerializeField] private GameObject _direction;
     [SerializeField] private CellView _cellView;
-    private float _bulletTime = 1f;
+    public float BulletTime { get; set; } = 1f;
     public bool IsShooting { get; set; } = false;
     public List<EnemyView> EnemyViews { get; set; } = new List<EnemyView>();
     public int ShootsNumber { get; set; }
-    public event Action<TowerModel> OnBulletShot = delegate { };
+    
     public TowerConfig TowerConfig
     {
         get => _towerConfig;
@@ -62,60 +62,21 @@ public class TowerView : BaseView
 
     public void TurnTower(Vector3 nearestEnemy, TowerModel towerModel)
     {
-        _direction.transform.DOLookAt(nearestEnemy, towerModel.ShootDelay - _bulletTime)
+        _direction.transform.DOLookAt(nearestEnemy, towerModel.ShootDelay - BulletTime)
             .OnComplete(() => CreateBullet(towerModel, nearestEnemy));
     }
 
     private void CreateBullet(TowerModel tower, Vector3 enemyTransform)
     {
-        GameObject _newBullet = Instantiate(_bulletPrefab);
-        _newBullet.transform.parent = _bulletParent.transform;
-        _newBullet.transform.localPosition = _bulletPrefab.transform.position;
-        _newBullet.transform.localScale = _bulletPrefab.transform.localScale;
-        _newBullet.GetComponent<BulletView>().BulletDamage = tower.Damage;
-        ShootBullet(_newBullet, tower, enemyTransform);
+        GameObject newBullet = Instantiate(_bulletPrefab);
+        newBullet.transform.parent = _bulletParent.transform;
+        newBullet.transform.localPosition = _bulletPrefab.transform.position;
+        newBullet.transform.localScale = _bulletPrefab.transform.localScale;
+        BulletView bulletView = newBullet.GetComponent<BulletView>();
+        bulletView.BulletDamage = tower.Damage;
+        bulletView.ShootBullet(this, tower, enemyTransform);
     }
-
-    private void ShootBullet(GameObject newBullet, TowerModel tower, Vector3 enemyTransform)
-    {
-        if (ShootsNumber == tower.BulletsNumber)
-        {
-            newBullet.transform.DOLocalMoveZ(
-                Vector3.Distance(transform.position, enemyTransform) * 100, _bulletTime)
-                .OnComplete(() => DestroyBullet(newBullet));
-            RenewData();
-        }
-        else if(ShootsNumber < tower.BulletsNumber)
-        {
-            newBullet.transform.DOLocalMoveZ(
-                Vector3.Distance(transform.position, enemyTransform) * 100, _bulletTime)
-                .OnComplete(() => AfterShoot(tower, newBullet))
-                .OnKill(() => AfterShoot(tower, newBullet));
-        }
-    }
-
-    private void AfterShoot(TowerModel tower, GameObject bullet)
-    {
-        if (EnemyViews.Any())
-        {
-            OnBulletShot?.Invoke(tower);
-        }
-        else
-        {
-            RenewData();
-        }
-        DestroyBullet(bullet);
-    }
-
-    private void DestroyBullet(GameObject bullet)
-    {
-        if (bullet != null)
-        {
-            bullet.transform.DOKill();
-            Destroy(bullet);
-        }
-    }
-
+    
     public void RenewData()
     {
         ShootsNumber = 0;
