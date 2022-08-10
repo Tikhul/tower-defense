@@ -1,6 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
+using UnityEditor;
 using UnityEngine;
 
 public class BulletView : BaseView
@@ -13,7 +13,13 @@ public class BulletView : BaseView
         {
             Debug.Log("OnBulletHit");
             OnBulletHit?.Invoke(BulletDamage, other.gameObject.GetComponent<EnemyView>());
-            Destroy(gameObject);
+        //    DestroyBullet();
         }
+    }
+
+    private void DestroyBullet()
+    {
+        transform.DOKill();
+        Destroy(gameObject);
     }
 }

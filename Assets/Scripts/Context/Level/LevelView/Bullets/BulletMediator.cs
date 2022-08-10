@@ -1,7 +1,5 @@
 using context.level;
 using strange.extensions.mediation.impl;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletMediator : Mediator
@@ -16,10 +14,10 @@ public class BulletMediator : Mediator
     {
         View.OnBulletHit -= ChangeEnemyHealthHandler;
     }
-    private void ChangeEnemyHealthHandler(int _damage, EnemyView _view)
+    private void ChangeEnemyHealthHandler(int damage, EnemyView view)
     {
         Debug.Log("ChangeEnemyHealthHandler");
-        ChangeEnemyHealthSignal.Dispatch(_damage, _view);
+        ChangeEnemyHealthSignal.Dispatch(damage, view);
     }
 }
  

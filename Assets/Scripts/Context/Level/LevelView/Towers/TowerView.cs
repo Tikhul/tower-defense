@@ -46,7 +46,7 @@ public class TowerView : BaseView
     }
 
     /// <summary>
-    /// Увеличение коллайдера, который показывает радиус стрельбы
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     public void UpgradeRadius(float upgrade)
     {
@@ -89,7 +89,8 @@ public class TowerView : BaseView
         {
             newBullet.transform.DOLocalMoveZ(
                 Vector3.Distance(transform.position, enemyTransform) * 100, _bulletTime)
-                .OnComplete(() => AfterShoot(tower, newBullet));
+                .OnComplete(() => AfterShoot(tower, newBullet))
+                .OnKill(() => AfterShoot(tower, newBullet));
         }
     }
 
@@ -110,6 +111,7 @@ public class TowerView : BaseView
     {
         if (bullet != null)
         {
+            bullet.transform.DOKill();
             Destroy(bullet);
         }
     }
