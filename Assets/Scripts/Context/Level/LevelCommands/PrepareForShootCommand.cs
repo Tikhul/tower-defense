@@ -17,7 +17,7 @@ public class PrepareForShootCommand : Command
         foreach (var view in TowerView.EnemyViews)
         {
             var percentage = (TowerModel.ShootDelay + view.EnemyTween.Elapsed()) 
-                / view.EnemyTween.Duration();
+                             / view.EnemyTween.Duration();
             if (percentage < 1)
             {
                 var getPoint = view.EnemyTween.PathGetPoint(percentage);

@@ -32,12 +32,13 @@ public class BulletMediator : Mediator
     private void PrepareAnotherShootHandler(TowerModel towerModel, TowerView towerView)
     {
         PrepareForShootSignal.Dispatch(towerModel, towerView);
-        Destroy(View);
+        Destroy(View.gameObject);
     }
 
     private void RenewTowerDataHandler()
     {
         RenewTowerDataSignal.Dispatch();
+        Destroy(View.gameObject);
     }
 }
  
