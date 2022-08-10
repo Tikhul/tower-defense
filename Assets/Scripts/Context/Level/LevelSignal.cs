@@ -19,4 +19,5 @@ namespace context.level
     public class ChangeEnemyHealthSignal : Signal<int, EnemyView> { }
     public class PrepareForShootSignal : Signal<TowerModel, TowerView> { }
     public class ReadyToShootSignal : Signal<Vector3, TowerModel> { }
+    public class RenewTowerDataSignal : Signal {}
 }

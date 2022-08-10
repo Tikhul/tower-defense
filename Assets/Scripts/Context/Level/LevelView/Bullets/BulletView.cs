@@ -9,6 +9,8 @@ public class BulletView : BaseView
     public int BulletDamage { get; set; }
     public event Action<int, EnemyView> OnBulletHit = delegate { };
     public event Action<TowerModel, TowerView> OnBulletShot = delegate { };
+    public event Action OnTowerDataRenew = delegate { };
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Enemy"))
@@ -26,7 +28,7 @@ public class BulletView : BaseView
             transform.DOLocalMoveZ(
                     Vector3.Distance(transform.position, enemyTransform) * 100,
                     towerView.BulletTime)
-                .OnComplete(() => towerView.RenewData());
+                .OnComplete(RenewTowerData);
         }
         else if(towerView.ShootsNumber < towerModel.BulletsNumber)
         {
@@ -36,6 +38,7 @@ public class BulletView : BaseView
                 .OnComplete(() => AfterShoot(towerModel, towerView));
         }
     }
+    
     private void AfterShoot(TowerModel towerModel, TowerView towerView)
     {
         if (towerView.EnemyViews.Any())
@@ -44,7 +47,12 @@ public class BulletView : BaseView
         }
         else
         {
-            towerView.RenewData();
+            RenewTowerData();
         }
+    }
+
+    private void RenewTowerData()
+    {
+        OnTowerDataRenew?.Invoke();
     }
 }

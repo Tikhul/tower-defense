@@ -10,13 +10,14 @@ public class TowerMediator : Mediator
     [Inject] public ReadyToShootSignal ReadyToShootSignal { get; set; }
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
+    [Inject] public RenewTowerDataSignal RenewTowerDataSignal { get; set; }
 
     public override void OnRegister()
     {
         ReadyToShootSignal.AddListener(LaunchShootingHandler);
-        
         RestartLevelChosenSignal.AddListener(ClearTowersHandler);
         NextLevelChosenSignal.AddListener(ClearTowersHandler);
+        RenewTowerDataSignal.AddListener(RenewDataHandler);
     }
     
     public override void OnRemove()
@@ -24,6 +25,7 @@ public class TowerMediator : Mediator
         ReadyToShootSignal.RemoveListener(LaunchShootingHandler);
         RestartLevelChosenSignal.RemoveListener(ClearTowersHandler);
         NextLevelChosenSignal.RemoveListener(ClearTowersHandler);
+        RenewTowerDataSignal.RemoveListener(RenewDataHandler);
     }
     
     private void LaunchShootingHandler(Vector3 nearestEnemy, TowerModel towerModel)
@@ -38,5 +40,10 @@ public class TowerMediator : Mediator
     {
         View.RenewData();
         View.Hide();
+    }
+
+    private void RenewDataHandler()
+    {
+        View.RenewData();
     }
 }
