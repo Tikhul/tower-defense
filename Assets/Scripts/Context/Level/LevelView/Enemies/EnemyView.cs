@@ -11,7 +11,7 @@ public class EnemyView : BaseView
     public Tween EnemyTween { get; set; }
     public EnemyConfig Config => _config;
     public DOTweenPath Path => _path;
-    public event Action<int> OnEnemyWayCompleted = delegate { };
+    public event Action OnEnemyWayCompleted = delegate { };
 
     private void OnEnable()
     {
@@ -29,7 +29,7 @@ public class EnemyView : BaseView
 
     private void PerformAfterPath()
     {
-        OnEnemyWayCompleted?.Invoke(Config.Damage);
+        OnEnemyWayCompleted?.Invoke();
         ClearEnemies();
     }
 

@@ -15,14 +15,13 @@ public class ChangeEnemyHealthCommand : Command
         model.ActualHealth -= Damage;
         if (model.ActualHealth <= 0)
         {
-            _enemyData.Remove(EnemyView);
-            EnemyView.DestroyEnemy();
             Player.ActualCoins += EnemyView.Config.CoinsForKill;
             injectionBinder.GetInstance<ChangePlayerDataSignal>().Dispatch(Player);
         }
         else
         {
             EnemyView.ShowEnemyHealth(model.ActualHealth);
+            Fail();
         }
     }
 }

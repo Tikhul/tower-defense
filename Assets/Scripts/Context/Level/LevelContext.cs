@@ -42,7 +42,9 @@ public class LevelContext : CoreContext
         injectionBinder.Bind<ReadyToShootSignal>().ToSingleton();
         injectionBinder.Bind<PrepareForShootSignal>().ToSingleton();
         injectionBinder.Bind<RenewTowerDataSignal>().ToSingleton();
-        commandBinder.Bind<ChangeEnemyHealthSignal>().To<ChangeEnemyHealthCommand>();
+        commandBinder.Bind<BulletHitEnemySignal>()
+            .To<ChangeEnemyHealthCommand>()
+            .To<UpdateEnemyDataCommand>();
         commandBinder.Bind<PipelineEndedSignal>().To<PipelineEndCommand>();
         commandBinder.Bind<DrawBoardSignal>().To<DrawBoardCommand>().Once();
         commandBinder.Bind<FillCellListSignal>().To<FillCellListCommand>();
@@ -74,7 +76,9 @@ public class LevelContext : CoreContext
             .To<EndCurrentWaveCommand>()
             .To<BeginNextWaveCommand>()
             .InSequence();
-        commandBinder.Bind<ChangePlayerHealthSignal>().To<ChangePlayerHealthCommand>();
+        commandBinder.Bind<EnemyWayCompletedSignal>()
+            .To<ChangePlayerHealthCommand>()
+            .To<UpdateEnemyDataCommand>();
         commandBinder.Bind<PrepareForShootSignal>().To<PrepareForShootCommand>();
         commandBinder.Bind<LevelEndedSignal>().To<LevelEndCommand>();
     }

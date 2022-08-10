@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class ChangePlayerHealthCommand : Command
 {
-    [Inject] public int Damage { get; set; }
+    [Inject] public EnemyView EnemyView { get; set; }
     public override void Execute()
     {
-        injectionBinder.GetInstance<GameModel>().Player.ActualHealth -= Damage;
+        injectionBinder.GetInstance<GameModel>().Player.ActualHealth -= EnemyView.Config.Damage;
         injectionBinder.GetInstance<ChangePlayerDataSignal>().Dispatch(injectionBinder.GetInstance<GameModel>().Player);
         if(injectionBinder.GetInstance<GameModel>().Player.ActualHealth <= 0)
         {

@@ -2,6 +2,7 @@ using context.level;
 using context.ui;
 using strange.extensions.mediation.impl;
 using System.Linq;
+using UnityEngine;
 
 public class EnemyMediator : Mediator
 {
@@ -11,7 +12,7 @@ public class EnemyMediator : Mediator
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     [Inject] public GameModel GameModel { get; set; }
     [Inject] public WaveEndedSignal WaveEndedSignal { get; set; }
-    [Inject] public ChangePlayerHealthSignal ChangePlayerHealthSignal { get; set; }
+    [Inject] public EnemyWayCompletedSignal EnemyWayCompletedSignal { get; set; }
     [Inject] public BlockShootButtonSignal BlockShootButtonSignal { get; set; }
     public override void OnRegister()
     {
@@ -37,11 +38,11 @@ public class EnemyMediator : Mediator
     {
         View.ClearEnemies();
     }
-    private void EnemyWayFinishedHandler(int damage)
+    private void EnemyWayFinishedHandler()
     {
-        ChangePlayerHealthSignal.Dispatch(damage);
-
-        if (LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemyData.Count == 1)
+        EnemyWayCompletedSignal.Dispatch(View);
+        
+        if (LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemyData.Count == 0)
         {
             BlockShootButtonSignal.Dispatch();
             WaveEndedSignal.Dispatch();

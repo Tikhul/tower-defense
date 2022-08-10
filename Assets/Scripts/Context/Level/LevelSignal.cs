@@ -15,8 +15,8 @@ namespace context.level
     public class OnEnemyWayDefinedSignal : Signal { }
     public class WaveEndedSignal : Signal { }
     public class ActivateWaveSignal : Signal { }
-    public class ChangePlayerHealthSignal : Signal<int> { }
-    public class ChangeEnemyHealthSignal : Signal<int, EnemyView> { }
+    public class EnemyWayCompletedSignal : Signal<EnemyView> { }
+    public class BulletHitEnemySignal : Signal<int, EnemyView> { }
     public class PrepareForShootSignal : Signal<TowerModel, TowerView> { }
     public class ReadyToShootSignal : Signal<Vector3, TowerModel> { }
     public class RenewTowerDataSignal : Signal { }

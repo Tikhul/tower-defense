@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletMediator : Mediator
 {
     [Inject] public BulletView View { get; set; }
-    [Inject] public ChangeEnemyHealthSignal ChangeEnemyHealthSignal { get; set; }
+    [Inject] public BulletHitEnemySignal BulletHitEnemySignal { get; set; }
     [Inject] public PrepareForShootSignal PrepareForShootSignal { get; set; }
     [Inject] public RenewTowerDataSignal RenewTowerDataSignal { get; set; }
         
@@ -26,7 +26,7 @@ public class BulletMediator : Mediator
     private void ChangeEnemyHealthHandler(int damage, EnemyView view)
     {
         Debug.Log("ChangeEnemyHealthHandler");
-        ChangeEnemyHealthSignal.Dispatch(damage, view);
+        BulletHitEnemySignal.Dispatch(damage, view);
     }
     
     private void PrepareAnotherShootHandler(TowerModel towerModel, TowerView towerView)
