@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using context.level;
 using context.ui;
 using strange.extensions.command.impl;
-using UnityEngine;
 
 public class ChangeEnemyHealthCommand : Command
 {

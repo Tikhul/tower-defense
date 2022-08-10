@@ -60,7 +60,6 @@ public class TowerView : BaseView
 
     private void DeleteEnemyView(EnemyView enemy)
     {
-        Debug.Log("DeleteEnemyView");
         EnemyViews.Remove(enemy);
     }
     
