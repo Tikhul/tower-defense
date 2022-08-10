@@ -39,15 +39,39 @@ public class TowerView : BaseView
         ShootsNumber = 0;
         SetRadiusCollider();
     }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Enemy"))
+        {
+            EnemyViews.Add(other.gameObject.GetComponent<EnemyView>());
+        }
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag.Equals("Enemy"))
+        {
+            EnemyViews.Remove(other.gameObject.GetComponent<EnemyView>());
+        }
+    }
+    
     private void SetRadiusCollider()
     {
         _shootRadius.radius = _towerConfig.ShootRadius;
     }
-
-    /// <summary>
-    /// ���������� ����������, ������� ���������� ������ ��������
-    /// </summary>
+    
+    private void CreateBullet(TowerModel tower, Vector3 enemyTransform)
+    {
+        GameObject newBullet = Instantiate(_bulletPrefab);
+        newBullet.transform.parent = _bulletParent.transform;
+        newBullet.transform.localPosition = _bulletPrefab.transform.position;
+        newBullet.transform.localScale = _bulletPrefab.transform.localScale;
+        BulletView bulletView = newBullet.GetComponent<BulletView>();
+        bulletView.BulletDamage = tower.Damage;
+        bulletView.ShootBullet(this, tower, enemyTransform);
+    }
+    
     public void UpgradeRadius(float upgrade)
     {
         _shootRadius.radius += upgrade;
@@ -65,38 +89,11 @@ public class TowerView : BaseView
         _direction.transform.DOLookAt(nearestEnemy, towerModel.ShootDelay - BulletTime)
             .OnComplete(() => CreateBullet(towerModel, nearestEnemy));
     }
-
-    private void CreateBullet(TowerModel tower, Vector3 enemyTransform)
-    {
-        GameObject newBullet = Instantiate(_bulletPrefab);
-        newBullet.transform.parent = _bulletParent.transform;
-        newBullet.transform.localPosition = _bulletPrefab.transform.position;
-        newBullet.transform.localScale = _bulletPrefab.transform.localScale;
-        BulletView bulletView = newBullet.GetComponent<BulletView>();
-        bulletView.BulletDamage = tower.Damage;
-        bulletView.ShootBullet(this, tower, enemyTransform);
-    }
     
     public void RenewData()
     {
         ShootsNumber = 0;
         IsShooting = false;
         _cellView.UnblockCell();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag.Equals("Enemy"))
-        {
-            EnemyViews.Add(other.gameObject.GetComponent<EnemyView>());
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag.Equals("Enemy"))
-        {
-            EnemyViews.Remove(other.gameObject.GetComponent<EnemyView>());
-        }
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CellView : CellHover, IInteractable
 {
+    [SerializeField] private AllTowersView _towers;
+    [SerializeField] private AllEnemiesView _enemies;
     private Color _enemyColor = Color.blue;
     public int CellInt { get; set; }
     public char CellChar { get; set; }
@@ -12,18 +14,19 @@ public class CellView : CellHover, IInteractable
     public event Action<TowerView> OnShoot;
     public event Action<CellView> OnUpgradeMenuOpen;
     public event Action<CellView> OnTowerMenuOpen;
-    [SerializeField] private AllTowersView _towers;
-    [SerializeField] private AllEnemiesView _enemies;
+
     public AllTowersView Towers
     {
         get => _towers;
         set => _towers = value;
     }
+    
     public AllEnemiesView Enemies
     {
         get => _enemies;
         set => _enemies = value;
     }
+    
     private void OnEnable()
     {
         Interactable = true;

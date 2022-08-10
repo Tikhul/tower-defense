@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using DG.Tweening;
-using UnityEditor;
 using UnityEngine;
 
 public class BulletView : BaseView
@@ -21,6 +20,23 @@ public class BulletView : BaseView
         }
     }
 
+    private void AfterShoot(TowerModel towerModel, TowerView towerView)
+    {
+        if (towerView.EnemyViews.Any())
+        {
+            OnBulletShot?.Invoke(towerModel, towerView);
+        }
+        else
+        {
+            RenewTowerData();
+        }
+    }
+
+    private void RenewTowerData()
+    {
+        OnTowerDataRenew?.Invoke();
+    }
+    
     public void ShootBullet(TowerView towerView, TowerModel towerModel, Vector3 enemyTransform)
     {
         if (towerView.ShootsNumber == towerModel.BulletsNumber)
@@ -37,22 +53,5 @@ public class BulletView : BaseView
                     towerView.BulletTime)
                 .OnComplete(() => AfterShoot(towerModel, towerView));
         }
-    }
-    
-    private void AfterShoot(TowerModel towerModel, TowerView towerView)
-    {
-        if (towerView.EnemyViews.Any())
-        {
-            OnBulletShot?.Invoke(towerModel, towerView);
-        }
-        else
-        {
-            RenewTowerData();
-        }
-    }
-
-    private void RenewTowerData()
-    {
-        OnTowerDataRenew?.Invoke();
     }
 }
