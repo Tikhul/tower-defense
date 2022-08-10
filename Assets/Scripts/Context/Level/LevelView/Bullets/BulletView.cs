@@ -42,14 +42,14 @@ public class BulletView : BaseView
         if (towerView.ShootsNumber == towerModel.BulletsNumber)
         {
             transform.DOLocalMoveZ(
-                    Vector3.Distance(transform.position, enemyTransform) * 100,
+                    Vector3.Distance(transform.position, enemyTransform) * 100 + 10,
                     towerView.BulletTime)
                 .OnComplete(RenewTowerData);
         }
         else if(towerView.ShootsNumber < towerModel.BulletsNumber)
         {
             transform.DOLocalMoveZ(
-                    Vector3.Distance(transform.position, enemyTransform) * 100, 
+                    Vector3.Distance(transform.position, enemyTransform) * 100 + 10, 
                     towerView.BulletTime)
                 .OnComplete(() => AfterShoot(towerModel, towerView));
         }

@@ -16,4 +16,4 @@ MonoBehaviour:
   _initialHealth: 10
   _damage: 5
   _speed: 0.25
-  _coinsForKill: 0
+  _coinsForKill: 7

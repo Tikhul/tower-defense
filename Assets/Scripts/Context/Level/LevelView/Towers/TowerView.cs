@@ -44,7 +44,9 @@ public class TowerView : BaseView
     {
         if (other.tag.Equals("Enemy"))
         {
-            EnemyViews.Add(other.gameObject.GetComponent<EnemyView>());
+            var view = other.gameObject.GetComponent<EnemyView>();
+            EnemyViews.Add(view);
+            view.EnemyTween.OnKill(() => DeleteEnemyView(view));
         }
     }
 
@@ -54,6 +56,12 @@ public class TowerView : BaseView
         {
             EnemyViews.Remove(other.gameObject.GetComponent<EnemyView>());
         }
+    }
+
+    private void DeleteEnemyView(EnemyView enemy)
+    {
+        Debug.Log("DeleteEnemyView");
+        EnemyViews.Remove(enemy);
     }
     
     private void SetRadiusCollider()
