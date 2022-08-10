@@ -44,7 +44,8 @@ public class LevelContext : CoreContext
         injectionBinder.Bind<RenewTowerDataSignal>().ToSingleton();
         commandBinder.Bind<BulletHitEnemySignal>()
             .To<ChangeEnemyHealthCommand>()
-            .To<UpdateEnemyDataCommand>();
+            .To<UpdateEnemyDataCommand>()
+            .InSequence();
         commandBinder.Bind<PipelineEndedSignal>().To<PipelineEndCommand>();
         commandBinder.Bind<DrawBoardSignal>().To<DrawBoardCommand>().Once();
         commandBinder.Bind<FillCellListSignal>().To<FillCellListCommand>();

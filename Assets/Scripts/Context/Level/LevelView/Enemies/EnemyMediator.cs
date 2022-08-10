@@ -13,7 +13,7 @@ public class EnemyMediator : Mediator
     [Inject] public GameModel GameModel { get; set; }
     [Inject] public WaveEndedSignal WaveEndedSignal { get; set; }
     [Inject] public EnemyWayCompletedSignal EnemyWayCompletedSignal { get; set; }
-    [Inject] public BlockShootButtonSignal BlockShootButtonSignal { get; set; }
+    
     public override void OnRegister()
     {
         FillWayPointsHandler();
@@ -42,10 +42,6 @@ public class EnemyMediator : Mediator
     {
         EnemyWayCompletedSignal.Dispatch(View);
         
-        if (LevelsPipelineModel.CurrentLevel.LevelWaves.CurrentWave.EnemyData.Count == 0)
-        {
-            BlockShootButtonSignal.Dispatch();
-            WaveEndedSignal.Dispatch();
-        }
+       
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyConfig1
   m_EditorClassIdentifier: 
   _id: EnemyConfig1_red
-  _initialHealth: 100
+  _initialHealth: 15
   _damage: 10
   _speed: 0.5
   _coinsForKill: 8
