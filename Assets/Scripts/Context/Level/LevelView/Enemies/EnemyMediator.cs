@@ -2,7 +2,6 @@ using context.level;
 using context.ui;
 using strange.extensions.mediation.impl;
 using System.Linq;
-using UnityEngine;
 
 public class EnemyMediator : Mediator
 {
@@ -36,7 +35,7 @@ public class EnemyMediator : Mediator
     }
     private void ClearEnemiesHandler()
     {
-        View.ClearEnemies();
+        View.DestroyEnemy();
     }
     private void EnemyWayFinishedHandler()
     {

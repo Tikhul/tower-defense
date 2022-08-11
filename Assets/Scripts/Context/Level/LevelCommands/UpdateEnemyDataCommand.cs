@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using context.level;
 using strange.extensions.command.impl;
+using UnityEditor;
 
 public class UpdateEnemyDataCommand : Command
 {
@@ -11,7 +12,7 @@ public class UpdateEnemyDataCommand : Command
     {
         _enemyData.Remove(EnemyView);
         EnemyView.DestroyEnemy();
-        
+
         if (_enemyData.Count == 0)
         {
             injectionBinder.GetInstance<WaveEndedSignal>().Dispatch();

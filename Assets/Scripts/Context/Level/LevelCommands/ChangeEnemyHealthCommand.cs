@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using context.ui;
 using strange.extensions.command.impl;
+using UnityEngine;
 
 public class ChangeEnemyHealthCommand : Command
 {
@@ -11,6 +12,7 @@ public class ChangeEnemyHealthCommand : Command
         .CurrentLevel.LevelWaves.CurrentWave.EnemyData;
     public override void Execute()
     {
+        Debug.Log(_enemyData.Count);
         EnemyModel model = _enemyData[EnemyView];
         model.ActualHealth -= Damage;
         if (model.ActualHealth <= 0)

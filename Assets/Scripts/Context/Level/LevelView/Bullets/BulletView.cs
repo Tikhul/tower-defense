@@ -7,7 +7,6 @@ public class BulletView : BaseView
 {
     public int BulletDamage { get; set; }
     public event Action<int, EnemyView> OnBulletHit = delegate { };
-    public event Action<TowerModel, TowerView> OnBulletShot = delegate { };
     public event Action OnTowerDataRenew = delegate { };
     
     private void OnTriggerEnter(Collider other)
@@ -24,7 +23,7 @@ public class BulletView : BaseView
     {
         if (towerView.EnemyViews.Any())
         {
-            OnBulletShot?.Invoke(towerModel, towerView);
+            Destroy(gameObject);
         }
         else
         {

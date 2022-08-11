@@ -30,15 +30,9 @@ public class EnemyView : BaseView
     private void PerformAfterPath()
     {
         OnEnemyWayCompleted?.Invoke();
-        ClearEnemies();
-    }
-
-    public void ClearEnemies()
-    {
-     //   transform.DOKill();
         Destroy(gameObject);
     }
-    
+
     public void ShowEnemyHealth(int health)
     {
         _enemyData.text = health.ToString();

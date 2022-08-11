@@ -12,14 +12,12 @@ public class BulletMediator : Mediator
     public override void OnRegister()
     {
         View.OnBulletHit += ChangeEnemyHealthHandler;
-        View.OnBulletShot += PrepareAnotherShootHandler;
         View.OnTowerDataRenew += RenewTowerDataHandler;
     }
     
     public override void OnRemove()
     {
         View.OnBulletHit -= ChangeEnemyHealthHandler;
-        View.OnBulletShot -= PrepareAnotherShootHandler;
         View.OnTowerDataRenew -= RenewTowerDataHandler;
     }
     
@@ -29,11 +27,6 @@ public class BulletMediator : Mediator
         BulletHitEnemySignal.Dispatch(damage, view);
     }
     
-    private void PrepareAnotherShootHandler(TowerModel towerModel, TowerView towerView)
-    {
-   //     PrepareForShootSignal.Dispatch(towerModel, towerView);
-        Destroy(View.gameObject);
-    }
 
     private void RenewTowerDataHandler()
     {
