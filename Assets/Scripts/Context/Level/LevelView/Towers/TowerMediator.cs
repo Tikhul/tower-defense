@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Linq;
 using context.level;
 using context.ui;
 using strange.extensions.mediation.impl;
@@ -31,17 +33,27 @@ public class TowerMediator : Mediator
     {
         if (View.IsShooting)
         {
-            StartShootingSignal.RemoveListener(LaunchShootingHandler);
-            TowerModel towerModel = LevelsPipelineModel.CurrentLevel.TowerData[View];
-            for (int i = 0; i < towerModel.BulletsNumber; i++)
+            StartCoroutine(WaitForLaunchShooting());
+        }
+    }
+
+    private IEnumerator WaitForLaunchShooting()
+    {
+        StartShootingSignal.RemoveListener(LaunchShootingHandler);
+        TowerModel towerModel = LevelsPipelineModel.CurrentLevel.TowerData[View];
+            
+        for (int i = 0; i < towerModel.BulletsNumber; i++)
+        {
+            if (View.EnemyViews.Any())
             {
                 NearestEnemyFinder finder = new NearestEnemyFinder();
                 View.TowerShoot(View, towerModel, finder.GetNearestEnemy(towerModel, View));
+                yield return new WaitForSeconds(towerModel.ShootDelay);
             }
-            StartShootingSignal.AddListener(LaunchShootingHandler);
         }
+        
+        StartShootingSignal.AddListener(LaunchShootingHandler);
     }
-    
     private void ClearTowersHandler()
     {
         View.RenewData();

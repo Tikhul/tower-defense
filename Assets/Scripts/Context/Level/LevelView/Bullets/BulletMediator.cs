@@ -6,7 +6,6 @@ public class BulletMediator : Mediator
 {
     [Inject] public BulletView View { get; set; }
     [Inject] public BulletHitEnemySignal BulletHitEnemySignal { get; set; }
- //   [Inject] public PrepareForShootSignal PrepareForShootSignal { get; set; }
     [Inject] public RenewTowerDataSignal RenewTowerDataSignal { get; set; }
         
     public override void OnRegister()
@@ -27,7 +26,6 @@ public class BulletMediator : Mediator
         BulletHitEnemySignal.Dispatch(damage, view);
     }
     
-
     private void RenewTowerDataHandler()
     {
         RenewTowerDataSignal.Dispatch();
