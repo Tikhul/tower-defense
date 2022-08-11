@@ -6,9 +6,11 @@ using UnityEngine;
 
 public class RestartLevelCommand : Command
 {
+    private LevelsPipelineModel LevelsPipelineModel => injectionBinder.GetInstance<LevelsPipelineModel>();
     public override void Execute()
     {
-        injectionBinder.GetInstance<LevelsPipelineModel>().RestartLevel();
+        LevelsPipelineModel.CurrentLevel.TowerData.Clear();
+        LevelsPipelineModel.RestartLevel();
         injectionBinder.GetInstance<ActivateWaveSignal>().Dispatch();
     }
 }
