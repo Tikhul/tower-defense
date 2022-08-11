@@ -39,8 +39,7 @@ public class LevelContext : CoreContext
         injectionBinder.Bind<OnEnemyWayDefinedSignal>().ToSingleton();
         injectionBinder.Bind<ActivateWaveSignal>().ToSingleton();
         injectionBinder.Bind<PassLevelDataSignal>();
-        injectionBinder.Bind<ReadyToShootSignal>().ToSingleton();
-        injectionBinder.Bind<PrepareForShootSignal>().ToSingleton();
+        injectionBinder.Bind<StartShootingSignal>().ToSingleton();
         injectionBinder.Bind<RenewTowerDataSignal>().ToSingleton();
         commandBinder.Bind<BulletHitEnemySignal>()
             .To<ChangeEnemyHealthCommand>()
@@ -81,7 +80,6 @@ public class LevelContext : CoreContext
         commandBinder.Bind<EnemyWayCompletedSignal>()
             .To<ChangePlayerHealthCommand>()
             .To<UpdateEnemyDataCommand>();
-        commandBinder.Bind<PrepareForShootSignal>().To<PrepareForShootCommand>();
         commandBinder.Bind<LevelEndedSignal>().To<LevelEndCommand>();
     }
     protected override void MapMediators()

@@ -6,7 +6,7 @@ public class BulletMediator : Mediator
 {
     [Inject] public BulletView View { get; set; }
     [Inject] public BulletHitEnemySignal BulletHitEnemySignal { get; set; }
-    [Inject] public PrepareForShootSignal PrepareForShootSignal { get; set; }
+ //   [Inject] public PrepareForShootSignal PrepareForShootSignal { get; set; }
     [Inject] public RenewTowerDataSignal RenewTowerDataSignal { get; set; }
         
     public override void OnRegister()
@@ -31,7 +31,7 @@ public class BulletMediator : Mediator
     
     private void PrepareAnotherShootHandler(TowerModel towerModel, TowerView towerView)
     {
-        PrepareForShootSignal.Dispatch(towerModel, towerView);
+   //     PrepareForShootSignal.Dispatch(towerModel, towerView);
         Destroy(View.gameObject);
     }
 

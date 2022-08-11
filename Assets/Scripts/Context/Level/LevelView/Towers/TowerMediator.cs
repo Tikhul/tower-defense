@@ -6,14 +6,15 @@ using UnityEngine;
 public class TowerMediator : Mediator
 {
     [Inject] public TowerView View { get; set; }
-    [Inject] public ReadyToShootSignal ReadyToShootSignal { get; set; }
+    [Inject] public StartShootingSignal StartShootingSignal { get; set; }
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
     [Inject] public RenewTowerDataSignal RenewTowerDataSignal { get; set; }
+    [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
 
     public override void OnRegister()
     {
-        ReadyToShootSignal.AddListener(LaunchShootingHandler);
+        StartShootingSignal.AddListener(LaunchShootingHandler);
         RestartLevelChosenSignal.AddListener(ClearTowersHandler);
         NextLevelChosenSignal.AddListener(ClearTowersHandler);
         RenewTowerDataSignal.AddListener(RenewDataHandler);
@@ -21,17 +22,23 @@ public class TowerMediator : Mediator
     
     public override void OnRemove()
     {
-        ReadyToShootSignal.RemoveListener(LaunchShootingHandler);
         RestartLevelChosenSignal.RemoveListener(ClearTowersHandler);
         NextLevelChosenSignal.RemoveListener(ClearTowersHandler);
         RenewTowerDataSignal.RemoveListener(RenewDataHandler);
     }
     
-    private void LaunchShootingHandler(Vector3 nearestEnemy, TowerModel towerModel)
+    private void LaunchShootingHandler()
     {
         if (View.IsShooting)
         {
-            View.LaunchShooting(nearestEnemy, towerModel);
+            StartShootingSignal.RemoveListener(LaunchShootingHandler);
+            TowerModel towerModel = LevelsPipelineModel.CurrentLevel.TowerData[View];
+            for (int i = 0; i < towerModel.BulletsNumber; i++)
+            {
+                NearestEnemyFinder finder = new NearestEnemyFinder();
+                View.TowerShoot(View, towerModel, finder.GetNearestEnemy(towerModel, View));
+            }
+            StartShootingSignal.AddListener(LaunchShootingHandler);
         }
     }
     

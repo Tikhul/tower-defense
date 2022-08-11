@@ -39,6 +39,7 @@ public class BulletView : BaseView
     
     public void ShootBullet(TowerView towerView, TowerModel towerModel, Vector3 enemyTransform)
     {
+        BulletDamage = towerModel.Damage;
         if (towerView.ShootsNumber == towerModel.BulletsNumber)
         {
             transform.DOLocalMoveZ(
