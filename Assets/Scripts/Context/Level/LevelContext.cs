@@ -60,7 +60,8 @@ public class LevelContext : CoreContext
             .To<DefineEnemyWayCommand>()
             .To<RenewPlayerHealthCommand>()
             .To<RenewPlayerMoneyCommand>()
-            .To<RestartLevelCommand>();
+            .To<RestartLevelCommand>()
+            .InSequence();
         commandBinder.Bind<DefineEnemyWaySignal>()
             .To<ClearEnemyWayCommand>()
             .To<DefineEnemyWayCommand>()
