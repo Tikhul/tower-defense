@@ -49,7 +49,7 @@ public class TowerView : TowerShoot
         }
     }
 
-    private void DeleteEnemyView(EnemyView enemy)
+    public void DeleteEnemyView(EnemyView enemy)
     {
         EnemyViews.Remove(enemy);
     }

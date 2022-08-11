@@ -10,7 +10,7 @@ public class EnemyMediator : Mediator
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     [Inject] public GameModel GameModel { get; set; }
-    [Inject] public WaveEndedSignal WaveEndedSignal { get; set; }
+    [Inject] public EnemyDestroyedSignal EnemyDestroyedSignal { get; set; }
     [Inject] public EnemyWayCompletedSignal EnemyWayCompletedSignal { get; set; }
     
     public override void OnRegister()
@@ -19,12 +19,14 @@ public class EnemyMediator : Mediator
         NextLevelChosenSignal.AddListener(ClearEnemiesHandler);
         RestartLevelChosenSignal.AddListener(ClearEnemiesHandler);
         View.OnEnemyWayCompleted += EnemyWayFinishedHandler;
+        View.OnEnemyDestroyed += EnemyDestroyedHandler;
     }
     public override void OnRemove()
     {
         NextLevelChosenSignal.RemoveListener(ClearEnemiesHandler);
         RestartLevelChosenSignal.RemoveListener(ClearEnemiesHandler);
         View.OnEnemyWayCompleted -= EnemyWayFinishedHandler;
+        View.OnEnemyDestroyed -= EnemyDestroyedHandler;
     }
     private void FillWayPointsHandler()
     {
@@ -40,7 +42,10 @@ public class EnemyMediator : Mediator
     private void EnemyWayFinishedHandler()
     {
         EnemyWayCompletedSignal.Dispatch(View);
-        
-       
+    }
+
+    private void EnemyDestroyedHandler(EnemyView enemy)
+    {
+        EnemyDestroyedSignal.Dispatch(enemy);
     }
 }

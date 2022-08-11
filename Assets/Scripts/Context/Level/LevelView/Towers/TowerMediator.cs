@@ -45,7 +45,7 @@ public class TowerMediator : Mediator
         for (int i = 0; i < towerModel.BulletsNumber; i++)
         {
             NearestEnemyFinder finder = new NearestEnemyFinder();
-            if (!finder.GetNearestEnemy(towerModel, View).Equals(Vector3.zero))
+            if (View.EnemyViews.Any())
             {
                 View.TowerShoot(View, towerModel, finder.GetNearestEnemy(towerModel, View));
                 yield return new WaitForSeconds(towerModel.ShootDelay);
@@ -66,5 +66,10 @@ public class TowerMediator : Mediator
     private void RenewDataHandler()
     {
         View.RenewData();
+    }
+
+    private void RemoveEnemyHandler(EnemyView view)
+    {
+        View.DeleteEnemyView(view);
     }
 }

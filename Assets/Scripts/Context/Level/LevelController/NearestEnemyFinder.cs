@@ -25,14 +25,7 @@ public class NearestEnemyFinder
 
     public Vector3 GetNearestEnemy(TowerModel towerModel, TowerView towerView)
     {
-        if (GetAvailableEnemies(towerModel, towerView).Any())
-        {
-            return GetAvailableEnemies(towerModel, towerView).OrderBy(
-                x => Vector3.Distance(towerView.transform.position, x)).First();
-        }
-        else
-        {
-            return Vector3.zero;
-        }
+        return GetAvailableEnemies(towerModel, towerView).OrderBy(
+            x => Vector3.Distance(towerView.transform.position, x)).First();
     }
 }

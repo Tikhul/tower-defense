@@ -19,4 +19,5 @@ namespace context.level
     public class BulletHitEnemySignal : Signal<int, EnemyView> { }
     public class StartShootingSignal : Signal { }
     public class RenewTowerDataSignal : Signal { }
+    public class EnemyDestroyedSignal : Signal<EnemyView> { }
 }

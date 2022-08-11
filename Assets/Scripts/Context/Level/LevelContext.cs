@@ -41,6 +41,7 @@ public class LevelContext : CoreContext
         injectionBinder.Bind<PassLevelDataSignal>();
         injectionBinder.Bind<StartShootingSignal>().ToSingleton();
         injectionBinder.Bind<RenewTowerDataSignal>().ToSingleton();
+        injectionBinder.Bind<EnemyDestroyedSignal>().ToSingleton();
         commandBinder.Bind<BulletHitEnemySignal>()
             .To<ChangeEnemyHealthCommand>()
             .To<UpdateEnemyDataCommand>()
