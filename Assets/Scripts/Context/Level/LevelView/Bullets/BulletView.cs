@@ -24,10 +24,6 @@ public class BulletView : BaseView
         {
             Destroy(gameObject);
         }
-        else
-        {
-            RenewTowerData();
-        }
     }
 
     private void RenewTowerData()

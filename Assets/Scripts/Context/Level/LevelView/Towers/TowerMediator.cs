@@ -67,6 +67,7 @@ public class TowerMediator : Mediator
                 break;
             }
         }
+        View.RenewData();
         StartShootingSignal.AddListener(LaunchShootingHandler);
     }
     private void ClearTowersHandler()
