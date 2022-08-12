@@ -2,6 +2,7 @@ using context.level;
 using context.ui;
 using strange.extensions.mediation.impl;
 using System.Linq;
+using UnityEngine;
 
 public class CellMediator : Mediator
 {
@@ -43,6 +44,7 @@ public class CellMediator : Mediator
         if (towerView.EnemyViews.Any())
         {
             towerView.IsShooting = true;
+            Debug.Log(towerView.IsShooting);
             StartShootingSignal.Dispatch();
         }
     }

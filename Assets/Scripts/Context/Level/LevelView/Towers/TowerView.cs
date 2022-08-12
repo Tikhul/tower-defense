@@ -24,9 +24,10 @@ public class TowerView : TowerShoot
     public string TowerRadiusText => _towerConfig.ShootRadius.ToString();
     public string TowerFrequencyText => _towerConfig.ShootDelay.ToString();
     public string TowerBulletsText => _towerConfig.BulletsNumber.ToString();
-
+    
     private void OnEnable()
     {
+        IsShooting = false;
         SetRadiusCollider();
     }
     

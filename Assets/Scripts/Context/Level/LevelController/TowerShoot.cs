@@ -8,7 +8,7 @@ public class TowerShoot : TowerShootTemplate
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private GameObject _bulletParent;
     public float BulletTime { get; set; } = 1f;
-    public bool IsShooting { get; set; } = false;
+    public bool IsShooting { get; set; }
     
     private void CreateBullet(TowerView view, TowerModel tower, Vector3 enemyTransform)
     {

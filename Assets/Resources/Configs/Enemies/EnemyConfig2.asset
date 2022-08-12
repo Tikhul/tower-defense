@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyConfig2
   m_EditorClassIdentifier: 
   _id: EnemyConfig2_black
-  _initialHealth: 10
-  _damage: 15
+  _initialHealth: 20
+  _damage: 20
   _speed: 0.75
   _coinsForKill: 9

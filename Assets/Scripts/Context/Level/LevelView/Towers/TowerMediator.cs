@@ -11,7 +11,6 @@ public class TowerMediator : Mediator
     [Inject] public StartShootingSignal StartShootingSignal { get; set; }
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
-    [Inject] public RenewTowerDataSignal RenewTowerDataSignal { get; set; }
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public EnemyDestroyedSignal EnemyDestroyedSignal { get; set; }
     
@@ -20,7 +19,6 @@ public class TowerMediator : Mediator
         StartShootingSignal.AddListener(LaunchShootingHandler);
         RestartLevelChosenSignal.AddListener(ClearTowersHandler);
         NextLevelChosenSignal.AddListener(ClearTowersHandler);
-        RenewTowerDataSignal.AddListener(RenewDataHandler);
         EnemyDestroyedSignal.AddListener(RemoveEnemyHandler);
     }
     
@@ -28,14 +26,15 @@ public class TowerMediator : Mediator
     {
         RestartLevelChosenSignal.RemoveListener(ClearTowersHandler);
         NextLevelChosenSignal.RemoveListener(ClearTowersHandler);
-        RenewTowerDataSignal.RemoveListener(RenewDataHandler);
         EnemyDestroyedSignal.RemoveListener(RemoveEnemyHandler);
     }
     
     private void LaunchShootingHandler()
     {
+        Debug.Log(View.IsShooting);
         if (View.IsShooting)
         {
+            Debug.Log("LaunchShootingHandler");
             StartCoroutine(WaitForLaunchShooting());
         }
     }
@@ -77,11 +76,6 @@ public class TowerMediator : Mediator
     {
         View.RenewData();
         View.Hide();
-    }
-
-    private void RenewDataHandler()
-    {
-        View.RenewData();
     }
 
     private void RemoveEnemyHandler(EnemyView view)
