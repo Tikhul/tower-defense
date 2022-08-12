@@ -10,7 +10,6 @@ public class AllEnemiesMediator : Mediator
     [Inject] public AllEnemiesView View { get; set; }
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public ActivateWaveSignal ActivateWaveSignal { get; set; }
-    [Inject] public UnBlockShootButtonSignal UnBlockShootButtonSignal { get; set; }
 
     public override void OnRegister()
     {
@@ -42,7 +41,6 @@ public class AllEnemiesMediator : Mediator
                 yield return new WaitForSeconds(LevelsPipelineModel.CurrentLevel.LevelWaves.
                     CurrentWave.Config.WaveHold);
                 View.ActivateEnemy(enemies[i]);
-                UnBlockShootButtonSignal.Dispatch();
             }
             else
             {

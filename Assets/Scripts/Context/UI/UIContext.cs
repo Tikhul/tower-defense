@@ -41,8 +41,6 @@ public class UIContext : CoreContext
         injectionBinder.Bind<ShowTowerDataSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<NoMoneySignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<TowerBoughtSignal>().ToSingleton().CrossContext();
-        injectionBinder.Bind<BlockShootButtonSignal>().ToSingleton().CrossContext();
-        injectionBinder.Bind<UnBlockShootButtonSignal>().ToSingleton().CrossContext();
 
         commandBinder.Bind<CreateTowerMenuSignal>().To<CreateTowerMenuCommand>();
         commandBinder.Bind<CreateUpgradeMenuSignal>().To<CreateUpgradeMenuCommand>();
@@ -67,7 +65,6 @@ public class UIContext : CoreContext
         mediationBinder.BindView<UpgradeMenuView>().ToMediator<UpgradeMenuMediator>();
         mediationBinder.BindView<UpgradeButtonView>().ToMediator<UpgradeButtonMediator>();
         mediationBinder.BindView<WarningsView>().ToMediator<WarningsMediator>();
-        mediationBinder.BindView<ShootButtonView>().ToMediator<ShootButtonMediator>();
     }
 
     protected override void MapAsIndependentContext()
