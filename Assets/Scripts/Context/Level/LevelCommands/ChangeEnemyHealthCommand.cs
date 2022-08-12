@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using context.level;
 using context.ui;
 using strange.extensions.command.impl;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class ChangeEnemyHealthCommand : Command
         if (model.ActualHealth <= 0)
         {
             Player.ActualCoins += EnemyView.Config.CoinsForKill;
+            injectionBinder.GetInstance<EnemyDestroyedSignal>().Dispatch(EnemyView);
             injectionBinder.GetInstance<ChangePlayerDataSignal>().Dispatch(Player);
         }
         else

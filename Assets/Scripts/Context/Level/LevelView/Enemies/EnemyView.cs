@@ -12,8 +12,7 @@ public class EnemyView : BaseView
     public EnemyConfig Config => _config;
     public DOTweenPath Path => _path;
     public event Action OnEnemyWayCompleted = delegate { };
-    public event Action<EnemyView> OnEnemyDestroyed = delegate { };
-    
+
     private void OnEnable()
     {
         ShowEnemyHealth(Config.InitialHealth);
@@ -41,8 +40,6 @@ public class EnemyView : BaseView
 
     public void DestroyEnemy()
     {
-        Debug.Log("DestroyEnemy");
-        OnEnemyDestroyed?.Invoke(this);
         Destroy(gameObject);
     }
 }
