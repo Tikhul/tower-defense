@@ -8,6 +8,7 @@ public class EnemyView : BaseView
     [SerializeField] private EnemyConfig _config;
     [SerializeField] private DOTweenPath _path;
     [SerializeField] private TMPro.TMP_Text _enemyData;
+    public bool IsTarget { get; set; }
     public Tween EnemyTween { get; set; }
     public EnemyConfig Config => _config;
     public DOTweenPath Path => _path;
@@ -16,6 +17,7 @@ public class EnemyView : BaseView
     private void OnEnable()
     {
         ShowEnemyHealth(Config.InitialHealth);
+        IsTarget = false;
     }
 
     public void FillWayPoints(List<Vector3> receivedTransforms)

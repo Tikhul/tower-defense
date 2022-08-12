@@ -13,7 +13,6 @@ public class ChangeEnemyHealthCommand : Command
         .CurrentLevel.LevelWaves.CurrentWave.EnemyData;
     public override void Execute()
     {
-        Debug.Log(_enemyData.Count);
         EnemyModel model = _enemyData[EnemyView];
         model.ActualHealth -= Damage;
         if (model.ActualHealth <= 0)
@@ -24,6 +23,7 @@ public class ChangeEnemyHealthCommand : Command
         }
         else
         {
+            EnemyView.IsTarget = false;
             EnemyView.ShowEnemyHealth(model.ActualHealth);
             Fail();
         }

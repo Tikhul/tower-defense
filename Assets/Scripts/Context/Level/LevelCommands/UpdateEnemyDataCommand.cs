@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using context.level;
 using strange.extensions.command.impl;
-using UnityEngine;
 
 public class UpdateEnemyDataCommand : Command
 {
@@ -10,7 +9,6 @@ public class UpdateEnemyDataCommand : Command
         .CurrentLevel.LevelWaves.CurrentWave.EnemyData;
     public override void Execute()
     {
-        Debug.Log("UpdateEnemyDataCommand");
         _enemyData.Remove(EnemyView);
         EnemyView.DestroyEnemy();
 

@@ -13,7 +13,6 @@ public class BulletView : BaseView
     {
         if (other.gameObject.tag.Equals("Enemy"))
         {
-            Debug.Log("OnBulletHit");
             OnBulletHit?.Invoke(BulletDamage, other.gameObject.GetComponent<EnemyView>());
             gameObject.SetActive(false);
         }

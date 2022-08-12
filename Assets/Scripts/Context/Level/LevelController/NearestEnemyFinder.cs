@@ -5,27 +5,45 @@ using UnityEngine;
 
 public class NearestEnemyFinder
 {
+    public Vector3? NearestEnemy;
+    private Dictionary<EnemyView, Vector3> _tempList = new Dictionary<EnemyView, Vector3>();
+    
     private List<Vector3> GetAvailableEnemies(TowerModel towerModel, TowerView towerView)
     {
-        List<Vector3> tempList = new List<Vector3>();
-        
-        foreach (var view in towerView.EnemyViews)
+        foreach (var view in towerView.EnemyViews.Where(x => !x.IsTarget))
         {
             var percentage = (towerModel.ShootDelay + view.EnemyTween.Elapsed()) 
                              / view.EnemyTween.Duration();
             if (percentage < 1)
             {
                 var getPoint = view.EnemyTween.PathGetPoint(percentage);
-                tempList.Add(getPoint);
+                _tempList.Add(view, getPoint);
             }
         }
 
-        return tempList;
+        return _tempList.Values.ToList();
     }
 
-    public Vector3 GetNearestEnemy(TowerModel towerModel, TowerView towerView)
+    public void GetNearestEnemy(TowerModel towerModel, TowerView towerView)
     {
-        return GetAvailableEnemies(towerModel, towerView).OrderBy(
+        var nearestEnemy = GetAvailableEnemies(towerModel, towerView).OrderBy(
             x => Vector3.Distance(towerView.transform.position, x)).First();
+        var nearestEnemyView = _tempList.Where(
+            x => x.Value == nearestEnemy).FirstOrDefault().Key;
+
+        if (!nearestEnemyView.IsTarget)
+        {
+            nearestEnemyView.IsTarget = true;
+            NearestEnemy = nearestEnemy;
+        }
+        else if (nearestEnemyView.IsTarget && towerView.EnemyViews.Where(x => !x.IsTarget).ToList().Any())
+        {
+            NearestEnemy = GetAvailableEnemies(towerModel, towerView).OrderBy(
+                x => Vector3.Distance(towerView.transform.position, x)).First();
+        }
+        else
+        {
+            NearestEnemy = null;
+        }
     }
 }

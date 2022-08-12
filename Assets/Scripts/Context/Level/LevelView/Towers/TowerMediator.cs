@@ -46,11 +46,19 @@ public class TowerMediator : Mediator
             
         for (int i = 0; i < towerModel.BulletsNumber; i++)
         {
-            NearestEnemyFinder finder = new NearestEnemyFinder();
-            if (View.EnemyViews.Any())
+            if (View.EnemyViews.Where(x => !x.IsTarget).Any())
             {
-                View.TowerShoot(View, towerModel, finder.GetNearestEnemy(towerModel, View));
-                yield return new WaitForSeconds(towerModel.ShootDelay);
+                NearestEnemyFinder finder = new NearestEnemyFinder();
+                finder.GetNearestEnemy(towerModel, View);
+                if (finder.NearestEnemy != null)
+                {
+                    View.TowerShoot(View, towerModel, finder.NearestEnemy.Value);
+                    yield return new WaitForSeconds(towerModel.ShootDelay);
+                }
+                else
+                {
+                    break;
+                }
             }
             else
             {

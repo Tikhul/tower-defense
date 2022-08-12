@@ -8,8 +8,6 @@ public class EndCurrentWaveCommand : Command
     private ILevelModel CurrentLevel => injectionBinder.GetInstance<LevelsPipelineModel>().CurrentLevel;
     public override void Execute()
     {
-        Debug.Log("EndCurrentWaveCommand");
-        Debug.Log(injectionBinder.GetInstance<GameModel>().Player.ActualHealth);
         CurrentLevel.LevelWaves.CompleteCurrentWave();
         var completedWaves = CurrentLevel.LevelWaves.WaveModels.Where(
             x => x.State.Equals(WaveState.Completed)).ToList();
