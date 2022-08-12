@@ -1,18 +1,12 @@
 using context.ui;
 using strange.extensions.mediation.impl;
-using System.Collections.Generic;
 
 public class MenuMediator : Mediator
 {
- //   private List<CellView> _cells = new List<CellView>();
-    
-  //  private bool _subscribedToCells = false;
-    
     [Inject] public MenuView View { get; set; }
     [Inject] public CellViewCreatedSignal CellViewCreatedSignal { get; set; }
     [Inject] public BlockBoardSignal BlockBoardSignal { get; set; }
     [Inject] public UnblockBoardSignal UnblockBoardSignal { get; set; }
-    [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
     [Inject] public CreateTowerMenuSignal CreateTowerMenuSignal { get; set; }
     [Inject] public CreateUpgradeMenuSignal CreateUpgradeMenuSignal { get; set; }
     [Inject] public HideSubMenuSignal HideSubMenuSignal { get; set; }
@@ -34,10 +28,8 @@ public class MenuMediator : Mediator
     }
     private void SubscribeToCells(CellView cell)
     {
-     //   _cells.Add(cell);
         cell.OnTowerMenuOpen += ShowTowerMenuHandler;
         cell.OnUpgradeMenuOpen += ShowUpgradeMenuHandler;
-      //  _subscribedToCells = true;
         View.OnCloseMenu += HideMenuHandler;
     }
 

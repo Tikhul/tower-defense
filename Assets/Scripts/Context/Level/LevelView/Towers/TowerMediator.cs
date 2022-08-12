@@ -57,11 +57,13 @@ public class TowerMediator : Mediator
                 }
                 else
                 {
+                    View.RenewData();
                     break;
                 }
             }
             else
             {
+                View.RenewData();
                 break;
             }
         }
