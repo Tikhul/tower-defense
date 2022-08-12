@@ -1,22 +1,29 @@
 using strange.extensions.command.impl;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
 using context.level;
-using context.ui;
+using UnityEngine;
 
 public class EndCurrentWaveCommand : Command
 {
     private ILevelModel CurrentLevel => injectionBinder.GetInstance<LevelsPipelineModel>().CurrentLevel;
     public override void Execute()
     {
+        Debug.Log("EndCurrentWaveCommand");
+        Debug.Log(injectionBinder.GetInstance<GameModel>().Player.ActualHealth);
         CurrentLevel.LevelWaves.CompleteCurrentWave();
-
-        if(CurrentLevel.LevelWaves.WaveModels.Where(x => x.State.Equals(WaveState.Completed)).ToList().Count.Equals(
-            CurrentLevel.LevelWaves.WaveModels.Count))
+        var completedWaves = CurrentLevel.LevelWaves.WaveModels.Where(
+            x => x.State.Equals(WaveState.Completed)).ToList();
+        
+        if(completedWaves.Count == CurrentLevel.LevelWaves.WaveModels.Count && 
+           injectionBinder.GetInstance<GameModel>().Player.ActualHealth > 0)
         {
             injectionBinder.GetInstance<LevelEndedSignal>().Dispatch();
+            Fail();
+        }
+        else if (completedWaves.Count == CurrentLevel.LevelWaves.WaveModels.Count && 
+                 injectionBinder.GetInstance<GameModel>().Player.ActualHealth <= 0)
+        {
+            injectionBinder.GetInstance<PipelineEndedSignal>().Dispatch();
             Fail();
         }
     }

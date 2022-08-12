@@ -2,8 +2,6 @@ using context;
 using context.level;
 using context.ui;
 using strange.extensions.signal.impl;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelContext : CoreContext
@@ -80,7 +78,8 @@ public class LevelContext : CoreContext
             .InSequence();
         commandBinder.Bind<EnemyWayCompletedSignal>()
             .To<ChangePlayerHealthCommand>()
-            .To<UpdateEnemyDataCommand>();
+            .To<UpdateEnemyDataCommand>()
+            .InSequence();
         commandBinder.Bind<LevelEndedSignal>().To<LevelEndCommand>();
     }
     protected override void MapMediators()
