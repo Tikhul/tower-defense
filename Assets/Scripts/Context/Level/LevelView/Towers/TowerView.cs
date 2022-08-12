@@ -27,7 +27,6 @@ public class TowerView : TowerShoot
 
     private void OnEnable()
     {
-        ShootsNumber = 0;
         SetRadiusCollider();
     }
     

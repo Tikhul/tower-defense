@@ -7,7 +7,6 @@ public class TowerShoot : TowerShootTemplate
     [SerializeField] private CellView _cellView;
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private GameObject _bulletParent;
-    public int ShootsNumber { get; set; }
     public float BulletTime { get; set; } = 1f;
     public bool IsShooting { get; set; } = false;
     
@@ -24,7 +23,6 @@ public class TowerShoot : TowerShootTemplate
     protected override void LaunchShooting()
     {
         _cellView.BlockCell();
-        ShootsNumber += 1;
     }
 
     protected override void TurnTower(TowerView view, TowerModel tower, Vector3 enemyTransform)
@@ -35,8 +33,8 @@ public class TowerShoot : TowerShootTemplate
 
     public void RenewData()
     {
-        ShootsNumber = 0;
         IsShooting = false;
         _cellView.UnblockCell();
+        _direction.transform.DORotate(Vector3.zero, 1f);
     }
 }

@@ -14,6 +14,7 @@ public class TowerMediator : Mediator
     [Inject] public RenewTowerDataSignal RenewTowerDataSignal { get; set; }
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public EnemyDestroyedSignal EnemyDestroyedSignal { get; set; }
+    
     public override void OnRegister()
     {
         StartShootingSignal.AddListener(LaunchShootingHandler);
@@ -67,9 +68,11 @@ public class TowerMediator : Mediator
                 break;
             }
         }
+        
         View.RenewData();
         StartShootingSignal.AddListener(LaunchShootingHandler);
     }
+    
     private void ClearTowersHandler()
     {
         View.RenewData();
