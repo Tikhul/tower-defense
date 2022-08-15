@@ -44,7 +44,6 @@ public class CellMediator : Mediator
         if (towerView.EnemyViews.Any())
         {
             towerView.IsShooting = true;
-            Debug.Log(towerView.IsShooting);
             StartShootingSignal.Dispatch();
         }
     }

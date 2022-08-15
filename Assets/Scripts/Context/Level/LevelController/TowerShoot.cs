@@ -1,4 +1,5 @@
 using DG.Tweening;
+using strange.extensions.mediation.impl;
 using UnityEngine;
 
 public class TowerShoot : TowerShootTemplate
@@ -33,6 +34,7 @@ public class TowerShoot : TowerShootTemplate
 
     public void RenewData()
     {
+        _direction.transform.DOKill();
         IsShooting = false;
         _cellView.UnblockCell();
         _direction.transform.DORotate(Vector3.zero, 1f);

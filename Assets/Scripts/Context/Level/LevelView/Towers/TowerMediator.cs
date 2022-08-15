@@ -31,7 +31,6 @@ public class TowerMediator : Mediator
     
     private void LaunchShootingHandler()
     {
-        Debug.Log(View.IsShooting);
         if (View.IsShooting)
         {
             Debug.Log("LaunchShootingHandler");
@@ -74,6 +73,7 @@ public class TowerMediator : Mediator
     
     private void ClearTowersHandler()
     {
+        StopCoroutine(WaitForLaunchShooting());
         View.RenewData();
         View.Hide();
     }
