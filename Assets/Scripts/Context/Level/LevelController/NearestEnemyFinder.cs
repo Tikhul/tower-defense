@@ -27,23 +27,31 @@ public class NearestEnemyFinder
     public void GetNearestEnemy(TowerModel towerModel, TowerView towerView)
     {
         var nearestEnemy = GetAvailableEnemies(towerModel, towerView).OrderBy(
-            x => Vector3.Distance(towerView.transform.position, x)).First();
-        var nearestEnemyView = _tempList.Where(
-            x => x.Value == nearestEnemy).FirstOrDefault().Key;
+            x => Vector3.Distance(towerView.transform.position, x)).FirstOrDefault();
+        var nearestEnemyView = _tempList.Where(x => x.Value == nearestEnemy)
+            .FirstOrDefault().Key;
 
-        if (!nearestEnemyView.IsTarget)
+        if (nearestEnemyView)
         {
-            nearestEnemyView.IsTarget = true;
-            NearestEnemy = nearestEnemy;
-        }
-        else if (nearestEnemyView.IsTarget && towerView.EnemyViews.Where(x => !x.IsTarget).ToList().Any())
-        {
-            NearestEnemy = GetAvailableEnemies(towerModel, towerView).OrderBy(
-                x => Vector3.Distance(towerView.transform.position, x)).First();
+            if (!nearestEnemyView.IsTarget)
+            {
+                nearestEnemyView.IsTarget = true;
+                NearestEnemy = nearestEnemy;
+            }
+            else if (nearestEnemyView.IsTarget && towerView.EnemyViews.Where(x => !x.IsTarget).ToList().Any())
+            {
+                NearestEnemy = GetAvailableEnemies(towerModel, towerView).OrderBy(
+                    x => Vector3.Distance(towerView.transform.position, x)).First();
+            }
+            else
+            {
+                NearestEnemy = null;
+            }
         }
         else
         {
             NearestEnemy = null;
         }
+        
     }
 }
