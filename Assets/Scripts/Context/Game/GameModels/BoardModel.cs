@@ -1,34 +1,30 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class BoardModel
 {
-    private List<CellView> _currentCellList = new List<CellView>();
-    private List<CellView> _allCellList = new List<CellView>();
+    private List<CellData> _cellList = new List<CellData>();
     public BoardConfig Settings { get; set; }
 
     public void Initialize (BoardConfig settings)
     {
         Settings = settings;
     }
-
-    /// <summary>
-    /// Все кнопки
-    /// </summary>
-    public List<CellView> AllCellList
+    
+    public List<CellData> CellList
     {
-        get => _allCellList;
-        set => _allCellList = value;
+        get => _cellList;
+        set => _cellList = value;
     }
+}
 
-    /// <summary>
-    /// Актуальный список кнопок
-    /// </summary>
-    public List<CellView> CurrentCellList
+public class CellData
+{
+    public char Char { get; set; }
+    public int Int { get; set; }
+
+    public CellData(char c, int i)
     {
-        get => _currentCellList;
-        set => _currentCellList = value;
+        Char = c;
+        Int = i;
     }
 }

@@ -7,7 +7,8 @@ public class LevelsPipelineModel
 {
     public List<ILevelModel> LevelModels { get; set; }
     public LevelsPipelineConfig Config { get; set; }
-    public ILevelModel CurrentLevel => LevelModels.LastOrDefault(e => e.State.Equals(LevelState.Active) || e.State.Equals(LevelState.Completed));
+    public ILevelModel CurrentLevel => LevelModels.LastOrDefault(e => e.State.Equals(LevelState.Active) 
+                                                                      || e.State.Equals(LevelState.Completed));
     public event Action OnPipelineBegin;
     public event Action OnPipelineComplete;
 

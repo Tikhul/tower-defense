@@ -133,13 +133,13 @@ GameObject:
   m_Component:
   - component: {fileID: 55839399}
   - component: {fileID: 55839400}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelNameView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &55839399
 RectTransform:
   m_ObjectHideFlags: 0
@@ -183,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 115113280}
   - component: {fileID: 115113281}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MenuView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 251494433}
   - component: {fileID: 251494432}
   - component: {fileID: 251494431}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 253653363}
   - component: {fileID: 253653364}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EndPanelView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1011,7 +1011,7 @@ GameObject:
   m_Component:
   - component: {fileID: 868817891}
   - component: {fileID: 868817892}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: RestartPanelView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1405,7 +1405,7 @@ GameObject:
   - component: {fileID: 991011803}
   - component: {fileID: 991011802}
   - component: {fileID: 991011801}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Next
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1525,7 +1525,7 @@ GameObject:
   - component: {fileID: 1044931689}
   - component: {fileID: 1044931691}
   - component: {fileID: 1044931690}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1792,7 +1792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1128055487}
   - component: {fileID: 1128055488}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: WarningsView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1843,7 +1843,7 @@ GameObject:
   - component: {fileID: 1148173623}
   - component: {fileID: 1148173625}
   - component: {fileID: 1148173624}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2111,7 +2111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1434207507}
   - component: {fileID: 1434207508}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StartPanelView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2162,7 +2162,7 @@ GameObject:
   - component: {fileID: 1476196618}
   - component: {fileID: 1476196620}
   - component: {fileID: 1476196619}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2643,7 +2643,7 @@ GameObject:
   - component: {fileID: 1630929301}
   - component: {fileID: 1630929303}
   - component: {fileID: 1630929302}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2776,7 +2776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1702829024}
   - component: {fileID: 1702829025}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UserDataView
   m_TagString: Untagged
   m_Icon: {fileID: 0}

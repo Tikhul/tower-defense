@@ -1,9 +1,8 @@
 using context;
-using context.game;
+using context.level;
 using strange.extensions.signal.impl;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using StartSignal = context.game.StartSignal;
 
 public class GameContext : CoreContext
 {
@@ -25,8 +24,12 @@ public class GameContext : CoreContext
 
     protected override void MapAsModuleContext()
     {
-        commandBinder.Bind<StartSignal>().To<CreateGameCommand>();
+        commandBinder.Bind<StartSignal>()
+            .To<CreateGameCommand>()
+            .To<FillCellListCommand>()
+            .InSequence();
     }
+
     protected override void MapEntities()
     {
         base.MapEntities();

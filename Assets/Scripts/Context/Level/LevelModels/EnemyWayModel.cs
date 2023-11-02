@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyWayModel
 {
-    public EnemyWayConfig Config { get; private set; }
+    public EnemyWayConfig Config { get; }
+    public List<Vector3> EnemyWayTransforms { get; }
 
     public EnemyWayModel(EnemyWayConfig config)
     {
@@ -13,9 +14,9 @@ public class EnemyWayModel
     public List<Vector3> GetEnemyWayTransforms(List<CellView> enemyWayButtons)
     {
         List<Vector3> _temp = new List<Vector3>();
-        for(int i=0; i< enemyWayButtons.Count; i++)
+        foreach (var t in enemyWayButtons)
         {
-            _temp.Add(enemyWayButtons[i].Enemies.transform.position);
+            _temp.Add(t.Enemies.transform.position);
         }
         return _temp;
     }
