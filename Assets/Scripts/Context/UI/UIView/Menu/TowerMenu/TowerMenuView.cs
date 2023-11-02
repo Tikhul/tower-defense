@@ -23,7 +23,7 @@ public class TowerMenuView : BaseMenuView
             b.TowerRadiusText.text = "Радиус: " + tower.TowerRadiusText;
             b.TowerFrequencyText.text = "Задержка: " + tower.TowerFrequencyText;
             b.TowerBulletsText.text = "Враги: " + tower.TowerBulletsText;
-            b.TowerButtonImage.sprite = tower.GetComponentInChildren<Image>().sprite;
+            b.TowerButtonImage.sprite = tower.TowerImage;
             b.TowerView = tower;
         }
     }

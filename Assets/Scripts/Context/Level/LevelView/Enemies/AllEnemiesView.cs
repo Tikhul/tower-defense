@@ -1,3 +1,4 @@
+using System;
 using strange.extensions.mediation.impl;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,17 +6,21 @@ using UnityEngine;
 public class AllEnemiesView : View
 {
     [SerializeField] private List<GameObject> _enemyPrefabs;
-    [SerializeField] private CellButtonView _cellButtonView;
-    public CellButtonView CellButtonView => _cellButtonView;
+    [SerializeField] private CellView _cellView;
+    public List<GameObject> EnemyPrefabs => _enemyPrefabs;
+    public CellView CellView => _cellView;
+    public event Action<EnemyView, EnemyModel> OnEnemyCreated = delegate { };
     public void ActivateEnemy(EnemyModel model)
     {
-        foreach(var enemy in _enemyPrefabs)
+        foreach(var enemy in EnemyPrefabs)
         {
             if (enemy.GetComponent<EnemyView>().Config.Id.Equals(model.Config.Id))
             {
-                GameObject newEnemy = Instantiate(enemy, transform, true);
-                newEnemy.transform.localPosition = transform.localPosition;
+                GameObject newEnemy = Instantiate(enemy);
+                newEnemy.transform.parent = transform;
+                newEnemy.transform.position = transform.position;
                 newEnemy.transform.localScale = enemy.transform.localScale;
+                OnEnemyCreated?.Invoke(newEnemy.GetComponent<EnemyView>(), model);
             }
         }
     }

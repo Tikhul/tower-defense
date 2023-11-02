@@ -7,9 +7,11 @@ public class ClearEnemyWayCommand : Command
 {
     public override void Execute()
     {
-        foreach (CellButtonView cell in injectionBinder.GetInstance<GameModel>().Board.CurrentCellList)
+        foreach (CellView cell in injectionBinder.GetInstance<GameModel>().Board.CurrentCellList)
         {
             cell.State = CellState.Empty;
+            cell.Interactable = true;
+            cell.ClearColor();
         }
     }
 }

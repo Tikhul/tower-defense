@@ -27,10 +27,11 @@ public class UIContext : CoreContext
         injectionBinder.Bind<ShowRestartPanelSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<PassLevelDataSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<PassTowersDictionarySignal>().ToSingleton().CrossContext();
-        injectionBinder.Bind<CellButtonViewCreatedSignal>().ToSingleton().CrossContext();
+        injectionBinder.Bind<CellViewCreatedSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<BlockBoardSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<UnblockBoardSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<ChangePlayerDataSignal>().ToSingleton().CrossContext();
+       
         injectionBinder.Bind<TowerMenuCreatedSignal>().ToSingleton();
         injectionBinder.Bind<UpgradeMenuCreatedSignal>().ToSingleton();
         injectionBinder.Bind<HideSubMenuSignal>().ToSingleton();
@@ -40,9 +41,6 @@ public class UIContext : CoreContext
         injectionBinder.Bind<ShowTowerDataSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<NoMoneySignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<TowerBoughtSignal>().ToSingleton().CrossContext();
-        injectionBinder.Bind<PrepareForShootSignal>().ToSingleton().CrossContext();
-        injectionBinder.Bind<BlockShootButtonSignal>().ToSingleton().CrossContext();
-        injectionBinder.Bind<UnBlockShootButtonSignal>().ToSingleton().CrossContext();
 
         commandBinder.Bind<CreateTowerMenuSignal>().To<CreateTowerMenuCommand>();
         commandBinder.Bind<CreateUpgradeMenuSignal>().To<CreateUpgradeMenuCommand>();
@@ -67,7 +65,6 @@ public class UIContext : CoreContext
         mediationBinder.BindView<UpgradeMenuView>().ToMediator<UpgradeMenuMediator>();
         mediationBinder.BindView<UpgradeButtonView>().ToMediator<UpgradeButtonMediator>();
         mediationBinder.BindView<WarningsView>().ToMediator<WarningsMediator>();
-        mediationBinder.BindView<ShootButtonView>().ToMediator<ShootButtonMediator>();
     }
 
     protected override void MapAsIndependentContext()

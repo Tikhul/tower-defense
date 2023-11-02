@@ -1,25 +1,27 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class BulletView : BaseView
 {
     public int BulletDamage { get; set; }
     public event Action<int, EnemyView> OnBulletHit = delegate { };
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Enemy"))
         {
             OnBulletHit?.Invoke(BulletDamage, other.gameObject.GetComponent<EnemyView>());
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
-    private void OnTriggerExit(Collider other)
+
+    public void ShootBullet(TowerView towerView, TowerModel towerModel, Vector3 enemyTransform)
     {
-        if (other.gameObject.tag.Equals("ShootRadius"))
-        {
-            Destroy(gameObject);
-        }
+        BulletDamage = towerModel.Damage;
+        transform.DOLocalMoveZ(
+                Vector3.Distance(transform.position, enemyTransform) * 100 + 10, 
+                towerView.BulletTime)
+            .OnComplete(() => Destroy(gameObject));
     }
 }

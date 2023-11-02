@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Editor/SceneHelper.cs.meta
+guid: cbf737cfb1d21ef45962aab59d928112
+========
+guid: a30969c0b61bcc34c90306ef2d04f767
+>>>>>>>> origin/to_3d:Assets/Scripts/Editor/NearestEnemyFinder.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

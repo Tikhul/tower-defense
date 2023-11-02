@@ -12,13 +12,13 @@ namespace context.ui
     public class ShowEndPanelSignal : Signal { }
     public class PassLevelDataSignal : Signal<ILevelModel> { }
     public class PassTowersDictionarySignal : Signal<Dictionary<TowerView, TowerModel>> { }
-    public class CellButtonViewCreatedSignal : Signal<CellButtonView> { }
+    public class CellViewCreatedSignal : Signal<CellView> { }
     public class BlockBoardSignal : Signal { }
     public class UnblockBoardSignal : Signal { }
     public class ChangePlayerDataSignal : Signal<PlayerModel> { }
-    public class CreateTowerMenuSignal : Signal<CellButtonView> { }
+    public class CreateTowerMenuSignal : Signal<CellView> { }
     public class TowerMenuCreatedSignal : Signal<List<TowerView>> { }
-    public class CreateUpgradeMenuSignal : Signal<CellButtonView> { }
+    public class CreateUpgradeMenuSignal : Signal<CellView> { }
     public class UpgradeMenuCreatedSignal : Signal<List<UpgradeConfig>, TowerView> { }
     public class HideMenuSignal : Signal { }
     public class HideSubMenuSignal : Signal { }
@@ -27,7 +27,4 @@ namespace context.ui
     public class UpgradeChosenSignal : Signal<UpgradeButtonView> { }
     public class ShowTowerDataSignal : Signal<TowerModel> { }
     public class NoMoneySignal : Signal { }
-    public class PrepareForShootSignal : Signal<TowerModel> { }
-    public class BlockShootButtonSignal : Signal { }
-    public class UnBlockShootButtonSignal : Signal { }
 }

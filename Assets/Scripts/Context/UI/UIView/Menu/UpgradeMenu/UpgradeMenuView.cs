@@ -1,17 +1,12 @@
-using strange.extensions.mediation.impl;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UpgradeMenuView : BaseMenuView
 {
     [SerializeField] private TMPro.TMP_Text _damageText;
     [SerializeField] private TMPro.TMP_Text _radiusText;
     [SerializeField] private TMPro.TMP_Text _speedText;
-    [SerializeField] private ShootButtonView _shootButtonView;
-    public ShootButtonView ShootButton => _shootButtonView;
+
     public void SetUpUpgradeButtonViews(List<UpgradeConfig> _list, TowerView activeView)
     {
         List<UpgradeButtonView> _tempList = new List<UpgradeButtonView>();
@@ -39,6 +34,7 @@ public class UpgradeMenuView : BaseMenuView
         _radiusText.text = "Радиус: " + tower.ShootRadius;
         _speedText.text = "Задержка: " + tower.ShootDelay;
     }
+
     public override void ClearMenu()
     {
         foreach(var button in GetComponentsInChildren<UpgradeButtonView>())

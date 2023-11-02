@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class DrawBoardCommand : Command
 {
-    [Inject] public GameObject boardParent { get; set; }
+    [Inject] public GameObject BoardParent { get; set; }
     private GameModel GameModel => injectionBinder.GetInstance<GameModel>();
     public override void Execute()
     {
@@ -16,26 +16,26 @@ public class DrawBoardCommand : Command
     private void DrawBoard()
     {
         BoardPartsPrototype prototype = new StandardPartPrototype();
-        float _parentPanelSide = GameModel.Board.Settings.ParentPanel.GetComponent<RectTransform>().sizeDelta.x;
-        
-        GameObject boardPanel = prototype.Clone(GameModel.Board.Settings.ParentPanel, boardParent,
-            _parentPanelSide, _parentPanelSide);
+        int rowNumber = GameModel.Board.Settings.RowNumber;
+        float fullSideScale = GameModel.Board.Settings.ParentPanel.transform.localScale.x;
+        float smallSideScale = fullSideScale / rowNumber * 10;
+        float moveWidth = GameModel.Board.Settings.ParentPanel.GetComponent<BoxCollider>().size.x
+            / rowNumber / 10;
 
-        GameObject row = prototype.Clone(GameModel.Board.Settings.Rows, boardPanel,
-            _parentPanelSide, _parentPanelSide);
-
-        for (int r = 0; r < GameModel.Board.Settings.RowNumber; r++)
+        for (int r = 0; r < rowNumber; r++)
         {
-            GameObject column = prototype.Clone(GameModel.Board.Settings.Columns, row,
-                _parentPanelSide / GameModel.Board.Settings.RowNumber,
-                _parentPanelSide);
+            GameObject row = prototype.Clone(GameModel.Board.Settings.Rows, BoardParent,
+                Vector3.one, new Vector3(0, 0, moveWidth));
 
-            for (int b = 0; b < GameModel.Board.Settings.RowNumber; b++)
+            for (int b = 0; b < rowNumber; b++)
             {
-                GameObject button = prototype.Clone(GameModel.Board.Settings.ButtonExample, column,
-                    _parentPanelSide / GameModel.Board.Settings.RowNumber,
-                    _parentPanelSide / GameModel.Board.Settings.RowNumber);
-                
+                GameObject button = prototype.Clone(GameModel.Board.Settings.ButtonExample, row,
+                    new Vector3(smallSideScale, 0.5f, smallSideScale), 
+                    new Vector3(moveWidth, 0, 0));
+
+                prototype.AdjustButtonPosition(button, b, rowNumber);
+                prototype.AdjustRowPosition(row, button, r, moveWidth);
+ 
                 injectionBinder.GetInstance<FillCellListSignal>().Dispatch(button, StaticName.Alphabet[b], r);
             }
         }

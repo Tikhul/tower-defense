@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02f03ccb1aa793a4f870dd439c165de5, type: 3}
   m_Name: EnemyConfig3
   m_EditorClassIdentifier: 
-  _id: EnemyConfig3
-  _initialHealth: 100
+  _id: EnemyConfig3_green
+  _initialHealth: 10
   _damage: 20
-  _speed: 30
-  _coinsForKill: 0
+  _speed: 1
+  _coinsForKill: 10

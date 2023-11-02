@@ -10,7 +10,7 @@ public class EnemyWayModel
     {
         Config = config;
     }
-    public List<Vector3> GetEnemyWayTransforms(List<CellButtonView> enemyWayButtons)
+    public List<Vector3> GetEnemyWayTransforms(List<CellView> enemyWayButtons)
     {
         List<Vector3> _temp = new List<Vector3>();
         for(int i=0; i< enemyWayButtons.Count; i++)

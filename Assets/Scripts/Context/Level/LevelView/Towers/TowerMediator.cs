@@ -1,37 +1,85 @@
+using System.Collections;
+using System.Linq;
 using context.level;
 using context.ui;
 using strange.extensions.mediation.impl;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class TowerMediator : Mediator
 {
     [Inject] public TowerView View { get; set; }
+    [Inject] public StartShootingSignal StartShootingSignal { get; set; }
+    [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
+    [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
-    [Inject] public ReadyToShootSignal ReadyToShootSignal { get; set; }
-    [Inject] public PrepareForShootSignal PrepareForShootSignal { get; set; }
-
+    [Inject] public EnemyDestroyedSignal EnemyDestroyedSignal { get; set; }
+    
     public override void OnRegister()
     {
-        ReadyToShootSignal.AddListener(LaunchShootingHandler);
-        View.OnBulletShot += PrepareAnotherShootHandler;
+        StartShootingSignal.AddListener(LaunchShootingHandler);
+        RestartLevelChosenSignal.AddListener(ClearTowersHandler);
+        NextLevelChosenSignal.AddListener(ClearTowersHandler);
+        EnemyDestroyedSignal.AddListener(RemoveEnemyHandler);
     }
+    
     public override void OnRemove()
     {
-        ReadyToShootSignal.RemoveListener(LaunchShootingHandler);
-        View.OnBulletShot -= PrepareAnotherShootHandler;
+        RestartLevelChosenSignal.RemoveListener(ClearTowersHandler);
+        NextLevelChosenSignal.RemoveListener(ClearTowersHandler);
+        EnemyDestroyedSignal.RemoveListener(RemoveEnemyHandler);
     }
-    private void LaunchShootingHandler(Dictionary<Vector3, EnemyView> _receivedTransforms, TowerModel _towerModel)
+    
+    private void LaunchShootingHandler()
     {
-        if (View.IsShooting && _receivedTransforms.Any())
+        if (View.IsShooting)
         {
-            View.LaunchShooting(_receivedTransforms, _towerModel);
-  //          Debug.Log("LaunchShootingHandler");
-        } 
+            Debug.Log("LaunchShootingHandler");
+            StartCoroutine(WaitForLaunchShooting());
+        }
     }
-    private void PrepareAnotherShootHandler(TowerModel _towerModel)
+
+    private IEnumerator WaitForLaunchShooting()
     {
-        PrepareForShootSignal.Dispatch(_towerModel);
+        StartShootingSignal.RemoveListener(LaunchShootingHandler);
+        TowerModel towerModel = LevelsPipelineModel.CurrentLevel.TowerData[View];
+            
+        for (int i = 0; i < towerModel.BulletsNumber; i++)
+        {
+            if (View.EnemyViews.Where(x => !x.IsTarget).Any())
+            {
+                NearestEnemyFinder finder = new NearestEnemyFinder();
+                finder.GetNearestEnemy(towerModel, View);
+                if (finder.NearestEnemy != null)
+                {
+                    View.TowerShoot(View, towerModel, finder.NearestEnemy.Value);
+                    yield return new WaitForSeconds(towerModel.ShootDelay);
+                }
+                else
+                {
+                    View.RenewData();
+                    break;
+                }
+            }
+            else
+            {
+                View.RenewData();
+                break;
+            }
+        }
+        
+        View.RenewData();
+        StartShootingSignal.AddListener(LaunchShootingHandler);
+    }
+    
+    private void ClearTowersHandler()
+    {
+        StopCoroutine(WaitForLaunchShooting());
+        View.RenewData();
+        View.Hide();
+    }
+
+    private void RemoveEnemyHandler(EnemyView view)
+    {
+        View.DeleteEnemyView(view);
     }
 }
