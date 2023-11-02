@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using strange.extensions.mediation.impl;
 using System;
 
@@ -13,7 +12,6 @@ public class CellButtonView : View
     private char _cellChar;
     public CellState State { get; set; } = CellState.Empty;
     public int OrderIndex { get; set; }
-    [SerializeField] private TMP_Text _buttonText;
     [SerializeField] private Button _buttonElement;
     [SerializeField] private AllTowersView _towers;
     [SerializeField] private AllEnemiesView _enemies;
@@ -28,16 +26,6 @@ public class CellButtonView : View
     {
         get => _cellChar;
         set => _cellChar = value;
-    }
-    public TMP_Text ButtonText
-    {
-        get => _buttonText;
-        set => _buttonText = value;
-    }
-    public Button ButtonElement
-    {
-        get => _buttonElement;
-        set => _buttonElement = value;
     }
     public AllTowersView Towers
     {
@@ -58,13 +46,13 @@ public class CellButtonView : View
     }
     public void BlockButton()
     {
-        ButtonElement.interactable = false;
+        _buttonElement.interactable = false;
     }
     public void UnblockButton()
     {
         if (!State.Equals(CellState.EnemyWay))
         {
-            ButtonElement.interactable = true;
+            _buttonElement.interactable = true;
         }
     }
     public void ClearButton()
@@ -81,12 +69,12 @@ public class CellButtonView : View
     {
         if (State.Equals(CellState.EnemyWay))
         {
-            ButtonElement.interactable = false;
+            _buttonElement.interactable = false;
             GetComponent<Image>().color = Color.blue;
         }
         else
         {
-            ButtonElement.interactable = true;
+            _buttonElement.interactable = true;
             GetComponent<Image>().color = Color.white;
         }
     }

@@ -1,6 +1,4 @@
 using strange.extensions.mediation.impl;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +6,6 @@ public class AllEnemiesView : View
 {
     [SerializeField] private List<GameObject> _enemyPrefabs;
     [SerializeField] private CellButtonView _cellButtonView;
-    public List<GameObject> EnemyPrefabs => _enemyPrefabs;
     public CellButtonView CellButtonView => _cellButtonView;
     public void ActivateEnemy(EnemyModel model)
     {
@@ -16,10 +13,9 @@ public class AllEnemiesView : View
         {
             if (enemy.GetComponent<EnemyView>().Config.Id.Equals(model.Config.Id))
             {
-                GameObject _newEnemy = Instantiate(enemy);
-                _newEnemy.transform.parent = transform;
-                _newEnemy.transform.localPosition = transform.localPosition;
-                _newEnemy.transform.localScale = enemy.transform.localScale;
+                GameObject newEnemy = Instantiate(enemy, transform, true);
+                newEnemy.transform.localPosition = transform.localPosition;
+                newEnemy.transform.localScale = enemy.transform.localScale;
             }
         }
     }

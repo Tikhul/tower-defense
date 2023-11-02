@@ -16,19 +16,10 @@ public class TowerView : BaseView
     [SerializeField] private GameObject _direction;
     [SerializeField] private Button _cellButton;
     private float _bulletTime = 1f;
-    public bool IsShooting { get; set; } = false;
-    public int ShootsNumber { get; set; }
+    private int _shootsNumber;
+    public bool IsShooting { get; set; }
     public event Action<TowerModel> OnBulletShot = delegate { };
-    public TowerConfig TowerConfig
-    {
-        get => _towerConfig;
-        set => _towerConfig = value;
-    }
-    public Image TowerImage
-    {
-        get => _towerImage;
-        set => _towerImage = value;
-    }
+    public TowerConfig TowerConfig => _towerConfig;
     public string TowerCostText => _towerConfig.Cost.ToString();
     public string TowerDamageText => _towerConfig.Damage.ToString();
     public string TowerRadiusText => _towerConfig.ShootRadius.ToString();
@@ -36,7 +27,7 @@ public class TowerView : BaseView
     public string TowerBulletsText => _towerConfig.BulletsNumber.ToString();
     private void OnEnable()
     {
-        ShootsNumber = 0;
+        _shootsNumber = 0;
         SetRadiusCollider();
     }
     private void SetRadiusCollider()
@@ -44,68 +35,66 @@ public class TowerView : BaseView
         _shootRadius.radius = _towerConfig.ShootRadius / 30;
     }
     /// <summary>
-    /// Увеличение коллайдера, который показывает радиус стрельбы
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
-    public void UpgradeRadius(float _upgrade)
+    public void UpgradeRadius(float upgrade)
     {
-        _shootRadius.radius += _upgrade / 30 - 30;
+        _shootRadius.radius += upgrade / 30 - 30;
     }
-    public void LaunchShooting(Dictionary<Vector3, EnemyView> _receivedTransforms, TowerModel _towerModel)
+    public void LaunchShooting(Dictionary<Vector3, EnemyView> receivedTransforms, TowerModel towerModel)
     {
-  //      Debug.Log("LaunchShooting");
         _cellButton.interactable = false;
-        ShootsNumber += 1;
-        TurnTower(_receivedTransforms, _towerModel);
+        _shootsNumber += 1;
+        TurnTower(receivedTransforms, towerModel);
     }
-    public void TurnTower(Dictionary<Vector3, EnemyView> _enemiesTransforms, TowerModel _towerModel)
+    private void TurnTower(Dictionary<Vector3, EnemyView> enemiesTransforms, TowerModel towerModel)
     {
-  //      Debug.Log("TurnTower");
-        Vector3 _nearestEnemy = _enemiesTransforms.Keys.OrderBy(x => Vector3.Distance(transform.position, x)).First();
-        Debug.Log(_enemiesTransforms[_nearestEnemy].Config.Id);
-        Debug.Log("Ожидание " + _nearestEnemy);
+        Vector3 nearestEnemy = enemiesTransforms.Keys.OrderBy(x => Vector3.Distance(transform.position, x)).First();
+        _direction.transform.DOLookAt(nearestEnemy, towerModel.ShootDelay - _bulletTime)
+            .OnComplete(() => CreateBullet(towerModel, nearestEnemy));
+    }
+    private void CreateBullet(TowerModel tower, Vector3 enemyTransform)
+    {
+        GameObject newBullet = Instantiate(_bulletPrefab);
         
-        _direction.transform.DOLookAt(_nearestEnemy, _towerModel.ShootDelay - _bulletTime)
-            .OnComplete(() => CreateBullet(_towerModel, _nearestEnemy));
-        Debug.Log("Реальность " + _enemiesTransforms[_nearestEnemy].transform.position);
-    }
-    private void CreateBullet(TowerModel _tower, Vector3 _enemyTransform)
-    {
-  //      Debug.Log("CreateBullet");
-        GameObject _newBullet = Instantiate(_bulletPrefab);
-        _newBullet.transform.parent = _bulletParent.transform;
-        _newBullet.transform.localPosition = _bulletPrefab.transform.position;
-        _newBullet.transform.localScale = _bulletPrefab.transform.localScale;
-        _newBullet.GetComponent<BulletView>().BulletDamage = _tower.Damage;
-        StartCoroutine(ShootBullet(_newBullet, _tower, _enemyTransform));
-    }
-    private IEnumerator ShootBullet(GameObject _newBullet, TowerModel _tower, Vector3 _enemyTransform)
-    {
- //       Debug.Log("ShootBullet");
-        if(ShootsNumber == _tower.BulletsNumber)
+        if (newBullet.transform != null)
         {
-            _newBullet.transform.DOLocalMoveY(
-                Vector3.Distance(transform.position, _enemyTransform), _bulletTime)
-                .OnComplete(() => DestroyBullet(_newBullet));
+            newBullet.transform.parent = _bulletParent.transform;
+            newBullet.transform.localPosition = _bulletPrefab.transform.position;
+            newBullet.transform.localScale = _bulletPrefab.transform.localScale;
+        }
+        newBullet.GetComponent<BulletView>().BulletDamage = tower.Damage;
+        StartCoroutine(ShootBullet(newBullet, tower, enemyTransform));
+    }
+    private IEnumerator ShootBullet(GameObject newBullet, TowerModel tower, Vector3 enemyTransform)
+    {
+        if(_shootsNumber == tower.BulletsNumber)
+        {
+            newBullet.transform.DOLocalMoveY(
+                Vector3.Distance(transform.position, enemyTransform), _bulletTime)
+                .SetEase(Ease.Linear)
+                .OnComplete(() => DestroyBullet(newBullet));
             RenewData();
         }
-        else if(ShootsNumber < _tower.BulletsNumber)
+        else if(_shootsNumber < tower.BulletsNumber)
         {
-            yield return _newBullet.transform.DOLocalMoveY(
-                Vector3.Distance(transform.position, _enemyTransform), _bulletTime).WaitForCompletion();
-            OnBulletShot?.Invoke(_tower);
-            DestroyBullet(_newBullet);
+            yield return newBullet.transform.DOLocalMoveY(
+                Vector3.Distance(transform.position, enemyTransform), _bulletTime)
+                .SetEase(Ease.Linear).WaitForCompletion();
+            OnBulletShot?.Invoke(tower);
+            DestroyBullet(newBullet);
         }
     }
-    private void DestroyBullet(GameObject _bullet)
+    private void DestroyBullet(GameObject bullet)
     {
-        if(_bullet != null)
+        if(bullet != null)
         {
-            Destroy(_bullet);
+            Destroy(bullet);
         }
     }
     private void RenewData()
     {
-        ShootsNumber = 0;
+        _shootsNumber = 0;
         IsShooting = false;
         _cellButton.interactable = true;
     }

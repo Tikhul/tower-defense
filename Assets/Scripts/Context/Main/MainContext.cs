@@ -32,28 +32,11 @@ public class MainContext : CoreContext
     protected override void MapSignals()
     {
         base.MapSignals();
-
-       // injectionBinder.Bind<LoadContextsSignal>().ToSingleton().CrossContext();
+        
         injectionBinder.Bind<GameContextLoadedSignal>().ToSingleton().CrossContext();
         injectionBinder.Bind<LevelContextLoadedSignal>().ToSingleton().CrossContext();
     }
-
-    protected override void MapMediators()
-    {
-        base.MapMediators();
-
-        //mediationBinder.BindView<TowerButton>().ToMediator<TowerButtonMediator>();
-        //mediationBinder.BindView<StartPanelView>().ToMediator<StartPanelMediator>();
-        //mediationBinder.BindView<EndPanelView>().ToMediator<EndPanelMediator>();
-        //mediationBinder.BindView<LevelRestartView>().ToMediator<LevelRestartMediator>();
-        //mediationBinder.BindView<LevelNameView>().ToMediator<LevelNameMediator>();
-        //mediationBinder.BindView<MenuView>().ToMediator<MenuMediator>();
-        //mediationBinder.BindView<TowerMenuView>().ToMediator<TowerMenuMediator>();
-        //mediationBinder.BindView<UserDataView>().ToMediator<UserDataMediator>();
-        //mediationBinder.BindView<UpgradeMenuView>().ToMediator<UpgradeMenuMediator>();
-        //mediationBinder.BindView<WarningsView>().ToMediator<WarningsMediator>();
-    }
-
+    
     protected override void MapAsIndependentContext()
     {
         commandBinder.Bind<StartSignal>()
