@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class TowerView : TowerShoot
+public class TowerView : AbstractTowerShootView
 {
     [SerializeField] private TowerConfig _towerConfig;
     [SerializeField] private Sprite _towerImage;

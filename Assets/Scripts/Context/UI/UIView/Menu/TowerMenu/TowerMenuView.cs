@@ -18,11 +18,11 @@ public class TowerMenuView : BaseMenuView
             newButton.transform.localScale = new Vector3(1, 1, 1);
             newButton.transform.localPosition = new Vector3(0, 0, 0);
             TowerButtonView b = newButton.GetComponent<TowerButtonView>();
-            b.TowerCostText.text = "Цена: " + tower.TowerCostText;
-            b.TowerDamageText.text = "Урон: " + tower.TowerDamageText;
-            b.TowerRadiusText.text = "Радиус: " + tower.TowerRadiusText;
-            b.TowerFrequencyText.text = "Задержка: " + tower.TowerFrequencyText;
-            b.TowerBulletsText.text = "Враги: " + tower.TowerBulletsText;
+            b.TowerCostText.text = "????: " + tower.TowerCostText;
+            b.TowerDamageText.text = "????: " + tower.TowerDamageText;
+            b.TowerRadiusText.text = "??????: " + tower.TowerRadiusText;
+            b.TowerFrequencyText.text = "????????: " + tower.TowerFrequencyText;
+            b.TowerBulletsText.text = "?????: " + tower.TowerBulletsText;
             b.TowerButtonImage.sprite = tower.TowerImage;
             b.TowerView = tower;
         }

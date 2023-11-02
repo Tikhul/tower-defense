@@ -51,7 +51,8 @@ public class TowerMediator : Mediator
                 finder.GetNearestEnemy(towerModel, View);
                 if (finder.NearestEnemy != null)
                 {
-                    View.TowerShoot(View, towerModel, finder.NearestEnemy.Value);
+                    View.LaunchShooting();
+                    View.TurnTower(View, towerModel, finder.NearestEnemy.Value);
                     yield return new WaitForSeconds(towerModel.ShootDelay);
                 }
                 else

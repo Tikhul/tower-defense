@@ -19,10 +19,10 @@ public class UpgradeMenuView : BaseMenuView
             newButton.transform.localPosition = new Vector3(0, 0, 0);
             UpgradeButtonView b = newButton.GetComponent<UpgradeButtonView>();
             b.UpgradeConfig = upgrade;
-            b.CostText.text = "Цена: " + upgrade.Cost;
-            b.DamageUpgradeText.text = "Урон + " + upgrade.Damage;
-            b.RadiusUpgradeText.text = "Радиус + " + upgrade.ShootRadius;
-            b.SpeedUpgradeText.text = "Задержка - " + upgrade.ShootDelay;
+            b.CostText.text = "????: " + upgrade.Cost;
+            b.DamageUpgradeText.text = "???? + " + upgrade.Damage;
+            b.RadiusUpgradeText.text = "?????? + " + upgrade.ShootRadius;
+            b.SpeedUpgradeText.text = "???????? - " + upgrade.ShootDelay;
             b.ActiveView = activeView;
             _tempList.Add(b);
         }
@@ -30,9 +30,9 @@ public class UpgradeMenuView : BaseMenuView
 
     public void ShowTowerData(TowerModel tower)
     {
-        _damageText.text = "Урон: " + tower.Damage;
-        _radiusText.text = "Радиус: " + tower.ShootRadius;
-        _speedText.text = "Задержка: " + tower.ShootDelay;
+        _damageText.text = "????: " + tower.Damage;
+        _radiusText.text = "??????: " + tower.ShootRadius;
+        _speedText.text = "????????: " + tower.ShootDelay;
     }
 
     public override void ClearMenu()

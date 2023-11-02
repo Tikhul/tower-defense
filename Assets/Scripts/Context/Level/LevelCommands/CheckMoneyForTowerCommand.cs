@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Проверка, достаточно ли денег на покупку башни
+/// ????????, ?????????? ?? ????? ?? ??????? ?????
 /// </summary>
 public class CheckMoneyForTowerCommand : Command
 {
@@ -16,7 +16,7 @@ public class CheckMoneyForTowerCommand : Command
     {
         if(TowerButtonView.TowerView.TowerConfig.Cost > GameModel.Player.ActualCoins)
         {
-            Debug.Log("Недостаточно денег");
+            Debug.Log("???????????? ?????");
             injectionBinder.GetInstance<NoMoneySignal>().Dispatch();
             Fail();
         }
