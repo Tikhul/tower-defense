@@ -13,7 +13,6 @@ public class FillCellListCommand : Command
             {
                 var cellData = new CellData(StaticName.Alphabet[line], row);
                 gameModel.Board.CellList.Add(cellData);
-                gameModel.Board.CellList.Add(cellData);
             }
         }
     }

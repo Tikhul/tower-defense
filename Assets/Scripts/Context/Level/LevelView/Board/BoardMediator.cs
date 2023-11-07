@@ -1,6 +1,7 @@
 using strange.extensions.mediation.impl;
 using context.ui;
 using context.level;
+using UnityEngine;
 
 public class BoardMediator : Mediator
 {
@@ -14,6 +15,7 @@ public class BoardMediator : Mediator
 
     public override void OnRegister()
     {
+        ShowPanel();
         RestartLevelChosenSignal.AddListener(StartLevelHandler);
         NextLevelChosenSignal.AddListener(StartLevelHandler);
         ShowRestartPanelSignal.AddListener(HidePanelHandler);
@@ -46,10 +48,7 @@ public class BoardMediator : Mediator
 
     private void DrawBoard()
     {
-        foreach (var cellData in GameModel.Board.CellList)
-        {
-            View.DrawCell(cellData);
-        }
+        View.DrawCells(GameModel.Board.CellList, GameModel.Board.Settings);
         PipelineStartSignal.Dispatch();
     }
 }

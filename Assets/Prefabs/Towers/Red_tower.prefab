@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 20835238263209842}
-  - component: {fileID: 427150204009327305}
   m_Layer: 2
   m_Name: AllBulletsView
   m_TagString: Untagged
@@ -31,18 +30,6 @@ Transform:
   m_Father: {fileID: 1209331164999773965}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &427150204009327305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5164314752936960273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3cb2d1a58e09c8419892ef2d234a77a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5423116009590798709
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,13 +253,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7fe7ab2c01e9034d9fc1b6669f00abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerConfig: {fileID: 11400000, guid: 67f08345943ffc440a181f4900dbc3b8, type: 2}
-  _towerImage: {fileID: 21300000, guid: 10e03235be5b0f34f850b633bebfdac5, type: 3}
-  _bulletPrefab: {fileID: 8935966225760088791, guid: fe145e8dbaff5cf4eba362a0fd744124, type: 3}
-  _bulletParent: {fileID: 5164314752936960273}
-  _shootRadius: {fileID: 1493581342852451045}
   _direction: {fileID: 8424050735043821296}
   _cellView: {fileID: 0}
+  _bulletPrefab: {fileID: 8935966225760088791, guid: fe145e8dbaff5cf4eba362a0fd744124, type: 3}
+  _bulletParent: {fileID: 5164314752936960273}
+  _towerConfig: {fileID: 11400000, guid: 67f08345943ffc440a181f4900dbc3b8, type: 2}
+  _towerImage: {fileID: 21300000, guid: 10e03235be5b0f34f850b633bebfdac5, type: 3}
+  _shootRadius: {fileID: 1493581342852451045}
 --- !u!135 &1493581342852451045
 SphereCollider:
   m_ObjectHideFlags: 0

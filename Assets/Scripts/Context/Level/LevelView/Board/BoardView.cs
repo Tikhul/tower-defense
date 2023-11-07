@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardView : BaseView
@@ -21,9 +22,17 @@ public class BoardView : BaseView
         _mainCamera.transform.rotation = _cameraPosition.transform.rotation;
     }
 
-    public void DrawCell(CellData data)
+    public void DrawCells(List<CellData> cellData, BoardConfig boardConfig)
     {
-       // BoardPartsPrototype prototype = new StandardPartPrototype();
+        int rowCount = 0;
+        var boardParent = Instantiate(boardConfig.ParentPanel);
+
+        foreach (var data in cellData)
+        {
+            var obj = Instantiate(boardConfig.ButtonExample, boardParent.transform, true);
+            rowCount++;
+        }
+        // BoardPartsPrototype prototype = new StandardPartPrototype();
         // int rowNumber = gameModel.Board.Settings.RowNumber;
         // float fullSideScale = gameModel.Board.Settings.ParentPanel.transform.localScale.x;
         // float smallSideScale = fullSideScale / rowNumber * 10;
