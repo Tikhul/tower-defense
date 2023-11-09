@@ -12,7 +12,6 @@ public class BeginNextLevelCommand : Command
     {
         LevelsPipelineModel.BeginNextLevel();
         injectionBinder.GetInstance<PassLevelDataSignal>().Dispatch(LevelsPipelineModel.CurrentLevel);
-        injectionBinder.GetInstance<DefineEnemyWaySignal>().Dispatch();
         injectionBinder.GetInstance<ActivateWaveSignal>().Dispatch();
     }
 }

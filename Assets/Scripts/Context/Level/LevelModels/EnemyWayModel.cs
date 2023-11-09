@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,13 +10,7 @@ public class EnemyWayModel
     {
         Config = config;
     }
-    public List<Vector3> GetEnemyWayTransforms(List<CellView> enemyWayButtons)
-    {
-        List<Vector3> _temp = new List<Vector3>();
-        foreach (var t in enemyWayButtons)
-        {
-            _temp.Add(t.Enemies.transform.position);
-        }
-        return _temp;
-    }
+    
+    public void AddEnemyWayTransform(Vector3 transform) => EnemyWayTransforms.Add(transform);
+    public void ClearEnemyWaysTransforms() => EnemyWayTransforms.Clear();
 }

@@ -59,6 +59,7 @@ public class LevelsPipelineModel
     public void CompleteCurrentLevel()
     {
        CurrentLevel.CompleteLevel();
+       CurrentLevel.EnemyWay.ClearEnemyWaysTransforms();
        Debug.Log("CompleteCurrentLevel " + CurrentLevel.Config.Name);
     }
 

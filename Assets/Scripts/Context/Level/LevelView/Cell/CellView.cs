@@ -75,6 +75,12 @@ public class CellView : CellHover, IInteractable
             ClearColor();
         }     
     }
+
+    public void SetIndices(int cellInt, char cellChar)
+    {
+        CellInt = cellInt;
+        CellChar = cellChar;
+    }
 }
 
 public enum CellState

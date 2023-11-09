@@ -19,8 +19,8 @@ public class BoardModel
 
 public class CellData
 {
-    public char Char { get; set; }
-    public int Int { get; set; }
+    public char Char { get; }
+    public int Int { get; }
 
     public CellData(char c, int i)
     {

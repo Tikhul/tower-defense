@@ -1,7 +1,6 @@
 using context.level;
 using context.ui;
 using strange.extensions.mediation.impl;
-using System.Linq;
 
 public class EnemyMediator : Mediator
 {
@@ -9,7 +8,6 @@ public class EnemyMediator : Mediator
     [Inject] public LevelsPipelineModel LevelsPipelineModel { get; set; }
     [Inject] public NextLevelChosenSignal NextLevelChosenSignal { get; set; }
     [Inject] public RestartLevelChosenSignal RestartLevelChosenSignal { get; set; }
-    [Inject] public GameModel GameModel { get; set; }
     [Inject] public EnemyWayCompletedSignal EnemyWayCompletedSignal { get; set; }
     
     public override void OnRegister()
@@ -27,10 +25,7 @@ public class EnemyMediator : Mediator
     }
     private void FillWayPointsHandler()
     {
-        // View.FillWayPoints(LevelsPipelineModel.CurrentLevel.EnemyWay
-        //     .GetEnemyWayTransforms(GameModel.Board.CellList.Where(x=>x.State.Equals(CellState.EnemyWay))
-        //     .OrderBy(x=>x.OrderIndex)
-        //     .ToList()));
+        View.FillWayPoints(LevelsPipelineModel.CurrentLevel.EnemyWay.EnemyWayTransforms);
     }
     private void ClearEnemiesHandler()
     {

@@ -7,7 +7,7 @@ namespace context.level
     public class PipelineStartSignal : Signal { }
     public class PipelineEndedSignal : Signal { }
     public class LevelEndedSignal : Signal { }
-    public class DefineEnemyWaySignal : Signal { }
+    public class SaveEnemyWayTransformSignal : Signal<Vector3> { }
     public class WaveEndedSignal : Signal { }
     public class ActivateWaveSignal : Signal { }
     public class EnemyWayCompletedSignal : Signal<EnemyView> { }

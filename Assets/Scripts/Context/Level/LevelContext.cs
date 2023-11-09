@@ -72,6 +72,7 @@ public class LevelContext : CoreContext
             .To<UpdateEnemyDataCommand>()
             .InSequence();
         commandBinder.Bind<LevelEndedSignal>().To<LevelEndCommand>();
+        commandBinder.Bind<SaveEnemyWayTransformSignal>().To<SaveEnemyWayTransformCommand>();
     }
     protected override void MapMediators()
     {

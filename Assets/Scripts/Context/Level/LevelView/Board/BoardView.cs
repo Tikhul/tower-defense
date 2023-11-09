@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,8 +5,6 @@ public class BoardView : BaseView
 {
     [SerializeField] private GameObject _boardParent;
     [SerializeField] private GameObject _cameraPosition;
-
-    private BoardPartsPrototype _prototype = new StandardPartPrototype();
     public GameObject BoardParent
     {
         get => _boardParent;
@@ -25,11 +22,13 @@ public class BoardView : BaseView
     public void DrawCells(List<CellData> cellData, BoardConfig boardConfig)
     {
         int rowCount = 0;
-        var boardParent = Instantiate(boardConfig.ParentPanel);
+        var boardParent = Instantiate(boardConfig.ParentPanel, transform, true);
 
         foreach (var data in cellData)
         {
             var obj = Instantiate(boardConfig.ButtonExample, boardParent.transform, true);
+            var cellView = obj.GetComponent<CellView>();
+            cellView.SetIndices(data.Int, data.Char);
             rowCount++;
         }
         // BoardPartsPrototype prototype = new StandardPartPrototype();
